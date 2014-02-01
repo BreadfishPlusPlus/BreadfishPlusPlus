@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name            Breadfish++
+// @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          <%= pkg.author %>
 // @version         <%= pkg.version %>
 // @namespace       http://maddin.cc
-// @include         *://forum.sa-mp.de/*
+// @match          *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
 // @require         https://code.jquery.com/jquery-1.11.0.min.js
+// @grant           unsafeWindow
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @grant           GM_addStyle

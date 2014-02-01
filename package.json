@@ -3,6 +3,7 @@
   "version": "1.6.1",
   "author": "Martin Rump <admin@maddin.cc>",
   "private": true,
+  "license": "MIT"
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-watch": "~0.5.3",
