@@ -16,6 +16,6 @@
 // @grant           GM_openInTab
 // @grant           GM_info
 // @noframes        true
-// @downloadURL     https://raw.github.com/maddin77/BreadfishPlusPlus/latest/dist/BreadfishPlusPlus.user.js
-// @updateURL       https://raw.github.com/maddin77/BreadfishPlusPlus/latest/dist/BreadfishPlusPlus.meta.js
+// @downloadURL     https://raw.github.com/maddin77/BreadfishPlusPlus/master/dist/BreadfishPlusPlus.user.js
+// @updateURL       https://raw.github.com/maddin77/BreadfishPlusPlus/master/dist/BreadfishPlusPlus.meta.js
 // ==/UserScript==
