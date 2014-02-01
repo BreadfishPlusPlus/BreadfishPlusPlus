@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Breadfish++
 // @author          Martin Rump <admin@maddin.cc>
-// @version         1.6.0
+// @version         1.6.1
 // @namespace       http://maddin.cc
 // @include         *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
