@@ -408,10 +408,10 @@ var DefaultOptions = [
                     'desc': 'Fügt dem WYSIWYG-Editor das Icon für den C/C++-Quelltext BBCode hinzu.'
                 },
                 {
-                    'name': 'Dropbown',
+                    'name': 'Dropdown',
                     'key': 'option_postCreate_bbcode_dropdown',
                     'type': 'toggle',
-                    'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Dropbown BBCode hinzu.'
+                    'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Dropdown BBCode hinzu.'
                 },
                 {
                     'name': 'Sevenload',
