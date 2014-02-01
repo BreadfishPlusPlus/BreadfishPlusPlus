@@ -305,7 +305,7 @@ var DefaultOptions = [
                     'name': 'Benutzer-Autovervollständigung',
                     'key': 'option_postCreate_extension_nickcomplete',
                     'type': 'toggle',
-                    'desc': 'Wenn du im post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum die auf die bereits getippten anfangsbuchstaben passen.'
+                    'desc': 'Wenn du im post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum die auf die bereits getippten anfangsbuchstaben passen. Durch <strong>Tab</strong> kannst du durch die Liste schalten, und durch <strong>Space</strong> bestätigst du den ausgewählten Namen.'
                 }
             ],
             'Smilies': [

@@ -22,7 +22,7 @@ $(function () {
             return $('<div/>').text(html).html();
         },
         nano: function (templateName, data) {
-            return Template[templateName].replace(/\{([\w\.]*)\}/g, function (str, key) {
+            return Template.html[templateName].replace(/\{([\w\.]*)\}/g, function (str, key) {
                 var keys = key.split("."), v = data[keys.shift()], i, l;
                 for (i = 0, l = keys.length; i < l; i += 1) {
                     v = v[keys[i]];
