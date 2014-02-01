@@ -1,6 +1,6 @@
 {
   "name": "BreadfishPlusPlus",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Martin Rump <admin@maddin.cc>",
   "private": true,
   "devDependencies": {
