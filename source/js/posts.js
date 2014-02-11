@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing posts.js');
 
     function getYoutubeLength(totalSec) {
         var hours = parseInt(totalSec / 3600, 10) % 24, minutes = parseInt(totalSec / 60, 10) % 60, seconds = parseInt(totalSec % 60, 10);
@@ -52,10 +51,12 @@ $(function () {
     }
 
     function addShortUrls() {
+        console.log($('.message:not(.quickReply):not(.deleted)').length);
         $('.message:not(.quickReply):not(.deleted)').each(function () {
             var $elem = $(this),
                 id = $elem.attr('id').substr(7),
                 url = 'http://sa-mp.de/B++/p' + id + '-/';
+            console.log('Adding short url to ' + id);
             $elem.find('.messageFooterRight .smallButtons > ul').append('<li><a class="bpp_shorturl" href="' + url + '" title="Kurz-URL zu diesem Beitrag"><img src="wcf/icon/wysiwyg/linkInsertM.png" height="14" alt=""> <span>Kurz-URL</span><input class="bpp_shorturl_input" type="text" value="' + url + '" /></a></li>');
         });
         $('.bpp_shorturl').click(function (e) {
@@ -323,8 +324,10 @@ $(function () {
         });
     }
 
-    $(document).ready(function () {
+
+    window.addEventListener('load', function () {
         if (BPPUtils.isTemplate('tplThread')) {
+            GM_log('executing posts.js');
             GM_addStyle(Template.css.posts);
             if (GM_getValue('option_posts_extension_shorturl', false)) {
                 addShortUrls();
@@ -401,5 +404,5 @@ $(function () {
             setupNicknames();
             setupUsernoteIcon();
         }
-    });
+    }, false);
 });

@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing boards.js');
 
     function changeLastPosts() {
         var posts = GM_getValue('option_boards_extension_lastPosts', 10);
@@ -46,8 +45,9 @@ $(function () {
         });
     }
 
-    $(document).ready(function () {
+    window.addEventListener('load', function () {
         if (BPPUtils.isTemplate('tplIndex')) {
+            GM_log('executing boards.js');
             if (GM_getValue('option_boards_extension_lastPosts', 10) !== 10) {
                 changeLastPosts();
             }
@@ -67,5 +67,5 @@ $(function () {
                 $('.infoBox .container-1').not('.infoBoxUsersOnline').remove();
             }
         }
-    });
+    }, false);
 });

@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing postCreate.js');
 
     function getCaretPosition(ctrl) {
         if (ctrl.setSelectionRange) {
@@ -119,6 +118,7 @@ $(function () {
     }
 
     if (BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
+        GM_log('executing postCreate.js');
         if (GM_getValue('option_postCreate_bbcode_email', false)) {
             unsafeWindow.language['email.title'] = 'E-mail address';
             unsafeWindow.language['email.attribute1.promptText'] = 'TODO:';
@@ -175,7 +175,7 @@ $(function () {
 
 
 
-        $(document).ready(function () {
+        window.addEventListener('load', function () {
             GM_addStyle(Template.css.postCreate);
             if (GM_getValue('option_postCreate_extension_nickcomplete', false)) {
                 addNickAutocomplete();
@@ -212,6 +212,6 @@ $(function () {
             if (GM_getValue('option_postCreate_bbcode_dropdown', false)) {
                 $('img[src="wcf/icon/wysiwyg/insertSupM.png"]').attr('src', 'http://i.imgur.com/8alKTkm.png');
             }
-        });
+        }, false);
     }
 });

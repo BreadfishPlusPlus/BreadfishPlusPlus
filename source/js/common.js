@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing common.js');
     var $pmNotification;
 
     function showPrivateMessageNotification() {
@@ -315,7 +314,8 @@ $(function () {
         });
     }
 
-    $(document).ready(function () {
+    window.addEventListener('load', function () {
+        GM_log('executing common.js');
         GM_addStyle(Template.css.common);
         if (GM_getValue('option_common_extension_privateMessageNotification', false)) {
             setupPrivateMessageNotification();
@@ -354,5 +354,5 @@ $(function () {
             }
             ajaxify_changeStyle();
         }
-    });
+    }, false);
 });

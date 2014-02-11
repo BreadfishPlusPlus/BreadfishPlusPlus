@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing threads.js');
 
     function seperateStickyThreads() {
         var $topThreadsStatus = $('#topThreadsStatus'),
@@ -33,8 +32,9 @@ $(function () {
         }, 1000);
     }
 
-    $(document).ready(function () {
+    window.addEventListener('load', function () {
         if (BPPUtils.isTemplate('tplBoard')) {
+            GM_log('executing threads.js');
             if (GM_getValue('option_threads_extension_sticky', false)) {
                 seperateStickyThreads();
             }
@@ -42,5 +42,5 @@ $(function () {
                 removeDeletedThreads();
             }
         }
-    });
+    }, false);
 });

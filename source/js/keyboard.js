@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing keyboard.js');
 
     function navigateThread() {
         $(document).keydown(function (event) {
@@ -100,10 +99,11 @@ $(function () {
         });
     }
 
-    $(document).ready(function () {
+    window.addEventListener('load', function () {
+        GM_log('executing keyboard.js');
         if (BPPUtils.isTemplate('tplThread')) {
             navigateThread();
         }
-    });
+    }, false);
 
 });

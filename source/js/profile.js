@@ -1,6 +1,5 @@
 $(function () {
     "use strict";
-    GM_log('executing profile.js');
 
     function setProfileNickname(userId, nick, name) {
         nick = nick || name;
@@ -70,8 +69,9 @@ $(function () {
         }
     }
 
-    $(document).ready(function () {
+    window.addEventListener('load', function () {
         if (BPPUtils.isTemplate('tplUserProfile')) {
+            GM_log('executing profile.js');
             if (GM_getValue('option_profile_filter_thanks', false)) {
                 $('#profileContent ul li a img[src="icon/thankM.png"]').closest('li').remove();
             }
@@ -142,5 +142,5 @@ $(function () {
             setupNickname();
             setupUsernote();
         }
-    });
+    }, false);
 });
