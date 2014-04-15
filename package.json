@@ -1,0 +1,18 @@
+{
+  "name": "BreadfishPlusPlus",
+  "version": "2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
+  },
+  "author": "Martin Rump <admin@maddin.cc>",
+  "bugs": {
+    "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt": "^0.4.4",
+    "grunt-contrib-less": "^0.11.0"
+  }
+}
