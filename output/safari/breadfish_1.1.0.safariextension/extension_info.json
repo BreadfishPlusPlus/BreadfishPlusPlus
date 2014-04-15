@@ -1,0 +1,25 @@
+{
+    "kango_version": "1.3.1 ba4b80d08b67", 
+    "content_scripts": [
+        "js/utils.js", 
+        "js/options.js", 
+        "js/common.js", 
+        "js/boards.js", 
+        "js/threads.js", 
+        "js/posts.js", 
+        "js/postCreate.js", 
+        "js/profile.js", 
+        "js/keyboardnav.js", 
+        "js/nicknames.js"
+    ], 
+    "description": "Eine Zusammenfassung von Erweiterungen f\u00fcr breadfish.de", 
+    "creator": "Martin Rump <admin@maddin.cc>", 
+    "kango_package_id": "dev", 
+    "developer_id": "YOUR_SAFARI_DEVELOPER_ID", 
+    "homepage_url": "http://breadfishplusplus.eu/", 
+    "version": "1.1.0", 
+    "update_path_url": "http://breadfishplusplus.eu/", 
+    "update_url": "http://breadfishplusplus.eu/update_safari.plist", 
+    "id": "com.kangoextensions.breadfish", 
+    "name": "Breadfish++"
+}

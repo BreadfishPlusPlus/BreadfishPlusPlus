@@ -1,0 +1,35 @@
+{
+    "web_accessible_resources": [
+        "res/*"
+    ], 
+    "description": "Eine Zusammenfassung von Erweiterungen f\u00fcr breadfish.de", 
+    "content_scripts": [
+        {
+            "matches": [
+                "http://forum.sa-mp.de/*"
+            ], 
+            "all_frames": true, 
+            "js": [
+                "includes/content.js"
+            ], 
+            "run_at": "document_start"
+        }
+    ], 
+    "manifest_version": 2, 
+    "icons": {
+        "128": "icons/icon128.png", 
+        "48": "icons/icon48.png", 
+        "16": "icons/button.png"
+    }, 
+    "homepage_url": "http://breadfishplusplus.eu/", 
+    "version": "1.1.0", 
+    "background": {
+        "page": "background.html"
+    }, 
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'", 
+    "permissions": [
+        "http://forum.sa-mp.de/*", 
+        "http://gdata.youtube.com/*"
+    ], 
+    "name": "Breadfish++"
+}

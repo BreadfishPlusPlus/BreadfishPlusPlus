@@ -1,0 +1,28 @@
+{
+    "content_scripts": [
+        "js/utils.js",
+        "js/options.js",
+        "js/common.js",
+        "js/boards.js",
+        "js/threads.js",
+        "js/posts.js",
+        "js/postCreate.js",
+        "js/profile.js",
+        "js/keyboardnav.js",
+        "js/nicknames.js"
+    ],
+    "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
+    "creator": "Martin Rump <admin@maddin.cc>",
+    "homepage_url": "http://breadfishplusplus.eu/",
+    "update_path_url": "http://breadfishplusplus.eu/",
+    "version": "1.1.0",
+    "name": "Breadfish++",
+    "permissions": {
+        "tabs": false,
+        "content_scripts": ["http://forum.sa-mp.de/*"],
+        "web_navigation": false,
+        "notifications": false,
+        "cookies": false,
+        "xhr": ["http://forum.sa-mp.de/*", "http://gdata.youtube.com/*"]
+    }
+}

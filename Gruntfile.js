@@ -1,48 +1,35 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    "use strict";
+
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        jslint: {
-            development: {
-                src: ['source/**/*.js'],
-                directives: {
-                    browser: true,
-                    newcap: true,
-                    devel: true,
-                    unparam: true,
-                    predef: ['$', 'addEventListener', 'GM_log', 'GM_notification', 'GM_info', 'GM_openInTab', 'GM_getValue', 'GM_setValue', 'GM_xmlhttpRequest', 'GM_listValues', 'GM_addStyle', 'BPPUtils', 'DefaultOptions', 'Smilies', 'Template', 'unsafeWindow']
-                },
+        less: {
+            compile: {
                 options: {
-                    failOnError: true
-                }
-            }
-        },
-        uglify: {
-            defaultOptions: {
+                    compress: true,
+                    cleancss: true,
+                    ieCompat: false,
+                    strictMath: true,
+                    report: 'gzip'
+                },
                 files: {
-                    'compiled/defaultOptions.js': ['source/defaultOptions.js']
-                }
-            },
-            smilies: {
-                files: {
-                    'compiled/smilies.js': ['source/smilies.js']
+                    "src/common/css/alertify.css": "src/common/less/alertify.less",
+                    "src/common/css/common.css": "src/common/less/common.less",
+                    "src/common/css/highlight.css": "src/common/less/highlight.less",
+                    "src/common/css/options.css": "src/common/less/options.less",
+                    "src/common/css/postCreate.css": "src/common/less/postCreate.less",
+                    "src/common/css/posts.css": "src/common/less/posts.less",
+                    "src/common/css/tooltip.css": "src/common/less/tooltip.less"
                 }
             }
         },
         concat: {
-            js: {
-                options: {
-                    separator: '\n'
-                },
-                src: ['source/BPP.js', 'source/js/*.js'],
-                dest: 'compiled/userscript.js'
-            },
             cssHtml: {
                 files: {
-                    'compiled/templates.js': ['source/html/*.html', 'source/css/*.css']
+                    'src/common/js/templates.js': ['src/common/html/*.html', 'src/common/css/*.css']
                 },
                 options: {
-                    banner: '\nvar Template = { html: {}, css: {} };\n',
-                    process: function(content, path) {
+                    banner: 'var Template = {\n    html: {},\n    css: {}\n};\n',
+                    process: function (content, path) {
                         var name = path.replace(/^.+\/|\..+$/g, '');
                         content = JSON.stringify(content.toString().replace(/^\s+|\s+$/g, '').replace(/\s*\n\s*/g, "\n"));
                         if (/\.css$/.test(path)) {
@@ -50,41 +37,33 @@ module.exports = function(grunt) {
                         } else {
                             return 'Template.html[\'' + name + '\'] = ' + content + ';';
                         }
-                        
                     }
-                }
-            },
-            userscript: {
-                options: {
-                    separator: '\n',
-                    banner: grunt.file.read('source/meta.js')
-                },
-                files: {
-                    'dist/BreadfishPlusPlus.user.js': ['compiled/templates.js', 'compiled/defaultOptions.js', 'compiled/smilies.js', 'compiled/userscript.js', 'compiled/css.js'],
-                    'dist/BreadfishPlusPlus.meta.js': []
                 }
             },
         },
         watch: {
-            development: {
-                files: ['source/**/*.*'],
-                tasks: ['jslint', 'uglify', 'concat', 'clean'],
+            less2css: {
+                files: ['src/common/less/*.less', '!src/common/less/bless.less'],
+                tasks: ['less'],
                 options: {
                     spawn: false
                 }
             },
+            template: {
+                files: ['src/common/css/*.css', 'src/common/html/*.html'],
+                tasks: ['concat'],
+                options: {
+                    spawn: false
+                }
+            }
         },
-        clean: {
-            build: ['compiled'],
-        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('less2css', ['less']);
 };
