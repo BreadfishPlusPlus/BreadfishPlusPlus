@@ -22,7 +22,7 @@ var DefaultOptions = [
                         'name': 'Alternative Tooltips',
                         'key': 'option_common_extension_tooltip',
                         'toggle': true,
-                        'desc': 'Ersetzt die Standard Browser Tooltips durch <abbr title="Ich bin ein Tooltip \\o/">eigene</abbr>'
+                        'desc': 'Ersetzt die Standard Browser Tooltips durch eigene.'
                     },
                     {
                         'name': 'Spitznamen für Benutzer',
@@ -401,7 +401,7 @@ var DefaultOptions = [
                         'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Y o l k s Smilies hinzu.'
                     },
                     {
-                        'name': 'Emojicons',
+                        'name': 'Emoji',
                         'key': 'option_postCreate_smilies_emoji',
                         'toggle': true,
                         'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Emojicons hinzu.'
