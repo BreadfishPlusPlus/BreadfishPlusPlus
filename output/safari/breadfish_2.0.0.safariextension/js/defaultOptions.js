@@ -35,14 +35,7 @@ var DefaultOptions = [
                         'key': 'option_common_extension_reportReasons',
                         'toggle': true,
                         'desc': 'Fügt vordefinierte gründe beim Melden eines Beitrags hinzu.'
-                    },
-                    /*{
-                        :(
-                        'name': 'Fastload',
-                        'key': 'option_common_extension_fastload',
-                        'toggle': true,
-                        'desc': 'Beschleunigt das laden von Seitem im Forum, indem die Seiten vorab geladen werden wenn man mit der Maus über einen Link fährt. <strong>Das ganze verbraucht mehr Bandbreite als normal, also sollte diese Option bei Begrenzter Bandbreite nicht genutzt werden.</strong>'
-                    }*/
+                    }
                 ]
             },
             {
@@ -227,7 +220,7 @@ var DefaultOptions = [
                         'name': 'Lazyload',
                         'key': 'option_posts_extension_lazyload',
                         'toggle': true,
-                        'desc': ''
+                        'desc': 'Lädt externe Bilder erst, wenn sie im Sichtfenster des Browsers sind, und beschleunigt dadurch den Aufbau der Seite.'
                     }
                 ]
             },
@@ -371,22 +364,10 @@ var DefaultOptions = [
                 'name': 'Smilies',
                 'options': [
                     {
-                        'name': 'My Little Pony',
-                        'key': 'option_postCreate_smilies_mlp',
-                        'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit MLP Smilies hinzu.'
-                    },
-                    {
                         'name': 'Rageicons',
                         'key': 'option_postCreate_smilies_rage',
                         'toggle': true,
                         'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Rageicons hinzu.'
-                    },
-                    {
-                        'name': 'Kolobok (ICQ)',
-                        'key': 'option_postCreate_smilies_icq',
-                        'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Kolobok Smilies hinzu.'
                     },
                     {
                         'name': 'Skype',

@@ -114,111 +114,93 @@ BPPUtils.ready(function () {
 
     //Smilies
     if (BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
-        kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_mlp', function (mlp) {
+        kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_rage', function (rage) {
             var smilieCategorys = [];
-            if (mlp) {
+            if (rage) {
                 smilieCategorys.push({
-                    "name": 'My Little Pony',
-                    "count": Smilies['My Little Pony'].length,
-                    "smilies": Smilies['My Little Pony']
+                    "name": 'Rageicons',
+                    "count": Smilies.Rageicons.length,
+                    "smilies": Smilies.Rageicons
                 });
             }
-            kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_rage', function (rage) {
-                if (rage) {
+            kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_skype', function (skype) {
+                if (skype) {
                     smilieCategorys.push({
-                        "name": 'Rageicons',
-                        "count": Smilies.Rageicons.length,
-                        "smilies": Smilies.Rageicons
+                        "name": 'Skype',
+                        "count": Smilies.Skype.length,
+                        "smilies": Smilies.Skype
                     });
                 }
-                kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_icq', function (icq) {
-                    if (icq) {
+                kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_yolks', function (yolks) {
+                    if (yolks) {
                         smilieCategorys.push({
-                            "name": 'Kolobok (ICQ)',
-                            "count": Smilies['Kolobok (ICQ)'].length,
-                            "smilies": Smilies['Kolobok (ICQ)']
+                            "name": 'Y o l k s',
+                            "count": Smilies['Y o l k s'].length,
+                            "smilies": Smilies['Y o l k s']
                         });
                     }
-                    kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_skype', function (skype) {
-                        if (skype) {
+                    kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_emoji', function (emoji) {
+                        if (emoji) {
                             smilieCategorys.push({
-                                "name": 'Skype',
-                                "count": Smilies.Skype.length,
-                                "smilies": Smilies.Skype
+                                "name": 'Emojicons',
+                                "count": Smilies.Emojicons.length,
+                                "smilies": Smilies.Emojicons
                             });
                         }
-                        kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_yolks', function (yolks) {
-                            if (yolks) {
-                                smilieCategorys.push({
-                                    "name": 'Y o l k s',
-                                    "count": Smilies['Y o l k s'].length,
-                                    "smilies": Smilies['Y o l k s']
-                                });
-                            }
-                            kango.invokeAsync('kango.storage.getItem', 'option_postCreate_smilies_emoji', function (emoji) {
-                                if (emoji) {
-                                    smilieCategorys.push({
-                                        "name": 'Emojicons',
-                                        "count": Smilies.Emojicons.length,
-                                        "smilies": Smilies.Emojicons
-                                    });
+                        if (Object.keys(smilieCategorys).length > 0) {
+                            var tabChange, $subTabMenu, $smileyContainer;
+
+                            $smileyContainer = $('#smileyContainer');
+                            $.each(smilieCategorys, function (index, value) {
+                                var $tmp = $(BPPUtils.template('smileyContainer', {
+                                    "catName": value.name,
+                                    "smilies": _.map(value.smilies, function (smilie) {
+                                        return {
+                                            "name": smilie[0],
+                                            "img": smilie[1]
+                                        };
+                                    })
+                                }));
+                                $tmp.hide();
+                                $smileyContainer.append($tmp);
+                            });
+
+                            $subTabMenu = $('#subTabMenu');
+
+                            tabChange = function () {
+                                if ($('#smiliesTab').hasClass('activeTabMenu')) {
+                                    $subTabMenu.html(BPPUtils.template('smilieSubTabMenu', {
+                                        "smilieCategorys": smilieCategorys
+                                    }));
+                                } else {
+                                    $subTabMenu.html('<div class="containerHead"><div> </div></div>');
                                 }
-                                if (Object.keys(smilieCategorys).length > 0) {
-                                    var tabChange, $subTabMenu, $smileyContainer;
+                            };
 
-                                    $smileyContainer = $('#smileyContainer');
-                                    $.each(smilieCategorys, function (index, value) {
-                                        var $tmp = $(BPPUtils.template('smileyContainer', {
-                                            "catName": value.name,
-                                            "smilies": _.map(value.smilies, function (smilie) {
-                                                return {
-                                                    "name": smilie[0],
-                                                    "img": smilie[1]
-                                                };
-                                            })
-                                        }));
-                                        $tmp.hide();
-                                        $smileyContainer.append($tmp);
-                                    });
+                            $('#tabMenu a').click(tabChange);
+                            tabChange();
 
-                                    $subTabMenu = $('#subTabMenu');
+                            $subTabMenu.on('click', 'a', function () {
+                                var name = $(this).attr('data-name');
 
-                                    tabChange = function () {
-                                        if ($('#smiliesTab').hasClass('activeTabMenu')) {
-                                            $subTabMenu.html(BPPUtils.template('smilieSubTabMenu', {
-                                                "smilieCategorys": smilieCategorys
-                                            }));
-                                        } else {
-                                            $subTabMenu.html('<div class="containerHead"><div> </div></div>');
-                                        }
-                                    };
+                                $subTabMenu.find('.activeSubTabMenu').removeClass('activeSubTabMenu');
+                                $(this).parent('li').addClass('activeSubTabMenu');
 
-                                    $('#tabMenu a').click(tabChange);
-                                    tabChange();
-
-                                    $subTabMenu.on('click', 'a', function () {
-                                        var name = $(this).attr('data-name');
-
-                                        $subTabMenu.find('.activeSubTabMenu').removeClass('activeSubTabMenu');
-                                        $(this).parent('li').addClass('activeSubTabMenu');
-
-                                        $smileyContainer.find('ul').hide();
-                                        if (name === 'Standard') {
-                                            $smileyContainer.find('#smileyCategory-0').show();
-                                        } else {
-                                            $smileyContainer.find('ul[data-name="' + name + '"]').show();
-                                        }
-                                    });
-
-                                    /*$(document).on('click', '.bpp_smilie', function () {
-                                        var caretPos = $('.editorCodeView')[0].selectionStart,
-                                            textAreaTxt = $('.editorCodeView').val(),
-                                            txtToAdd = '[img]' + $(this).attr('src') + '[/img]';
-                                        $('.editorCodeView').val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos));
-                                    });*/
+                                $smileyContainer.find('ul').hide();
+                                if (name === 'Standard') {
+                                    $smileyContainer.find('#smileyCategory-0').show();
+                                } else {
+                                    $smileyContainer.find('ul[data-name="' + name + '"]').show();
                                 }
                             });
-                        });
+
+                            /*$(document).on('click', '.bpp_smilie', function () {
+                                var caretPos = $('.editorCodeView')[0].selectionStart,
+                                    textAreaTxt = $('.editorCodeView').val(),
+                                    txtToAdd = '[img]' + $(this).attr('src') + '[/img]';
+                                $('.editorCodeView').val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos));
+                            });*/
+                        }
                     });
                 });
             });

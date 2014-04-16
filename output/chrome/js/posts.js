@@ -300,7 +300,7 @@ BPPUtils.ready(function () {
     });
 
     //Erweiterungen: Lazyload
-    kango.invokeAsync('kango.storage.getItem', 'option_common_bugfix_imageResize', function (enabled) {
+    kango.invokeAsync('kango.storage.getItem', 'option_posts_extension_lazyload', function (enabled) {
         if (enabled && BPPUtils.isTemplate('tplThread')) {
             $('.resizeImage, .bpp_resizeImage').each(function () {
                 $(this).attr('data-original', $(this).attr('src')).removeAttr('src');
