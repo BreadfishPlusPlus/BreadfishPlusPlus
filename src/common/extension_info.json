@@ -14,9 +14,9 @@
     "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
     "creator": "Martin Rump <admin@maddin.cc>",
     "homepage_url": "http://breadfishplusplus.eu/",
-    "update_path_url": "http://breadfishplusplus.eu/",
     "version": "2.0.0",
     "name": "Breadfish++",
+    "license": "MIT",
     "permissions": {
         "tabs": false,
         "content_scripts": ["http://forum.sa-mp.de/*"],

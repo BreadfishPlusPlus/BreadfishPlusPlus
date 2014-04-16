@@ -1,5 +1,5 @@
 node_modules
+output
+certificates
 *.sublime-project
 *.sublime-workspace
-IDEAS.MD
-v1

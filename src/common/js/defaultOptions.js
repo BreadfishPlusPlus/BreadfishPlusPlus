@@ -401,7 +401,7 @@ var DefaultOptions = [
                         'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Y o l k s Smilies hinzu.'
                     },
                     {
-                        'name': 'Emojicons',
+                        'name': 'Emoji',
                         'key': 'option_postCreate_smilies_emoji',
                         'toggle': true,
                         'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Emojicons hinzu.'

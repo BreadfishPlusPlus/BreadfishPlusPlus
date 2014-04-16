@@ -9,10 +9,12 @@
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
+  "license": "MIT",
   "devDependencies": {
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt": "^0.4.4",
-    "grunt-contrib-less": "^0.11.0"
+    "grunt-contrib-less": "^0.11.0",
+    "grunt-contrib-concat": "^0.4.0"
   }
 }

@@ -63,7 +63,7 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://breadfishplusplus.eu/update_safari.plist</string>
+	<string></string>
 	<key>Website</key>
 	<string>http://breadfishplusplus.eu/</string>
 </dict>

@@ -13,13 +13,12 @@
         "js/nicknames.js"
     ], 
     "description": "Eine Zusammenfassung von Erweiterungen f\u00fcr breadfish.de", 
+    "license": "MIT", 
     "creator": "Martin Rump <admin@maddin.cc>", 
     "kango_package_id": "dev", 
     "developer_id": "YOUR_SAFARI_DEVELOPER_ID", 
     "homepage_url": "http://breadfishplusplus.eu/", 
     "version": "2.0.0", 
-    "update_path_url": "http://breadfishplusplus.eu/", 
-    "update_url": "http://breadfishplusplus.eu/update_safari.plist", 
     "id": "com.kangoextensions.breadfish", 
     "name": "Breadfish++"
 }
