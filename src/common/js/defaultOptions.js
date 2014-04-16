@@ -22,7 +22,7 @@ var DefaultOptions = [
                         'name': 'Alternative Tooltips',
                         'key': 'option_common_extension_tooltip',
                         'toggle': true,
-                        'desc': 'Ersetzt die Standard Browser Tooltips durch <abbr title="Ich bin ein Tooltip \\o/">eigene</abbr>'
+                        'desc': 'Ersetzt die Standard Browser Tooltips durch eigene.'
                     },
                     {
                         'name': 'Spitznamen für Benutzer',
