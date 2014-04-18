@@ -85,7 +85,7 @@ var DefaultOptions = [
                         'name': 'Debugmode',
                         'key': 'option_debugmode',
                         'toggle': true,
-                        'desc': 'Aktiviert den Debugmode und loggt aktionen in die Konsole.'
+                        'desc': 'Aktiviert den Debugmode und loggt Aktionen in die Konsole.'
                     }
                 ]
             }
