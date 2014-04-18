@@ -5,3 +5,4 @@ certificates
 *.sublime-project
 *.sublime-workspace
 output/breadfish_*_chrome_webstore.zip
+output/safari/*
