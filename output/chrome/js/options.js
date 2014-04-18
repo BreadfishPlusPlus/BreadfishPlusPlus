@@ -5,17 +5,18 @@
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
 // ==/UserScript==
-/*jslint unparam: true, nomen: true*/
-/*global kango, BPPUtils, $, _, DefaultOptions, KeyboardJS*/
+/*jslint unparam: true, nomen: true, browser: true*/
+/*global kango, BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, Blob, alertify, FileReader*/
 
 BPPUtils.ready(function () {
     "use strict";
 
     $('#userMenu ul').append(BPPUtils.template('userMenuItem'));
     if (BPPUtils.getQuery('page') === 'BreadfishPlusPlus') {
-        var showCategory, getKeyName;
+        var showCategory, getKeyName, setOptionsToValues;
 
         BPPUtils.addStyle('options');
+        BPPUtils.addStyle('alertify');
 
         getKeyName = function (key) {
             var names = KeyboardJS.key.name(key);
@@ -87,8 +88,63 @@ BPPUtils.ready(function () {
                             hasNicknames: Object.keys(tmpNicknames).length > 0
                         })).show();
                     });
+                } else if (window.location.hash.substr(1, 12) === 'importexport') {
+                    $('a[href="index.php?page=BreadfishPlusPlus#importexport"]').parent('li').addClass('activeTabMenu');
+                    var currectOptions = {};
+                    kango.invokeAsync('kango.storage.getKeys', function (keys) {
+                        BPPUtils.asyncLoop(keys.length, function (loop) {
+                            var key = keys[loop.iteration()];
+                            kango.invokeAsync('kango.storage.getItem', key, function (value) {
+                                currectOptions[key] = value;
+                                loop.next();
+                            });
+                        }, function () {
+                            $('[data-key="importexport"]').html(BPPUtils.template('optionImportExport', {
+                                blobURL: URL.createObjectURL(new Blob([JSON.stringify(currectOptions)], {type: "application/json"}))
+                            })).show();
+
+                            $('#importOptions').change(function (event) {
+                                kango.console.log(event);
+                                if (event.target.files.length > 0) {
+                                    var file = event.target.files[0],
+                                        reader = new FileReader();
+                                    reader.onloadend = function (evt) {
+                                        try {
+                                            var importedOptions = JSON.parse(evt.target.result);
+                                            _.each(importedOptions, function (value, key) {
+                                                kango.invokeAsync('kango.storage.setItem', key, value);
+                                            });
+                                            setOptionsToValues();
+                                            alertify.success('Die Sicherungsdatei wurde eingespielt.');
+                                        } catch (e) {
+                                            alertify.error('Die Sicherungsdatei ist ungültig: ' + e.message);
+                                        }
+                                    };
+                                    reader.readAsBinaryString(file);
+                                }
+                            });
+                        });
+                    });
                 }
             }
+        };
+
+        setOptionsToValues = function () {
+            $('.bpp_option').each(function () {
+                var name = $(this).attr('name'),
+                    type = $(this).attr('type');
+                kango.invokeAsync('kango.storage.getItem', name, function (value) {
+                    if (type === 'checkbox') {
+                        $('#' + name).prop('checked', value || false);
+                    } else if (type === 'range') {
+                        value = value || 10;
+                        $('#' + name).val(value).parent('.formField').find('.indicator').text(value);
+                    } else if (type === 'button') {
+                        value = getKeyName(value || -1);
+                        $('#' + name).val(value);
+                    }
+                });
+            });
         };
 
         //Change Page title
@@ -104,21 +160,7 @@ BPPUtils.ready(function () {
         $('a[href="index.php?page=BreadfishPlusPlus#settings-keyboardnav"]').parent('li').remove();
 
         //Set options to current values
-        $('.bpp_option').each(function () {
-            var name = $(this).attr('name'),
-                type = $(this).attr('type');
-            kango.invokeAsync('kango.storage.getItem', name, function (value) {
-                if (type === 'checkbox') {
-                    $('#' + name).prop('checked', value || false);
-                } else if (type === 'range') {
-                    value = value || 10;
-                    $('#' + name).val(value).parent('.formField').find('.indicator').text(value);
-                } else if (type === 'button') {
-                    value = getKeyName(value || -1);
-                    $('#' + name).val(value);
-                }
-            });
-        });
+        setOptionsToValues();
 
         //show categories and listen for hashchange
         showCategory();

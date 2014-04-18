@@ -15,7 +15,6 @@ BPPUtils.ready(function () {
         //Erweiterungen: Die letzten X Beiträge
         kango.invokeAsync('kango.storage.getItem', 'option_boards_extension_lastPosts', function (postCount) {
             if (postCount && postCount !== 10) {
-                BPPUtils.debug('Boards', 'option_boards_extension_lastPosts && postCount !== 10 => Die letzten ' + postCount + ' Beiträge');
                 $('.top5box .tableList tr').slice(postCount, 10).remove();
                 $('.top5box .containerContent').html('<img src="icon/postS.png" alt=""> Die letzten ' + postCount + ' Beiträge');
             }

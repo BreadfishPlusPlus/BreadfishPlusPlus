@@ -104,6 +104,31 @@ var BPPUtils = {
                 kango.console.log('[B++][DEBUG][' + module + '] ' + msg);
             }
         });
+    },
+    asyncLoop: function (iterations, func, callback) { //http://stackoverflow.com/a/4288992
+        var index = 0, done = false, loop = {
+            next: function () {
+                if (done) {
+                    return;
+                }
+                if (index < iterations) {
+                    index += 1;
+                    func(loop);
+                } else {
+                    done = true;
+                    callback();
+                }
+            },
+            iteration: function () {
+                return index - 1;
+            },
+            break: function () {
+                done = true;
+                callback();
+            }
+        };
+        loop.next();
+        return loop;
     }
 };
 

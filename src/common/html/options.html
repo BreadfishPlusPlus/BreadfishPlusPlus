@@ -16,6 +16,7 @@
         <li><a href="index.php?page=BreadfishPlusPlus#settings"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen</span></a></li>
         <li><a href="index.php?page=BreadfishPlusPlus#keyboardnav"><img src="wcf/icon/settingsM.png" alt=""> <span>Tastaturnavigation</span></a></li>
         <li><a href="index.php?page=BreadfishPlusPlus#nicknames"><img src="wcf/icon/settingsM.png" alt=""> <span>Spitznamen</span></a></li>
+        <li><a href="index.php?page=BreadfishPlusPlus#importexport"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen sichern</span></a></li>
     </ul>
 </div>
 <div class="subTabMenu">
@@ -40,7 +41,7 @@
                 {{#toggle}}
                     <div class="formCheckBox formElement">
                         <div class="formField">
-                            <label for"{{key}}">
+                            <label for="{{key}}">
                                 <input type="checkbox" class="bpp_option" id="{{key}}" name="{{key}}"> {{{name}}}
                             </label>
                         </div>
@@ -82,4 +83,5 @@
     </div>
     {{/defaultOptions}}
     <div data-key="nicknames" class="container-1 bpp_option_category"></div>
+    <div data-key="importexport" class="container-1 bpp_option_category"></div>
 </div>
