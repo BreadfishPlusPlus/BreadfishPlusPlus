@@ -10,7 +10,7 @@ var DefaultOptions = [
                         'name': 'Alternative PN Benachrichtigung',
                         'key': 'option_common_extension_privateMessageNotification',
                         'toggle': true,
-                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn statdessen am unteren rechten Bildschirmrand an (FF). Es wird in regelmäßigen abständen überprüft ob du eine neue PN hast, und die Benachrichtigung wird autmatisch aktualisiert.'
+                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn statdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen abständen überprüft ob du eine neue PN hast, und die Benachrichtigung wird autmatisch aktualisiert.'
                     },
                     {
                         'name': 'Asynchrone Datenübertragung',

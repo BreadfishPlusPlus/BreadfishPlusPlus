@@ -50,8 +50,8 @@ BPPUtils.ready(function () {
                     $editNickname.click(function (event) {
                         event.preventDefault();
                         alertify.set({labels: {
-                            ok: 'Nickname Speichern',
-                            cancel: 'Nickname löschen'
+                            ok: 'Spitzname Speichern',
+                            cancel: 'Spitzname löschen'
                         }});
                         alertify.prompt('Neuer Spitzname:', function (ok, newNick) {
                             if (ok && newNick.length !== 0) {
