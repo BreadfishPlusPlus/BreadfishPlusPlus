@@ -8,6 +8,8 @@
 /*global kango, BPPUtils, $, KeyboardJS*/
 /*jslint unparam: true*/
 
+//TODO: fix schnellantwort
+
 BPPUtils.ready(function () {
     "use strict";
 

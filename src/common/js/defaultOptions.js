@@ -10,7 +10,7 @@ var DefaultOptions = [
                         'name': 'Alternative PN Benachrichtigung',
                         'key': 'option_common_extension_privateMessageNotification',
                         'toggle': true,
-                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
+                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn statdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
                     },
                     {
                         'name': 'Asynchrone Datenübertragung',
@@ -22,13 +22,13 @@ var DefaultOptions = [
                         'name': 'Alternative Tooltips',
                         'key': 'option_common_extension_tooltip',
                         'toggle': true,
-                        'desc': 'Ersetzt die Standard Browser Tooltips durch eigene.'
+                        'desc': 'Ersetzt die Standard-Browser-Tooltips durch eigene.'
                     },
                     {
                         'name': 'Spitznamen für Benutzer',
                         'key': 'option_common_extension_nicknames',
                         'toggle': true,
-                        'desc': 'Fügt im Benutzerprofil eine Option hinzu, die es ermöglicht dem Benutzer einen eigenen Spitznamen zu geben. Dieser Spitzname wird dann, anstatt des eigentlichen Benutzernamens, in Forum angezeigt.'
+                        'desc': 'Fügt im Benutzerprofil eine Option hinzu, die es ermöglicht dem Benutzer einen eigenen Spitznamen zu geben. Dieser Spitzname wird dann, anstatt des eigentlichen Benutzernamens, im Forum angezeigt.'
                     },
                     {
                         'name': 'Meldungsgründe',
@@ -51,7 +51,7 @@ var DefaultOptions = [
                         'name': 'Expander',
                         'key': 'option_common_bugfix_expander',
                         'toggle': true,
-                        'desc': 'Behebt den Expander-Bug, der auftritt wenn ein Benutzer mehrere Expander auf einer Seite nutzt. Mehr Informationen zu diesem Fehler findest du hier: <a target="_blank" href="http://sa-mp.de/B++/p1701085-/">Spoiler</a>.'
+                        'desc': 'Behebt den Expander-Bug, der auftritt, wenn ein Benutzer mehrere Expander auf einer Seite nutzt. Mehr Informationen zu diesem Fehler findest du hier: <a target="_blank" href="http://sa-mp.de/B++/p1701085-/">Spoiler</a>.'
                     },
                     {
                         'name': 'Tabmenu',
@@ -104,7 +104,7 @@ var DefaultOptions = [
                         'range': true,
                         'min': 1,
                         'max': 10,
-                        'desc': 'Passt die Anzahl der Letzten X Beiträge Box auf der Startseite an.'
+                        'desc': 'Passt die Anzahl der "Letzte X Beiträge"-Box auf der Startseite an.'
                     },
                     {
                         'name': 'IRC Shoutbox',
@@ -132,7 +132,7 @@ var DefaultOptions = [
                         'name': 'Zur Zeit sind X Benutzer online',
                         'key': 'option_boards_filter_usersOnline',
                         'toggle': true,
-                        'desc': 'Entfernt die Infobox auf der Startseite, die anzeigt wer gerade Online ist.'
+                        'desc': 'Entfernt die Infobox auf der Startseite, die anzeigt, wer gerade online ist.'
                     },
                     {
                         'name': 'Statistik',
@@ -144,7 +144,7 @@ var DefaultOptions = [
                         'name': 'Geburtstage',
                         'key': 'option_boards_filter_birthdays',
                         'toggle': true,
-                        'desc': 'Entfernt die Infobox auf der Startseite, die anzeigt wer heute geburtstag hat.'
+                        'desc': 'Entfernt die Infobox auf der Startseite, die anzeigt, wer heute Geburtstag hat.'
                     }
                 ]
             }
@@ -161,7 +161,7 @@ var DefaultOptions = [
                         'name': 'Ankündigungen und wichtige Themen',
                         'key': 'option_threads_extension_sticky',
                         'toggle': true,
-                        'desc': 'Trennt Ankündigungen und wichtige Themen von einander.'
+                        'desc': 'Trennt Ankündigungen und wichtige Themen voneinander.'
                     }
                 ]
             },
@@ -189,7 +189,7 @@ var DefaultOptions = [
                         'name': 'Kurz-URL',
                         'key': 'option_posts_extension_shorturl',
                         'toggle': true,
-                        'desc': 'Zeigt in der Beitragsansicht zu jedem Beitrag einen Kurzen Link (~25 Zeichen) an, der direkt zum Beitrag führt.'
+                        'desc': 'Zeigt in der Beitragsansicht zu jedem Beitrag einen kurzen Link (~25 Zeichen) an, der direkt zum Beitrag führt.'
                     },
                     {
                         'name': 'Youtube Vorschau',
@@ -213,7 +213,7 @@ var DefaultOptions = [
                         'name': 'Bilderzoom',
                         'key': 'option_posts_extension_imageResize',
                         'toggle': true,
-                        'desc': 'Erlaubt es, die größe von Bildern in Signaturen und Posts per Drag & Drop zu ändern.'
+                        'desc': 'Erlaubt es, die Größe von Bildern in Signaturen und Posts per Drag & Drop zu ändern.'
                     },
                     {
                         'name': 'Deaktivierung von externen Bildern',
@@ -225,7 +225,7 @@ var DefaultOptions = [
                         'name': 'Syntaxhervorhebung',
                         'key': 'option_posts_extension_syntaxhighlightning',
                         'toggle': true,
-                        'desc': 'Ersetzt die Standard-Syntaxhervorhebung durch durch eine verbesserte hervorhebung.'
+                        'desc': 'Ersetzt die Standard-Syntaxhervorhebung durch durch eine verbesserte Hervorhebung.'
                     },
                     {
                         'name': 'Lazyload',
@@ -239,10 +239,10 @@ var DefaultOptions = [
                 'name': 'Filter',
                 'options': [
                     {
-                        'name': 'Youtube Videos',
+                        'name': 'Youtube-Videos',
                         'key': 'option_posts_filter_youtube',
                         'toggle': true,
-                        'desc': 'Entfernt Videos aus Beiträgen und Signaturen, und ersetzt sie statdessen mit dem Link zum jeweiligen Video.'
+                        'desc': 'Entfernt Videos aus Beiträgen und Signaturen und ersetzt sie statdessen mit dem Link zum jeweiligen Video.'
                     },
                     {
                         'name': 'Gelöschte Beiträge',
@@ -254,7 +254,7 @@ var DefaultOptions = [
                         'name': 'Bedankomat',
                         'key': 'option_posts_filter_thanko',
                         'toggle': true,
-                        'desc': 'Blendet den Bedankomat in Beiträgen aus.'
+                        'desc': 'Blendet den bedankomat in Beiträgen aus.'
                     },
                     {
                         'name': 'Ignorierte Benutzer',
@@ -344,7 +344,7 @@ var DefaultOptions = [
                         'name': 'Windows Live',
                         'key': 'option_posts_filter_msn',
                         'toggle': true,
-                        'desc': 'Blendet den Windows Live Messenger Namen aus.'
+                        'desc': 'Blendet den Windows Live Messenger-Namen aus.'
                     },
                     {
                         'name': 'Skype',
@@ -367,7 +367,7 @@ var DefaultOptions = [
                         'name': 'Benutzer-Autovervollständigung',
                         'key': 'option_postCreate_extension_nickcomplete',
                         'toggle': true,
-                        'desc': 'Wenn du im Post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum die auf die bereits getippten Anfangsbuchstaben passen. Durch <strong>Tab</strong> kannst du durch die Liste schalten, und durch <strong>Space</strong> bestätigst du den ausgewählten Namen.'
+                        'desc': 'Wenn du im Post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum, die auf die bereits getippten Anfangsbuchstaben passen. Durch <strong>Tab</strong> kannst du durch die Liste schalten und durch <strong>Space</strong> bestätigst du den ausgewählten Namen.'
                     }
                 ]
             },
@@ -384,13 +384,13 @@ var DefaultOptions = [
                         'name': 'Skype',
                         'key': 'option_postCreate_smilies_skype',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Skype Smilies hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Skype-Smilies hinzu.'
                     },
                     {
                         'name': 'Y o l k s',
                         'key': 'option_postCreate_smilies_yolks',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Y o l k s Smilies hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor eine neue Kategorie mit Y o l k s-Smilies hinzu.'
                     },
                     {
                         'name': 'Emoji',
@@ -407,91 +407,91 @@ var DefaultOptions = [
                         'name': 'E-Mail',
                         'key': 'option_postCreate_bbcode_email',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den E-Mail BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den E-Mail-BBCode hinzu.'
                     },
                     {
                         'name': 'Text tiefstellen',
                         'key': 'option_postCreate_bbcode_sub',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Text tiefstellen BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den BBCode hinzu, um Text tiefzustellen.'
                     },
                     {
                         'name': 'Text hochstellen',
                         'key': 'option_postCreate_bbcode_sup',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Text hochstellen BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den BBCode hinzu, um Text hochzustellen.'
                     },
                     {
                         'name': 'Java-Quelltext',
                         'key': 'option_postCreate_bbcode_java',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Java-Quelltext BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Java-Quelltext-BBCode hinzu.'
                     },
                     {
                         'name': 'Cascading Style Sheet',
                         'key': 'option_postCreate_bbcode_css',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Cascading Style Sheet BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Cascading Style Sheet-BBCode hinzu.'
                     },
                     {
                         'name': 'HTML',
                         'key': 'option_postCreate_bbcode_html',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den HTML BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den HTML-BBCode hinzu.'
                     },
                     {
                         'name': 'XML',
                         'key': 'option_postCreate_bbcode_xml',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den XML BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den XML-BBCode hinzu.'
                     },
                     {
                         'name': 'Javascript-Quelltext',
                         'key': 'option_postCreate_bbcode_js',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Javascript-Quelltext BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Javascript-Quelltext-BBCode hinzu.'
                     },
                     {
                         'name': 'C/C++-Quelltext',
                         'key': 'option_postCreate_bbcode_c',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den C/C++-Quelltext BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den C/C++-Quelltext-BBCode hinzu.'
                     },
                     {
                         'name': 'Dropdown',
                         'key': 'option_postCreate_bbcode_dropdown',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Dropdown BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Dropdown-BBCode hinzu.'
                     },
                     {
                         'name': 'Sevenload',
                         'key': 'option_postCreate_bbcode_sevenload',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Sevenload BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Sevenload-BBCode hinzu.'
                     },
                     {
                         'name': 'Clipfish',
                         'key': 'option_postCreate_bbcode_clipfish',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Clipfish BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Clipfish-BBCode hinzu.'
                     },
                     {
                         'name': 'Googlevideo',
                         'key': 'option_postCreate_bbcode_googlevideo',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Googlevideo BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den Googlevideo-BBCode hinzu.'
                     },
                     {
                         'name': 'MySpace',
                         'key': 'option_postCreate_bbcode_myspace',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den MySpace BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den MySpace-BBCode hinzu.'
                     },
                     {
                         'name': 'MyVideo',
                         'key': 'option_postCreate_bbcode_myvideo',
                         'toggle': true,
-                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den MyVideo BBCode hinzu.'
+                        'desc': 'Fügt dem WYSIWYG-Editor das Icon für den MyVideo-BBCode hinzu.'
                     }
                 ]
             }
@@ -645,25 +645,25 @@ var DefaultOptions = [
                         'name': 'Vorheriger Post',
                         'key': 'option_keyboard_prev_post',
                         'keyboard': true,
-                        'desc': 'Belege eine Taste mit der Funktion zum vorherigen Beitrags zu scrollen.'
+                        'desc': 'Belege eine Taste mit der Funktion "Zum vorherigen Beitrag scrollen".'
                     },
                     {
                         'name': 'Nächster Post',
                         'key': 'option_keyboard_next_post',
                         'keyboard': true,
-                        'desc': 'Belege eine Taste mit der Funktion zum nächsten Beitrags zu scrollen.'
+                        'desc': 'Belege eine Taste mit der Funktion "Zum nächsten Beitrag scrollen".'
                     },
                     {
                         'name': 'Vorherige Seite',
                         'key': 'option_keyboard_prev_page',
                         'keyboard': true,
-                        'desc': 'Belege eine Taste mit der Funktion zur vorherigen Seite zu scrollen.'
+                        'desc': 'Belege eine Taste mit der Funktion "Zur vorherigen Seite scrollen".'
                     },
                     {
                         'name': 'Nächste Seite',
                         'key': 'option_keyboard_next_page',
                         'keyboard': true,
-                        'desc': 'Belege eine Taste mit der Funktion zur nächsten Seite zu scrollen.'
+                        'desc': 'Belege eine Taste mit der Funktion "Zur nächsten Seite scrollen".'
                     }
                 ]
             }
