@@ -77,6 +77,17 @@ var DefaultOptions = [
                         'desc': 'Blendet permanente Ankündigungen aus.'
                     }
                 ]
+            },
+            {
+                'name': 'Debug',
+                'options': [
+                    {
+                        'name': 'Debugmode',
+                        'key': 'option_debugmode',
+                        'toggle': true,
+                        'desc': 'Aktiviert den Debugmode und loggt aktionen in die Konsole.'
+                    }
+                ]
             }
         ]
     },

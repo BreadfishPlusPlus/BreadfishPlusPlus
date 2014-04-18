@@ -1,6 +1,7 @@
 node_modules
-certificates/chrome.pem
+certificates
 *.cmd
 *.bbcode
 *.sublime-project
 *.sublime-workspace
+output/breadfish_*_chrome_webstore.zip

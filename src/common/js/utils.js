@@ -97,6 +97,13 @@ var BPPUtils = {
         this.readyFn.forEach(function (fn) {
             fn();
         });
+    },
+    debug: function (module, msg) {
+        kango.invokeAsync('kango.storage.getItem', 'option_debugmode', function (debugmode) {
+            if (debugmode) {
+                kango.console.log('[B++][DEBUG][' + module + '] ' + msg);
+            }
+        });
     }
 };
 

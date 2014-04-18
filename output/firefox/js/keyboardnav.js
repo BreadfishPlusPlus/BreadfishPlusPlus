@@ -41,8 +41,10 @@ BPPUtils.ready(function () {
         kango.invokeAsync('kango.storage.getItem', 'option_keyboard_prev_post', function (key) {
             if (key && key !== -1) {
                 var keyname = KeyboardJS.key.name(key)[0];
+                BPPUtils.debug('KeyboardNav', 'option_keyboard_prev_post: ' + keyname + ' (' + key + ')');
 
                 KeyboardJS.on(keyname, function (event) {
+                    BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
                     event.preventDefault();
                     var $element = getElementInViewport('.message:not(.quickReply):not(.deleted)');
 
@@ -61,8 +63,10 @@ BPPUtils.ready(function () {
         kango.invokeAsync('kango.storage.getItem', 'option_keyboard_next_post', function (key) {
             if (key && key !== -1) {
                 var keyname = KeyboardJS.key.name(key)[0];
+                BPPUtils.debug('KeyboardNav', 'option_keyboard_next_post: ' + keyname + ' (' + key + ')');
 
                 KeyboardJS.on(keyname, function (event) {
+                    BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
                     event.preventDefault();
                     var $element = getElementInViewport('.message:not(.quickReply):not(.deleted)');
 
@@ -81,8 +85,10 @@ BPPUtils.ready(function () {
         kango.invokeAsync('kango.storage.getItem', 'option_keyboard_prev_page', function (key) {
             if (key && key !== -1) {
                 var keyname = KeyboardJS.key.name(key)[0];
+                BPPUtils.debug('KeyboardNav', 'option_keyboard_prev_page: ' + keyname + ' (' + key + ')');
 
                 KeyboardJS.on(keyname, function (event) {
+                    BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
                     event.preventDefault();
                     var prevPage = NaN,
                         threadID = $('input[name="threadID"]').val();
@@ -102,8 +108,10 @@ BPPUtils.ready(function () {
         kango.invokeAsync('kango.storage.getItem', 'option_keyboard_next_page', function (key) {
             if (key && key !== -1) {
                 var keyname = KeyboardJS.key.name(key)[0];
+                BPPUtils.debug('KeyboardNav', 'option_keyboard_next_page: ' + keyname + ' (' + key + ')');
 
                 KeyboardJS.on(keyname, function (event) {
+                    BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
                     event.preventDefault();
                     var nextPage = NaN,
                         threadID = $('input[name="threadID"]').val();
