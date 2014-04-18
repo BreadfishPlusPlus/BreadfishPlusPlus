@@ -1,5 +1,6 @@
 node_modules
-output
-certificates
+certificates/chrome.pem
+*.cmd
+*.bbcode
 *.sublime-project
 *.sublime-workspace
