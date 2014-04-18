@@ -10,7 +10,7 @@ var DefaultOptions = [
                         'name': 'Alternative PN Benachrichtigung',
                         'key': 'option_common_extension_privateMessageNotification',
                         'toggle': true,
-                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn statdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen abständen überprüft ob du eine neue PN hast, und die Benachrichtigung wird autmatisch aktualisiert.'
+                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
                     },
                     {
                         'name': 'Asynchrone Datenübertragung',
@@ -34,7 +34,7 @@ var DefaultOptions = [
                         'name': 'Meldungsgründe',
                         'key': 'option_common_extension_reportReasons',
                         'toggle': true,
-                        'desc': 'Fügt vordefinierte gründe beim Melden eines Beitrags hinzu.'
+                        'desc': 'Fügt vordefinierte Gründe beim Melden eines Beitrags hinzu.'
                     }
                 ]
             },
@@ -85,7 +85,7 @@ var DefaultOptions = [
                         'name': 'Debugmode',
                         'key': 'option_debugmode',
                         'toggle': true,
-                        'desc': 'Aktiviert den Debugmode und loggt aktionen in die Konsole.'
+                        'desc': 'Aktiviert den Debugmode und loggt Aktionen in die Konsole.'
                     }
                 ]
             }
@@ -254,7 +254,7 @@ var DefaultOptions = [
                         'name': 'Bedankomat',
                         'key': 'option_posts_filter_thanko',
                         'toggle': true,
-                        'desc': 'Blendet den bedankomat in Beiträgen aus.'
+                        'desc': 'Blendet den Bedankomat in Beiträgen aus.'
                     },
                     {
                         'name': 'Ignorierte Benutzer',
@@ -266,7 +266,7 @@ var DefaultOptions = [
                         'name': 'Hilfreichste Antwort',
                         'key': 'option_posts_filter_bestans',
                         'toggle': true,
-                        'desc': 'Entfernt die markierung der Hilfreichsten Antwort.'
+                        'desc': 'Entfernt die Markierung der Hilfreichsten Antwort.'
                     },
                     {
                         'name': 'Beitragscounter',
@@ -367,7 +367,7 @@ var DefaultOptions = [
                         'name': 'Benutzer-Autovervollständigung',
                         'key': 'option_postCreate_extension_nickcomplete',
                         'toggle': true,
-                        'desc': 'Wenn du im post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum die auf die bereits getippten anfangsbuchstaben passen. Durch <strong>Tab</strong> kannst du durch die Liste schalten, und durch <strong>Space</strong> bestätigst du den ausgewählten Namen.'
+                        'desc': 'Wenn du im Post z.b "@madd" schreibst, erscheint, ähnlich wie bei der Mitgliedersuche, eine Auswahlliste mit Benutzernamen im Forum die auf die bereits getippten Anfangsbuchstaben passen. Durch <strong>Tab</strong> kannst du durch die Liste schalten, und durch <strong>Space</strong> bestätigst du den ausgewählten Namen.'
                     }
                 ]
             },
