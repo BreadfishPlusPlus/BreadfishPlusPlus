@@ -6,12 +6,13 @@
 // @all-frames  false
 // ==/UserScript==
 /*jslint nomen: true*/
-/*global kango, $, BPPUtils, alertify*/
+/*global kango, $, BPPUtils, alertify, _*/
 
 BPPUtils.ready(function () {
     "use strict";
+    var updateProfileNickname, updateThreadNickname, updateIndexNickname;
 
-    var updateProfileNickname = function (name, nick) {
+    updateProfileNickname = function (name, nick) {
         document.title = document.title.replace(new RegExp(name, 'i'), nick);
 
         $('.headlineContainer h2 a').replaceText(name, nick);
@@ -25,6 +26,42 @@ BPPUtils.ready(function () {
         $('.userStatus img[src="wcf/icon/genderFemaleS.png"]').replaceAttr('title', name, nick);
 
         $('ul.dataList .smallFont:contains(Beiträge)').parent('.containerContent').find('a').replaceAttr('title', name, nick);
+    };
+    updateThreadNickname = function (nickname) {
+        $('.messageAuthor .userName a span:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+
+        $([
+            '.messageAuthor .userName a[title="Benutzerprofil von »' + nickname.name + '« aufrufen"]',
+            '.userAvatar a[title="Benutzerprofil von »' + nickname.name + '« aufrufen"]',
+            '.messageAuthor .userName img[title="»' + nickname.name + '« ist online"]',
+            '.messageAuthor .userName img[title="»' + nickname.name + '« ist offline"]',
+            '.userSymbols ul li img[title="»' + nickname.name + '« ist männlich"]',
+            '.userSymbols ul li img[title="»' + nickname.name + '« ist weiblich"]',
+            '.userSymbols ul li img[title="»' + nickname.name + '« ist der Autor dieses Themas"]',
+            '.userMessenger ul li a img[title="Persönliche Website von »' + nickname.name + '« besuchen"]',
+            '.userMessenger ul li a img[title="»' + nickname.name + '« über ICQ kontaktieren"]',
+            '.userMessenger ul li a img[title="»' + nickname.name + '« über Windows Live Messenger kontaktieren"]',
+            '.userMessenger ul li a img[title="»' + nickname.name + '« über Skype kontaktieren"]'
+        ].join(', ')).replaceAttr('title', nickname.name, nickname.nick);
+
+        //Thanko
+        $('div[id^="thankUser-"] .smallFont a:not([onclick]):contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+
+        //Quotes
+        $('blockquote .quoteHeader h3 a:contains(Zitat von »maddin«)').replaceText(nickname.name, nickname.nick);
+    };
+    updateIndexNickname = function (nickname) {
+        //Die letzten X Beiträge
+        $('.columnTop5LastPost .containerContentSmall .smallFont a:contains(' + nickname.name + ')').replaceText(nickname.name, nickname.nick);
+
+        //User in Board online
+        $('.boardlistUsersOnline a:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+
+        //Last post in board
+        $('.boardlistLastPost .containerContentSmall p a:contains(' + nickname.name + ')').replaceText(nickname.name, nickname.nick);
+
+        //Zurzeit sind X Benutzer online
+        $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
     };
 
     kango.invokeAsync('kango.storage.getItem', 'option_common_extension_nicknames', function (enabled) {
@@ -84,22 +121,15 @@ BPPUtils.ready(function () {
                             userId = parseInt(BPPUtils.getParameterByName('userID', $element.find('.messageSidebar .messageAuthor .userName a').attr('href')), 10),
                             nickname = nicknames[userId] || null;
                         if (nickname) {
-                            $element.find('.messageAuthor .userName a span').last().replaceText(nickname.name, nickname.nick);
-
-                            $element.find('.messageAuthor .userName a, .userAvatar a').replaceAttr('title', nickname.name, nickname.nick);
-                            $element.find('.messageAuthor .userName img[src="wcf/icon/offlineS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-
-                            $element.find('.messageAuthor .userName img[src="wcf/icon/onlineS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-                            $element.find('.userSymbols ul li img[src="wcf/icon/genderMaleS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-                            $element.find('.userSymbols ul li img[src="wcf/icon/genderFemaleS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-                            $element.find('.userSymbols ul li img[src="icon/threadStarterS.png"]').replaceAttr('title', nickname.name, nickname.nick).replaceAttr('alt', nickname.name, nickname.nick);
-                            $element.find('.userMessenger ul li a img[src="wcf/icon/websiteS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-                            $element.find('.userMessenger ul li a img[src="wcf/icon/skypeS.png"]').replaceAttr('title', nickname.name, nickname.nick);
-
-                            $element.find('.editNote').replaceHtml(nickname.name, nickname.nick);
-
-                            //TODO: thanko
+                            updateThreadNickname(nickname);
                         }
+                    });
+                });
+            } else if (BPPUtils.isTemplate('tplIndex')) {
+                kango.invokeAsync('kango.storage.getItem', 'nicknames', function (nicknames) {
+                    nicknames = nicknames || {};
+                    _.each(nicknames, function (nickname, userId) {
+                        updateIndexNickname(nickname);
                     });
                 });
             }
