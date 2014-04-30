@@ -4,11 +4,12 @@
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
+// @run-at      document-start
 // ==/UserScript==
 /*jslint nomen: true*/
 /*global kango, $, BPPUtils, alertify, _*/
 
-BPPUtils.ready(function () {
+BPPUtils.load(function () {
     "use strict";
     var updateProfileNickname, updateThreadNickname, updateIndexNickname;
 

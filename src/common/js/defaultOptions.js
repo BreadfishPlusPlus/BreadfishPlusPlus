@@ -88,7 +88,18 @@ var DefaultOptions = [
                         'desc': 'Aktiviert den Debugmode und loggt Aktionen in die Konsole.'
                     }
                 ]
-            }
+            },
+            /*{
+                'name': 'Design',
+                'options': [
+                    {
+                        'name': 'Flat',
+                        'key': 'option_design_flat',
+                        'toggle': true,
+                        'desc': '...'
+                    }
+                ]
+            }*/
         ]
     },
     {

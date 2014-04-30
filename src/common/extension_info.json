@@ -2,19 +2,20 @@
     "content_scripts": [
         "js/utils.js",
         "js/options.js",
-        "js/common.js",
         "js/boards.js",
+        "js/common.js",
         "js/threads.js",
         "js/posts.js",
         "js/postCreate.js",
         "js/profile.js",
         "js/keyboardnav.js",
-        "js/nicknames.js"
+        "js/nicknames.js",
+        "js/design_flat.js"
     ],
     "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
     "creator": "Martin Rump <admin@maddin.cc>",
     "homepage_url": "http://breadfishplusplus.eu/",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "name": "Breadfish++",
     "license": "MIT",
     "permissions": {

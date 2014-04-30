@@ -4,6 +4,7 @@
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
+// @run-at      document-start
 // ==/UserScript==
 /*jslint unparam: true, nomen: true, browser: true*/
 /*global kango, BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, Blob, alertify, FileReader*/
@@ -104,7 +105,6 @@ BPPUtils.ready(function () {
                             })).show();
 
                             $('#importOptions').change(function (event) {
-                                kango.console.log(event);
                                 if (event.target.files.length > 0) {
                                     var file = event.target.files[0],
                                         reader = new FileReader();

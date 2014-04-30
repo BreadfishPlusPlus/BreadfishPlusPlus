@@ -4,11 +4,12 @@
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
+// @run-at      document-start
 // ==/UserScript==
 /*jslint nomen: true*/
 /*global kango, $, BPPUtils*/
 
-BPPUtils.ready(function () {
+BPPUtils.load(function () {
     "use strict";
 
     //Filter: Danksagungen

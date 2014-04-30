@@ -16,13 +16,13 @@
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
+// @run-at      document-start
 // ==/UserScript==
 /*jslint unparam: true, nomen: true*/
 /*global kango, $, Template, Hogan, _*/
 "use strict";
 
 var BPPUtils = {
-    readyFn: [],
     templateName: function () {
         if (!this._templateName) {
             this._templateName = document.querySelector('body').id;
@@ -82,19 +82,25 @@ var BPPUtils = {
 
         if (hours > 0) {
             time += (hours + ':');
-            time += (this.pad(minutes, 2) + ':');
+            time += (BPPUtils.pad(minutes, 2) + ':');
         } else {
             time += (minutes + ':');
         }
-        time += this.pad(seconds, 2);
+        time += BPPUtils.pad(seconds, 2);
         return time;
     },
-    ready: function (fn) {
-        this.readyFn.push(fn);
+    immediately: function (fn) {
         fn();
     },
+    ready: function (fn) {
+        $(document).ready(fn);
+    },
+    load: function (fn) {
+        $(window).load(fn);
+    },
     doReady: function () {
-        this.readyFn.forEach(function (fn) {
+        BPPUtils.isReady = true;
+        BPPUtils.readyFn.forEach(function (fn) {
             fn();
         });
     },

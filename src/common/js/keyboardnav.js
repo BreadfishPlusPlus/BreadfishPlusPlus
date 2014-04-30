@@ -4,11 +4,12 @@
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
+// @run-at      document-start
 // ==/UserScript==
 /*global kango, BPPUtils, $, KeyboardJS*/
 /*jslint unparam: true*/
 
-BPPUtils.ready(function () {
+BPPUtils.load(function () {
     "use strict";
 
     var getPostInViewport, getPrevPost, getNextPost;

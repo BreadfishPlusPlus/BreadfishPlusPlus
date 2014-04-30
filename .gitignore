@@ -4,7 +4,4 @@ certificates
 *.bbcode
 *.sublime-project
 *.sublime-workspace
-output/breadfish_*_chrome_webstore.zip
-output/breadfish_*.*.*.crx
-output/breadfish_*.*.*.xpi
-output/safari/*
+output
