@@ -1,0 +1,35 @@
+{
+    "content_scripts": [
+        {
+            "matches": [
+                "http://forum.sa-mp.de/*"
+            ], 
+            "all_frames": true, 
+            "run_at": "document_start", 
+            "js": [
+                "includes/content.js"
+            ]
+        }
+    ], 
+    "name": "Breadfish++", 
+    "icons": {
+        "128": "icons/icon128.png", 
+        "48": "icons/icon48.png", 
+        "16": "icons/button.png"
+    }, 
+    "web_accessible_resources": [
+        "res/*"
+    ], 
+    "description": "Eine Zusammenfassung von Erweiterungen f\u00fcr breadfish.de", 
+    "background": {
+        "page": "background.html"
+    }, 
+    "homepage_url": "http://breadfishplusplus.eu/", 
+    "version": "2.0.5", 
+    "manifest_version": 2, 
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'", 
+    "permissions": [
+        "http://forum.sa-mp.de/*", 
+        "http://gdata.youtube.com/*"
+    ]
+}
