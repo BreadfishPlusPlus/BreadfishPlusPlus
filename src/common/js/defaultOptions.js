@@ -265,7 +265,7 @@ var DefaultOptions = [
                         'name': 'Bedankomat',
                         'key': 'option_posts_filter_thanko',
                         'toggle': true,
-                        'desc': 'Blendet den bedankomat in Beiträgen aus.'
+                        'desc': 'Blendet den Bedankomat in Beiträgen aus.'
                     },
                     {
                         'name': 'Ignorierte Benutzer',
@@ -277,7 +277,7 @@ var DefaultOptions = [
                         'name': 'Hilfreichste Antwort',
                         'key': 'option_posts_filter_bestans',
                         'toggle': true,
-                        'desc': 'Entfernt die Markierung der Hilfreichsten Antwort.'
+                        'desc': 'Entfernt die Markierung der hilfreichsten Antwort.'
                     },
                     {
                         'name': 'Beitragscounter',
