@@ -1,11 +1,3 @@
-<div class="bpp_privateMessageNotification">
-    <ul class="itemList">
-        {{#messages}}
-            <li class="deletable">
-                <p class="itemListTitle">
-                    <a href="index.php?page=PMView&amp;pmID={{id}}#pm{{id}}" title="{{text}}">{{title}}</a> von <a href="index.php?page=User&amp;userID={{authorID}}">{{author}}</a> ({{date}})
-                </p>
-            </li>
-        {{/messages}}
-    </ul>
-</div>
+{{#messages}}
+    <p><a href="index.php?page=PMView&amp;pmID={{id}}#pm{{id}}" title="{{text}}">{{title}}</a> von <a href="index.php?page=User&amp;userID={{authorID}}">{{author}}</a> ({{date}})</p>
+{{/messages}}

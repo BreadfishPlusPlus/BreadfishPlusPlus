@@ -10,7 +10,7 @@ var DefaultOptions = [
                         'name': 'Alternative PN Benachrichtigung',
                         'key': 'option_common_extension_privateMessageNotification',
                         'toggle': true,
-                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn statdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
+                        'desc': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an. Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
                     },
                     {
                         'name': 'Asynchrone Datenübertragung',
@@ -35,6 +35,12 @@ var DefaultOptions = [
                         'key': 'option_common_extension_reportReasons',
                         'toggle': true,
                         'desc': 'Fügt vordefinierte Gründe beim Melden eines Beitrags hinzu.'
+                    },
+                    {
+                        'name': 'Relative Zeitangaben',
+                        'key': 'option_common_extension_timeago',
+                        'toggle': true,
+                        'desc': 'Ersetzt die Zeitangaben im Forum. Aus "Heute, 12:34" wird dann z.b "vor 12 Minuten".'
                     }
                 ]
             },
@@ -230,7 +236,7 @@ var DefaultOptions = [
                         'name': 'Deaktivierung von externen Bildern',
                         'key': 'option_posts_extension_removeExternalImages',
                         'toggle': true,
-                        'desc': 'Entfernt Bilder, die nicht von sa-mp.de stammen, aus den Themen und zeigt statdessen nur die URL des Bildes an.'
+                        'desc': 'Entfernt Bilder, die nicht von sa-mp.de stammen, aus den Themen und zeigt stattdessen nur die URL des Bildes an.'
                     },
                     {
                         'name': 'Syntaxhervorhebung',
@@ -253,7 +259,7 @@ var DefaultOptions = [
                         'name': 'Youtube-Videos',
                         'key': 'option_posts_filter_youtube',
                         'toggle': true,
-                        'desc': 'Entfernt Videos aus Beiträgen und Signaturen und ersetzt sie statdessen mit dem Link zum jeweiligen Video.'
+                        'desc': 'Entfernt Videos aus Beiträgen und Signaturen und ersetzt sie stattdessen mit dem Link zum jeweiligen Video.'
                     },
                     {
                         'name': 'Gelöschte Beiträge',

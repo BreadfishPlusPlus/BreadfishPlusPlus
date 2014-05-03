@@ -6,8 +6,8 @@
 // @all-frames  false
 // @run-at      document-start
 // ==/UserScript==
-/*global kango, BPPUtils, $, KeyboardJS*/
-/*jslint unparam: true*/
+/*global BPPUtils, $, KeyboardJS*/
+/*jslint unparam: true, vars: true*/
 
 BPPUtils.load(function () {
     "use strict";
@@ -39,122 +39,109 @@ BPPUtils.load(function () {
 
     if (BPPUtils.isTemplate('tplThread')) {
         //Erweiterungen: Vorheriger Post
-        kango.invokeAsync('kango.storage.getItem', 'option_keyboard_prev_post', function (key) {
-            if (key && key !== -1) {
-                var keyname = KeyboardJS.key.name(key)[0];
+        var keyPrevPost = BPPUtils.storage.get('option_keyboard_prev_post', -1),
+            keyNextPost = BPPUtils.storage.get('option_keyboard_next_post', -1),
+            keyPrevPage = BPPUtils.storage.get('option_keyboard_prev_page', -1),
+            keyNextPage = BPPUtils.storage.get('option_keyboard_next_page', -1),
+            keyName;
+        if (keyPrevPost !== -1) {
+            keyName = KeyboardJS.key.name(keyPrevPost)[0];
 
-                BPPUtils.debug('KeyboardNav', 'option_keyboard_prev_post: ' + keyname + ' (' + key + ')');
+            BPPUtils.log.debug('KeyboardNav', 'option_keyboard_prev_post: ' + keyName + ' (' + keyPrevPost + ')');
 
-                KeyboardJS.on(keyname, function (event) {
-                    if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
-                        event.preventDefault();
+            KeyboardJS.on(keyName, function (event) {
+                if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
+                    event.preventDefault();
 
-                        BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
+                    BPPUtils.log.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
 
-                        var $element = getPostInViewport();
+                    var $element = getPostInViewport();
 
-                        //debug
-                        $('.marked').removeClass('marked');
-                        $element.addClass('marked');
-                        //!debug
-
-                        if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
-                            $element = getPrevPost($element);
-                        }
-
-                        $('html, body').stop().animate({
-                            scrollTop: $element.offset().top
-                        }, 500);
+                    if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
+                        $element = getPrevPost($element);
                     }
-                });
-            }
-        });
+
+                    $('html, body').stop().animate({
+                        scrollTop: $element.offset().top
+                    }, 500);
+                }
+            });
+        }
 
         //Erweiterungen: Nächster Post
-        kango.invokeAsync('kango.storage.getItem', 'option_keyboard_next_post', function (key) {
-            if (key && key !== -1) {
-                var keyname = KeyboardJS.key.name(key)[0];
-                BPPUtils.debug('KeyboardNav', 'option_keyboard_next_post: ' + keyname + ' (' + key + ')');
+        if (keyNextPost !== -1) {
+            keyName = KeyboardJS.key.name(keyNextPost)[0];
+            BPPUtils.log.debug('KeyboardNav', 'option_keyboard_next_post: ' + keyName + ' (' + keyNextPost + ')');
 
-                KeyboardJS.on(keyname, function (event) {
-                    if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
-                        event.preventDefault();
+            KeyboardJS.on(keyName, function (event) {
+                if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
+                    event.preventDefault();
 
-                        BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
+                    BPPUtils.log.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
 
-                        var $element = getPostInViewport('.message:not(.quickReply):not(.deleted):not(.messageMinimized)');
+                    var $element = getPostInViewport('.message:not(.quickReply):not(.deleted):not(.messageMinimized)');
 
-                        //debug
-                        $('.marked').removeClass('marked');
-                        $element.addClass('marked');
-                        //!debug
-
-                        if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
-                            $element = getNextPost($element);
-                        }
-
-                        $('html, body').stop().animate({
-                            scrollTop: $element.offset().top
-                        }, 500);
+                    if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
+                        $element = getNextPost($element);
                     }
-                });
-            }
-        });
+
+                    $('html, body').stop().animate({
+                        scrollTop: $element.offset().top
+                    }, 500);
+                }
+            });
+        }
 
         //Erweiterungen: Vorherige Seite
-        kango.invokeAsync('kango.storage.getItem', 'option_keyboard_prev_page', function (key) {
-            if (key && key !== -1) {
-                var keyname = KeyboardJS.key.name(key)[0];
-                BPPUtils.debug('KeyboardNav', 'option_keyboard_prev_page: ' + keyname + ' (' + key + ')');
+        if (keyPrevPage !== -1) {
+            keyName = KeyboardJS.key.name(keyPrevPage)[0];
+            BPPUtils.log.debug('KeyboardNav', 'option_keyboard_prev_page: ' + keyName + ' (' + keyPrevPage + ')');
 
-                KeyboardJS.on(keyname, function (event) {
-                    if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
-                        event.preventDefault();
+            KeyboardJS.on(keyName, function (event) {
+                if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
+                    event.preventDefault();
 
-                        BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
+                    BPPUtils.log.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
 
-                        var prevPage = NaN,
-                            threadID = $('input[name="threadID"]').val();
+                    var prevPage = NaN,
+                        threadID = $('input[name="threadID"]').val();
 
-                        $('.pageNavigation ul li').each(function (i) {
-                            if ($(this).hasClass('active')) {
-                                prevPage = parseInt($($('.pageNavigation ul li').get(i - 1)).find('a').text(), 10);
-                            }
-                        });
-                        if (!isNaN(prevPage)) {
-                            window.location.href = 'index.php?page=Thread&threadID=' + threadID + '&pageNo=' + prevPage;
+                    $('.pageNavigation ul li').each(function (i) {
+                        if ($(this).hasClass('active')) {
+                            prevPage = parseInt($($('.pageNavigation ul li').get(i - 1)).find('a').text(), 10);
                         }
+                    });
+                    if (!isNaN(prevPage)) {
+                        window.location.href = 'index.php?page=Thread&threadID=' + threadID + '&pageNo=' + prevPage;
                     }
-                });
-            }
-        });
+                }
+            });
+        }
 
         //Erweiterungen: Nächste Seite
-        kango.invokeAsync('kango.storage.getItem', 'option_keyboard_next_page', function (key) {
-            if (key && key !== -1) {
-                var keyname = KeyboardJS.key.name(key)[0];
-                BPPUtils.debug('KeyboardNav', 'option_keyboard_next_page: ' + keyname + ' (' + key + ')');
+        if (keyNextPage !== -1) {
+            keyName = KeyboardJS.key.name(keyNextPage)[0];
+            BPPUtils.log.debug('KeyboardNav', 'option_keyboard_next_page: ' + keyName + ' (' + keyNextPage + ')');
 
-                KeyboardJS.on(keyname, function (event) {
-                    if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
-                        event.preventDefault();
+            KeyboardJS.on(keyName, function (event) {
+                if (event.target.tagName.toUpperCase() !== 'TEXTAREA' && event.target.tagName.toUpperCase() !== 'INPUT') {
+                    event.preventDefault();
 
-                        BPPUtils.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
+                    BPPUtils.log.debug('KeyboardNav', 'KeyPressed: ' + event.keyIdentifier + ' (' + event.keyCode + ')');
 
-                        var nextPage = NaN,
-                            threadID = $('input[name="threadID"]').val();
+                    var nextPage = NaN,
+                        threadID = $('input[name="threadID"]').val();
 
-                        $('.pageNavigation ul li').each(function (i) {
-                            if ($(this).hasClass('active')) {
-                                nextPage = parseInt($($('.pageNavigation ul li').get(i + 1)).find('a').text(), 10);
-                            }
-                        });
-                        if (!isNaN(nextPage)) {
-                            window.location.href = 'index.php?page=Thread&threadID=' + threadID + '&pageNo=' + nextPage;
+                    $('.pageNavigation ul li').each(function (i) {
+                        if ($(this).hasClass('active')) {
+                            nextPage = parseInt($($('.pageNavigation ul li').get(i + 1)).find('a').text(), 10);
                         }
+                    });
+                    if (!isNaN(nextPage)) {
+                        window.location.href = 'index.php?page=Thread&threadID=' + threadID + '&pageNo=' + nextPage;
                     }
-                });
-            }
-        });
+                }
+            });
+        }
     }
 });

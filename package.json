@@ -1,6 +1,6 @@
 {
   "name": "BreadfishPlusPlus",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
@@ -9,15 +9,15 @@
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
-  "license": "MIT",
+  "license": "GPL v3",
   "devDependencies": {
+    "grunt": "^0.4.4",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt": "^0.4.4",
     "grunt-contrib-less": "^0.11.0",
     "grunt-contrib-concat": "^0.4.0",
-    "grunt-shell": "^0.6.4",
     "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-rename": "0.0.3"
+    "grunt-shell": "^0.6.4",
+    "clean-css": "^2.1.8"
   }
 }

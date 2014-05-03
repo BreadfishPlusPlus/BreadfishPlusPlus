@@ -1,3 +1,5 @@
+var CleanCSS = require('clean-css');
+
 module.exports = function (grunt) {
     "use strict";
 
@@ -11,33 +13,36 @@ module.exports = function (grunt) {
                     strictMath: true,
                     report: 'gzip'
                 },
-                files: {
-                    "src/common/css/alertify.css": "src/common/less/alertify.less",
-                    "src/common/css/common.css": "src/common/less/common.less",
-                    "src/common/css/highlight.css": "src/common/less/highlight.less",
-                    "src/common/css/options.css": "src/common/less/options.less",
-                    "src/common/css/postCreate.css": "src/common/less/postCreate.less",
-                    "src/common/css/posts.css": "src/common/less/posts.less",
-                    "src/common/css/tooltip.css": "src/common/less/tooltip.less",
-                    "src/common/css/design_flat.css": "src/common/less/design_flat.less"
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'src/common/less/',
+                    src: ['*.less'],
+                    dest: 'src/common/css/',
+                    ext: '.min.css'
+                }]
             }
         },
         concat: {
             cssHtml: {
                 files: {
-                    'src/common/js/templates.js': ['src/common/html/*.html', 'src/common/css/*.css']
+                    'src/common/js/templates.js': ['src/common/html/*.html', 'src/common/css/**/*.css']
                 },
                 options: {
                     banner: 'var Template = {\n    html: {},\n    css: {}\n};\n',
                     process: function (content, path) {
-                        var name = path.replace(/^.+\/|\..+$/g, '');
-                        content = JSON.stringify(content.toString().replace(/^\s+|\s+$/g, '').replace(/\s*\n\s*/g, "\n"));
-                        if (/\.css$/.test(path)) {
-                            return 'Template.css[\'' + name + '\'] = ' + content + ';';
+                        var name = path.match(/^src\/common\/(?:html|css)(?:\/lib)?\/([^.]+)\.(?:html|(?:min\.)?css)$/)[1],
+                            process;
+                        if (path.substr(-4) === 'html') {
+                            content = JSON.stringify(content.toString().replace(/^\s+|\s+$/g, '').replace(/\s*\n\s*/g, ''));
+                            process = 'Template.html["' + name + '"] = ' + content + ';';
                         } else {
-                            return 'Template.html[\'' + name + '\'] = ' + content + ';';
+                            content = new CleanCSS({
+                                keepSpecialComments: 0
+                            }).minify(content);
+                            content = JSON.stringify(content.toString().replace(/^\s+|\s+$/g, ''));
+                            process = 'Template.css["' + name + '"] = ' + content + ';';
                         }
+                        return process;
                     }
                 }
             },
@@ -137,6 +142,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('less2css', ['less']);
+    grunt.registerTask('less2css', ['less', 'concat']);
     grunt.registerTask('build', ['shell:buildAll', 'copy', 'clean']);
 };

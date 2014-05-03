@@ -6,12 +6,13 @@
 // @all-frames  false
 // @run-at      document-start
 // ==/UserScript==
-/*jslint nomen: true*/
-/*global kango, $, BPPUtils, alertify, _*/
+/*jslint nomen: true, vars: true*/
+/*global $, BPPUtils, _, PNotify*/
 
 BPPUtils.load(function () {
     "use strict";
-    var updateProfileNickname, updateThreadNickname, updateIndexNickname;
+    var updateProfileNickname, updateThreadNickname, updateIndexNickname,
+        nicknames = BPPUtils.storage.get('nicknames', {});
 
     updateProfileNickname = function (name, nick) {
         document.title = document.title.replace(new RegExp(name, 'i'), nick);
@@ -49,7 +50,7 @@ BPPUtils.load(function () {
         $('div[id^="thankUser-"] .smallFont a:not([onclick]):contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
 
         //Quotes
-        $('blockquote .quoteHeader h3 a:contains(Zitat von »maddin«)').replaceText(nickname.name, nickname.nick);
+        $('blockquote .quoteHeader h3 a:contains(Zitat von »' + nickname.name + '«)').replaceText(nickname.name, nickname.nick);
     };
     updateIndexNickname = function (nickname) {
         //Die letzten X Beiträge
@@ -65,75 +66,113 @@ BPPUtils.load(function () {
         $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
     };
 
-    kango.invokeAsync('kango.storage.getItem', 'option_common_extension_nicknames', function (enabled) {
-        if (enabled) {
-            if (BPPUtils.isTemplate('tplUserProfile')) {
-                kango.invokeAsync('kango.storage.getItem', 'nicknames', function (nicknames) {
-                    nicknames = nicknames || {};
-                    BPPUtils.addStyle('alertify');
+    if (BPPUtils.storage.get('option_common_extension_nicknames', false)) {
+        if (BPPUtils.isTemplate('tplUserProfile')) {
 
-                    var userId = parseInt($('input[name="userID"]').val(), 10),
-                        name = $('.userName > span').text(),
-                        nickname = nicknames[userId] || {
-                            "name": name,
-                            "nick": ''
-                        },
-                        $editNickname = $('<a href="#" title="Spitznamen bearbeiten"><img src="wcf/icon/editS.png" alt=""></a>');
+            BPPUtils.addMStyle(['pnotify_custom', 'jquery-ui', 'pnotify']);
 
-                    $('.userName').append($editNickname);
+            var userId = parseInt($('input[name="userID"]').val(), 10),
+                name = $('.userName > span').text(),
+                nickname = nicknames[userId] || {
+                    "name": name,
+                    "nick": ''
+                },
+                $editNickname = $('<a href="#" title="Spitznamen bearbeiten"><img src="wcf/icon/editS.png" alt=""></a>');
 
-                    if (name !== nickname.nick && nickname.nick.length !== 0) {
-                        updateProfileNickname(name, nickname.nick);
-                    }
-                    $editNickname.click(function (event) {
-                        event.preventDefault();
-                        alertify.set({labels: {
-                            ok: 'Spitzname Speichern',
-                            cancel: 'Spitzname löschen'
-                        }});
-                        alertify.prompt('Neuer Spitzname:', function (ok, newNick) {
-                            if (ok && newNick.length !== 0) {
-                                if (newNick === name) {
-                                    delete nicknames[userId];
-                                    kango.invokeAsync('kango.storage.setItem', 'nicknames', nicknames);
-                                    updateProfileNickname(name, name);
+            $('.userName').append($editNickname);
+
+            if (name !== nickname.nick && nickname.nick.length !== 0) {
+                updateProfileNickname(name, nickname.nick);
+            }
+            $editNickname.click(function (event) {
+                event.preventDefault();
+                new PNotify({
+                    title: '<b>Neuer Spitzname:</b>',
+                    text: '<input type="text" style="width:100%" id="newNickname" value="' + (nickname.nick || nickname.name) + '">',
+                    hide: false,
+                    width: 'auto',
+                    buttons: {
+                        closer: false,
+                        sticker: false
+                    },
+                    history: {
+                        history: false
+                    },
+                    confirm: {
+                        confirm: true,
+                        buttons: [{
+                            text: 'Spitzname Speichern',
+                            click: function (notice) {
+                                var newNick = $('#newNickname').val();
+                                if (newNick.length > 0) {
+                                    if (newNick === name) {
+                                        delete nicknames[userId];
+                                        BPPUtils.storage.set('nicknames', nicknames);
+                                        updateProfileNickname(name, name);
+                                        notice.remove();
+                                    } else {
+                                        nickname.nick = newNick;
+                                        nicknames[userId] = nickname;
+                                        BPPUtils.storage.set('nicknames', nicknames);
+                                        updateProfileNickname(name, newNick);
+                                        notice.update({
+                                            title: 'Spitzname gespeichert!',
+                                            text: 'Spitzname von »' + name + '« wurde zu »' + newNick + '« geändert.',
+                                            icon: true,
+                                            type: 'info',
+                                            hide: true,
+                                            confirm: {
+                                                confirm: false
+                                            },
+                                            buttons: {
+                                                closer: true,
+                                                sticker: true
+                                            }
+                                        });
+                                    }
                                 } else {
-                                    alertify.success('Spitzname von »' + name + '« wurde zu »' + newNick + '« geändert.');
-                                    nickname.nick = newNick;
-                                    nicknames[userId] = nickname;
-                                    kango.invokeAsync('kango.storage.setItem', 'nicknames', nicknames);
-                                    updateProfileNickname(name, newNick);
+                                    notice.remove();
                                 }
-                            } else {
-                                alertify.success('Spitzname von »' + name + '« wurde gelöscht.');
+                            }
+                        }, {
+                            text: 'Spitzname löschen',
+                            click: function (notice) {
                                 delete nicknames[userId];
-                                kango.invokeAsync('kango.storage.setItem', 'nicknames', nicknames);
+                                BPPUtils.storage.set('nicknames', nicknames);
                                 updateProfileNickname(nickname.nick || name, name);
                                 nickname.nick = '';
+                                notice.update({
+                                    title: 'Spitzname gelöscht!',
+                                    text: 'Spitzname von »' + name + '« wurde gelöscht.',
+                                    icon: true,
+                                    type: 'info',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
                             }
-                        }, nickname.nick || nickname.name);
-                    });
+                        }]
+                    }
                 });
-            } else if (BPPUtils.isTemplate('tplThread')) {
-                kango.invokeAsync('kango.storage.getItem', 'nicknames', function (nicknames) {
-                    nicknames = nicknames || {};
-                    $('.message:not(.quickReply):not(.deleted)').each(function () {
-                        var $element = $(this),
-                            userId = parseInt(BPPUtils.getParameterByName('userID', $element.find('.messageSidebar .messageAuthor .userName a').attr('href')), 10),
-                            nickname = nicknames[userId] || null;
-                        if (nickname) {
-                            updateThreadNickname(nickname);
-                        }
-                    });
-                });
-            } else if (BPPUtils.isTemplate('tplIndex')) {
-                kango.invokeAsync('kango.storage.getItem', 'nicknames', function (nicknames) {
-                    nicknames = nicknames || {};
-                    _.each(nicknames, function (nickname, userId) {
-                        updateIndexNickname(nickname);
-                    });
-                });
-            }
+            });
+        } else if (BPPUtils.isTemplate('tplThread')) {
+            $('.message:not(.quickReply):not(.deleted)').each(function () {
+                var $element = $(this),
+                    uID = parseInt(BPPUtils.getParameterByName('userID', $element.find('.messageSidebar .messageAuthor .userName a').attr('href')), 10),
+                    nick = nicknames[uID] || null;
+                if (nick) {
+                    updateThreadNickname(nick);
+                }
+            });
+        } else if (BPPUtils.isTemplate('tplIndex')) {
+            _.each(nicknames, function (nickname) {
+                updateIndexNickname(nickname);
+            });
         }
-    });
+    }
 });

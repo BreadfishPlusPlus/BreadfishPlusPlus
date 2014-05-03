@@ -1,28 +1,46 @@
 // ==UserScript==
 // @name        Options
 // @namespace   BreadfishPlusPlus
-// @require     js/lib/jquery-1.11.0.min.js
-// @require     js/lib/keyboard-0.4.1.js
-// @require     js/lib/hogan-2.0.0.min.js
-// @require     js/lib/tooltip-3.1.1.js
-// @require     js/lib/underscore-1.6.0.min.js
-// @require     js/lib/jquery.withinViewport.js
-// @require     js/lib/alertify.min.js
-// @require     js/lib/highlight.pack.min.js
-// @require     js/lib/jquery.lazyload.min.js
-// @require     js/defaultOptions.js
-// @require     js/templates.js
-// @require     js/smilies.js
 // @include     http://forum.sa-mp.de/*
 // @exclude     http://forum.sa-mp.de/acp/*
 // @all-frames  false
 // @run-at      document-start
+// @require     js/lib/highlight.pack.min.js
+// @require     js/lib/hogan-2.0.0.min.js
+// @require     js/lib/jquery-1.11.0.min.js
+// @require     js/lib/jquery-ui-1.10.4.min.js
+// @require     js/lib/jquery.lazyload.min.js
+// @require     js/lib/jquery.withinViewport.js
+// @require     js/lib/keyboard-0.4.1.js
+// @require     js/lib/moment-with-langs.min.js
+// @require     js/lib/pnotify.custom.min.js
+// @require     js/lib/tooltip-3.1.1.js
+// @require     js/lib/underscore-1.6.0.min.js
+// @require     js/defaultOptions.js
+// @require     js/smilies.js
+// @require     js/templates.js
 // ==/UserScript==
 /*jslint unparam: true, nomen: true*/
-/*global kango, $, Template, Hogan, _*/
+/*global $, Template, Hogan, _, moment, PNotify*/
 "use strict";
 
+//change moment lang globally
+moment.lang('de');
+
+//change notify style
+PNotify.prototype.options.styling = 'jqueryui';
+PNotify.prototype.options.addclass = 'stack-bottomright';
+PNotify.prototype.options.stack = {
+    "dir1": "up",
+    "dir2": "left"
+};
+PNotify.prototype.options.buttons.labels = {
+    close: "Schliessen",
+    stick: "Anpinnen"
+};
+
 var BPPUtils = {
+    version: '2.0.6',
     templateName: function () {
         if (!this._templateName) {
             this._templateName = document.querySelector('body').id;
@@ -58,6 +76,16 @@ var BPPUtils = {
         if (head) {
             head.appendChild(style);
         }
+    },
+    addMStyle: function (arr) {
+        if (!(arr instanceof Array)) {
+            arr = [arr];
+        }
+        var style = '';
+        _.each(arr, function (name) {
+            style += Template.css[name] + '\n';
+        });
+        return BPPUtils.addStyle(null, style);
     },
     addScript: function (js) {
         var s = document.createElement('script');
@@ -98,19 +126,6 @@ var BPPUtils = {
     load: function (fn) {
         $(window).load(fn);
     },
-    doReady: function () {
-        BPPUtils.isReady = true;
-        BPPUtils.readyFn.forEach(function (fn) {
-            fn();
-        });
-    },
-    debug: function (module, msg) {
-        kango.invokeAsync('kango.storage.getItem', 'option_debugmode', function (debugmode) {
-            if (debugmode) {
-                kango.console.log('[B++][DEBUG][' + module + '] ' + msg);
-            }
-        });
-    },
     asyncLoop: function (iterations, func, callback) { //http://stackoverflow.com/a/4288992
         var index = 0, done = false, loop = {
             next: function () {
@@ -135,6 +150,60 @@ var BPPUtils = {
         };
         loop.next();
         return loop;
+    },
+    storage: {
+        length: function () {
+            return localStorage.length;
+        },
+        get: function (key, defaultValue) {
+            defaultValue = defaultValue || null;
+            var value = localStorage.getItem(key);
+            if (value === null) {
+                return defaultValue;
+            }
+            try {
+                return JSON.parse(value);
+            } catch (e) {
+                return defaultValue;
+            }
+        },
+        set: function (key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        },
+        remove: function (key) {
+            localStorage.removeItem(key);
+        },
+        key: function (n) {
+            localStorage.key(n);
+        },
+        getAll: function () {
+            var i = 0, obj = {}, len = localStorage.length;
+            for (i = 0; i < len; i += 1) {
+                obj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));
+            }
+            return obj;
+        }
+    },
+    log: {
+        error: function () {
+            var args = Array.prototype.slice.call(arguments, 0);
+            args.splice(0, 0, "[B++][ERROR]");
+            console.log.apply(console, args);
+        },
+        debug: function () {
+            if (BPPUtils.storage.get('option_debugmode')) {
+                var args = Array.prototype.slice.call(arguments, 0);
+                args.splice(0, 0, "[B++][DEBUG]");
+                console.log.apply(console, args);
+            }
+        }
+    },
+    ajax: function (options, callback) {
+        $.ajax(_.extend(options, {
+            complete: function (jqXHR) {
+                callback(jqXHR.responseText, jqXHR.status, jqXHR);
+            }
+        }));
     }
 };
 

@@ -7,7 +7,7 @@
 // @run-at      document-start
 // ==/UserScript==
 /*jslint unparam: true, nomen: true, browser: true*/
-/*global kango, BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, Blob, alertify, FileReader*/
+/*global BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, Blob, FileReader, PNotify*/
 
 BPPUtils.ready(function () {
     "use strict";
@@ -16,8 +16,7 @@ BPPUtils.ready(function () {
     if (BPPUtils.getQuery('page') === 'BreadfishPlusPlus') {
         var showCategory, getKeyName, setOptionsToValues;
 
-        BPPUtils.addStyle('options');
-        BPPUtils.addStyle('alertify');
+        BPPUtils.addMStyle(['pnotify_custom', 'jquery-ui', 'pnotify']);
 
         getKeyName = function (key) {
             var names = KeyboardJS.key.name(key);
@@ -33,6 +32,8 @@ BPPUtils.ready(function () {
         };
 
         showCategory = function () {
+            console.log('showCategory');
+
             //remove all actives from the tabmenu
             $('.activeTabMenu').removeClass('activeTabMenu');
 
@@ -68,62 +69,58 @@ BPPUtils.ready(function () {
                     $('a[href="index.php?page=BreadfishPlusPlus#keyboardnav"]').parent('li').addClass('activeTabMenu');
                     $('[data-key="keyboardnav"]').show();
                 } else if (window.location.hash.substr(1, 11) === 'nicknames') {
+                    console.log('nicknames');
                     $('a[href="index.php?page=BreadfishPlusPlus#nicknames"]').parent('li').addClass('activeTabMenu');
-                    kango.invokeAsync('kango.storage.getItem', 'nicknames', function (nicknames) {
-                        var tmpNicknames = nicknames || {}, index = 0, alert;
-                        if (Object.keys(tmpNicknames).length > 0) {
-                            tmpNicknames = _.map(tmpNicknames, function (value, key) {
-                                return _.extend(value, {
-                                    userId: key
-                                });
-                            });
-                            for (index = 0; index < Object.keys(tmpNicknames).length; index += 1) {
-                                tmpNicknames[index].cycle =  (index % 2) + 1;
-                            }
-                        } else {
-                            alert = 'Du hast keine Spitznamen vergeben.';
-                        }
-                        $('[data-key="nicknames"]').html(BPPUtils.template('optionNicknames', {
-                            nicknames: tmpNicknames,
-                            alert: alert,
-                            hasNicknames: Object.keys(tmpNicknames).length > 0
-                        })).show();
-                    });
-                } else if (window.location.hash.substr(1, 12) === 'importexport') {
-                    $('a[href="index.php?page=BreadfishPlusPlus#importexport"]').parent('li').addClass('activeTabMenu');
-                    var currectOptions = {};
-                    kango.invokeAsync('kango.storage.getKeys', function (keys) {
-                        BPPUtils.asyncLoop(keys.length, function (loop) {
-                            var key = keys[loop.iteration()];
-                            kango.invokeAsync('kango.storage.getItem', key, function (value) {
-                                currectOptions[key] = value;
-                                loop.next();
-                            });
-                        }, function () {
-                            $('[data-key="importexport"]').html(BPPUtils.template('optionImportExport', {
-                                blobURL: URL.createObjectURL(new Blob([JSON.stringify(currectOptions)], {type: "application/json"}))
-                            })).show();
-
-                            $('#importOptions').change(function (event) {
-                                if (event.target.files.length > 0) {
-                                    var file = event.target.files[0],
-                                        reader = new FileReader();
-                                    reader.onloadend = function (evt) {
-                                        try {
-                                            var importedOptions = JSON.parse(evt.target.result);
-                                            _.each(importedOptions, function (value, key) {
-                                                kango.invokeAsync('kango.storage.setItem', key, value);
-                                            });
-                                            setOptionsToValues();
-                                            alertify.success('Die Sicherungsdatei wurde eingespielt.');
-                                        } catch (e) {
-                                            alertify.error('Die Sicherungsdatei ist ungültig: ' + e.message);
-                                        }
-                                    };
-                                    reader.readAsBinaryString(file);
-                                }
+                    var tmpNicknames = BPPUtils.storage.get('nicknames', {}), index = 0, alert;
+                    if (Object.keys(tmpNicknames).length > 0) {
+                        tmpNicknames = _.map(tmpNicknames, function (value, key) {
+                            return _.extend(value, {
+                                userId: key
                             });
                         });
+                        for (index = 0; index < Object.keys(tmpNicknames).length; index += 1) {
+                            tmpNicknames[index].cycle =  (index % 2) + 1;
+                        }
+                    } else {
+                        alert = 'Du hast keine Spitznamen vergeben.';
+                    }
+                    $('[data-key="nicknames"]').html(BPPUtils.template('optionNicknames', {
+                        nicknames: tmpNicknames,
+                        alert: alert,
+                        hasNicknames: Object.keys(tmpNicknames).length > 0
+                    })).show();
+                } else if (window.location.hash.substr(1, 12) === 'importexport') {
+                    $('a[href="index.php?page=BreadfishPlusPlus#importexport"]').parent('li').addClass('activeTabMenu');
+
+                    $('[data-key="importexport"]').html(BPPUtils.template('optionImportExport', {
+                        blobURL: URL.createObjectURL(new Blob([JSON.stringify(BPPUtils.storage.getAll())], {type: "application/json"}))
+                    })).show();
+
+                    $('#importOptions').change(function (event) {
+                        if (event.target.files.length > 0) {
+                            var file = event.target.files[0],
+                                reader = new FileReader();
+                            reader.onloadend = function (evt) {
+                                try {
+                                    var importedOptions = JSON.parse(evt.target.result);
+                                    _.each(importedOptions, function (value, key) {
+                                        BPPUtils.storage.set(key, value);
+                                    });
+                                    setOptionsToValues();
+                                    new PNotify({
+                                        title: '<strong>Die Sicherungsdatei wurde eingespielt.</srong>',
+                                        type: 'success'
+                                    });
+                                } catch (e) {
+                                    new PNotify({
+                                        title: '<strong>Die Sicherungsdatei ist ungültig!</srong>',
+                                        text: e.message,
+                                        type: 'error'
+                                    });
+                                }
+                            };
+                            reader.readAsBinaryString(file);
+                        }
                     });
                 }
             }
@@ -132,18 +129,17 @@ BPPUtils.ready(function () {
         setOptionsToValues = function () {
             $('.bpp_option').each(function () {
                 var name = $(this).attr('name'),
-                    type = $(this).attr('type');
-                kango.invokeAsync('kango.storage.getItem', name, function (value) {
-                    if (type === 'checkbox') {
-                        $('#' + name).prop('checked', value || false);
-                    } else if (type === 'range') {
-                        value = value || 10;
-                        $('#' + name).val(value).parent('.formField').find('.indicator').text(value);
-                    } else if (type === 'button') {
-                        value = getKeyName(value || -1);
-                        $('#' + name).val(value);
-                    }
-                });
+                    type = $(this).attr('type'),
+                    value = BPPUtils.storage.get(name);
+                if (type === 'checkbox') {
+                    $('#' + name).prop('checked', value || false);
+                } else if (type === 'range') {
+                    value = value || 10;
+                    $('#' + name).val(value).parent('.formField').find('.indicator').text(value);
+                } else if (type === 'button') {
+                    value = getKeyName(value || -1);
+                    $('#' + name).val(value);
+                }
             });
         };
 
@@ -166,13 +162,13 @@ BPPUtils.ready(function () {
         showCategory();
         $(window).on('hashchange', showCategory);
 
-        //listen for settings change
+        //listen for settings change)
         $('.bpp_option_category').on('change', 'input[type="checkbox"]', function () {
-            kango.invokeAsync('kango.storage.setItem', $(this).attr('name'), $(this).is(':checked'));
+            BPPUtils.storage.set($(this).attr('name'), $(this).is(':checked'));
         });
         $('.bpp_option_category').on('change', 'input[type="range"]', function () {
             var val = parseInt($(this).val(), 10);
-            kango.invokeAsync('kango.storage.setItem', $(this).attr('name'), val);
+            BPPUtils.storage.set($(this).attr('name'), val);
             $(this).parent('.formField').find('.indicator').text(val);
         });
         $('.bpp_option_category').on('click', 'input[type="button"]', function (e) {
@@ -183,10 +179,10 @@ BPPUtils.ready(function () {
                 event.preventDefault();
                 var charCode = event.which || event.keyCode;
                 if (charCode === 27) {
-                    kango.invokeAsync('kango.storage.setItem', name, -1);
+                    BPPUtils.storage.set(name, -1);
                     $btn.blur().val('Keine Taste zugewiesen').removeClass('disabled').off(event).unbind('blur');
                 } else {
-                    kango.invokeAsync('kango.storage.setItem', name, charCode);
+                    BPPUtils.storage.set(name, charCode);
                     $btn.blur().val(getKeyName(charCode)).removeClass('disabled').off(event).unbind('blur');
                 }
             }).on('blur', function (event) {

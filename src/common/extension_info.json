@@ -10,12 +10,12 @@
         "js/profile.js",
         "js/keyboardnav.js",
         "js/nicknames.js",
-        "js/design_flat.js"
+        "js/updateNotification.js"
     ],
     "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
     "creator": "Martin Rump <admin@maddin.cc>",
     "homepage_url": "http://breadfishplusplus.eu/",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "name": "Breadfish++",
     "license": "MIT",
     "permissions": {
@@ -24,6 +24,6 @@
         "web_navigation": false,
         "notifications": false,
         "cookies": false,
-        "xhr": ["http://forum.sa-mp.de/*", "http://gdata.youtube.com/*"]
+        "xhr": ["http://forum.sa-mp.de/*", "https://gdata.youtube.com/*", "https://raw.githubusercontent.com/*"]
     }
 }
