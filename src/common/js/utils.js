@@ -208,23 +208,23 @@ var BPPUtils = {
 };
 
 $.fn.replaceAttr = function (attr, search, replace) {
-    if (this.length > 0) {
-        var val = this.attr(attr);
-        this.attr(attr, val.replace(new RegExp(search, 'i'), replace));
-    }
+    this.each(function () {
+        var val = $(this).attr(attr);
+        $(this).attr(attr, val.replace(search, replace));
+    });
     return this;
 };
 $.fn.replaceText = function (search, replace) {
-    if (this.length > 0) {
-        var val = this.text();
-        this.text(val.replace(new RegExp(search, 'i'), replace));
-    }
+    this.each(function () {
+        var val = $(this).text();
+        $(this).text(val.replace(search, replace));
+    });
     return this;
 };
 $.fn.replaceHtml = function (search, replace) {
-    if (this.length > 0) {
-        var val = this.html();
-        this.html(val.replace(new RegExp(search, 'i'), replace));
-    }
+    this.each(function () {
+        var val = $(this).html();
+        $(this).html(val.replace(search, replace));
+    });
     return this;
 };
