@@ -1,5 +1,6 @@
 certificates
 node_modules
+output
 *.bbcode
 *.sublime-project
 *.sublime-workspace
