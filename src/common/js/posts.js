@@ -15,7 +15,7 @@ BPPUtils.load(function () {
     BPPUtils.addStyle('posts');
 
     //Erweiterungen: Kurz-URL
-    if (BPPUtils.storage.get('option_posts_extension_shorturl', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.shorturl', false) && BPPUtils.isTemplate('tplThread')) {
         $('.message:not(.quickReply):not(.deleted)').each(function () {
             var $elem = $(this),
                 id = $elem.attr('id').substr(7);
@@ -35,7 +35,7 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Youtube Vorschau
-    if (BPPUtils.storage.get('option_posts_extension_youtubePreview', false) && BPPUtils.isTemplate('tplThread') && !BPPUtils.storage.get('option_posts_filter_youtube', false)) {
+    if (BPPUtils.storage.get('option.posts.extension.youtubePreview', false) && BPPUtils.isTemplate('tplThread') && !BPPUtils.storage.get('option.posts.filter.youtube', false)) {
         var mNames = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
             width = $('.message:not(.quickReply):not(.deleted) .messageBody > div').first().width();
         $('.message:not(.quickReply):not(.deleted) .messageContentInner object').each(function () {
@@ -73,8 +73,8 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Danksagungen anzeigen
-    if (BPPUtils.storage.get('option_posts_extension_thanks', false) && BPPUtils.isTemplate('tplThread')) {
-        var thanksCache = BPPUtils.storage.get('thanks_cache', {});
+    if (BPPUtils.storage.get('option.posts.extension.thanks.active', false) && BPPUtils.isTemplate('tplThread')) {
+        var thanksCache = BPPUtils.storage.get('option.posts.extension.thanks.cache', {});
         var users = [], setSidebarThanks, getThanks;
 
         setSidebarThanks = function (userID, thanks) {
@@ -111,7 +111,7 @@ BPPUtils.load(function () {
                                     thanks = parseInt($(response2).find('.tableList tbody tr').length, 10);
                                     thanks += (pages - 1) * 10;
                                     thanksCache[userID] = thanks;
-                                    BPPUtils.storage.set('thanks_cache', thanksCache);
+                                    BPPUtils.storage.set('option.posts.extension.thanks.cache', thanksCache);
                                     callback(thanks);
                                 } else {
                                     callback(-2);
@@ -122,7 +122,7 @@ BPPUtils.load(function () {
                     }
                 } else {
                     thanksCache[userID] = -2;
-                    BPPUtils.storage.set('thanks_cache', thanksCache);
+                    BPPUtils.storage.set('option.posts.extension.thanks.cache', thanksCache);
                     callback(-2);
                     if (status === 403) {
                         BPPUtils.log.debug('Danksagungen von #' + userID + ' sind nicht öffentlich zugänglich.');
@@ -153,12 +153,12 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Höhenbegrenzung für Signaturen
-    if (BPPUtils.storage.get('option_posts_extension_signatureHeight', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.signatureHeight', false) && BPPUtils.isTemplate('tplThread')) {
         $('.signature').css('max-height', 'none');
     }
 
     //Erweiterungen: Bilderzoom
-    if (BPPUtils.storage.get('option_posts_extension_imageResize', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.imageResize', false) && BPPUtils.isTemplate('tplThread')) {
         var dragTargetData, getDragSize, resizeImage;
         dragTargetData = {
             imageWidth: 100,
@@ -225,7 +225,7 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Deaktivierung von externen Bildern
-    if (BPPUtils.storage.get('option_posts_extension_removeExternalImages', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.removeExternalImages', false) && BPPUtils.isTemplate('tplThread')) {
         $('.externalURL:has(.resizeImage), .externalURL:has(.bpp_resizeImage)').each(function () {
             var url = $(this).find('.resizeImage, .bpp_resizeImage').attr('src');
             $(this).html(url);
@@ -237,7 +237,7 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Syntaxhighlightning
-    if (BPPUtils.storage.get('option_posts_extension_syntaxhighlightning', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.syntaxhighlightning', false) && BPPUtils.isTemplate('tplThread')) {
         BPPUtils.addStyle('highlight');
         $('.codeBox').each(function () {
             var $elem = $(this),
@@ -264,7 +264,7 @@ BPPUtils.load(function () {
     }
 
     //Erweiterungen: Lazyload
-    if (BPPUtils.storage.get('option_posts_extension_lazyload', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.extension.lazyload', false) && BPPUtils.isTemplate('tplThread')) {
         $('.resizeImage, .bpp_resizeImage').each(function () {
             $(this).attr('data-original', $(this).attr('src')).removeAttr('src');
         }).lazyload({
@@ -274,7 +274,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Youtube Videos
-    if (BPPUtils.storage.get('option_posts_filter_youtube', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.youtube', false) && BPPUtils.isTemplate('tplThread')) {
         $('.message:not(.quickReply):not(.deleted) .messageContentInner object').each(function () {
             var $object = $(this),
                 videoId = $object.attr('data').substr(-17, 11);
@@ -283,27 +283,27 @@ BPPUtils.load(function () {
     }
 
     //Filter: Gelöschte Beiträge
-    if (BPPUtils.storage.get('option_posts_filter_deleted', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.deleted', false) && BPPUtils.isTemplate('tplThread')) {
         $('.messageMinimized:not(.quickReply) > .messageInner > img[src="icon/postTrashM.png"]').closest('.messageMinimized').remove();
     }
 
     //Filter: Bedankomat
-    if (BPPUtils.storage.get('option_posts_filter_thanko', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.thanko', false) && BPPUtils.isTemplate('tplThread')) {
         $('li.postThankButton, .thankStats').remove();
     }
 
     //Filter: Ignorierte Benutzer
-    if (BPPUtils.storage.get('option_posts_filter_ignored', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.ignored', false) && BPPUtils.isTemplate('tplThread')) {
         $('.messageMinimized:not(.quickReply) > .messageInner > img[src="wcf/icon/warningM.png"]').closest('.messageMinimized').remove();
     }
 
     //Filter: Hilfreichste Antwort
-    if (BPPUtils.storage.get('option_posts_filter_bestans', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.bestans', false) && BPPUtils.isTemplate('tplThread')) {
         BPPUtils.addStyle(null, '#helpfulAnswer{display:none!important;}.helpfulAnswerPost .messageInner .messageSidebar{background-image: none!important;}');
     }
 
     //Filter: Beitragscounter
-    if (BPPUtils.storage.get('option_posts_filter_postcount', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.postcount', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p > a:contains("Beiträge")').parent('p').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -313,28 +313,28 @@ BPPUtils.load(function () {
     }
 
     //Filter: Benutzertitel
-    if (BPPUtils.storage.get('option_posts_filter_usertitle', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.usertitle', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userTitle').remove();
     }
 
     //Filter: Benutzerrang
-    if (BPPUtils.storage.get('option_posts_filter_userrank', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.userrank', false) && BPPUtils.isTemplate('tplThread')) {
         $('.messageAuthor').each(function () {
             $(this).find('.userRank').first().remove();
         });
     }
 
     //Filter: Zusätzlicher Benutzerrang
-    if (BPPUtils.storage.get('option_posts_filter_additionalUserrank', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.additionalUserrank', false) && BPPUtils.isTemplate('tplThread')) {
         $('.messageAuthor').each(function () {
-            if ($(this).find('.userRank').length > 1) {
+            if ($(this).find('.userRank').length === 2 || ($(this).find('.userRank').length === 1 && BPPUtils.storage.get('option.posts.filter.userrank', false))) {
                 $(this).find('.userRank').last().remove();
             }
         });
     }
 
     //Filter: Registrierungsdatum
-    if (BPPUtils.storage.get('option_posts_filter_regdate', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.regdate', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p:contains("Registrierungsdatum: ")').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -344,7 +344,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Geschlecht
-    if (BPPUtils.storage.get('option_posts_filter_gender', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.gender', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userSymbols img[src="wcf/icon/genderMaleS.png"], .userSymbols img[src="wcf/icon/genderFemaleS.png"]').parent('li').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -354,7 +354,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: XBL Gamertag
-    if (BPPUtils.storage.get('option_posts_filter_xblGamertag', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.xblGamertag', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p:contains("XBL Gamertag: ")').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -364,7 +364,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: PSN ID
-    if (BPPUtils.storage.get('option_posts_filter_psnid', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.psnid', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p:contains("PSN ID: ")').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -374,7 +374,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Steam
-    if (BPPUtils.storage.get('option_posts_filter_steam', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.steam', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p:contains("Steam: ")').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -384,7 +384,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Origin
-    if (BPPUtils.storage.get('option_posts_filter_origin', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.origin', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userCredits p:contains("Origin: ")').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -394,7 +394,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Website
-    if (BPPUtils.storage.get('option_posts_filter_website', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.website', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userMessenger img[src="wcf/icon/websiteS.png"]').closest('li').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -404,7 +404,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: ICQ
-    if (BPPUtils.storage.get('option_posts_filter_icq', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.icq', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userMessenger img[src="wcf/icon/icqS.png"]').closest('li').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -414,7 +414,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Windows Live
-    if (BPPUtils.storage.get('option_posts_filter_msn', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.msn', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userMessenger img[src="wcf/icon/msnS.png"]').closest('li').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {
@@ -424,7 +424,7 @@ BPPUtils.load(function () {
     }
 
     //Filter: Skype
-    if (BPPUtils.storage.get('option_posts_filter_skype', false) && BPPUtils.isTemplate('tplThread')) {
+    if (BPPUtils.storage.get('option.posts.filter.skype', false) && BPPUtils.isTemplate('tplThread')) {
         $('.userMessenger img[src="wcf/icon/skypeS.png"]').closest('li').remove();
         $('.userCredits').each(function () {
             if ($(this).children().length === 0) {

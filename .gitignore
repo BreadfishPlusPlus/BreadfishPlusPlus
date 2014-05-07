@@ -5,3 +5,4 @@ output
 *.sublime-project
 *.sublime-workspace
 *.txt
+changelog.md

@@ -13,7 +13,7 @@ BPPUtils.load(function () {
     "use strict";
 
     //Erweiterungen: Benutzer-Autovervollständigung
-    if (BPPUtils.storage.get('option_postCreate_extension_nickcomplete', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
+    if (BPPUtils.storage.get('option.postCreate.extension.nickcomplete', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
         var $editorCodeView = $('.editorCodeView'),
             $nickCompletionList = $('<div class="popupMenu pageMenu" id="nickCompletionList"><ul></ul></div>'),
             reset = false,
@@ -108,29 +108,30 @@ BPPUtils.load(function () {
 
     //Smilies
     if (BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
-        var smilieCategorys = [];
-        if (BPPUtils.storage.get('option_postCreate_smilies_rage', false)) {
+        var smilieCategorys = [],
+            smiliesActive = BPPUtils.storage.get('option.postCreate.smilies', {});
+        if (smiliesActive.rage) {
             smilieCategorys.push({
                 "name": 'Rageicons',
                 "count": Smilies.Rageicons.length,
                 "smilies": Smilies.Rageicons
             });
         }
-        if (BPPUtils.storage.get('option_postCreate_smilies_skype', false)) {
+        if (smiliesActive.skype) {
             smilieCategorys.push({
                 "name": 'Skype',
                 "count": Smilies.Skype.length,
                 "smilies": Smilies.Skype
             });
         }
-        if (BPPUtils.storage.get('option_postCreate_smilies_yolks', false)) {
+        if (smiliesActive.yolks) {
             smilieCategorys.push({
                 "name": 'Y o l k s',
                 "count": Smilies['Y o l k s'].length,
                 "smilies": Smilies['Y o l k s']
             });
         }
-        if (BPPUtils.storage.get('option_postCreate_smilies_emoji', false)) {
+        if (smiliesActive.emoji) {
             smilieCategorys.push({
                 "name": 'Emojicons',
                 "count": Smilies.Emojicons.length,
@@ -188,8 +189,9 @@ BPPUtils.load(function () {
 
     //BBCodes
     if (BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit', 'tplUserProfileEdit'])) {
+        var bbcodesActive = BPPUtils.storage.get('option.postCreate.bbcode', {});
         //E-Mail
-        if (BPPUtils.storage.get('option_postCreate_bbcode_email', false)) {
+        if (bbcodesActive.email) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'email',
                 img: 'http://breadfishplusplus.eu/bbcodes/email.png',
@@ -198,7 +200,7 @@ BPPUtils.load(function () {
         }
 
         //Text tiefstellen
-        if (BPPUtils.storage.get('option_postCreate_bbcode_sub', false)) {
+        if (bbcodesActive.sub) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'sub',
                 img: 'http://breadfishplusplus.eu/bbcodes/sub.png',
@@ -207,7 +209,7 @@ BPPUtils.load(function () {
         }
 
         //Text hochstellen
-        if (BPPUtils.storage.get('option_postCreate_bbcode_sup', false)) {
+        if (bbcodesActive.sup) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'sup',
                 img: 'http://breadfishplusplus.eu/bbcodes/sup.png',
@@ -216,7 +218,7 @@ BPPUtils.load(function () {
         }
 
         //Java-Quelltext
-        if (BPPUtils.storage.get('option_postCreate_bbcode_java', false)) {
+        if (bbcodesActive.java) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'java',
                 img: 'wcf/icon/wysiwyg/insertJavaM.png',
@@ -225,7 +227,7 @@ BPPUtils.load(function () {
         }
 
         //Cascading Style Sheet
-        if (BPPUtils.storage.get('option_postCreate_bbcode_css', false)) {
+        if (bbcodesActive.css) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'css',
                 img: 'wcf/icon/wysiwyg/insertCssM.png',
@@ -234,7 +236,7 @@ BPPUtils.load(function () {
         }
 
         //HTML-Quelltext
-        if (BPPUtils.storage.get('option_postCreate_bbcode_css', false)) {
+        if (bbcodesActive.html) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'html',
                 img: 'wcf/icon/wysiwyg/insertHtmlM.png',
@@ -243,7 +245,7 @@ BPPUtils.load(function () {
         }
 
         //XML-Quelltext
-        if (BPPUtils.storage.get('option_postCreate_bbcode_xml', false)) {
+        if (bbcodesActive.xml) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'xml',
                 img: 'wcf/icon/wysiwyg/insertHtmlM.png',
@@ -252,7 +254,7 @@ BPPUtils.load(function () {
         }
 
         //Javascript-Quelltext
-        if (BPPUtils.storage.get('option_postCreate_bbcode_js', false)) {
+        if (bbcodesActive.js) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'js',
                 img: 'wcf/icon/wysiwyg/insertJavaScriptM.png',
@@ -261,7 +263,7 @@ BPPUtils.load(function () {
         }
 
         //C/C++-Quelltext
-        if (BPPUtils.storage.get('option_postCreate_bbcode_c', false)) {
+        if (bbcodesActive.c) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'c',
                 img: 'wcf/icon/wysiwyg/insertCM.png',
@@ -270,7 +272,7 @@ BPPUtils.load(function () {
         }
 
         //Dropdown
-        if (BPPUtils.storage.get('option_postCreate_bbcode_dropdown', false)) {
+        if (bbcodesActive.dropdown) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'dropdown',
                 img: 'wcf/icon/wysiwyg/editorResizeM.png',
@@ -279,7 +281,7 @@ BPPUtils.load(function () {
         }
 
         //Sevenload
-        if (BPPUtils.storage.get('option_postCreate_bbcode_sevenload', false)) {
+        if (bbcodesActive.sevenload) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'sevenload',
                 img: 'wcf/icon/wysiwyg/sevenLoadM.png',
@@ -288,7 +290,7 @@ BPPUtils.load(function () {
         }
 
         //Clipfish
-        if (BPPUtils.storage.get('option_postCreate_bbcode_clipfish', false)) {
+        if (bbcodesActive.clipfish) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'clipfish',
                 img: 'wcf/icon/wysiwyg/clipfishM.png',
@@ -297,7 +299,7 @@ BPPUtils.load(function () {
         }
 
         //Googlevideo
-        if (BPPUtils.storage.get('option_postCreate_bbcode_googlevideo', false)) {
+        if (bbcodesActive.googlevideo) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'googlevideo',
                 img: 'wcf/icon/wysiwyg/googleVideoM.png',
@@ -306,7 +308,7 @@ BPPUtils.load(function () {
         }
 
         //MySpace
-        if (BPPUtils.storage.get('option_postCreate_bbcode_myspace', false)) {
+        if (bbcodesActive.myspace) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'myspace',
                 img: 'wcf/icon/wysiwyg/mySpaceM.png',
@@ -315,7 +317,7 @@ BPPUtils.load(function () {
         }
 
         //MyVideo
-        if (BPPUtils.storage.get('option_postCreate_bbcode_myvideo', false)) {
+        if (bbcodesActive.myvideo) {
             $('#mce_editor_0_toolBar ul').last().append(BPPUtils.template('bbcode', {
                 name: 'myvideo',
                 img: 'wcf/icon/wysiwyg/myVideoM.png',

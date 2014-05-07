@@ -12,14 +12,14 @@ BPPUtils.load(function () {
     "use strict";
 
     //Erweiterungen: Ankündigungen und wichtige Themen
-    if (BPPUtils.storage.get('option_threads_extension_sticky', false) && BPPUtils.isTemplate('tplBoard')) {
+    if (BPPUtils.storage.get('option.threads.extension.sticky', false) && BPPUtils.isTemplate('tplBoard')) {
         $('#topThreadsStatus').siblings('.titleBarPanel').first().find('.containerHead .containerContent h3').text('Ankündigungen');
         var announcementCount = $('#topThreadsStatus .columnIcon > img[src*="Announcement"]').length;
         $(BPPUtils.template('importantThreadsHeader')).insertAfter($('#topThreadsStatus tbody tr').eq(announcementCount - 1));
     }
 
     //Filter: Gelöschte Themen
-    if (BPPUtils.storage.get('option_threads_filter_deleted', false) && BPPUtils.isTemplate('tplBoard')) {
+    if (BPPUtils.storage.get('option.threads.filter.deleted', false) && BPPUtils.isTemplate('tplBoard')) {
         $('#normalThreadsStatus tbody > tr .columnIcon > img[src*="Trash"]').closest('tr').remove();
 
         setTimeout(function () {

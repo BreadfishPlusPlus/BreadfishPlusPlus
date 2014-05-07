@@ -15,7 +15,7 @@ BPPUtils.ready(function () {
     BPPUtils.addStyle('common');
 
     //Erweiterungen: Alternative PN Benachrichtigung
-    if (BPPUtils.storage.get('option_common_extension_privateMessageNotification', false)) {
+    if (BPPUtils.storage.get('option.common.extension.privateMessageNotification', false)) {
         var checkForNewMessage, notifiedMessages = [];
 
         checkForNewMessage = function () {
@@ -72,7 +72,7 @@ BPPUtils.ready(function () {
     }
 
     //Erweiterungen: Asynchrone Datenübertragung
-    if (BPPUtils.storage.get('option_common_extension_ajaxify', false)) {
+    if (BPPUtils.storage.get('option.common.extension.ajaxify', false)) {
         if (BPPUtils.isTemplate('tplThread')) {
             //Subscribe Thread
             $('.pageOptions > a:first-child').click(function (event) {
@@ -276,9 +276,13 @@ BPPUtils.ready(function () {
     }
 
     //Erweiterungen: Alternative Tooltips
-    if (BPPUtils.storage.get('option_common_extension_tooltip', false)) {
+    if (BPPUtils.storage.get('option.common.extension.tooltip', false)) {
         BPPUtils.addStyle('tooltip');
         $('body').tooltip({
+            delay: {
+                show: 1000,
+                hide: 100
+            },
             html: false,
             placement: 'auto',
             container: 'body',
@@ -287,7 +291,7 @@ BPPUtils.ready(function () {
     }
 
     //Erweiterungen: Meldungsgründe
-    if (BPPUtils.storage.get('option_common_extension_reportReasons', false) && BPPUtils.isTemplate('tplPostReport')) {
+    if (BPPUtils.storage.get('option.common.extension.reportReasons', false) && BPPUtils.isTemplate('tplPostReport')) {
         var reasons = ['Anschuldigung ohne Beweise', 'Beleidigung', 'Crossposting', 'Doppelpost', 'Falscher Bereich', 'Falscher Umgangston', 'Threadpushing', 'Spam'], $formElement = $('.formElement'), $text = $('#text');
         $formElement.css('position', 'relative');
         $formElement.append('<div class="smallButtons reportReasons"><ul><li><a href="#">' + reasons.join('</a></li><li><a href="#">') + '</a></li></ul></div>');
@@ -334,7 +338,7 @@ BPPUtils.ready(function () {
         }
         return momentDate.from(moment());
     };
-    if (BPPUtils.storage.get('option_common_extension_timeago', false)) {
+    if (BPPUtils.storage.get('option.common.extension.timeago', false)) {
         if (BPPUtils.isTemplate('tplIndex')) {
             $('.top5box .tableList tr .columnTop5LastPost .smallFont .light, .boardlistLastPost .containerContentSmall .light, .columnLastPost .containerContentSmall .smallFont.light').each(function () {
                 var dateStr = $(this).text().substr(1, $(this).text().length - 2);
@@ -354,21 +358,39 @@ BPPUtils.ready(function () {
     }
 
     //Filter: Ankündigungen
-    if (BPPUtils.storage.get('option_common_filter_announce', false)) {
-        $('#globalAnnouncement').hide();
+    if (BPPUtils.storage.get('option.common.filter.announcement.active', false)) {
+        var $globalAnnouncement = $('#globalAnnouncement'),
+            text = $globalAnnouncement.text().trim(),
+            suppressedGlobalAnnouncement = BPPUtils.storage.get('option.common.filter.announcement.suppressed', []);
+
+        if (suppressedGlobalAnnouncement.indexOf(text) !== -1) {
+            $globalAnnouncement.hide();
+        } else {
+            $globalAnnouncement.addClass('deletable');
+            $globalAnnouncement.prepend('<a href="#" style="float:right;" class="close deleteButton"><img src="wcf/icon/closeS.png" alt="" title="Ankündigung ausblenden"></a>');
+
+            $globalAnnouncement.find('.close').click(function (event) {
+                event.preventDefault();
+                suppressedGlobalAnnouncement.push(text);
+                BPPUtils.storage.set('option.common.filter.announcement.suppressed', suppressedGlobalAnnouncement);
+                $globalAnnouncement.fadeOut();
+            });
+        }
     }
 });
 
 BPPUtils.load(function () {
+    "use strict";
+
     //Fehlerbehebungen: Header-Fix
-    if (BPPUtils.storage.get('option_common_bugfix_headerFix', false)) {
+    if (BPPUtils.storage.get('option.common.bugfix.headerFix', false)) {
         if ($('head').html().indexOf('href="http://forum.sa-mp.de/wcf/style/style-5.css"') >= 0) {
             $('#main').css('margin-top', '162px');
         }
     }
 
     //Fehlerbehebungen: Expander
-    if (BPPUtils.storage.get('option_common_bugfix_expander', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit', 'tplThread', 'tplUserProfile'])) {
+    if (BPPUtils.storage.get('option.common.bugfix.expander', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit', 'tplThread', 'tplUserProfile'])) {
         if ($('.expander').length !== 0) {
             $('.expander').each(function (i) {
                 var element = $(this);
@@ -381,14 +403,14 @@ BPPUtils.load(function () {
     }
 
     //Fehlerbehebungen: Tabmenu
-    if (BPPUtils.storage.get('option_common_bugfix_tabmenu', false)) {
+    if (BPPUtils.storage.get('option.common.bugfix.tabmenu', false)) {
         if ($('head').html().indexOf('href="http://forum.sa-mp.de/wcf/style/style-8.css"') >= 0) {
             BPPUtils.addStyle(null, '.tabMenu li:not(.activeTabMenu) a:hover{color: #FFF;}');
         }
     }
 
     //Fehlerbehebungen: Bildverkleinerung
-    if (BPPUtils.storage.get('option_common_bugfix_imageResize', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplPmNew', 'tplPostEdit', 'tplThread'])) {
+    if (BPPUtils.storage.get('option.common.bugfix.imageResize', false) && BPPUtils.isTemplate(['tplPostAdd', 'tplPmNew', 'tplPostEdit', 'tplThread'])) {
         var width = $('.message:not(.quickReply):not(.deleted) .messageBody > div').first().width() - 20;
         $('.resizeImage').each(function () {
             var $img = $(this);

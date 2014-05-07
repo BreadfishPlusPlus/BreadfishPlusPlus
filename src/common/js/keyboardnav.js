@@ -39,10 +39,10 @@ BPPUtils.load(function () {
 
     if (BPPUtils.isTemplate('tplThread')) {
         //Erweiterungen: Vorheriger Post
-        var keyPrevPost = BPPUtils.storage.get('option_keyboard_prev_post', -1),
-            keyNextPost = BPPUtils.storage.get('option_keyboard_next_post', -1),
-            keyPrevPage = BPPUtils.storage.get('option_keyboard_prev_page', -1),
-            keyNextPage = BPPUtils.storage.get('option_keyboard_next_page', -1),
+        var keyPrevPost = BPPUtils.storage.get('option.keyboard.post.prev', -1),
+            keyNextPost = BPPUtils.storage.get('option.keyboard.post.next', -1),
+            keyPrevPage = BPPUtils.storage.get('option.keyboard.page.prev', -1),
+            keyNextPage = BPPUtils.storage.get('option.keyboard.page.next', -1),
             keyName;
         if (keyPrevPost !== -1) {
             keyName = KeyboardJS.key.name(keyPrevPost)[0];

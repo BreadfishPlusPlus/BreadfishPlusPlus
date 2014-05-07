@@ -27,8 +27,11 @@ BPPUtils.load(function () {
     };
 
     curVer = getVersion(BPPUtils.version);
-    $.getJSON('https://raw.githubusercontent.com/BreadfishPlusPlus/BreadfishPlusPlus/v2/package.json', function (packageInfo) {
+
+    $.getJSON('https://api.github.com/repos/BreadfishPlusPlus/BreadfishPlusPlus/contents/package.json', function (json) {
+        var packageInfo = JSON.parse(window.atob(json.content));
         extVer = getVersion(packageInfo.version);
+        BPPUtils.log.debug('\n===UpdateCheck\nAktuelle Version: ' + BPPUtils.version + '\nNeueste Version: ' + packageInfo.version + '\n=/=UpdateCheck');
         if (isNewVersion(curVer, extVer)) {
             notice = new PNotify({
                 title: '<strong>Eine neue Breadfish++ Version ist verfügbar!</srong>',

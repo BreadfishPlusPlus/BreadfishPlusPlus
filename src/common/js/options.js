@@ -7,7 +7,7 @@
 // @run-at      document-start
 // ==/UserScript==
 /*jslint unparam: true, nomen: true, browser: true*/
-/*global BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, Blob, FileReader, PNotify*/
+/*global BPPUtils, $, _, DefaultOptions, KeyboardJS, URL, webkitURL, Blob, FileReader, PNotify*/
 
 BPPUtils.ready(function () {
     "use strict";
@@ -32,8 +32,6 @@ BPPUtils.ready(function () {
         };
 
         showCategory = function () {
-            console.log('showCategory');
-
             //remove all actives from the tabmenu
             $('.activeTabMenu').removeClass('activeTabMenu');
 
@@ -69,9 +67,9 @@ BPPUtils.ready(function () {
                     $('a[href="index.php?page=BreadfishPlusPlus#keyboardnav"]').parent('li').addClass('activeTabMenu');
                     $('[data-key="keyboardnav"]').show();
                 } else if (window.location.hash.substr(1, 11) === 'nicknames') {
-                    console.log('nicknames');
                     $('a[href="index.php?page=BreadfishPlusPlus#nicknames"]').parent('li').addClass('activeTabMenu');
-                    var tmpNicknames = BPPUtils.storage.get('nicknames', {}), index = 0, alert;
+                    var tmpNicknames = BPPUtils.storage.get('option.common.extension.nicknames', {}), index = 0, alert;
+                    delete tmpNicknames.active;
                     if (Object.keys(tmpNicknames).length > 0) {
                         tmpNicknames = _.map(tmpNicknames, function (value, key) {
                             return _.extend(value, {
@@ -93,7 +91,7 @@ BPPUtils.ready(function () {
                     $('a[href="index.php?page=BreadfishPlusPlus#importexport"]').parent('li').addClass('activeTabMenu');
 
                     $('[data-key="importexport"]').html(BPPUtils.template('optionImportExport', {
-                        blobURL: URL.createObjectURL(new Blob([JSON.stringify(BPPUtils.storage.getAll())], {type: "application/json"}))
+                        blobURL: (window.webkitURL || window.URL).createObjectURL(new Blob([JSON.stringify(BPPUtils.storage.getAll(), null, 4)], {type: "application/json"}))
                     })).show();
 
                     $('#importOptions').change(function (event) {
@@ -103,9 +101,8 @@ BPPUtils.ready(function () {
                             reader.onloadend = function (evt) {
                                 try {
                                     var importedOptions = JSON.parse(evt.target.result);
-                                    _.each(importedOptions, function (value, key) {
-                                        BPPUtils.storage.set(key, value);
-                                    });
+                                    BPPUtils.log.debug('importedOptions', importedOptions);
+                                    BPPUtils.storage.setAll(importedOptions);
                                     setOptionsToValues();
                                     new PNotify({
                                         title: '<strong>Die Sicherungsdatei wurde eingespielt.</srong>',
@@ -130,15 +127,14 @@ BPPUtils.ready(function () {
             $('.bpp_option').each(function () {
                 var name = $(this).attr('name'),
                     type = $(this).attr('type'),
-                    value = BPPUtils.storage.get(name);
+                    value;
                 if (type === 'checkbox') {
-                    $('#' + name).prop('checked', value || false);
+                    $('input[name="' + name + '"]').prop('checked', BPPUtils.storage.get(name, false));
                 } else if (type === 'range') {
-                    value = value || 10;
-                    $('#' + name).val(value).parent('.formField').find('.indicator').text(value);
+                    value = BPPUtils.storage.get(name, $(this).attr('value'));
+                    $('input[name="' + name + '"]').val(value).parent('.formField').find('.indicator').text(value);
                 } else if (type === 'button') {
-                    value = getKeyName(value || -1);
-                    $('#' + name).val(value);
+                    $('input[name="' + name + '"]').val(getKeyName(BPPUtils.storage.get(name, -1)));
                 }
             });
         };

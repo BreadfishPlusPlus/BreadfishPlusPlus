@@ -11,11 +11,10 @@
 
 BPPUtils.load(function () {
     "use strict";
-    var updateProfileNickname, updateThreadNickname, updateIndexNickname,
-        nicknames = BPPUtils.storage.get('nicknames', {});
+    var updateProfileNickname, updateThreadNickname, updateIndexNickname;
 
     updateProfileNickname = function (name, nick) {
-        document.title = document.title.replace(new RegExp(name, 'i'), nick);
+        document.title = document.title.replace(new RegExp($.ui.autocomplete.escapeRegex(name), 'i'), nick);
 
         $('.headlineContainer h2 a').replaceText(name, nick);
         $('.userName > span').replaceText(name, nick);
@@ -47,36 +46,46 @@ BPPUtils.load(function () {
         ].join(', ')).replaceAttr('title', nickname.name, nickname.nick);
 
         //Thanko
-        $('div[id^="thankUser-"] .smallFont a:not([onclick]):contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+        $('div[id^="thankUser-"] .smallFont a:not([onclick]):contains(' + nickname.name + ')').filter(function () {
+            return $(this).text() === nickname.name;
+        }).replaceHtml(nickname.name, nickname.nick);
 
         //Quotes
         $('blockquote .quoteHeader h3 a:contains(Zitat von »' + nickname.name + '«)').replaceText(nickname.name, nickname.nick);
     };
     updateIndexNickname = function (nickname) {
         //Die letzten X Beiträge
-        $('.columnTop5LastPost .containerContentSmall .smallFont a:contains(' + nickname.name + ')').replaceText(nickname.name, nickname.nick);
+        $('.columnTop5LastPost .containerContentSmall .smallFont a').filter(function () {
+            return $(this).text() === nickname.name;
+        }).text(nickname.nick);
 
         //User in Board online
-        $('.boardlistUsersOnline a:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+        $('.boardlistUsersOnline a').filter(function () {
+            return $(this).text() === nickname.name;
+        }).replaceHtml(nickname.name, nickname.nick);
 
         //Last post in board
-        $('.boardlistLastPost .containerContentSmall p a:contains(' + nickname.name + ')').replaceText(nickname.name, nickname.nick);
+        $('.boardlistLastPost .containerContentSmall p a').filter(function () {
+            return $(this).text() === nickname.name;
+        }).text(nickname.nick);
 
         //Zurzeit sind X Benutzer online
-        $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + nickname.name + ')').replaceHtml(nickname.name, nickname.nick);
+        $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + nickname.name + ')').filter(function () {
+            return $(this).text() === nickname.name;
+        }).replaceHtml(nickname.name, nickname.nick);
     };
 
-    if (BPPUtils.storage.get('option_common_extension_nicknames', false)) {
+    if (BPPUtils.storage.get('option.common.extension.nicknames.active', false)) {
         if (BPPUtils.isTemplate('tplUserProfile')) {
 
             BPPUtils.addMStyle(['pnotify_custom', 'jquery-ui', 'pnotify']);
 
             var userId = parseInt($('input[name="userID"]').val(), 10),
                 name = $('.userName > span').text(),
-                nickname = nicknames[userId] || {
+                nickname = BPPUtils.storage.get('option.common.extension.nicknames.' + userId, {
                     "name": name,
                     "nick": ''
-                },
+                }),
                 $editNickname = $('<a href="#" title="Spitznamen bearbeiten"><img src="wcf/icon/editS.png" alt=""></a>');
 
             $('.userName').append($editNickname);
@@ -106,14 +115,12 @@ BPPUtils.load(function () {
                                 var newNick = $('#newNickname').val();
                                 if (newNick.length > 0) {
                                     if (newNick === name) {
-                                        delete nicknames[userId];
-                                        BPPUtils.storage.set('nicknames', nicknames);
+                                        BPPUtils.storage.set('option.common.extension.nicknames.' + userId, undefined);
                                         updateProfileNickname(name, name);
                                         notice.remove();
                                     } else {
                                         nickname.nick = newNick;
-                                        nicknames[userId] = nickname;
-                                        BPPUtils.storage.set('nicknames', nicknames);
+                                        BPPUtils.storage.set('option.common.extension.nicknames.' + userId, nickname);
                                         updateProfileNickname(name, newNick);
                                         notice.update({
                                             title: 'Spitzname gespeichert!',
@@ -137,8 +144,7 @@ BPPUtils.load(function () {
                         }, {
                             text: 'Spitzname löschen',
                             click: function (notice) {
-                                delete nicknames[userId];
-                                BPPUtils.storage.set('nicknames', nicknames);
+                                BPPUtils.storage.set('option.common.extension.nicknames.' + userId, undefined);
                                 updateProfileNickname(nickname.nick || name, name);
                                 nickname.nick = '';
                                 notice.update({
@@ -164,13 +170,16 @@ BPPUtils.load(function () {
             $('.message:not(.quickReply):not(.deleted)').each(function () {
                 var $element = $(this),
                     uID = parseInt(BPPUtils.getParameterByName('userID', $element.find('.messageSidebar .messageAuthor .userName a').attr('href')), 10),
-                    nick = nicknames[uID] || null;
+                    nick = BPPUtils.storage.get('option.common.extension.nicknames.' + uID, null);
                 if (nick) {
                     updateThreadNickname(nick);
                 }
             });
         } else if (BPPUtils.isTemplate('tplIndex')) {
-            _.each(nicknames, function (nickname) {
+            _.each(BPPUtils.storage.get('option.common.extension.nicknames', {}), function (nickname, uID) {
+                if (uID === 'active') {
+                    return;
+                }
                 updateIndexNickname(nickname);
             });
         }

@@ -7,7 +7,7 @@
 // @run-at      document-start
 // @require     js/lib/highlight.pack.min.js
 // @require     js/lib/hogan-2.0.0.min.js
-// @require     js/lib/jquery-1.11.0.min.js
+// @require     js/lib/jquery-1.11.1.min.js
 // @require     js/lib/jquery-ui-1.10.4.min.js
 // @require     js/lib/jquery.lazyload.min.js
 // @require     js/lib/jquery.withinViewport.js
@@ -16,12 +16,13 @@
 // @require     js/lib/pnotify.custom.min.js
 // @require     js/lib/tooltip-3.1.1.js
 // @require     js/lib/underscore-1.6.0.min.js
+// @require     js/config.js
 // @require     js/defaultOptions.js
 // @require     js/smilies.js
 // @require     js/templates.js
 // ==/UserScript==
 /*jslint unparam: true, nomen: true*/
-/*global $, Template, Hogan, _, moment, PNotify*/
+/*global $, Template, Hogan, _, moment, PNotify, Config*/
 "use strict";
 
 //change moment lang globally
@@ -40,7 +41,7 @@ PNotify.prototype.options.buttons.labels = {
 };
 
 var BPPUtils = {
-    version: '2.0.6',
+    version: '2.1.2',
     templateName: function () {
         if (!this._templateName) {
             this._templateName = document.querySelector('body').id;
@@ -151,39 +152,7 @@ var BPPUtils = {
         loop.next();
         return loop;
     },
-    storage: {
-        length: function () {
-            return localStorage.length;
-        },
-        get: function (key, defaultValue) {
-            defaultValue = defaultValue || null;
-            var value = localStorage.getItem(key);
-            if (value === null) {
-                return defaultValue;
-            }
-            try {
-                return JSON.parse(value);
-            } catch (e) {
-                return defaultValue;
-            }
-        },
-        set: function (key, value) {
-            localStorage.setItem(key, JSON.stringify(value));
-        },
-        remove: function (key) {
-            localStorage.removeItem(key);
-        },
-        key: function (n) {
-            localStorage.key(n);
-        },
-        getAll: function () {
-            var i = 0, obj = {}, len = localStorage.length;
-            for (i = 0; i < len; i += 1) {
-                obj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));
-            }
-            return obj;
-        }
-    },
+    storage: new Config(),
     log: {
         error: function () {
             var args = Array.prototype.slice.call(arguments, 0);
@@ -191,11 +160,11 @@ var BPPUtils = {
             console.log.apply(console, args);
         },
         debug: function () {
-            if (BPPUtils.storage.get('option_debugmode')) {
+            if (BPPUtils.storage.get('option.debugmode', false)) {
                 var args = Array.prototype.slice.call(arguments, 0);
                 args.splice(0, 0, "[B++][DEBUG]");
                 console.log.apply(console, args);
-            }
+           }
         }
     },
     ajax: function (options, callback) {
@@ -207,24 +176,26 @@ var BPPUtils = {
     }
 };
 
+
+
 $.fn.replaceAttr = function (attr, search, replace) {
     this.each(function () {
         var val = $(this).attr(attr);
-        $(this).attr(attr, val.replace(search, replace));
+        $(this).attr(attr, val.replace(new RegExp($.ui.autocomplete.escapeRegex(search), 'i'), replace));
     });
     return this;
 };
 $.fn.replaceText = function (search, replace) {
     this.each(function () {
         var val = $(this).text();
-        $(this).text(val.replace(search, replace));
+        $(this).text(val.replace(new RegExp($.ui.autocomplete.escapeRegex(search), 'i'), replace));
     });
     return this;
 };
 $.fn.replaceHtml = function (search, replace) {
     this.each(function () {
         var val = $(this).html();
-        $(this).html(val.replace(search, replace));
+        $(this).html(val.replace(new RegExp($.ui.autocomplete.escapeRegex(search), 'i'), replace));
     });
     return this;
 };

@@ -119,7 +119,7 @@ module.exports = function (grunt) {
         },
         clean: {
             output: {
-                src: ["output/*", "!output/chrome"]
+                src: ["output/*", "!output/chrome", "!output/safari"]
             }
         },
         watch: {
