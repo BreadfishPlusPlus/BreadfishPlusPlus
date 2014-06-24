@@ -1,6 +1,8 @@
 {
   "name": "BreadfishPlusPlus",
-  "version": "2.1.2",
+  "description": "Eine Zusammenfassung von erweiterungen für breadfish.de",
+  "private": true,
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
@@ -9,15 +11,44 @@
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
+  "main": "./src/BreadfishPlusPlus.js",
   "license": "GPL v3",
+  "browser": {
+    "settings": "./src/settings/index.js",
+    "settings/default": "./src/settings/default.js",
+    "styles": "./src/styles/index.js",
+    "templates": "./src/templates/index.js",
+    "storage": "./src/storage.js",
+    "utils": "./src/utils.js",
+    "common": "./src/common/index.js",
+    "ui/popup": "./src/ui/popup.js",
+    "ui/notification": "./src/ui/notification.js"
+  },
+  "browserify-shim": {
+    "lib/jquery": "global:$",
+    "lib/underscore": "global:_",
+    "underscore": "global:_",
+    "lib/keyboard": "global:KeyboardJS",
+    "lib/moment": "global:moment"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "devDependencies": {
-    "grunt": "^0.4.4",
-    "grunt-contrib-clean": "^0.5.0",
+    "browserify-shim": "^3.5.0",
+    "browserify": "^4.1.11",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-less": "^0.11.0",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^2.1.0",
     "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-shell": "^0.6.4",
-    "clean-css": "^2.1.8"
+    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-jst": "^0.6.0",
+    "grunt-template-module": "^0.3.0",
+    "grunt-contrib-less": "^0.11.2",
+    "clean-css": "^2.2.2",
+    "grunt-autoprefixer": "^0.7.6"
   }
 }

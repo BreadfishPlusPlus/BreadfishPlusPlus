@@ -1,0 +1,13 @@
+<div class="bpp-popup-backdrop" tabindex="-1">
+    <% if (status) { %>
+    <div class="bpp-popup-message <%= status.clazz %>">
+    <% } else { %>
+    <div class="bpp-popup-message">
+    <% } %>
+        <% if (status) { %>
+        <img src="<%= status.icon %>">
+        <% } %>
+        <p><%= message %></p>
+        <button type="button" role="button">&times;</button>
+    </div>
+</div>

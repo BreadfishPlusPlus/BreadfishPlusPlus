@@ -1,8 +1,6 @@
+.tmp
 certificates
 node_modules
-output
-*.bbcode
+userscript
 *.sublime-project
 *.sublime-workspace
-*.txt
-changelog.md

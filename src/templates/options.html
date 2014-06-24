@@ -1,0 +1,87 @@
+<ul class="breadCrumbs">
+    <li>
+        <a href="http://forum.sa-mp.de/breadfish-de-die-deutschsprachige-gta-community">
+            <img src="icon/indexS.png" alt=""> <span>breadfish.de - DIE deutschsprachige GTA-Community</span>
+        </a> »
+    </li>
+</ul>
+<div class="mainHeadline">
+    <img src="http://i.imgur.com/4K8jM2W.png" alt="">
+    <div class="headlineContainer">
+        <h2>Breadfish++</h2>
+    </div>
+</div>
+<div class="tabMenu">
+    <ul>
+        <li><a href="index.php?page=BreadfishPlusPlus/#/settings/"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen</span></a></li>
+        <li><a href="index.php?page=BreadfishPlusPlus/#/keyboard/"><img src="wcf/icon/settingsM.png" alt=""> <span>Tastaturnavigation</span></a></li>
+        <li><a href="index.php?page=BreadfishPlusPlus/#/nicknames/"><img src="wcf/icon/settingsM.png" alt=""> <span>Spitznamen</span></a></li>
+        <li><a href="index.php?page=BreadfishPlusPlus/#/importexport/"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen Importieren/Exportieren</span></a></li>
+    </ul>
+</div>
+<div class="subTabMenu">
+    <div class="containerHead">
+        <ul>
+            <% _.each(defaultOptions, function (tab) { %>
+                <% if (tab.key !== 'keyboardnav') { %>
+                <li><a href="index.php?page=BreadfishPlusPlus/#/settings/<%= tab.key %>/"><span><%= tab.name %></span></a></li>
+                <% } %>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+<div class="border tabMenuContent">
+    <% _.each(defaultOptions, function (tab) { %>
+    <div data-key="<%= tab.key %>" class="container-1 bpp_option_category">
+        <h3 class="subHeadline"><%= tab.name %></h3>
+        <% _.each(tab.categories, function (category) { %>
+        <fieldset>
+            <% if (category.name) {%>
+            <legend><%= category.name %></legend>
+            <% } %>
+            <% _.each(category.options, function (option) { %>
+                <% if (option.toggle) {%>
+                    <div class="formCheckBox formElement">
+                        <div class="formField">
+                            <label for="<%= option.key %>">
+                                <input type="checkbox" class="bpp_option" id="<%= option.key %>" name="<%= option.key %>"> <%= option.name %>
+                            </label>
+                        </div>
+                        <% if (option.desc) {%>
+                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
+                        <% } %>
+                    </div>
+                <% } else if (option.range) {%>
+                    <div class="formElement">
+                        <div class="formFieldLabel">
+                            <label for="<%= option.key %>"><%= option.name %></label>
+                        </div>
+                        <div class="formField">
+                            <input type="range" id="<%= option.key %>" name="<%= option.key %>" class="bpp_option" min="<%= option.min %>" max="<%= option.max %>" value="<%= option.max %>">
+                            <span class="indicator"><%= option.max %></span>
+                        </div>
+                        <% if (option.desc) {%>
+                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
+                        <% } %>
+                    </div>
+                <% } else if (option.keyboard) {%>
+                    <div class="formElement">
+                        <div class="formFieldLabel">
+                            <label for="<%= option.key %>"><%= option.name %></label>
+                        </div>
+                        <div class="formField">
+                            <input type="button" class="bpp_option" id="<%= option.key %>" name="<%= option.key %>" value="???">
+                        </div>
+                        <% if (option.desc) {%>
+                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% }); %>
+        </fieldset>
+        <% }); %>
+    </div>
+    <% }); %>
+    <div data-key="nicknames" class="container-1 bpp_option_category"></div>
+    <div data-key="importexport" class="container-1 bpp_option_category"></div>
+</div>
