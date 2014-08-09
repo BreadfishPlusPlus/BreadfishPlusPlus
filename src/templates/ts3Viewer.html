@@ -1,0 +1,23 @@
+<div class="container-2 infoBoxts3viewer">
+    <div class="containerIcon"> <img src="http://cdn.breadfishplusplus.eu/img/ts3/icon24.png" alt=""></div>
+    <% if (ts3data.error) { %>
+    <div class="containerContent">
+        <div class="error" style="margin-bottom:0;"><%= ts3data.error %></div>
+    </div>
+    <% } else { %>
+    <div class="containerContent">
+        <h3><a href="ts3server://<%= ts3data.address %>?port=<%= ts3data.port %>&nickname=<%= nickname %>"><%= ts3data.name %> - <%= ts3data.welcomemessage %></a></h3>
+        <p class="smallFont">
+            <%= ts3data.plattform %> <%= ts3data.version %>
+            - Clients: <%= ts3data.clients.length %>/<%= ts3data.maxclients %>
+            - Channels: <%= ts3data.channels %>
+            - Letzte aktualisierung: <%= lastUpdateTime %>
+        </p>
+        <p class="smallFont">
+        <%= _.map(ts3data.clients, function (c) {
+            return '<span><strong><u>' + c.name + '</u></strong> (' + c.channel + ')</span>';
+        }).join(', ') %>
+        </p>
+    </div>
+    <% } %>
+</div>

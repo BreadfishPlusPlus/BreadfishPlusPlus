@@ -2,11 +2,9 @@
 "use strict";
 var _           = require('lib/underscore');
 var $           = require('lib/jquery');
-var Templates   = require('templates');
-var utils       = require('utils');
-var $body       = $(document.body);
+var utils       = require('./../utils');
 
-utils.addStyle('notification');
+require('./../styles/notification.less');
 
 var Notification = function (options) {
     this.timestamp = Date.now();
@@ -43,7 +41,7 @@ var Queue = function () {
             $queueElem.remove();
             $queueElem = null;
         }
-        $queueElem = $(Templates.notification({
+        $queueElem = $(require('templates').notification({
             notifications: _queue
         }));
 
@@ -56,7 +54,7 @@ var Queue = function () {
             }
         });
 
-        $queueElem.appendTo($body);
+        $queueElem.appendTo('body');
         $queueElem.find('.bpp-notification').each(function (index) {
             if (_queue[index].new) {
                 _queue[index].new = false;

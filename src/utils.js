@@ -1,11 +1,34 @@
 /*jslint nomen: true*/
 "use strict";
 
-var _       = require('lib/underscore');
-var $       = require('lib/jquery');
-var styles  = require('styles');
-var moment  = require('lib/moment');
-var storage = require('storage')();
+var _           = require('lib/underscore');
+var $           = require('lib/jquery');
+var moment      = require('lib/moment');
+var storage     = require('./storage');
+
+var log = {
+    error: function () {
+        var args = Array.prototype.slice.call(arguments, 0);
+        args.splice(0, 0, "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+        args.splice(0, 0, "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+        args.splice(0, 0, "background:#4d5460;color:#FFF;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+        args.splice(0, 0, "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-left:1px solid #343a45;border-bottom:1px solid #343a45");
+        args.splice(0, 0, "%c B%creadfish%c++ %c[ERROR] ");
+        console.log.apply(console, args);
+    },
+    debug: function () {
+        if (storage.get('option.debugmode', false)) {
+            var args = Array.prototype.slice.call(arguments, 0);
+            args.splice(0, 0, "background:#4d5460;color:#FF851B;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+            args.splice(0, 0, "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+            args.splice(0, 0, "background:#4d5460;color:#FFF;border-top:1px solid #343a45;border-bottom:1px solid #343a45");
+            args.splice(0, 0, "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-left:1px solid #343a45;border-bottom:1px solid #343a45");
+            args.splice(0, 0, "%c B%creadfish%c++ %c[DEBUG] ");
+            console.log.apply(console, args);
+        }
+    }
+};
+exports.log = log;
 
 var getParameterByName = function (name, from) { //http://stackoverflow.com/a/901144
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -18,15 +41,6 @@ var getQuery = function (name) {
     return getParameterByName(name, document.URL) || null;
 };
 exports.getQuery = getQuery;
-
-var addStyle = function (names) {
-    names = _.isArray(names) ? names : [names];
-    names = _.map(names, function (name) {
-        return styles[name];
-    });
-    $('head').append('<style type="text/css">' + names.join('\n') + '</style>');
-};
-exports.addStyle = addStyle;
 
 var parseWBBTimeFormat = function (str) {
     if (str[0] === '(' && str.slice(-1) === ')') {
@@ -58,7 +72,7 @@ exports.formatWBBTimeFormat = formatWBBTimeFormat;
 var templateName = null;
 var getTemplateName = function () {
     if (!templateName) {
-        templateName = document.querySelector('body').id;
+        templateName = $('body').attr('id');
     }
     return templateName;
 };
@@ -74,19 +88,3 @@ var getSecurityToken = function () {
     return this.getParameterByName('t', $('#userMenuLogout > a').attr('href'));
 };
 exports.getSecurityToken = getSecurityToken;
-
-var log = {
-    error: function () {
-        var args = Array.prototype.slice.call(arguments, 0);
-        args.splice(0, 0, "[B++][ERROR]");
-        console.log.apply(console, args);
-    },
-    debug: function () {
-        if (storage.get('option.debugmode', false)) {
-            var args = Array.prototype.slice.call(arguments, 0);
-            args.splice(0, 0, "[B++][DEBUG]");
-            console.log.apply(console, args);
-        }
-    }
-};
-exports.log = log;

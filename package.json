@@ -13,42 +13,42 @@
   },
   "main": "./src/BreadfishPlusPlus.js",
   "license": "GPL v3",
-  "browser": {
-    "settings": "./src/settings/index.js",
-    "settings/default": "./src/settings/default.js",
-    "styles": "./src/styles/index.js",
-    "templates": "./src/templates/index.js",
-    "storage": "./src/storage.js",
-    "utils": "./src/utils.js",
-    "common": "./src/common/index.js",
-    "ui/popup": "./src/ui/popup.js",
-    "ui/notification": "./src/ui/notification.js"
-  },
+  "libraries": [
+    "async.min.js",
+    "highlight.min.js",
+    "jquery.min.js",
+    "jquery-ui.min.js",
+    "jquery.lazyload.min.js",
+    "jquery.mousewheel.min.js",
+    "keyboard.min.js",
+    "moment.min.js",
+    "tooltip.min.js",
+    "underscore.min.js"
+  ],
   "browserify-shim": {
-    "lib/jquery": "global:$",
-    "lib/underscore": "global:_",
-    "underscore": "global:_",
+    "lib/async": "global:async",
+    "lib/jquery": "global:jQuery",
     "lib/keyboard": "global:KeyboardJS",
-    "lib/moment": "global:moment"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
+    "lib/moment": "global:moment",
+    "lib/tooltip": "global:tooltip",
+    "lib/underscore": "global:_",
+    "underscore": "global:_"
   },
   "devDependencies": {
     "browserify-shim": "^3.5.0",
     "browserify": "^4.1.11",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^2.1.0",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-uglify": "^0.5.0",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-jst": "^0.6.0",
-    "grunt-template-module": "^0.3.0",
-    "grunt-contrib-less": "^0.11.2",
-    "clean-css": "^2.2.2",
-    "grunt-autoprefixer": "^0.7.6"
+    "gulp": "^3.8.5",
+    "vinyl-source-stream": "^0.1.1",
+    "gulp-uglify": "^0.3.1",
+    "gulp-header": "^1.0.5",
+    "gulp-rename": "^1.2.0",
+    "gulp-ejs": "^0.3.0",
+    "gulp-insert": "^0.4.0",
+    "async": "^0.9.0",
+    "gulp-util": "^2.2.19",
+    "node-lessify": "0.0.4",
+    "jstify": "^0.2.0",
+    "gulp-html2tpl": "^0.5.0",
+    "gulp-concat": "^2.3.0"
   }
 }

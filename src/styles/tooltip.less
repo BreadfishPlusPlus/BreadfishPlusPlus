@@ -1,0 +1,99 @@
+.tooltip {
+    position: absolute;
+    z-index: 10070;
+    display: block;
+    visibility: visible;
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0;
+
+    &.in {
+        opacity: .9;
+    }
+    &.top {
+        margin-top: -3px;
+        padding: 5px 0;
+    }
+    &.right {
+        margin-left: 3px; 
+        padding: 0 5px;
+    }
+    &.bottom {
+        margin-top: 3px;
+        padding: 5px 0;
+    }
+    &.left {
+        margin-left: -3px;
+        padding: 0 5px;
+    }
+}
+.tooltip-inner {
+    max-width: 500px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000;
+    border-radius: 4px;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.tooltip {
+    &.top .tooltip-arrow {
+        bottom: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px 5px 0;
+        border-top-color: #000;
+    }
+    &.top-left .tooltip-arrow {
+        bottom: 0;
+        left: 5px;
+        border-width: 5px 5px 0;
+        border-top-color: #000;
+    }
+    &.top-right .tooltip-arrow {
+        bottom: 0;
+        right: 5px;
+        border-width: 5px 5px 0;
+        border-top-color: #000;
+    }
+    &.right .tooltip-arrow {
+        top: 50%;
+        left: 0;
+        margin-top: -5px;
+        border-width: 5px 5px 5px 0;
+        border-right-color: #000;
+    }
+    &.left .tooltip-arrow {
+        top: 50%;
+        right: 0;
+        margin-top: -5px;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #000;
+    }
+    &.bottom .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 0 5px 5px;
+        border-bottom-color: #000;
+    }
+    &.bottom-left .tooltip-arrow {
+        top: 0;
+        left: 5px;
+        border-width: 0 5px 5px;
+        border-bottom-color: #000;
+    }
+    &.bottom-right .tooltip-arrow {
+        top: 0;
+        right: 5px;
+        border-width: 0 5px 5px;
+        border-bottom-color: #000;
+    }
+}

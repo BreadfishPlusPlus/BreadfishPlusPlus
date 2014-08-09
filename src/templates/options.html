@@ -1,87 +1,141 @@
-<ul class="breadCrumbs">
-    <li>
-        <a href="http://forum.sa-mp.de/breadfish-de-die-deutschsprachige-gta-community">
-            <img src="icon/indexS.png" alt=""> <span>breadfish.de - DIE deutschsprachige GTA-Community</span>
-        </a> »
-    </li>
-</ul>
-<div class="mainHeadline">
-    <img src="http://i.imgur.com/4K8jM2W.png" alt="">
-    <div class="headlineContainer">
-        <h2>Breadfish++</h2>
+<div id="main" class="bpp_options">
+    <div class="mainHeadline">
+        <img src="http://cdn.breadfishplusplus.eu/img/breadfish48.png">
+        <div class="headlineContainer">
+            <h2>Breadfish++</h2>
+            <p>Version <%= version %></p>
+        </div>
     </div>
-</div>
-<div class="tabMenu">
-    <ul>
-        <li><a href="index.php?page=BreadfishPlusPlus/#/settings/"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen</span></a></li>
-        <li><a href="index.php?page=BreadfishPlusPlus/#/keyboard/"><img src="wcf/icon/settingsM.png" alt=""> <span>Tastaturnavigation</span></a></li>
-        <li><a href="index.php?page=BreadfishPlusPlus/#/nicknames/"><img src="wcf/icon/settingsM.png" alt=""> <span>Spitznamen</span></a></li>
-        <li><a href="index.php?page=BreadfishPlusPlus/#/importexport/"><img src="wcf/icon/settingsM.png" alt=""> <span>Einstellungen Importieren/Exportieren</span></a></li>
-    </ul>
-</div>
-<div class="subTabMenu">
-    <div class="containerHead">
+    <div id="profileEditContent" class="tabMenu">
         <ul>
-            <% _.each(defaultOptions, function (tab) { %>
-                <% if (tab.key !== 'keyboardnav') { %>
-                <li><a href="index.php?page=BreadfishPlusPlus/#/settings/<%= tab.key %>/"><span><%= tab.name %></span></a></li>
-                <% } %>
+            <li data-tab="about"><a href="<%= location.pathname %>#/breadfishplusplus/!/about"><img src="wcf/icon/infoM.png"> <span>Info</span></a></li>
+            <% _.each(optionsObject, function (tab) { %>
+            <li data-tab="<%= tab.href %>"><a href="<%= location.pathname %>#/breadfishplusplus/!/<%= tab.href %>"><img src="wcf/icon/settingsM.png"> <span><%= tab.name %></span></a></li>
             <% }); %>
+            <li data-tab="importexport"><a href="<%= location.pathname %>#/breadfishplusplus/!/importexport"><img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span></a></li>
         </ul>
     </div>
-</div>
-<div class="border tabMenuContent">
-    <% _.each(defaultOptions, function (tab) { %>
-    <div data-key="<%= tab.key %>" class="container-1 bpp_option_category">
-        <h3 class="subHeadline"><%= tab.name %></h3>
-        <% _.each(tab.categories, function (category) { %>
-        <fieldset>
-            <% if (category.name) {%>
-            <legend><%= category.name %></legend>
-            <% } %>
-            <% _.each(category.options, function (option) { %>
-                <% if (option.toggle) {%>
-                    <div class="formCheckBox formElement">
-                        <div class="formField">
-                            <label for="<%= option.key %>">
-                                <input type="checkbox" class="bpp_option" id="<%= option.key %>" name="<%= option.key %>"> <%= option.name %>
-                            </label>
-                        </div>
-                        <% if (option.desc) {%>
-                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
-                        <% } %>
-                    </div>
-                <% } else if (option.range) {%>
-                    <div class="formElement">
-                        <div class="formFieldLabel">
-                            <label for="<%= option.key %>"><%= option.name %></label>
-                        </div>
-                        <div class="formField">
-                            <input type="range" id="<%= option.key %>" name="<%= option.key %>" class="bpp_option" min="<%= option.min %>" max="<%= option.max %>" value="<%= option.max %>">
-                            <span class="indicator"><%= option.max %></span>
-                        </div>
-                        <% if (option.desc) {%>
-                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
-                        <% } %>
-                    </div>
-                <% } else if (option.keyboard) {%>
-                    <div class="formElement">
-                        <div class="formFieldLabel">
-                            <label for="<%= option.key %>"><%= option.name %></label>
-                        </div>
-                        <div class="formField">
-                            <input type="button" class="bpp_option" id="<%= option.key %>" name="<%= option.key %>" value="???">
-                        </div>
-                        <% if (option.desc) {%>
-                        <div class="formFieldDesc"><p><%= option.desc %></p></div>
-                        <% } %>
-                    </div>
-                <% } %>
+    <div class="subTabMenu">
+        <div class="containerHead">
+            <% _.each(optionsObject, function (tab) { %>
+            <ul data-tab="<%= tab.href %>">
+                <% _.each(tab.subtabs, function (subtab) { %>
+                    <li data-subtab="<%= subtab.href %>"><a href="<%= location.pathname %>#/breadfishplusplus/!/<%= tab.href %>/<%= subtab.href %>"><span><%= subtab.name %></span></a></li>
+                <% }); %>
+            </ul>
             <% }); %>
-        </fieldset>
-        <% }); %>
+        </div>
     </div>
-    <% }); %>
-    <div data-key="nicknames" class="container-1 bpp_option_category"></div>
-    <div data-key="importexport" class="container-1 bpp_option_category"></div>
+    <div class="border tabMenuContent">
+        <div class="container-2" data-tab="about" data-subtab="null">
+            <div class="columnInner">
+                <div class="bpp-about-header">
+                    <img src="http://cdn.breadfishplusplus.eu/img/breadfish128.png">
+                </div>
+                <div class="formElement">
+                    <div class="formFieldLabel"><label>Version</label></div>
+                    <div class="formField"><%= version %> (<a href="https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v<%= version %>">Release notes</a>)</div>
+                </div>
+                <div class="formElement">
+                    <div class="formFieldLabel"><label>Offizille Wobsite</label></div>
+                    <div class="formField"><a href="http://breadfishplusplus.eu/">breadfishplusplus.eu</a></div>
+                </div>
+                <div class="formElement">
+                    <div class="formFieldLabel"><label>Brauchst du hilfe?</label></div>
+                    <div class="formField"><a href="http://sa-mp.de/B++/p1886959-/">Dann stell deine Frage im Offiziellen Thema</a>  oder <a href="http://forum.sa-mp.de/index.php?form=PMNew&amp;userID=3066">per Privater Nachricht an mich</a></div>
+                </div>
+                <div class="formElement">
+                    <div class="formFieldLabel"><label>Hast du einen Bug gefunden?</label></div>
+                    <div class="formField"><a href="http://sa-mp.de/B++/p1886959-/">Dann poste ihn im offiziellen Thema</a>, <a href="http://git.io/hZumZQ">im Breadfish++ issue Tracker</a> oder <a href="http://forum.sa-mp.de/index.php?form=PMNew&amp;userID=3066">per Privater Nachricht an mich</a></div>
+                </div>
+                <h3 class="subHeadline">Danke an</h3>
+                <ul>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=25433">Ditti</a> <small>(Vorabversionen testen, meine Rechtschreibfehler ausbessern)</small></li>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=26698">JJJan</a> <small>(Vorabversionen testen)</small></li>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=17121">loveBlu3</a> <small>(Vorabversionen testen, sinnloses Zeug vorschlagen)</small></li>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=13423">seegras</a> <small>(Hilfe mit der TS-Query-API)</small></li>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=5871">SSL</a> <small>(Vorabversionen testen)</small></li>
+                    <li><a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=10755">The_Cop</a> <small>(Vorabversionen testen, meine Rechtschreibfehler ausbessern, neue Funktionen vorschlagen)</small></li>
+                </ul>
+                <h3 class="subHeadline">Hinweis</h3>
+                <p>Durch das Benutzen der <strong>Teamspeak 3 Anzeige</strong> wird deine IP-Adresse automatisch an dritte (mich) übermittelt.
+                Dies dient dazu, einzelne anfragen voneinander zu unterscheiden, und abzuschätzen, wie viele anfragen verursacht werden.
+                <strong>Deine IP-Adresse wird dadurch nicht gespeichert.</strong></p>
+                <p>Den Quellcode der dafür verantwortlich ist findest du hier: <a target="_blank" href="http://git.io/ralQZw">BreadfishPlusPlus-TS3-Info</a>.</p>
+            </div>
+        </div>
+        <% _.each(optionsObject, function (tab) { %>
+            <% _.each(tab.subtabs, function (subtab) { %>
+                <div class="container-1" data-tab="<%= tab.href %>" data-subtab="<%= subtab.href %>">
+                <% _.each(subtab.categories, function (category) { %>
+                    <fieldset>
+                        <legend><%= category.name %></legend>
+                        <% _.each(category.options, function (option) { %>
+                            <% if (option.type === 'toggle') { %>
+                                <div class="formCheckBox formElement">
+                                    <div class="formField">
+                                        <label for="<%= option.key %>">
+                                            <input type="checkbox" class="bpp-option" id="<%= option.key %>" name="<%= option.key %>" <%= option.default ? 'checked' : '' %>> <%= option.name %>
+                                        </label>
+                                    </div>
+                                    <% if (option.description) { %>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <% } %>
+                                </div>
+                            <% } else if (option.type === 'range') { %>
+                                <div class="formElement">
+                                    <div class="formFieldLabel">
+                                        <label for="<%= option.key %>"><%= option.name %></label>
+                                    </div>
+                                    <div class="formField">
+                                        <input type="range" id="<%= option.key %>" name="<%= option.key %>" class="bpp-option" min="<%= option.min %>" max="<%= option.max %>" value="<%= option.default %>">
+                                        <span class="indicator"><%= option.default %></span>
+                                    </div>
+                                    <% if (option.description) { %>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <% } %>
+                                </div>
+                            <% } else if (option.type === 'keyboard') { %>
+                                <div class="formElement">
+                                    <div class="formFieldLabel">
+                                        <label for="<%= option.key %>"><%= option.name %></label>
+                                    </div>
+                                    <div class="formField">
+                                        <input type="button" class="bpp-option" id="<%= option.key %>" name="<%= option.key %>" value="<%= option.default %>">
+                                    </div>
+                                    <% if (option.description) { %>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <% } %>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </fieldset>
+                <% }); %>
+                </div>
+            <% }); %>
+        <% }); %>
+        <div class="container-1" data-tab="importexport" data-subtab="null">
+            <h3 class="subHeadline">Einstellungen importieren</h3>
+            <fieldset>
+                <div class="formElement">
+                    <div class="formField">
+                        <label for="importOptions">
+                            <input type="file" name="importOptions" class="bpp-importOptions">
+                        </label>
+                    </div>
+                    <div class="formFieldDesc"><p>Wähle eine Sicherungsdatei von deinem Computer aus, um deine Einstellungen zu importieren.</p></div>
+                </div>
+            </fieldset>
+            <h3 class="subHeadline">Einstellungen exportieren</h3>
+            <fieldset>
+                <div class="formElement">
+                    <div class="formField">
+                        <label for="exportOptions">
+                            <a href="#" class="bpp-exportOptions" download="breadfishplusplus_options.json">Klicke hier, um deine aktuellen Einstellungen als Sicherungsdatei auf deinem Computer zu speichern.</a>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
