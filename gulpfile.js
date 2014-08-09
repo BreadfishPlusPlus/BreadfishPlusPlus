@@ -127,4 +127,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['watch']);
-gulp.task('build-dev', ['libraries', 'browserify', 'uglify', 'userscript']);
+gulp.task('build-dev', ['libraries', 'templates', 'browserify', 'uglify', 'userscript-dev']);
+gulp.task('build', ['libraries', 'browserify', 'uglify', 'userscript']);
