@@ -11,6 +11,57 @@ Breadfish++ nutzt [gulp.js](http://gulpjs.com/) als Build-Tool. Gulp.js automati
 Das automatische erstellen von den jeweiligen Browser erweiterungen folgt sobald die Basis hier steht.
 
 ___
+###Ein eigenes Modul hinzufügen:
+Irgendwann werde ich dazu nen Wiki EIntrag verfassen, bis dahin muss das beispiel herhalten (`src/modules/option.boards.filter.statistics.js`):
+```javascript
+/*
+Der Name ist theoretisch egal, sollte aber wenn möglich so gehalten werden wie die anderen. Machts einfach übersichtlicher.
+*/
+//ECMAScript 5 strict mode, siehe https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+"use strict";
+//andere Module, auf die dieses Modul zurückgreift. Pfadangaben sind relativ zur Datei.
+var $           = require('lib/jquery');
+var storage     = require('../storage');
+var utils       = require('../utils');
+var register    = require("../settings").register;
+
+//Plugin registrieren, damits in den Optionen angezeigt wird und Standard werte für die Option angelegt werden.
+register({
+    //Unter diesem Namen wird die Option gespeichert. Am besten so nennen wie die Datei.
+    'key': 'option.boards.filter.statistics.enabled',
+
+    //Der Name, der in den Optionen angezeigt wird.
+    'name': 'Statistik',
+
+    //Unter welchem Tab die Option zu finden ist. Wenn kein tab mit dem Namen existiert wird automatisch ein neuer erstellt.
+    'tab': 'Einstellungen',
+
+    //Selbste spiel wie beim Tab, nur eben der Subtab.
+    'subtab': 'Forenübersicht',
+
+    //In welche Kategorie (`<fieldset>`) die Option soll.
+    'category': 'Filter',
+
+    //Typ der Option. Mögliche werte sind toggle, range oder keyboard.
+    'type': 'toggle',
+
+    //Standardwert der Option. Wird gesetzt wenn das Modul das erste mal geladen wird.
+    'default': false,
+
+    //Beschreibung der Option.
+    'description': 'Entfernt die Infobox auf der Startseite, die die Forenstatistik anzeigt.'
+});
+
+//Es wird überprüft ob die option aktiviert ist. storage.get nimmt als ersten paramter den key, und als zweiten einen Standardwert.
+//Per utils.isTemplate('tplIndex') wird überprüft, ob wir uns gerade auf der Startseite befinden. Das jeweilige Template findet man als id des body-tags auf der jeweiligen Seite.
+if (storage.get('option.boards.filter.statistics.enabled', false) && utils.isTemplate('tplIndex')) {
+    //Benutzer hat die option aktiviert und wir befinden uns auf der Startseite, also weg mit der Statistik.
+    $('.infoBoxStatistics').remove();
+}
+```
+Wenn da noch irgendwas unklar ist, einfach schauen wie es in einem anderen Modul gelöst wurde, oder mich fragen (Issue, PM).
+
+___
 ###Lokale Kopie erstellen
 Als erstes brauchst du [node.js](http://nodejs.org/). Wie man das installiert steht auf der jeweiligen Homepage.
 
