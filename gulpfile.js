@@ -14,13 +14,6 @@ var pkg         = require('./package.json');
 var html2tpl    = require('gulp-html2tpl');
 var concat      = require('gulp-concat');
 
-gulp.task('libraries', function () {
-    return gulp.src(pkg.libraries.map(function (fileName) {
-        return './libraries/' + fileName;
-    }))
-        .pipe(concat('libraries.js'))
-        .pipe(gulp.dest('./.tmp/'));
-});
 
 gulp.task('templates', function () {
     return gulp.src('./src/templates/*.html')
@@ -83,7 +76,6 @@ gulp.task('userscript-dev', ['uglify'], function () {
     //BreadfishPlusPlus.user.js
     return gulp.src('./.tmp/BreadfishPlusPlus.js')
         .pipe(insert.prepend('\nvar VERSION = "' + pkg.version + '";\n'))
-        .pipe(insert.prepend('\n\n' + fs.readFileSync('./.tmp/libraries.js') + '\n'))
         .pipe(header(meta, {
             pkg : pkg
         }))
@@ -91,7 +83,7 @@ gulp.task('userscript-dev', ['uglify'], function () {
         .pipe(gulp.dest('./userscript/'));
 });
 
-gulp.task('userscript', ['libraries', 'browserify', 'uglify'], function () {
+gulp.task('userscript', [/*'libraries', */'browserify', 'uglify'], function () {
     var meta = fs.readFileSync('./src/meta.js');
 
     //BreadfishPlusPlus.meta.js
@@ -105,7 +97,6 @@ gulp.task('userscript', ['libraries', 'browserify', 'uglify'], function () {
     //BreadfishPlusPlus.user.js
     return gulp.src('./.tmp/BreadfishPlusPlus.js')
         .pipe(insert.prepend('\nvar VERSION = "' + pkg.version + '";\n'))
-        .pipe(insert.prepend('\n\n' + fs.readFileSync('./.tmp/libraries.js') + '\n'))
         .pipe(header(meta, {
             pkg : pkg
         }))
@@ -121,11 +112,10 @@ gulp.task('userscript', ['libraries', 'browserify', 'uglify'], function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./libraries/*.js', ['libraries']);
     gulp.watch('./src/templates/*.html', ['templates']);
     gulp.watch(['./src/**/*.js', './.tmp/templates.js', './src/**/*.less'], ['browserify', 'uglify', 'userscript-dev']);
 });
 
 gulp.task('default', ['watch']);
-gulp.task('build-dev', ['libraries', 'templates', 'browserify', 'uglify', 'userscript-dev']);
-gulp.task('build', ['libraries', 'browserify', 'uglify', 'userscript']);
+gulp.task('build-dev', ['templates', 'browserify', 'uglify', 'userscript-dev']);
+gulp.task('build', ['browserify', 'uglify', 'userscript']);
