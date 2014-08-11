@@ -21,8 +21,6 @@ register({
     'default': true,
 });
 
-
-
 if (storage.get('option.common.extension.chat.enabled', false)) {
     require('./../styles/chat.less');
     var socket, $msgs, $chat, sendMessage, addMessage, getuserInfo, chatMsgTemplate, createConnection, cachedMsg = {
@@ -41,15 +39,14 @@ if (storage.get('option.common.extension.chat.enabled', false)) {
             var $profile = $(data);
             userinfo.name = $profile.find('.userName span').text();
             userinfo.avatar = 'http://forum.sa-mp.de/' + $profile.find('.userAvatar a img').attr('src');
-            callback(true, userinfo);
+            callback(userinfo);
         }).fail(function (jqXHR) {
             utils.log.error('Konnte eigenes Benutzerprofil nicht aufrufen.', jqXHR.status, jqXHR.statusText);
-            callback(false, null);
+            callback(null);
         });
     };
 
     sendMessage = function () {
-        console.log('sendMessage');
         if (!socket) {
             return;
         }
@@ -62,14 +59,13 @@ if (storage.get('option.common.extension.chat.enabled', false)) {
     };
 
     addMessage = function (data) {
-        console.log(data);
         data.type = data.type || 'message';
         $msgs.append(chatMsgTemplate(data));
         $msgs[0].scrollTop = $msgs[0].scrollHeight;
     };
 
     createConnection = function (userinfo) {
-        socket = io('http://localhost:1337', {
+        socket = io('http://localhost:1337', { //Wird im Final Release angepasst.
             reconnection: true,
         });
         socket.on('connect', function () {
@@ -118,6 +114,13 @@ if (storage.get('option.common.extension.chat.enabled', false)) {
             utils.log.debug('Chatnachricht empfangen.', data);
             addMessage(data);
         });
+        socket.on('clearchat', function () {
+            $msgs.empty();
+            addMessage({
+                type: 'system',
+                message: 'Der Chatlog wurde gelöscht!'
+            });
+        });
     };
 
     $.getScript('https://cdn.socket.io/socket.io-1.0.6.js').done(function () {
@@ -142,12 +145,9 @@ if (storage.get('option.common.extension.chat.enabled', false)) {
             sendMessage();
         });
 
-        getuserInfo(function (success, data) {
-            console.log(data);
-            if (success) {
+        getuserInfo(function (data) {
+            if (data) {
                 createConnection(data);
-            } else {
-                //todo: show errmsg
             }
         });
     }).fail(function (jqXHR) {
