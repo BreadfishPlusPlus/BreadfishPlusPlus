@@ -22,7 +22,7 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('./.tmp/'));
 });
 
-gulp.task('browserify', function () {
+gulp.task('browserify', ['templates'], function () {
     var b = browserify({
         entries: ['./BreadfishPlusPlus.js'],
         basedir: './src/',
@@ -83,7 +83,7 @@ gulp.task('userscript-dev', ['uglify'], function () {
         .pipe(gulp.dest('./userscript/'));
 });
 
-gulp.task('userscript', [/*'libraries', */'browserify', 'uglify'], function () {
+gulp.task('userscript', ['browserify', 'uglify'], function () {
     var meta = fs.readFileSync('./src/meta.js');
 
     //BreadfishPlusPlus.meta.js
