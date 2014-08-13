@@ -1,13 +1,20 @@
-<div class="border titleBarPanel" id="bpp-chat">
+<div class="border titleBarPanel bpp-chat-<%= small ? 'small' : 'large' %>" id="bpp-chat">
     <div class="containerHead">
         <div class="containerIcon">
-            <img src="wcf/icon/iChatS.png">
+            <a href="#" id="bpp-toggleChat"><img src="wcf/icon/<%= open ? 'minus' : 'plus' %>S.png"></a>
         </div>
         <div class="containerContent">
-            Chat
+            <img src="wcf/icon/iChatS.png"> Chat
+            <a href="#" class="bpp-toggleSize" title="Chat vergrößern/verkleinern"><img src="wcf/icon/externalURLHover.png"></a>
         </div>
     </div>
-    <div class="bpp-chat-messages"></div>
-    <input type="text" class="bpp-chat-input" placeholder="Hier schreiben">
-    <a class="bpp-chat-submit" title="Absenden"><img src="wcf/icon/searchSubmitS.png"></a>
+    <% if (open) { %>
+    <div class="bpp-chat-contents">
+    <% } else { %>
+    <div class="bpp-chat-contents" style="display:none">
+    <% } %>
+        <div class="bpp-chat-messages"></div>
+        <input type="text" class="bpp-chat-input" placeholder="Hier schreiben">
+        <a class="bpp-chat-submit" title="Absenden"><img src="wcf/icon/searchSubmitS.png"></a>
+    </div>
 </div>
