@@ -54,6 +54,18 @@ gulp.task('uglify', ['browserify'], function () {
     return gulp.src('./.tmp/BreadfishPlusPlus.js')
         .pipe(uglify({
             output: {
+                beautify: false
+            },
+            mangle: true,
+            compress: true
+        }))
+        .pipe(gulp.dest('./.tmp/'));
+});
+
+gulp.task('beautify', ['browserify'], function () {
+    return gulp.src('./.tmp/BreadfishPlusPlus.js')
+        .pipe(uglify({
+            output: {
                 beautify: true
             },
             mangle: false,
@@ -62,7 +74,7 @@ gulp.task('uglify', ['browserify'], function () {
         .pipe(gulp.dest('./.tmp/'));
 });
 
-gulp.task('userscript-dev', ['uglify'], function () {
+gulp.task('userscript-dev', ['beautify'], function () {
     var meta = fs.readFileSync('./src/meta.js');
 
     //BreadfishPlusPlus.meta.js
@@ -83,7 +95,7 @@ gulp.task('userscript-dev', ['uglify'], function () {
         .pipe(gulp.dest('./userscript/'));
 });
 
-gulp.task('userscript', ['browserify', 'uglify'], function () {
+gulp.task('userscript', ['uglify'], function () {
     var meta = fs.readFileSync('./src/meta.js');
 
     //BreadfishPlusPlus.meta.js
@@ -101,21 +113,14 @@ gulp.task('userscript', ['browserify', 'uglify'], function () {
             pkg : pkg
         }))
         .pipe(rename('BreadfishPlusPlus.user.js'))
-        .pipe(uglify({
-            output: {
-                beautify: false
-            },
-            mangle: true,
-            compress: true
-        }))
         .pipe(gulp.dest('./userscript/'));
-});
-
-gulp.task('watch', function () {
-    gulp.watch('./src/templates/*.html', ['templates']);
-    gulp.watch(['./src/**/*.js', './.tmp/templates.js', './src/**/*.less'], ['browserify', 'uglify', 'userscript-dev']);
 });
 
 gulp.task('default', ['watch']);
-gulp.task('build-dev', ['templates', 'browserify', 'uglify', 'userscript-dev']);
-gulp.task('build', ['browserify', 'uglify', 'userscript']);
+gulp.task('build-dev', ['templates', 'browserify', 'beautify', 'userscript-dev']);
+gulp.task('build', ['templates', 'browserify', 'uglify', 'userscript']);
+
+gulp.task('watch', function () {
+    gulp.watch(['./src/**/*'], ['build-dev']);
+});
+
