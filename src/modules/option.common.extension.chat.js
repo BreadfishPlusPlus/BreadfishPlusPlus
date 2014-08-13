@@ -13,7 +13,7 @@ register({
     'category': 'Chat',
     'type': 'toggle',
     'default': false,
-    'description': '//TODO'
+    'description': 'Zeigt eine Chatbox auf der Startseite an. Optional kann diese auch an den Unterren Bildschirmrand gesetzt werden, wo sie auf jeder Seite zu finden ist.'
 });
 register({
     'key': 'option.boards.extension.ircChat.open',
@@ -65,8 +65,8 @@ var addMessage = function (data) {
 
 var connectToSocket = function (userinfo) {
     $.getScript('https://cdn.socket.io/socket.io-1.0.6.js').done(function () {
-        socket = io('http://localhost:1337', { //Wird im Final Release angepasst.
-            reconnection: true,
+        socket = io('http://gateway.trine.io:1338/', { //Wird im Final Release angepasst.
+            reconnection: true
         });
         socket.on('connect', function () {
             addMessage({type: 'system', message: 'Verbindung wurde hergestellt!'});
@@ -124,7 +124,7 @@ var createChat = function () {
         small: storage.get('option.common.extension.chat.small', false)
     }));
 
-    $chat.insertAfter(".headlineContainer");
+    $chat.insertAfter(".mainHeadline");
 
     $messages = $chat.find('.bpp-chat-messages');
 
