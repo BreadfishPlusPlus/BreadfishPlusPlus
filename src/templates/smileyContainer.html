@@ -1,0 +1,13 @@
+<ul class="hidden" id="smileyCategory-<%= index %>">
+    <% _.each(category.smilies, function (s) { %>
+        <li>
+            <img
+                onmouseover="this.style.cursor='pointer'"
+                onclick="WysiwygInsert('smiley', '<%= category.fullPath %><%= s.img %>', '<%= category.fullPath %><%= s.img %>', '[img]<%= category.fullPath %><%= s.img %>[/img]');"
+                src="<%= category.fullPath %><%= s.img %>"
+                alt="<%= s.name %>"
+                title="<%= s.name %>"
+            >
+        </li>
+    <% }); %>
+</ul>
