@@ -65,8 +65,8 @@ var addMessage = function (data) {
 
 var connectToSocket = function (userinfo) {
     $.getScript('https://cdn.socket.io/socket.io-1.0.6.js').done(function () {
-        //socket = io('http://gateway.trine.io:1338/', { //Wird im Final Release angepasst.
-        socket = io('http://127.0.0.1:1337/', { //Wird im Final Release angepasst.
+        //socket = io('http://127.0.0.1:1337/', { //Wird im Final Release angepasst.
+        socket = io('http://gateway.trine.io:1338/', {
             reconnection: true
         });
         socket.on('connect', function () {
