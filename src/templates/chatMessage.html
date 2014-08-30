@@ -7,6 +7,57 @@
         </div>
     </div>
     <% } else if (type === 'message') {%>
+    <% 
+        var fMessage = _.escape(message);
+
+        /* urls */
+        fMessage = Autolinker.link(fMessage, {
+            newWindow: true,
+            twitter: false
+        });
+        /* Animiert */
+        fMessage = fMessage.replace(/:lach:/gmi, '<img src="wcf/images/smilies/mock.gif" title="lach" alt="lach">');
+        fMessage = fMessage.replace(/:schlaf:/gmi, '<img src="wcf/images/smilies/penn.gif" title="schlaf" alt="schlaf">');
+        fMessage = fMessage.replace(/:guckb:/gmi, '<img src="wcf/images/smilies/shok.gif" title="guckb" alt="guckb">');
+        fMessage = fMessage.replace(/:schrei:/gmi, '<img src="wcf/images/smilies/shout.gif" title="schrei" alt="schrei">');
+        fMessage = fMessage.replace(/:bad:/gmi, '<img src="wcf/images/smilies/thumbdown.gif" title="bad" alt="bad">');
+        fMessage = fMessage.replace(/:good:/gmi, '<img src="wcf/images/smilies/thumbsup.gif" title="good" alt="good">');
+        fMessage = fMessage.replace(/:hm:/gmi, '<img src="wcf/images/smilies/thinking.gif" title="hm" alt="hm">');
+        fMessage = fMessage.replace(/:peng:/gmi, '<img src="wcf/images/smilies/suicide.gif" title="peng" alt="peng">');
+        fMessage = fMessage.replace(/:klugs:/gmi, '<img src="wcf/images/smilies/chiffa.gif" title="klugs" alt="klugs">');
+        fMessage = fMessage.replace(/:dash:/gmi, '<img src="wcf/images/smilies/wall.gif" title="dash" alt="dash">');
+        fMessage = fMessage.replace(/:bll:/gmi, '<img src="wcf/images/smilies/bl.gif" title="bll" alt="bll">');
+        fMessage = fMessage.replace(/:fun:/gmi, '<img src="wcf/images/smilies/fun.gif" title="fun" alt="fun">');
+        /* Standard */
+        fMessage = fMessage.replace(/:rolleyes:/gmi, '<img src="wcf/images/smilies/rolleyes.png" title="rolleyes" alt="rolleyes">');
+        fMessage = fMessage.replace(/:huh:/gmi, '<img src="wcf/images/smilies/huh.png" title="huh" alt="huh">');
+        fMessage = fMessage.replace(/:love:/gmi, '<img src="wcf/images/smilies/love.png" title="love" alt="love">');
+        fMessage = fMessage.replace(/:cursing:/gmi, '<img src="wcf/images/smilies/cursing.png" title="cursing" alt="cursing">');
+        fMessage = fMessage.replace(/:thumbdown:/gmi, '<img src="wcf/images/smilies/thumbdown.png" title="thumbdown" alt="thumbdown">');
+        fMessage = fMessage.replace(/:thumbsup:/gmi, '<img src="wcf/images/smilies/thumbsup.png" title="thumbsup" alt="thumbsup">');
+        fMessage = fMessage.replace(/:thumbup:/gmi, '<img src="wcf/images/smilies/thumbup.png" title="thumbup" alt="thumbup">');
+        fMessage = fMessage.replace(/:pinch:/gmi, '<img src="wcf/images/smilies/pinch.png" title="pinch" alt="pinch">');
+        fMessage = fMessage.replace(/:sleeping:/gmi, '<img src="wcf/images/smilies/sleeping.png" title="sleeping" alt="sleeping">');
+        fMessage = fMessage.replace(/:wacko:/gmi, '<img src="wcf/images/smilies/wacko.png" title="wacko" alt="wacko">');
+        fMessage = fMessage.replace(/:whistling:/gmi, '<img src="wcf/images/smilies/whistling.png" title="whistling" alt="whistling">');
+        fMessage = fMessage.replace(/:evil:/gmi, '<img src="wcf/images/smilies/evil.png" title="evil" alt="evil">');
+        fMessage = fMessage.replace(/:\?:/gmi, '<img src="wcf/images/smilies/question.png" title="question" alt="question">');
+        fMessage = fMessage.replace(/:!:/gmi, '<img src="wcf/images/smilies/attention.png" title="attention" alt="attention">');
+        fMessage = fMessage.replace(/:\)/gmi, '<img src="wcf/images/smilies/smile.png" title="smile" alt="smile">');
+        fMessage = fMessage.replace(/:\(/gmi, '<img src="wcf/images/smilies/sad.png" title="sad" alt="sad">');
+        fMessage = fMessage.replace(/;\)/gmi, '<img src="wcf/images/smilies/wink.png" title="wink" alt="wink">');
+        fMessage = fMessage.replace(/:P/gmi, '<img src="wcf/images/smilies/tongue.png" title="tongue" alt="tongue">');
+        fMessage = fMessage.replace(/8\)/gmi, '<img src="wcf/images/smilies/cool.png" title="cool" alt="cool">');
+        fMessage = fMessage.replace(/:D/gmi, '<img src="wcf/images/smilies/biggrin.png" title="biggrin" alt="biggrin">');
+        fMessage = fMessage.replace(/\^\^/gmi, '<img src="wcf/images/smilies/squint.png" title="squint" alt="squint">');
+        fMessage = fMessage.replace(/;\(/gmi, '<img src="wcf/images/smilies/crying.png" title="crying" alt="crying">');
+        fMessage = fMessage.replace(/:S/gmi, '<img src="wcf/images/smilies/unsure.png" title="unsure" alt="unsure">');
+        fMessage = fMessage.replace(/X\(/gmi, '<img src="wcf/images/smilies/angry.png" title="angry" alt="angry">');
+        fMessage = fMessage.replace(/8\|/gmi, '<img src="wcf/images/smilies/blink.png" title="blink" alt="blink">');
+        fMessage = fMessage.replace(/\?\(/gmi, '<img src="wcf/images/smilies/confused.png" title="confused" alt="confused">');
+        fMessage = fMessage.replace(/:\|/gmi, '<img src="wcf/images/smilies/mellow.png" title="mellow" alt="mellow">');
+        fMessage = fMessage.replace(/8o/gmi, '<img src="wcf/images/smilies/w00t.png" title="w00t" alt="w00t">');
+    %>
     <div class="bpp-chat-message">
         <div class="bpp-chat-message-avatar">
             <a href="index.php?page=User&amp;userID=<%= user.userId %>" title="<%= user.name %>">
@@ -15,7 +66,7 @@
         </div>
         <div class="bpp-chat-message-body">
             <div class="bpp-chat-body-username"><a href="index.php?page=User&amp;userID=<%= user.userId %>"><%= user.name %></a> <small title="<%= dateTime %>"><%= displayTime %></small></div>
-            <div class="bpp-chat-body-message"><p><%- message %></p></div>
+            <div class="bpp-chat-body-message"><p><%= fMessage %></p></div>
         </div>
     </div>
     <% } %>

@@ -6,6 +6,7 @@
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
+// @require         http://cdn.breadfishplusplus.eu/js/Autolinker.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/async.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/highlight.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.min.js

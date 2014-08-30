@@ -13,6 +13,7 @@ var insert      = require('gulp-insert');
 var pkg         = require('./package.json');
 var html2tpl    = require('gulp-html2tpl');
 var concat      = require('gulp-concat');
+var notify      = require("gulp-notify");
 
 
 gulp.task('templates', function () {
@@ -83,7 +84,7 @@ gulp.task('userscript-dev', ['beautify'], function () {
             pkg: pkg
         }))
         .pipe(rename('BreadfishPlusPlus.meta.js'))
-        .pipe(gulp.dest('./userscript/'));
+        .pipe(gulp.dest('./out/userscript/'));
 
     //BreadfishPlusPlus.user.js
     return gulp.src('./.tmp/BreadfishPlusPlus.js')
@@ -92,7 +93,8 @@ gulp.task('userscript-dev', ['beautify'], function () {
             pkg : pkg
         }))
         .pipe(rename('BreadfishPlusPlus.user.js'))
-        .pipe(gulp.dest('./userscript/'));
+        .pipe(gulp.dest('./out/userscript/'))
+        .pipe(notify("BreadfishPlusPlus.user.js generated"));
 });
 
 gulp.task('userscript', ['uglify'], function () {
@@ -104,7 +106,7 @@ gulp.task('userscript', ['uglify'], function () {
             pkg: pkg
         }))
         .pipe(rename('BreadfishPlusPlus.meta.js'))
-        .pipe(gulp.dest('./userscript/'));
+        .pipe(gulp.dest('./out/userscript/'));
 
     //BreadfishPlusPlus.user.js
     return gulp.src('./.tmp/BreadfishPlusPlus.js')
@@ -113,7 +115,8 @@ gulp.task('userscript', ['uglify'], function () {
             pkg : pkg
         }))
         .pipe(rename('BreadfishPlusPlus.user.js'))
-        .pipe(gulp.dest('./userscript/'));
+        .pipe(gulp.dest('./out/userscript/'))
+        .pipe(notify("BreadfishPlusPlus.user.js generated"));
 });
 
 gulp.task('default', ['watch']);

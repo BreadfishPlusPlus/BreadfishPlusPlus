@@ -35,20 +35,21 @@
     "underscore": "global:_"
   },
   "devDependencies": {
-    "browserify-shim": "^3.5.0",
-    "browserify": "^4.1.11",
-    "gulp": "^3.8.5",
-    "vinyl-source-stream": "^0.1.1",
-    "gulp-uglify": "^0.3.1",
-    "gulp-header": "^1.0.5",
-    "gulp-rename": "^1.2.0",
-    "gulp-ejs": "^0.3.0",
-    "gulp-insert": "^0.4.0",
     "async": "^0.9.0",
-    "gulp-util": "^2.2.19",
-    "node-lessify": "0.0.4",
-    "jstify": "^0.2.0",
+    "browserify": "^4.1.11",
+    "browserify-shim": "^3.5.0",
+    "gulp": "^3.8.7",
+    "gulp-concat": "^2.3.0",
+    "gulp-ejs": "^0.3.0",
+    "gulp-header": "^1.0.5",
     "gulp-html2tpl": "^0.5.0",
-    "gulp-concat": "^2.3.0"
+    "gulp-insert": "^0.4.0",
+    "gulp-notify": "^1.5.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-util": "^2.2.19",
+    "jstify": "^0.2.0",
+    "node-lessify": "0.0.4",
+    "vinyl-source-stream": "^0.1.1"
   }
 }
