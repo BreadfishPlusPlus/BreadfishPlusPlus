@@ -72,6 +72,8 @@ generateNotification = function (messages) {
         icon: 'http://forum.sa-mp.de/wcf/icon/pmUnreadM.png',
         hidedelay: null
     });
+
+    //Desktop
 };
 
 checkForNewMessage = function (folderId) {
@@ -105,6 +107,16 @@ register({
     'type': 'toggle',
     'default': false,
     'description': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an.<br>Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
+});
+register({
+    'key': 'option.common.extension.PMNotification.desktop',
+    'name': 'Desktopbenachrichtigung bei neuer PN',
+    'tab': 'Einstellungen',
+    'subtab': 'Allgemeine Einstellungen',
+    'category': 'Erweiterungen',
+    'type': 'toggle',
+    'default': false,
+    'description': 'Sendet bei einer neuen Privaten Nachricht eine Desktopbenachrichtigung.'
 });
 register({
     'key': 'option.common.extension.PMNotification.interval',
