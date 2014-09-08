@@ -60,10 +60,10 @@ var loadSmilies = function (smilieData) {
     });
 
     _.each(smilieData, function (category, index) {
-        win.smileyCategories.set(index + 1, category.name + ' (' + category.smilies.length + ')');
+        win.smileyCategories.set(index + 2, category.name + ' (' + category.smilies.length + ')');
         category.fullPath = CDN_PATH + "img/smilies" + category.path;
         $smileyContainer.append(require('templates').smileyContainer({
-            index: index + 1,
+            index: index + 2,
             category: category
         }));
     });
