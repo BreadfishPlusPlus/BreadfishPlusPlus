@@ -725,7 +725,8 @@ require = function e(t, n, r) {
                     message: require("templates").privateMessagePopupContent({
                         messages: messages
                     }),
-                    icon: "http://forum.sa-mp.de/wcf/icon/pmUnreadM.png"
+                    icon: "http://forum.sa-mp.de/wcf/icon/pmUnreadM.png",
+                    hidedelay: null
                 });
             };
             checkForNewMessage = function(folderId) {
@@ -804,6 +805,11 @@ require = function e(t, n, r) {
                             console.log(threadName);
                             notification.create("Das Thema »" + threadName + "« wurde abboniert!");
                         }).fail(function(jqXHR) {
+                            notification.create({
+                                message: "Das Thema »" + threadName + "« konnte nicht abboniert werden!",
+                                type: "error",
+                                hidedelay: null
+                            });
                             utils.log.error("Konnte Thema »" + threadName + "« nicht abbonieren.", jqXHR.status, jqXHR.statusText);
                         });
                     } else {
@@ -815,6 +821,11 @@ require = function e(t, n, r) {
                             $element.find("span").text("Thema abonnieren");
                             notification.create("Das Thema »" + threadName + "« wurde abbestellt!");
                         }).fail(function(jqXHR) {
+                            notification.create({
+                                message: "Das Thema »" + threadName + "« konnte nicht abbestellt werden!",
+                                type: "error",
+                                hidedelay: null
+                            });
                             utils.log.error("Konnte Thema »" + threadName + "« nicht abbestellen.", jqXHR.status, jqXHR.statusText);
                         });
                     }
@@ -850,6 +861,11 @@ require = function e(t, n, r) {
                         $threadRatingSpan.show();
                         notification.create("Das Thema »" + threadName + "« wurde mit " + (rating === 1 ? "einem Stern" : rating + " Sternen") + " bewertet!");
                     }).fail(function(jqXHR) {
+                        notification.create({
+                            message: "Das Thema »" + threadName + "« konnte nicht bewertet werden!",
+                            type: "error",
+                            hidedelay: null
+                        });
                         utils.log.error("Konnte Thema »" + threadName + "« nicht bewerten.", jqXHR.status, jqXHR.statusText);
                     });
                 });
@@ -872,6 +888,11 @@ require = function e(t, n, r) {
                             $element.find("span").text("Forum abbestellen");
                             notification.create("Das Forum »" + boardName + "« wurde abboniert!");
                         }).fail(function(jqXHR) {
+                            notification.create({
+                                message: "Das Forum »" + boardName + "« konnte nicht abboniert werden!",
+                                type: "error",
+                                hidedelay: null
+                            });
                             utils.log.error("Konnte Forum »" + boardName + "« nicht abbonieren.", jqXHR.status, jqXHR.statusText);
                         });
                     } else {
@@ -883,6 +904,11 @@ require = function e(t, n, r) {
                             $element.find("span").text("Forum abonnieren");
                             notification.create("Das Forum »" + boardName + "« wurde abbestellt!");
                         }).fail(function(jqXHR) {
+                            notification.create({
+                                message: "Das Forum »" + boardName + "« konnte nicht abbestellt werden!",
+                                type: "error",
+                                hidedelay: null
+                            });
                             utils.log.error("Konnte Forum »" + boardName + "« nicht abbestellen.", jqXHR.status, jqXHR.statusText);
                         });
                     }
@@ -905,6 +931,11 @@ require = function e(t, n, r) {
                         $('img[src$="threadNewOptionsM.png"]').attr("src", "icon/threadOptionsM.png");
                         notification.create("Das Forum »" + boardName + "« wurde als gelesen markiert!");
                     }).fail(function(jqXHR) {
+                        notification.create({
+                            message: "Das Forum »" + boardName + "« konnte nicht als gelesen markiert werden!",
+                            type: "error",
+                            hidedelay: null
+                        });
                         utils.log.error("Konnte Forum »" + boardName + "« nicht als gelesen markieren.", jqXHR.status, jqXHR.statusText);
                     });
                 });
@@ -925,6 +956,11 @@ require = function e(t, n, r) {
                         });
                         notification.create("Alle Foren wurde als gelesen markiert!");
                     }).fail(function(jqXHR) {
+                        notification.create({
+                            message: "Konnte nicht alle Foren als gelesen markieren!",
+                            type: "error",
+                            hidedelay: null
+                        });
                         utils.log.error("Konnte nicht alle Foren als gelesen markieren.", jqXHR.status, jqXHR.statusText);
                     });
                 });
@@ -3894,17 +3930,38 @@ require = function e(t, n, r) {
                 this.icon = options.icon || null;
                 this.width = options.width || null;
                 this.message = options.message;
+                this.hidedelay = options.hasOwnProperty("hidedelay") ? options.hidedelay : 5e3;
                 this.new = true;
+                this.element = null;
             };
             var Queue = function() {
-                var $queueElem, _queue, _remove, _redraw, _add;
+                var $queueElem, _queue, _remove, _redraw, _add, _checkHide;
                 _queue = [];
+                _checkHide = function() {
+                    console.log("_checkHide");
+                    var count = 0;
+                    _.each(_queue, function(m, index) {
+                        if (m.hidedelay) {
+                            if (Date.now() > m.timestamp + m.hidedelay) {
+                                m.element.fadeOut(150, function() {
+                                    _remove(index);
+                                });
+                            } else {
+                                count += 1;
+                            }
+                        }
+                    });
+                    if (count > 0) {
+                        setTimeout(_checkHide, 1e3);
+                    }
+                };
                 _add = function(_n) {
                     _queue.push(_n);
                     _queue = _.sortBy(_queue, function(_no) {
                         return -_no.timestamp;
                     });
                     _redraw();
+                    _checkHide();
                 };
                 _remove = function(index) {
                     _queue.splice(index, 1);
@@ -3919,11 +3976,12 @@ require = function e(t, n, r) {
                         notifications: _queue
                     }));
                     _.each(_queue, function(m, index) {
+                        m.element = $queueElem.find(".bpp-notification").eq(index);
                         if (m.icon) {
-                            $queueElem.find(".bpp-notification").eq(index).css("background-image", m.icon ? "url(" + m.icon + ")" : "none");
+                            m.element.css("background-image", m.icon ? "url(" + m.icon + ")" : "none");
                         }
                         if (m.width) {
-                            $queueElem.find(".bpp-notification").eq(index).css("width", m.width + "px");
+                            m.element.css("width", m.width + "px");
                         }
                     });
                     $queueElem.appendTo("body");

@@ -69,7 +69,8 @@ generateNotification = function (messages) {
         message: require('templates').privateMessagePopupContent({
             messages: messages
         }),
-        icon: 'http://forum.sa-mp.de/wcf/icon/pmUnreadM.png'
+        icon: 'http://forum.sa-mp.de/wcf/icon/pmUnreadM.png',
+        hidedelay: null
     });
 };
 

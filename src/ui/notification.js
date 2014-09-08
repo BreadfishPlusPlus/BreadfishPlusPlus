@@ -15,13 +15,34 @@ var Notification = function (options) {
     this.icon = options.icon || null;
     this.width = options.width || null;
     this.message = options.message;
+    this.hidedelay = options.hasOwnProperty('hidedelay') ? options.hidedelay : 5000;
     this.new = true;
+    this.element = null;
 };
 
 var Queue = function () {
-    var $queueElem, _queue, _remove, _redraw, _add;
+    var $queueElem, _queue, _remove, _redraw, _add, _checkHide;
 
     _queue = [];
+
+    _checkHide = function () {
+        console.log('_checkHide');
+        var count = 0;
+        _.each(_queue, function (m, index) {
+            if (m.hidedelay) {
+                if (Date.now() > (m.timestamp + m.hidedelay)) {
+                    m.element.fadeOut(150, function () {
+                        _remove(index);
+                    });
+                } else {
+                    count += 1;
+                }
+            }
+        });
+        if (count > 0) {
+            setTimeout(_checkHide, 1000);
+        }
+    };
 
     _add = function (_n) {
         _queue.push(_n);
@@ -29,6 +50,7 @@ var Queue = function () {
             return -_no.timestamp;
         });
         _redraw();
+        _checkHide();
     };
 
     _remove = function (index) {
@@ -46,11 +68,12 @@ var Queue = function () {
         }));
 
         _.each(_queue, function (m, index) {
+            m.element = $queueElem.find('.bpp-notification').eq(index);
             if (m.icon) {
-                $queueElem.find('.bpp-notification').eq(index).css('background-image', m.icon ? 'url(' + m.icon + ')' : 'none');
+                m.element.css('background-image', m.icon ? 'url(' + m.icon + ')' : 'none');
             }
             if (m.width) {
-                $queueElem.find('.bpp-notification').eq(index).css('width', m.width + 'px');
+                m.element.css('width', m.width + 'px');
             }
         });
 

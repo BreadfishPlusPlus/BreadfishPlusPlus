@@ -27,6 +27,11 @@ var subscribeThread = function () {
                 console.log(threadName);
                 notification.create('Das Thema »' + threadName + '« wurde abboniert!');
             }).fail(function (jqXHR) {
+                notification.create({
+                    message: 'Das Thema »' + threadName + '« konnte nicht abboniert werden!',
+                    type: 'error',
+                    hidedelay: null
+                });
                 utils.log.error('Konnte Thema »' + threadName + '« nicht abbonieren.', jqXHR.status, jqXHR.statusText);
             });
         } else {
@@ -38,6 +43,11 @@ var subscribeThread = function () {
                 $element.find('span').text('Thema abonnieren');
                 notification.create('Das Thema »' + threadName + '« wurde abbestellt!');
             }).fail(function (jqXHR) {
+                notification.create({
+                    message: 'Das Thema »' + threadName + '« konnte nicht abbestellt werden!',
+                    type: 'error',
+                    hidedelay: null
+                });
                 utils.log.error('Konnte Thema »' + threadName + '« nicht abbestellen.', jqXHR.status, jqXHR.statusText);
             });
         }
@@ -79,6 +89,11 @@ var rateThread = function () {
             $threadRatingSpan.show();
             notification.create('Das Thema »' + threadName + '« wurde mit ' + (rating === 1 ? 'einem Stern' : rating + ' Sternen') + ' bewertet!');
         }).fail(function (jqXHR) {
+            notification.create({
+                message: 'Das Thema »' + threadName + '« konnte nicht bewertet werden!',
+                type: 'error',
+                hidedelay: null
+            });
             utils.log.error('Konnte Thema »' + threadName + '« nicht bewerten.', jqXHR.status, jqXHR.statusText);
         });
     });
@@ -107,6 +122,11 @@ var subscribeBoard = function () {
                 $element.find('span').text('Forum abbestellen');
                 notification.create('Das Forum »' + boardName + '« wurde abboniert!');
             }).fail(function (jqXHR) {
+                notification.create({
+                    message: 'Das Forum »' + boardName + '« konnte nicht abboniert werden!',
+                    type: 'error',
+                    hidedelay: null
+                });
                 utils.log.error('Konnte Forum »' + boardName + '« nicht abbonieren.', jqXHR.status, jqXHR.statusText);
             });
         } else {
@@ -118,6 +138,11 @@ var subscribeBoard = function () {
                 $element.find('span').text('Forum abonnieren');
                 notification.create('Das Forum »' + boardName + '« wurde abbestellt!');
             }).fail(function (jqXHR) {
+                notification.create({
+                    message: 'Das Forum »' + boardName + '« konnte nicht abbestellt werden!',
+                    type: 'error',
+                    hidedelay: null
+                });
                 utils.log.error('Konnte Forum »' + boardName + '« nicht abbestellen.', jqXHR.status, jqXHR.statusText);
             });
         }
@@ -143,6 +168,11 @@ var markBoardAsRead = function () {
             $('img[src$="threadNewOptionsM.png"]').attr('src', 'icon/threadOptionsM.png');
             notification.create('Das Forum »' + boardName + '« wurde als gelesen markiert!');
         }).fail(function (jqXHR) {
+            notification.create({
+                message: 'Das Forum »' + boardName + '« konnte nicht als gelesen markiert werden!',
+                type: 'error',
+                hidedelay: null
+            });
             utils.log.error('Konnte Forum »' + boardName + '« nicht als gelesen markieren.', jqXHR.status, jqXHR.statusText);
         });
     });
@@ -165,6 +195,11 @@ var markAllBoardsAsRead = function () {
             });
             notification.create('Alle Foren wurde als gelesen markiert!');
         }).fail(function (jqXHR) {
+            notification.create({
+                message: 'Konnte nicht alle Foren als gelesen markieren!',
+                type: 'error',
+                hidedelay: null
+            });
             utils.log.error('Konnte nicht alle Foren als gelesen markieren.', jqXHR.status, jqXHR.statusText);
         });
     });
