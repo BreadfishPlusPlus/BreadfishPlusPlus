@@ -2,7 +2,7 @@
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          Martin Rump
-// @version         3.0.0-DEV-3
+// @version         3.0.0-DEV-4
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
@@ -19,7 +19,7 @@
 // @require         http://cdn.breadfishplusplus.eu/js/tooltip.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/underscore.min.js
 // ==/UserScript==
-var VERSION = "3.0.0-DEV-3";
+var VERSION = "3.0.0-DEV-4";
 require = function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
