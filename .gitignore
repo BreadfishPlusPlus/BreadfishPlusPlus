@@ -1,6 +1,7 @@
 .tmp
 certificates
 node_modules
+userscript
 *.sublime-project
 *.sublime-workspace
 *.txt

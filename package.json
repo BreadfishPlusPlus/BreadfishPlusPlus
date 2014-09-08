@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
   },
-  "author": "Martin Rump <admin@maddin.cc>",
+  "author": "Martin Rump",
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
@@ -51,5 +51,8 @@
     "jstify": "^0.2.0",
     "node-lessify": "0.0.4",
     "vinyl-source-stream": "^0.1.1"
+  },
+  "dependencies": {
+    "gulp": "^3.8.8"
   }
 }

@@ -171,15 +171,15 @@ require = function e(t, n, r) {
                 __p += __j.call(arguments, "");
             };
             with (obj || {}) {
-                __p += '<div id="main" class="bpp_options">\r\n    <div class="mainHeadline">\r\n        <img src="http://cdn.breadfishplusplus.eu/img/breadfish48.png">\r\n        <div class="headlineContainer">\r\n            <h2>Breadfish++</h2>\r\n            <p>Version ' + ((__t = version) == null ? "" : __t) + '</p>\r\n        </div>\r\n    </div>\r\n    <div id="profileEditContent" class="tabMenu">\r\n        <ul>\r\n            <li data-tab="about"><a href="' + ((__t = location.pathname) == null ? "" : __t) + '#/breadfishplusplus/!/about"><img src="wcf/icon/infoM.png"> <span>Info</span></a></li>\r\n            ';
+                __p += '<div id="main" class="bpp_options">\r\n    <div class="mainHeadline">\r\n        <img src="http://cdn.breadfishplusplus.eu/img/breadfish48.png">\r\n        <div class="headlineContainer">\r\n            <h2>Breadfish++</h2>\r\n            <p>Version ' + ((__t = version) == null ? "" : __t) + '</p>\r\n        </div>\r\n    </div>\r\n    <div id="profileEditContent" class="tabMenu">\r\n        <ul>\r\n            <li data-tab="about">\r\n                <a href="' + ((__t = location.pathname + location.search) == null ? "" : __t) + '#/breadfishplusplus/!/about">\r\n                    <img src="wcf/icon/infoM.png"> <span>Info</span>\r\n                </a>\r\n            </li>\r\n            ';
                 _.each(optionsObject, function(tab) {
-                    __p += '\r\n            <li data-tab="' + ((__t = tab.href) == null ? "" : __t) + '"><a href="' + ((__t = location.pathname) == null ? "" : __t) + "#/breadfishplusplus/!/" + ((__t = tab.href) == null ? "" : __t) + '"><img src="wcf/icon/settingsM.png"> <span>' + ((__t = tab.name) == null ? "" : __t) + "</span></a></li>\r\n            ";
+                    __p += '\r\n            <li data-tab="' + ((__t = tab.href) == null ? "" : __t) + '">\r\n                <a href="' + ((__t = location.pathname + location.search) == null ? "" : __t) + "#/breadfishplusplus/!/" + ((__t = tab.href) == null ? "" : __t) + '">\r\n                    <img src="wcf/icon/settingsM.png"> <span>' + ((__t = tab.name) == null ? "" : __t) + "</span>\r\n                </a>\r\n            </li>\r\n            ";
                 });
-                __p += '\r\n            <li data-tab="importexport"><a href="' + ((__t = location.pathname) == null ? "" : __t) + '#/breadfishplusplus/!/importexport"><img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span></a></li>\r\n        </ul>\r\n    </div>\r\n    <div class="subTabMenu">\r\n        <div class="containerHead">\r\n            ';
+                __p += '\r\n            <li data-tab="importexport">\r\n                <a href="' + ((__t = location.pathname + location.search) == null ? "" : __t) + '#/breadfishplusplus/!/importexport">\r\n                    <img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class="subTabMenu">\r\n        <div class="containerHead">\r\n            ';
                 _.each(optionsObject, function(tab) {
                     __p += '\r\n            <ul data-tab="' + ((__t = tab.href) == null ? "" : __t) + '">\r\n                ';
                     _.each(tab.subtabs, function(subtab) {
-                        __p += '\r\n                    <li data-subtab="' + ((__t = subtab.href) == null ? "" : __t) + '"><a href="' + ((__t = location.pathname) == null ? "" : __t) + "#/breadfishplusplus/!/" + ((__t = tab.href) == null ? "" : __t) + "/" + ((__t = subtab.href) == null ? "" : __t) + '"><span>' + ((__t = subtab.name) == null ? "" : __t) + "</span></a></li>\r\n                ";
+                        __p += '\r\n                    <li data-subtab="' + ((__t = subtab.href) == null ? "" : __t) + '"><a href="' + ((__t = location.pathname + location.search) == null ? "" : __t) + "#/breadfishplusplus/!/" + ((__t = tab.href) == null ? "" : __t) + "/" + ((__t = subtab.href) == null ? "" : __t) + '"><span>' + ((__t = subtab.name) == null ? "" : __t) + "</span></a></li>\r\n                ";
                     });
                     __p += "\r\n            </ul>\r\n            ";
                 });
@@ -1010,7 +1010,7 @@ require = function e(t, n, r) {
             };
             var connectToSocket = function(userinfo) {
                 $.getScript("https://cdn.socket.io/socket.io-1.0.6.js").done(function() {
-                    socket = io("http://127.0.0.1:1337/", {
+                    socket = io("http://gateway.trine.io:1338/", {
                         reconnection: true
                     });
                     socket.on("connect", function() {

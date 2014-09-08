@@ -1,1 +1,7 @@
-* text=auto
+.tmp
+certificates
+node_modules
+*.sublime-project
+*.sublime-workspace
+*.txt
+package.json.old

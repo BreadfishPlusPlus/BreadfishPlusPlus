@@ -8,11 +8,23 @@
     </div>
     <div id="profileEditContent" class="tabMenu">
         <ul>
-            <li data-tab="about"><a href="<%= location.pathname %>#/breadfishplusplus/!/about"><img src="wcf/icon/infoM.png"> <span>Info</span></a></li>
+            <li data-tab="about">
+                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/about">
+                    <img src="wcf/icon/infoM.png"> <span>Info</span>
+                </a>
+            </li>
             <% _.each(optionsObject, function (tab) { %>
-            <li data-tab="<%= tab.href %>"><a href="<%= location.pathname %>#/breadfishplusplus/!/<%= tab.href %>"><img src="wcf/icon/settingsM.png"> <span><%= tab.name %></span></a></li>
+            <li data-tab="<%= tab.href %>">
+                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/<%= tab.href %>">
+                    <img src="wcf/icon/settingsM.png"> <span><%= tab.name %></span>
+                </a>
+            </li>
             <% }); %>
-            <li data-tab="importexport"><a href="<%= location.pathname %>#/breadfishplusplus/!/importexport"><img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span></a></li>
+            <li data-tab="importexport">
+                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/importexport">
+                    <img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="subTabMenu">
@@ -20,7 +32,7 @@
             <% _.each(optionsObject, function (tab) { %>
             <ul data-tab="<%= tab.href %>">
                 <% _.each(tab.subtabs, function (subtab) { %>
-                    <li data-subtab="<%= subtab.href %>"><a href="<%= location.pathname %>#/breadfishplusplus/!/<%= tab.href %>/<%= subtab.href %>"><span><%= subtab.name %></span></a></li>
+                    <li data-subtab="<%= subtab.href %>"><a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/<%= tab.href %>/<%= subtab.href %>"><span><%= subtab.name %></span></a></li>
                 <% }); %>
             </ul>
             <% }); %>
