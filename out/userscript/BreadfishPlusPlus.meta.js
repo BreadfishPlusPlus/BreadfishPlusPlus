@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
-// @author          Martin Rump &lt;admin@maddin.cc&gt;
+// @author          Martin Rump
 // @version         3.0.0-DEV-3
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*

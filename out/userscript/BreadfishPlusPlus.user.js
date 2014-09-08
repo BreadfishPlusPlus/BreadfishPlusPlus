@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
-// @author          Martin Rump <admin@maddin.cc>
+// @author          Martin Rump
 // @version         3.0.0-DEV-3
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
@@ -47,6 +47,15 @@ require = function e(t, n, r) {
     }, {} ],
     "94v5J1": [ function(require, module, exports) {
         var templates = {};
+        templates["bbcode"] = function(obj) {
+            var __t, __p = "", __j = Array.prototype.join, print = function() {
+                __p += __j.call(arguments, "");
+            };
+            with (obj || {}) {
+                __p += '<li>\n    <a id="mce_editor_0_' + ((__t = name) == null ? "" : _.escape(__t)) + "\" href=\"javascript:tinyMCE.execInstanceCommand('mce_editor_0','mce_" + ((__t = name) == null ? "" : _.escape(__t)) + '\',false);" onmousedown="return false;" class="" target="_self"><img src="' + ((__t = img) == null ? "" : _.escape(__t)) + '" title="' + ((__t = title) == null ? "" : _.escape(__t)) + '"></a>\n</li>';
+            }
+            return __p;
+        };
         templates["chat"] = function(obj) {
             var __t, __p = "", __j = Array.prototype.join, print = function() {
                 __p += __j.call(arguments, "");
@@ -381,9 +390,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     5: [ function(require, module, exports) {
         (function(global) {
@@ -407,9 +416,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     6: [ function(require, module, exports) {
         (function(global) {
@@ -451,9 +460,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
     7: [ function(require, module, exports) {
@@ -478,9 +487,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     8: [ function(require, module, exports) {
         (function(global) {
@@ -504,9 +513,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     9: [ function(require, module, exports) {
         (function(global) {
@@ -530,9 +539,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     10: [ function(require, module, exports) {
         (function(global) {
@@ -562,9 +571,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     11: [ function(require, module, exports) {
         (function(global) {
@@ -589,9 +598,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "./../styles/headerfixBugfix.less": 58
+        "../settings": 55,
+        "../storage": 56,
+        "./../styles/headerfixBugfix.less": 59
     } ],
     12: [ function(require, module, exports) {
         (function(global) {
@@ -626,9 +635,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     13: [ function(require, module, exports) {
         (function(global) {
@@ -654,10 +663,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/tabmenuBugfix.less": 65
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/tabmenuBugfix.less": 66
     } ],
     14: [ function(require, module, exports) {
         (function(global) {
@@ -765,10 +774,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../ui/notification": 68,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../ui/notification": 69,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
     15: [ function(require, module, exports) {
@@ -943,10 +952,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../ui/notification": 68,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../ui/notification": 69,
+        "../utils": 71
     } ],
     16: [ function(require, module, exports) {
         (function(global) {
@@ -1145,10 +1154,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/chat.less": 56,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/chat.less": 57,
         templates: "94v5J1"
     } ],
     17: [ function(require, module, exports) {
@@ -1382,11 +1391,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../ui/notification": 68,
-        "../ui/popup": 69,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../ui/notification": 69,
+        "../ui/popup": 70,
+        "../utils": 71
     } ],
     18: [ function(require, module, exports) {
         (function(global) {
@@ -1435,10 +1444,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/reportReasons.less": 63,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/reportReasons.less": 64,
         templates: "94v5J1"
     } ],
     19: [ function(require, module, exports) {
@@ -1491,9 +1500,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     20: [ function(require, module, exports) {
         (function(global) {
@@ -1540,10 +1549,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/tooltip.less": 66
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/tooltip.less": 67
     } ],
     21: [ function(require, module, exports) {
         (function(global) {
@@ -1584,11 +1593,284 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
     22: [ function(require, module, exports) {
+        (function(global) {
+            "use strict";
+            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
+            var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
+            var storage = require("../storage");
+            var utils = require("../utils");
+            var register = require("../settings").register;
+            var CDN_PATH = "http://cdn.breadfishplusplus.eu/";
+            register({
+                key: "option.postCreate.bbcode.email",
+                name: "E-Mail",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den E-Mail-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.sub",
+                name: "Text tiefstellen",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den BBCode hinzu, um Text tiefzustellen."
+            });
+            register({
+                key: "option.postCreate.bbcode.sup",
+                name: "Text hochstellen",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den BBCode hinzu, um Text hochzustellen."
+            });
+            register({
+                key: "option.postCreate.bbcode.java",
+                name: "Java-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Java-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.css",
+                name: "CSS-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Cascading Style Sheet-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.html",
+                name: "HTML-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den HTML-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.xml",
+                name: "XML-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den XML-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.js",
+                name: "Javascript-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Javascript-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.c",
+                name: "C/C++-Quelltext",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den C/C++-Quelltext-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.dropdown",
+                name: "Dropdown",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Dropdown-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.sevenload",
+                name: "Sevenload",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Sevenload-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.clipfish",
+                name: "Clipfish",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Clipfish-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.googlevideo",
+                name: "Googlevideo",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den Googlevideo-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.myspace",
+                name: "MySpace",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den MySpace-BBCode hinzu."
+            });
+            register({
+                key: "option.postCreate.bbcode.myvideo",
+                name: "MyVideo",
+                tab: "Einstellungen",
+                subtab: "Beitrag & Nachrichten erstellen",
+                category: "BBCodes",
+                type: "toggle",
+                "default": false,
+                description: "Fügt dem WYSIWYG-Editor das Icon für den MyVideo-BBCode hinzu."
+            });
+            if (utils.isTemplate([ "tplPostAdd", "tplThreadAdd", "tplPmNew", "tplPostEdit", "tplUserProfileEdit" ])) {
+                if (storage.get("option.postCreate.bbcode.email", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "email",
+                        img: "http://cdn.breadfishplusplus.eu/img/bbcodes/email.png",
+                        title: "Email einfügen"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.sub", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "sub",
+                        img: "http://cdn.breadfishplusplus.eu/img/bbcodes/sub.png",
+                        title: "Text tiefstellen"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.sup", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "sup",
+                        img: "http://cdn.breadfishplusplus.eu/img/bbcodes/sup.png",
+                        title: "Text tiefstellen"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.java", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "java",
+                        img: "wcf/icon/wysiwyg/insertJavaM.png",
+                        title: "Java-Quelltext"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.css", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "css",
+                        img: "wcf/icon/wysiwyg/insertCssM.png",
+                        title: "Cascading Style Sheet"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.html", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "html",
+                        img: "wcf/icon/wysiwyg/insertHtmlM.png",
+                        title: "HTML-Quelltext"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.xml", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "xml",
+                        img: "wcf/icon/wysiwyg/insertHtmlM.png",
+                        title: "XML-Quelltext"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.js", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "js",
+                        img: "wcf/icon/wysiwyg/insertJavaScriptM.png",
+                        title: "Javascript-Quelltext"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.c", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "c",
+                        img: "wcf/icon/wysiwyg/insertCM.png",
+                        title: "C/C++-Quelltext"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.dropdown", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "dropdown",
+                        img: "wcf/icon/wysiwyg/editorResizeM.png",
+                        title: "Dropdown"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.sevenload", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "sevenload",
+                        img: "wcf/icon/wysiwyg/sevenLoadM.png",
+                        title: "Sevenload"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.clipfish", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "clipfish",
+                        img: "wcf/icon/wysiwyg/clipfishM.png",
+                        title: "Clipfish"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.googlevideo", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "googlevideo",
+                        img: "wcf/icon/wysiwyg/googleVideoM.png",
+                        title: "Googlevideo"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.myspace", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "myspace",
+                        img: "wcf/icon/wysiwyg/mySpaceM.png",
+                        title: "MySpace"
+                    }));
+                }
+                if (storage.get("option.postCreate.bbcode.myvideo", false)) {
+                    $("#mce_editor_0_toolBar ul").last().append(require("templates").bbcode({
+                        name: "myvideo",
+                        img: "wcf/icon/wysiwyg/myVideoM.png",
+                        title: "MyVideo"
+                    }));
+                }
+            }
+        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
+    }, {
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        templates: "94v5J1"
+    } ],
+    23: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1732,12 +2014,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
-    23: [ function(require, module, exports) {
+    24: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1823,12 +2105,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
-    24: [ function(require, module, exports) {
+    25: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1862,12 +2144,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    25: [ function(require, module, exports) {}, {} ],
-    26: [ function(require, module, exports) {
+    26: [ function(require, module, exports) {}, {} ],
+    27: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1896,11 +2178,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    27: [ function(require, module, exports) {
+    28: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1937,13 +2219,13 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../styles/shortUrl.less": 64,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../styles/shortUrl.less": 65,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
-    28: [ function(require, module, exports) {
+    29: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1965,11 +2247,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    29: [ function(require, module, exports) {
+    30: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2011,12 +2293,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../styles/highlightjs.less": 59,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../styles/highlightjs.less": 60,
+        "../utils": 71
     } ],
-    30: [ function(require, module, exports) {
+    31: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2105,11 +2387,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    31: [ function(require, module, exports) {
+    32: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2178,41 +2460,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../styles/youtubePreview.less": 67,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../styles/youtubePreview.less": 68,
+        "../utils": 71,
         templates: "94v5J1"
-    } ],
-    32: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.additionalUserrank.enabled",
-                name: "Zusätzlicher Benutzerrang",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den zusätzlichen Benutzerrang (falls vorhanden) aus."
-            });
-            if (storage.get("option.posts.filter.additionalUserrank.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".messageAuthor").each(function() {
-                    if ($(this).find(".userRank").length === 2 || $(this).find(".userRank").length === 1 && storage.get("option.posts.filter.userrank.enabled", false)) {
-                        $(this).find(".userRank").last().remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
     } ],
     33: [ function(require, module, exports) {
         (function(global) {
@@ -2222,6 +2474,36 @@ require = function e(t, n, r) {
             var utils = require("../utils");
             var register = require("../settings").register;
             register({
+                key: "option.posts.filter.additionalUserrank.enabled",
+                name: "Zusätzlicher Benutzerrang",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den zusätzlichen Benutzerrang (falls vorhanden) aus."
+            });
+            if (storage.get("option.posts.filter.additionalUserrank.enabled", false) && utils.isTemplate("tplThread")) {
+                $(".messageAuthor").each(function() {
+                    if ($(this).find(".userRank").length === 2 || $(this).find(".userRank").length === 1 && storage.get("option.posts.filter.userrank.enabled", false)) {
+                        $(this).find(".userRank").last().remove();
+                    }
+                });
+            }
+        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
+    }, {
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
+    } ],
+    34: [ function(require, module, exports) {
+        (function(global) {
+            "use strict";
+            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
+            var storage = require("../storage");
+            var utils = require("../utils");
+            var register = require("../settings").register;
+            register({
                 key: "option.posts.filter.bestans.enabled",
                 name: "Hilfreichste Antwort",
                 tab: "Einstellungen",
@@ -2236,12 +2518,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/filterBestans.less": 57
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/filterBestans.less": 58
     } ],
-    34: [ function(require, module, exports) {
+    35: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2263,11 +2545,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    35: [ function(require, module, exports) {
+    36: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2294,11 +2576,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    36: [ function(require, module, exports) {
+    37: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2325,11 +2607,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    37: [ function(require, module, exports) {
+    38: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2351,11 +2633,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    38: [ function(require, module, exports) {
+    39: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2675,12 +2957,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
-        "./../styles/filterBestans.less": 57
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
+        "./../styles/filterBestans.less": 58
     } ],
-    39: [ function(require, module, exports) {
+    40: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2707,11 +2989,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    40: [ function(require, module, exports) {
+    41: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2738,11 +3020,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    41: [ function(require, module, exports) {
+    42: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2769,11 +3051,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    42: [ function(require, module, exports) {
+    43: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2800,11 +3082,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    43: [ function(require, module, exports) {
+    44: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2831,11 +3113,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    44: [ function(require, module, exports) {
+    45: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2862,11 +3144,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    45: [ function(require, module, exports) {
+    46: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2893,11 +3175,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    46: [ function(require, module, exports) {
+    47: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2919,11 +3201,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    47: [ function(require, module, exports) {
+    48: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2947,11 +3229,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    48: [ function(require, module, exports) {
+    49: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2973,11 +3255,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    49: [ function(require, module, exports) {
+    50: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3004,11 +3286,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    50: [ function(require, module, exports) {
+    51: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3035,11 +3317,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    51: [ function(require, module, exports) {
+    52: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3064,11 +3346,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    52: [ function(require, module, exports) {
+    53: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3094,12 +3376,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70,
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71,
         templates: "94v5J1"
     } ],
-    53: [ function(require, module, exports) {
+    54: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3126,11 +3408,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 54,
-        "../storage": 55,
-        "../utils": 70
+        "../settings": 55,
+        "../storage": 56,
+        "../utils": 71
     } ],
-    54: [ function(require, module, exports) {
+    55: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3296,7 +3578,7 @@ require = function e(t, n, r) {
                     if (!$optionsFrame) {
                         location.hash = "#/breadfishplusplus/!/about/";
                     } else {
-                        location.href = location.origin + location.pathname;
+                        location.href = location.origin + location.pathname + location.search;
                     }
                 });
                 $(window).on("hashchange", function() {
@@ -3394,13 +3676,13 @@ require = function e(t, n, r) {
             });
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 55,
-        "./styles/options.less": 61,
-        "./ui/notification": 68,
-        "./utils": 70,
+        "./storage": 56,
+        "./styles/options.less": 62,
+        "./ui/notification": 69,
+        "./utils": 71,
         templates: "94v5J1"
     } ],
-    55: [ function(require, module, exports) {
+    56: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3428,7 +3710,7 @@ require = function e(t, n, r) {
             exports.get = get;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {} ],
-    56: [ function(require, module, exports) {
+    57: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3442,7 +3724,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    57: [ function(require, module, exports) {
+    58: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3456,7 +3738,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    58: [ function(require, module, exports) {
+    59: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3470,7 +3752,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    59: [ function(require, module, exports) {
+    60: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3484,7 +3766,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    60: [ function(require, module, exports) {
+    61: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3498,7 +3780,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    61: [ function(require, module, exports) {
+    62: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3512,7 +3794,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    62: [ function(require, module, exports) {
+    63: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3526,7 +3808,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    63: [ function(require, module, exports) {
+    64: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3540,7 +3822,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    64: [ function(require, module, exports) {
+    65: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3554,7 +3836,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    65: [ function(require, module, exports) {
+    66: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3568,7 +3850,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    66: [ function(require, module, exports) {
+    67: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3582,7 +3864,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    67: [ function(require, module, exports) {
+    68: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3596,7 +3878,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    68: [ function(require, module, exports) {
+    69: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3689,11 +3971,11 @@ require = function e(t, n, r) {
             exports.create = create;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/notification.less": 60,
-        "./../utils": 70,
+        "./../styles/notification.less": 61,
+        "./../utils": 71,
         templates: "94v5J1"
     } ],
-    69: [ function(require, module, exports) {
+    70: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3894,11 +4176,11 @@ require = function e(t, n, r) {
             exports.prompt = prompt;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/popup.less": 62,
-        "./../utils": 70,
+        "./../styles/popup.less": 63,
+        "./../utils": 71,
         templates: "94v5J1"
     } ],
-    70: [ function(require, module, exports) {
+    71: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3982,6 +4264,6 @@ require = function e(t, n, r) {
             exports.getSecurityToken = getSecurityToken;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 55
+        "./storage": 56
     } ]
-}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]);
+}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 ]);
