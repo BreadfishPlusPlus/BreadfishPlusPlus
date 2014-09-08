@@ -199,7 +199,7 @@ $(document).ready(function () {
             //location.hash = '#/breadfishplusplus/!/' + parsedHash.tab + '/' + parsedHash.subtab + '/';
             location.hash = '#/breadfishplusplus/!/about/';
         } else {
-            location.href = location.origin + location.pathname;
+            location.href = location.origin + location.pathname + location.search;
         }
     });
 
