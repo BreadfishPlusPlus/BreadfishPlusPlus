@@ -1,6 +1,6 @@
 /*jslint nomen:true */
-/*globals unsafeWindow */
 "use strict";
+
 var $           = require('lib/jquery');
 var _           = require('lib/underscore');
 var storage     = require('../storage');

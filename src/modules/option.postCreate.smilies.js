@@ -1,5 +1,4 @@
 /*jslint nomen:true */
-/*globals unsafeWindow */
 "use strict";
 var $           = require('lib/jquery');
 var _           = require('lib/underscore');
@@ -53,7 +52,7 @@ register({
 var loadSmilies = function (smilieData) {
     utils.log.debug('loadSmilies', smilieData);
     var $smileyContainer = $('#smileyContainer'),
-        win = unsafeWindow || window;
+        win = utils.getWindow();
 
     smilieData = _.filter(smilieData, function (category) {
         return storage.get('option.postCreate.smilies.' + category.keyName, false);

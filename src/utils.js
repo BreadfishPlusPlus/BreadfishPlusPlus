@@ -1,4 +1,5 @@
 /*jslint nomen: true*/
+/*globals unsafeWindow*/
 "use strict";
 
 var _           = require('lib/underscore');
@@ -88,3 +89,8 @@ var getSecurityToken = function () {
     return this.getParameterByName('t', $('#userMenuLogout > a').attr('href'));
 };
 exports.getSecurityToken = getSecurityToken;
+
+var getWindow = function () {
+    return unsafeWindow || window;
+};
+exports.getWindow = getWindow;

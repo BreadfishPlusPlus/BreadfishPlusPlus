@@ -2,7 +2,7 @@
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          Martin Rump
-// @version         3.0.0-DEV-4
+// @version         3.0.0-DEV-5
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
@@ -19,7 +19,7 @@
 // @require         http://cdn.breadfishplusplus.eu/js/tooltip.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/underscore.min.js
 // ==/UserScript==
-var VERSION = "3.0.0-DEV-4";
+var VERSION = "3.0.0-DEV-5";
 require = function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -391,9 +391,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     5: [ function(require, module, exports) {
         (function(global) {
@@ -417,9 +417,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     6: [ function(require, module, exports) {
         (function(global) {
@@ -461,9 +461,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     7: [ function(require, module, exports) {
@@ -488,9 +488,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     8: [ function(require, module, exports) {
         (function(global) {
@@ -514,9 +514,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     9: [ function(require, module, exports) {
         (function(global) {
@@ -540,9 +540,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     10: [ function(require, module, exports) {
         (function(global) {
@@ -572,9 +572,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     11: [ function(require, module, exports) {
         (function(global) {
@@ -599,9 +599,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "./../styles/headerfixBugfix.less": 59
+        "../settings": 37,
+        "../storage": 38,
+        "./../styles/headerfixBugfix.less": 41
     } ],
     12: [ function(require, module, exports) {
         (function(global) {
@@ -636,9 +636,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     13: [ function(require, module, exports) {
         (function(global) {
@@ -664,10 +664,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/tabmenuBugfix.less": 66
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
+        "./../styles/tabmenuBugfix.less": 48
     } ],
     14: [ function(require, module, exports) {
         (function(global) {
@@ -675,6 +675,7 @@ require = function e(t, n, r) {
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
             var moment = typeof window !== "undefined" ? window.moment : typeof global !== "undefined" ? global.moment : null;
+            var desktopnotify = typeof window !== "undefined" ? window.notify : typeof global !== "undefined" ? global.notify : null;
             var utils = require("../utils");
             var notification = require("../ui/notification");
             var storage = require("../storage");
@@ -729,6 +730,13 @@ require = function e(t, n, r) {
                     icon: "http://forum.sa-mp.de/wcf/icon/pmUnreadM.png",
                     hidedelay: null
                 });
+                if (!utils.getWindow().document.hasFocus()) {
+                    desktopnotify.createNotification("Neue nachricht" + (messages.length !== 1 ? "en!" : "!"), {
+                        body: title.slice(0, -1) + " auf SA-MP.de!",
+                        icon: "http://cdn.breadfishplusplus.eu/img/breadfish48.png",
+                        tag: "b++" + Date.now()
+                    });
+                }
             };
             checkForNewMessage = function(folderId) {
                 $.get("http://forum.sa-mp.de/index.php?page=PMList&folderID=" + folderId, function(data) {
@@ -768,7 +776,7 @@ require = function e(t, n, r) {
                 category: "Erweiterungen",
                 type: "toggle",
                 "default": false,
-                description: "Sendet bei einer neuen Privaten Nachricht eine Desktopbenachrichtigung."
+                description: "Sendet <u>zusätzlich</u> zur Alternative PN Benachrichtigung eine Desktopbenachrichtigung."
             });
             register({
                 key: "option.common.extension.PMNotification.interval",
@@ -776,6 +784,11 @@ require = function e(t, n, r) {
                 "default": 3e5
             });
             if (storage.get("option.common.extension.PMNotification.enabled", false)) {
+                if (storage.get("option.common.extension.PMNotification.desktop", false)) {
+                    if (desktopnotify.permissionLevel() === desktopnotify.PERMISSION_DEFAULT) {
+                        desktopnotify.requestPermission();
+                    }
+                }
                 $(document).ready(function() {
                     $("#pmOutstandingNotifications").hide();
                 });
@@ -786,10 +799,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../ui/notification": 69,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../ui/notification": 51,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     15: [ function(require, module, exports) {
@@ -999,10 +1012,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../ui/notification": 69,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../ui/notification": 51,
+        "../utils": 53
     } ],
     16: [ function(require, module, exports) {
         (function(global) {
@@ -1201,10 +1214,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/chat.less": 57,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
+        "./../styles/chat.less": 39,
         templates: "94v5J1"
     } ],
     17: [ function(require, module, exports) {
@@ -1438,11 +1451,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../ui/notification": 69,
-        "../ui/popup": 70,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../ui/notification": 51,
+        "../ui/popup": 52,
+        "../utils": 53
     } ],
     18: [ function(require, module, exports) {
         (function(global) {
@@ -1491,10 +1504,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/reportReasons.less": 64,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
+        "./../styles/reportReasons.less": 46,
         templates: "94v5J1"
     } ],
     19: [ function(require, module, exports) {
@@ -1547,9 +1560,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     20: [ function(require, module, exports) {
         (function(global) {
@@ -1596,10 +1609,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/tooltip.less": 67
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
+        "./../styles/tooltip.less": 49
     } ],
     21: [ function(require, module, exports) {
         (function(global) {
@@ -1640,9 +1653,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     22: [ function(require, module, exports) {
         (function(global) {
@@ -1912,9 +1925,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     23: [ function(require, module, exports) {
@@ -2061,9 +2074,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     24: [ function(require, module, exports) {
@@ -2117,7 +2130,7 @@ require = function e(t, n, r) {
             });
             var loadSmilies = function(smilieData) {
                 utils.log.debug("loadSmilies", smilieData);
-                var $smileyContainer = $("#smileyContainer"), win = unsafeWindow || window;
+                var $smileyContainer = $("#smileyContainer"), win = utils.getWindow();
                 smilieData = _.filter(smilieData, function(category) {
                     return storage.get("option.postCreate.smilies." + category.keyName, false);
                 });
@@ -2152,9 +2165,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     25: [ function(require, module, exports) {
@@ -2191,9 +2204,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     26: [ function(require, module, exports) {}, {} ],
     27: [ function(require, module, exports) {
@@ -2225,9 +2238,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     28: [ function(require, module, exports) {
         (function(global) {
@@ -2266,10 +2279,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../styles/shortUrl.less": 65,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../styles/shortUrl.less": 47,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     29: [ function(require, module, exports) {
@@ -2294,9 +2307,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     30: [ function(require, module, exports) {
         (function(global) {
@@ -2340,10 +2353,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../styles/highlightjs.less": 60,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../styles/highlightjs.less": 42,
+        "../utils": 53
     } ],
     31: [ function(require, module, exports) {
         (function(global) {
@@ -2434,9 +2447,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
     32: [ function(require, module, exports) {
         (function(global) {
@@ -2507,10 +2520,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../styles/youtubePreview.less": 68,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../styles/youtubePreview.less": 50,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
     33: [ function(require, module, exports) {
@@ -2521,6 +2534,68 @@ require = function e(t, n, r) {
             var utils = require("../utils");
             var register = require("../settings").register;
             register({
+                key: "option.posts.filter.bestans.enabled",
+                name: "Hilfreichste Antwort",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Entfernt die Markierung der hilfreichsten Antwort."
+            });
+            if (storage.get("option.posts.filter.bestans.enabled", false) && utils.isTemplate("tplThread")) {
+                require("./../styles/filterBestans.less");
+            }
+            register({
+                key: "option.posts.filter.deleted.enabled",
+                name: "Gelöschte Beiträge",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet gelöschte Beiträge komplett aus."
+            });
+            if (storage.get("option.posts.filter.deleted.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="icon/postTrashM.png"]').closest(".messageMinimized").remove();
+            }
+            register({
+                key: "option.posts.filter.gender.enabled",
+                name: "Geschlecht",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet das Geschlecht aus."
+            });
+            if (storage.get("option.posts.filter.gender.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userSymbols img[src="wcf/icon/genderMaleS.png"], .userSymbols img[src="wcf/icon/genderFemaleS.png"]').parent("li").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.icq.enabled",
+                name: "ICQ",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet die Nummer des ICQ-Accounts aus."
+            });
+            if (storage.get("option.posts.filter.icq.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userMessenger img[src="wcf/icon/icqS.png"]').closest("li").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
                 key: "option.posts.filter.additionalUserrank.enabled",
                 name: "Zusätzlicher Benutzerrang",
                 tab: "Einstellungen",
@@ -2537,11 +2612,244 @@ require = function e(t, n, r) {
                     }
                 });
             }
+            register({
+                key: "option.posts.filter.ignored.enabled",
+                name: "Ignorierte Benutzer",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet Beiträge von ignorierten Benutzern komplett aus."
+            });
+            if (storage.get("option.posts.filter.ignored.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="wcf/icon/warningM.png"]').closest(".messageMinimized").remove();
+            }
+            register({
+                key: "option.posts.filter.msn.enabled",
+                name: "Windows Live",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Windows Live Messenger-Namen aus."
+            });
+            if (storage.get("option.posts.filter.msn.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userMessenger img[src="wcf/icon/msnS.png"]').closest("li").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.origin.enabled",
+                name: "Origin",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Originnamen aus."
+            });
+            if (storage.get("option.posts.filter.origin.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p:contains("Origin: ")').remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.postcount.enabled",
+                name: "Beitragscounter",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Beitragscounter aus."
+            });
+            if (storage.get("option.posts.filter.postcount.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p > a:contains("Beiträge")').parent("p").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.psnid.enabled",
+                name: "PSN ID",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet die PSN ID aus."
+            });
+            if (storage.get("option.posts.filter.psnid.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p:contains("PSN ID: ")').remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.regdate.enabled",
+                name: "Registrierungsdatum",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet das Registrierungsdatum aus."
+            });
+            if (storage.get("option.posts.filter.regdate.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p:contains("Registrierungsdatum: ")').remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.skype.enabled",
+                name: "Skype",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Skype-Namen aus."
+            });
+            if (storage.get("option.posts.filter.skype.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userMessenger img[src="wcf/icon/skypeS.png"]').closest("li").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.steam.enabled",
+                name: "Steam",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Steamnamen aus."
+            });
+            if (storage.get("option.posts.filter.steam.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p:contains("Steam: ")').remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.thanko.enabled",
+                name: "Bedankomat",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Bedankomat in Beiträgen aus."
+            });
+            if (storage.get("option.posts.filter.thanko.enabled", false) && utils.isTemplate("tplThread")) {
+                $("li.postThankButton, .thankStats").remove();
+            }
+            register({
+                key: "option.posts.filter.userrank.enabled",
+                name: "Benutzerrang",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Benutzerrang aus."
+            });
+            if (storage.get("option.posts.filter.userrank.enabled", false) && utils.isTemplate("tplThread")) {
+                $(".messageAuthor").each(function() {
+                    $(this).find(".userRank").first().remove();
+                });
+            }
+            register({
+                key: "option.posts.filter.usertitle.enabled",
+                name: "Benutzertitel",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Benutzertitel aus."
+            });
+            if (storage.get("option.posts.filter.usertitle.enabled", false) && utils.isTemplate("tplThread")) {
+                $(".userTitle").remove();
+            }
+            register({
+                key: "option.posts.filter.website.enabled",
+                name: "Website",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet die Website aus."
+            });
+            if (storage.get("option.posts.filter.website.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userMessenger img[src="wcf/icon/websiteS.png"]').closest("li").remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.xblGamertag.enabled",
+                name: "XBL Gamertag",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den XBL Gamertag aus."
+            });
+            if (storage.get("option.posts.filter.xblGamertag.enabled", false) && utils.isTemplate("tplThread")) {
+                $('.userCredits p:contains("XBL Gamertag: ")').remove();
+                $(".userCredits").each(function() {
+                    if ($(this).children().length === 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+            register({
+                key: "option.posts.filter.youtube.enabled",
+                name: "Youtube-Videos",
+                tab: "Einstellungen",
+                subtab: "Beiträge & Nachrichten",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Entfernt Youtube-Videos aus Beiträgen und Signaturen und ersetzt sie stattdessen mit dem Link zum jeweiligen Video."
+            });
+            if (storage.get("option.posts.filter.youtube.enabled", false) && utils.isTemplate("tplThread")) {
+                $(".message:not(.quickReply):not(.deleted) .messageContentInner object").each(function() {
+                    var $object = $(this), videoId = $object.attr("data").substr(-17, 11);
+                    $object.replaceWith('<a href="http://www.youtube.com/watch?v=' + videoId + '" class="externalURL">http://www.youtube.com/watch?v=' + videoId + "</a>");
+                });
+            }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
+        "./../styles/filterBestans.less": 40
     } ],
     34: [ function(require, module, exports) {
         (function(global) {
@@ -2551,853 +2859,291 @@ require = function e(t, n, r) {
             var utils = require("../utils");
             var register = require("../settings").register;
             register({
-                key: "option.posts.filter.bestans.enabled",
-                name: "Hilfreichste Antwort",
+                key: "option.profile.filter.thanks.enabled",
+                name: "Danksagungen",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Entfernt die Markierung der hilfreichsten Antwort."
+                description: "Blendet die Danksagungen in Benutzerprofilen aus."
             });
-            if (storage.get("option.posts.filter.bestans.enabled", false) && utils.isTemplate("tplThread")) {
-                require("./../styles/filterBestans.less");
+            if (storage.get("option.profile.filter.thanks.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $('#profileContent ul li a img[src="icon/thankM.png"]').closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/filterBestans.less": 58
-    } ],
-    35: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.deleted.enabled",
-                name: "Gelöschte Beiträge",
+                key: "option.profile.filter.postcount.enabled",
+                name: "Beitragscounter",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet gelöschte Beiträge komplett aus."
+                description: "Blendet den Beitragscounter aus."
             });
-            if (storage.get("option.posts.filter.deleted.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="icon/postTrashM.png"]').closest(".messageMinimized").remove();
+            if (storage.get("option.profile.filter.postcount.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li .containerContent > .smallFont:contains(Beiträge)").closest("li").remove();
+                $('.subHeadline > a:contains("Beiträge")').siblings("span").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    36: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.gender.enabled",
-                name: "Geschlecht",
+                key: "option.profile.filter.usertitle.enabled",
+                name: "Benutzertitel",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet das Geschlecht aus."
+                description: "Blendet den Benutzertitel aus."
             });
-            if (storage.get("option.posts.filter.gender.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userSymbols img[src="wcf/icon/genderMaleS.png"], .userSymbols img[src="wcf/icon/genderFemaleS.png"]').parent("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.usertitle.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $(".userPersonals .userTitle").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    37: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.icq.enabled",
-                name: "ICQ",
+                key: "option.profile.filter.userrank.enabled",
+                name: "Benutzerrang",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet die Nummer des ICQ-Accounts aus."
+                description: "Blendet den Benutzerrang aus."
             });
-            if (storage.get("option.posts.filter.icq.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/icqS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    38: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.ignored.enabled",
-                name: "Ignorierte Benutzer",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet Beiträge von ignorierten Benutzern komplett aus."
-            });
-            if (storage.get("option.posts.filter.ignored.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="wcf/icon/warningM.png"]').closest(".messageMinimized").remove();
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    39: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.bestans.enabled",
-                name: "Hilfreichste Antwort",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Entfernt die Markierung der hilfreichsten Antwort."
-            });
-            if (storage.get("option.posts.filter.bestans.enabled", false) && utils.isTemplate("tplThread")) {
-                require("./../styles/filterBestans.less");
+            if (storage.get("option.profile.filter.userrank.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $(".userPersonals .userRank").first().remove();
             }
             register({
-                key: "option.posts.filter.deleted.enabled",
-                name: "Gelöschte Beiträge",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet gelöschte Beiträge komplett aus."
-            });
-            if (storage.get("option.posts.filter.deleted.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="icon/postTrashM.png"]').closest(".messageMinimized").remove();
-            }
-            register({
-                key: "option.posts.filter.gender.enabled",
-                name: "Geschlecht",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet das Geschlecht aus."
-            });
-            if (storage.get("option.posts.filter.gender.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userSymbols img[src="wcf/icon/genderMaleS.png"], .userSymbols img[src="wcf/icon/genderFemaleS.png"]').parent("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.icq.enabled",
-                name: "ICQ",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet die Nummer des ICQ-Accounts aus."
-            });
-            if (storage.get("option.posts.filter.icq.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/icqS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.additionalUserrank.enabled",
+                key: "option.profile.filter.additionalUserrank.enabled",
                 name: "Zusätzlicher Benutzerrang",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
                 description: "Blendet den zusätzlichen Benutzerrang (falls vorhanden) aus."
             });
-            if (storage.get("option.posts.filter.additionalUserrank.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".messageAuthor").each(function() {
-                    if ($(this).find(".userRank").length === 2 || $(this).find(".userRank").length === 1 && storage.get("option.posts.filter.userrank.enabled", false)) {
-                        $(this).find(".userRank").last().remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.additionalUserrank.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                if ($(".userPersonals .userRank").length === 2 || $(".userPersonals .userRank").length === 1 && storage.get("option.profile.filter.userrank.enabled", false)) {
+                    $(".userPersonals .userRank").last().remove();
+                }
             }
             register({
-                key: "option.posts.filter.ignored.enabled",
-                name: "Ignorierte Benutzer",
+                key: "option.profile.filter.gender.enabled",
+                name: "Geschlecht",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet Beiträge von ignorierten Benutzern komplett aus."
+                description: "Blendet das Geschlecht aus."
             });
-            if (storage.get("option.posts.filter.ignored.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.messageMinimized:not(.quickReply) > .messageInner > img[src="wcf/icon/warningM.png"]').closest(".messageMinimized").remove();
+            if (storage.get("option.profile.filter.gender.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Geschlecht)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.msn.enabled",
-                name: "Windows Live",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Windows Live Messenger-Namen aus."
-            });
-            if (storage.get("option.posts.filter.msn.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/msnS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.origin.enabled",
-                name: "Origin",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Originnamen aus."
-            });
-            if (storage.get("option.posts.filter.origin.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Origin: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.postcount.enabled",
-                name: "Beitragscounter",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Beitragscounter aus."
-            });
-            if (storage.get("option.posts.filter.postcount.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p > a:contains("Beiträge")').parent("p").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.psnid.enabled",
-                name: "PSN ID",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet die PSN ID aus."
-            });
-            if (storage.get("option.posts.filter.psnid.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("PSN ID: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-            register({
-                key: "option.posts.filter.regdate.enabled",
+                key: "option.profile.filter.regdate.enabled",
                 name: "Registrierungsdatum",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
                 description: "Blendet das Registrierungsdatum aus."
             });
-            if (storage.get("option.posts.filter.regdate.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Registrierungsdatum: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.regdate.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li .containerContent > .smallFont:contains(Registrierungsdatum)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.skype.enabled",
-                name: "Skype",
+                key: "option.profile.filter.aboutMe.enabled",
+                name: "Über Mich",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Skype-Namen aus."
+                description: 'Blendet den "Über mich"-Block aus.'
             });
-            if (storage.get("option.posts.filter.skype.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/skypeS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.aboutMe.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                var $subH = $("h3.subHeadline:contains(Über mich)");
+                $subH.parent(".contentBox").find("> .dataList").remove();
+                $subH.parent(".contentBox").find(".signature").css("border-top", "none");
+                $subH.remove();
             }
             register({
-                key: "option.posts.filter.steam.enabled",
-                name: "Steam",
+                key: "option.profile.filter.birthday.enabled",
+                name: "Geburtstag",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Steamnamen aus."
+                description: "Blendet den Geburtstag aus."
             });
-            if (storage.get("option.posts.filter.steam.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Steam: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.birthday.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Geburtstag)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.thanko.enabled",
-                name: "Bedankomat",
+                key: "option.profile.filter.location.enabled",
+                name: "Wohnort",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Bedankomat in Beiträgen aus."
+                description: "Blendet den Wohnort aus."
             });
-            if (storage.get("option.posts.filter.thanko.enabled", false) && utils.isTemplate("tplThread")) {
-                $("li.postThankButton, .thankStats").remove();
+            if (storage.get("option.profile.filter.location.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Wohnort)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.userrank.enabled",
-                name: "Benutzerrang",
+                key: "option.profile.filter.occupation.enabled",
+                name: "Beruf",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Benutzerrang aus."
+                description: "Blendet den Beruf aus."
             });
-            if (storage.get("option.posts.filter.userrank.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".messageAuthor").each(function() {
-                    $(this).find(".userRank").first().remove();
-                });
+            if (storage.get("option.profile.filter.occupation.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Beruf)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.usertitle.enabled",
-                name: "Benutzertitel",
+                key: "option.profile.filter.hobbys.enabled",
+                name: "Hobbys",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Benutzertitel aus."
+                description: "Blendet die Hobbys aus."
             });
-            if (storage.get("option.posts.filter.usertitle.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".userTitle").remove();
+            if (storage.get("option.profile.filter.hobbys.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Hobbys)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.website.enabled",
-                name: "Website",
+                key: "option.profile.filter.tsuid.enabled",
+                name: "Teamspeak UID",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet die Website aus."
+                description: "Blendet die Teamspeak UID aus."
             });
-            if (storage.get("option.posts.filter.website.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/websiteS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.tsuid.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Teamspeak UID)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.xblGamertag.enabled",
+                key: "option.profile.filter.xblGamertag.enabled",
                 name: "XBL Gamertag",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
                 description: "Blendet den XBL Gamertag aus."
             });
-            if (storage.get("option.posts.filter.xblGamertag.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("XBL Gamertag: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.xblGamertag.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(XBL Gamertag)").closest("li").remove();
             }
             register({
-                key: "option.posts.filter.youtube.enabled",
-                name: "Youtube-Videos",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Entfernt Youtube-Videos aus Beiträgen und Signaturen und ersetzt sie stattdessen mit dem Link zum jeweiligen Video."
-            });
-            if (storage.get("option.posts.filter.youtube.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".message:not(.quickReply):not(.deleted) .messageContentInner object").each(function() {
-                    var $object = $(this), videoId = $object.attr("data").substr(-17, 11);
-                    $object.replaceWith('<a href="http://www.youtube.com/watch?v=' + videoId + '" class="externalURL">http://www.youtube.com/watch?v=' + videoId + "</a>");
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
-        "./../styles/filterBestans.less": 58
-    } ],
-    40: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.msn.enabled",
-                name: "Windows Live",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Windows Live Messenger-Namen aus."
-            });
-            if (storage.get("option.posts.filter.msn.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/msnS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    41: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.origin.enabled",
-                name: "Origin",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Originnamen aus."
-            });
-            if (storage.get("option.posts.filter.origin.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Origin: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    42: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.postcount.enabled",
-                name: "Beitragscounter",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Beitragscounter aus."
-            });
-            if (storage.get("option.posts.filter.postcount.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p > a:contains("Beiträge")').parent("p").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    43: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.psnid.enabled",
+                key: "option.profile.filter.psnid.enabled",
                 name: "PSN ID",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
                 description: "Blendet die PSN ID aus."
             });
-            if (storage.get("option.posts.filter.psnid.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("PSN ID: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.psnid.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(PSN ID)").closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    44: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.regdate.enabled",
-                name: "Registrierungsdatum",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet das Registrierungsdatum aus."
-            });
-            if (storage.get("option.posts.filter.regdate.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Registrierungsdatum: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    45: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.skype.enabled",
-                name: "Skype",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Skype-Namen aus."
-            });
-            if (storage.get("option.posts.filter.skype.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/skypeS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    46: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.steam.enabled",
+                key: "option.profile.filter.steam.enabled",
                 name: "Steam",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Steamnamen aus."
+                description: "Blendet den Steam-Namen aus."
             });
-            if (storage.get("option.posts.filter.steam.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("Steam: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.steam.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Steam)").closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    47: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.thanko.enabled",
-                name: "Bedankomat",
+                key: "option.profile.filter.origin.enabled",
+                name: "Origin",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den Bedankomat in Beiträgen aus."
+                description: "Blendet den Origin-Namen aus."
             });
-            if (storage.get("option.posts.filter.thanko.enabled", false) && utils.isTemplate("tplThread")) {
-                $("li.postThankButton, .thankStats").remove();
+            if (storage.get("option.profile.filter.origin.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.dataList > li.formElement > .formFieldLabel:contains(Origin)").closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    48: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.userrank.enabled",
-                name: "Benutzerrang",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Benutzerrang aus."
-            });
-            if (storage.get("option.posts.filter.userrank.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".messageAuthor").each(function() {
-                    $(this).find(".userRank").first().remove();
-                });
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    49: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.usertitle.enabled",
-                name: "Benutzertitel",
-                tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
-                category: "Filter",
-                type: "toggle",
-                "default": false,
-                description: "Blendet den Benutzertitel aus."
-            });
-            if (storage.get("option.posts.filter.usertitle.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".userTitle").remove();
-            }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    50: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
-            register({
-                key: "option.posts.filter.website.enabled",
+                key: "option.profile.filter.website.enabled",
                 name: "Website",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
                 description: "Blendet die Website aus."
             });
-            if (storage.get("option.posts.filter.website.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userMessenger img[src="wcf/icon/websiteS.png"]').closest("li").remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.website.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.twoRows > li > a > .smallFont:contains(Website)").closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    51: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.xblGamertag.enabled",
-                name: "XBL Gamertag",
+                key: "option.profile.filter.icq.enabled",
+                name: "ICQ",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Blendet den XBL Gamertag aus."
+                description: "Blendet die Nummer des ICQ-Accounts aus."
             });
-            if (storage.get("option.posts.filter.xblGamertag.enabled", false) && utils.isTemplate("tplThread")) {
-                $('.userCredits p:contains("XBL Gamertag: ")').remove();
-                $(".userCredits").each(function() {
-                    if ($(this).children().length === 0) {
-                        $(this).remove();
-                    }
-                });
+            if (storage.get("option.profile.filter.icq.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.twoRows > li > a > .smallFont:contains(ICQ)").closest("li").remove();
             }
-        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
-    }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
-    } ],
-    52: [ function(require, module, exports) {
-        (function(global) {
-            "use strict";
-            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
-            var storage = require("../storage");
-            var utils = require("../utils");
-            var register = require("../settings").register;
             register({
-                key: "option.posts.filter.youtube.enabled",
-                name: "Youtube-Videos",
+                key: "option.profile.filter.msn.enabled",
+                name: "Windows Live",
                 tab: "Einstellungen",
-                subtab: "Beiträge & Nachrichten",
+                subtab: "Profil",
                 category: "Filter",
                 type: "toggle",
                 "default": false,
-                description: "Entfernt Youtube-Videos aus Beiträgen und Signaturen und ersetzt sie stattdessen mit dem Link zum jeweiligen Video."
+                description: "Blendet den Windows Live Messenger Namen aus."
             });
-            if (storage.get("option.posts.filter.youtube.enabled", false) && utils.isTemplate("tplThread")) {
-                $(".message:not(.quickReply):not(.deleted) .messageContentInner object").each(function() {
-                    var $object = $(this), videoId = $object.attr("data").substr(-17, 11);
-                    $object.replaceWith('<a href="http://www.youtube.com/watch?v=' + videoId + '" class="externalURL">http://www.youtube.com/watch?v=' + videoId + "</a>");
-                });
+            if (storage.get("option.profile.filter.msn.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.twoRows > li > a > .smallFont:contains(Windows Live)").closest("li").remove();
+            }
+            register({
+                key: "option.profile.filter.skype.enabled",
+                name: "Skype",
+                tab: "Einstellungen",
+                subtab: "Profil",
+                category: "Filter",
+                type: "toggle",
+                "default": false,
+                description: "Blendet den Skype-Namen aus."
+            });
+            if (storage.get("option.profile.filter.skype.enabled", false) && utils.isTemplate("tplUserProfile")) {
+                $("ul.twoRows > li > a > .smallFont:contains(Skype)").closest("li").remove();
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
-    53: [ function(require, module, exports) {
+    35: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3423,12 +3169,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71,
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53,
         templates: "94v5J1"
     } ],
-    54: [ function(require, module, exports) {
+    36: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3455,11 +3201,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 55,
-        "../storage": 56,
-        "../utils": 71
+        "../settings": 37,
+        "../storage": 38,
+        "../utils": 53
     } ],
-    55: [ function(require, module, exports) {
+    37: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3723,13 +3469,13 @@ require = function e(t, n, r) {
             });
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 56,
-        "./styles/options.less": 62,
-        "./ui/notification": 69,
-        "./utils": 71,
+        "./storage": 38,
+        "./styles/options.less": 44,
+        "./ui/notification": 51,
+        "./utils": 53,
         templates: "94v5J1"
     } ],
-    56: [ function(require, module, exports) {
+    38: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3757,7 +3503,7 @@ require = function e(t, n, r) {
             exports.get = get;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {} ],
-    57: [ function(require, module, exports) {
+    39: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3771,7 +3517,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    58: [ function(require, module, exports) {
+    40: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3785,7 +3531,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    59: [ function(require, module, exports) {
+    41: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3799,7 +3545,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    60: [ function(require, module, exports) {
+    42: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3813,7 +3559,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    61: [ function(require, module, exports) {
+    43: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3827,7 +3573,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    62: [ function(require, module, exports) {
+    44: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3841,7 +3587,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    63: [ function(require, module, exports) {
+    45: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3855,7 +3601,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    64: [ function(require, module, exports) {
+    46: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3869,7 +3615,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    65: [ function(require, module, exports) {
+    47: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3883,7 +3629,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    66: [ function(require, module, exports) {
+    48: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3897,7 +3643,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    67: [ function(require, module, exports) {
+    49: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3911,7 +3657,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    68: [ function(require, module, exports) {
+    50: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3925,7 +3671,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    69: [ function(require, module, exports) {
+    51: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -4040,11 +3786,11 @@ require = function e(t, n, r) {
             exports.create = create;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/notification.less": 61,
-        "./../utils": 71,
+        "./../styles/notification.less": 43,
+        "./../utils": 53,
         templates: "94v5J1"
     } ],
-    70: [ function(require, module, exports) {
+    52: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -4245,11 +3991,11 @@ require = function e(t, n, r) {
             exports.prompt = prompt;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/popup.less": 63,
-        "./../utils": 71,
+        "./../styles/popup.less": 45,
+        "./../utils": 53,
         templates: "94v5J1"
     } ],
-    71: [ function(require, module, exports) {
+    53: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -4331,8 +4077,12 @@ require = function e(t, n, r) {
                 return this.getParameterByName("t", $("#userMenuLogout > a").attr("href"));
             };
             exports.getSecurityToken = getSecurityToken;
+            var getWindow = function() {
+                return unsafeWindow || window;
+            };
+            exports.getWindow = getWindow;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 56
+        "./storage": 38
     } ]
-}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 ]);
+}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]);

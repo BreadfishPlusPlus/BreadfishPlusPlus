@@ -2,7 +2,7 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.0-DEV-4",
+  "version": "3.0.0-DEV-5",
   "repository": {
     "type": "git",
     "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
@@ -13,18 +13,6 @@
   },
   "main": "./src/BreadfishPlusPlus.js",
   "license": "GPL v3",
-  "libraries": [
-    "async.min.js",
-    "highlight.min.js",
-    "jquery.min.js",
-    "jquery-ui.min.js",
-    "jquery.lazyload.min.js",
-    "jquery.mousewheel.min.js",
-    "keyboard.min.js",
-    "moment.min.js",
-    "tooltip.min.js",
-    "underscore.min.js"
-  ],
   "browserify-shim": {
     "lib/async": "global:async",
     "lib/jquery": "global:jQuery",
@@ -32,6 +20,7 @@
     "lib/moment": "global:moment",
     "lib/tooltip": "global:tooltip",
     "lib/underscore": "global:_",
+    "lib/desktopnotify": "global:notify",
     "underscore": "global:_"
   },
   "devDependencies": {

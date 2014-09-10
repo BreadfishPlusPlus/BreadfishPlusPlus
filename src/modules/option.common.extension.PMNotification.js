@@ -1,10 +1,11 @@
 /*jslint nomen: true, unparam: true*/
-/*global async*/
+/*global async, unsafeWindow*/
 "use strict";
 
 var $                   = require('lib/jquery');
 var _                   = require('lib/underscore');
 var moment              = require('lib/moment');
+var desktopnotify       = require('lib/desktopnotify');
 var utils               = require('../utils');
 var notification        = require('../ui/notification');
 var storage             = require('../storage');
@@ -74,6 +75,13 @@ generateNotification = function (messages) {
     });
 
     //Desktop
+    if (!utils.getWindow().document.hasFocus()) {
+        desktopnotify.createNotification('Neue nachricht' + (messages.length !== 1 ? 'en!' : '!'), {
+            body: title.slice(0, -1) + ' auf SA-MP.de!',
+            icon: 'http://cdn.breadfishplusplus.eu/img/breadfish48.png',
+            tag: 'b++' + Date.now()
+        });
+    }
 };
 
 checkForNewMessage = function (folderId) {
@@ -116,7 +124,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'Sendet bei einer neuen Privaten Nachricht eine Desktopbenachrichtigung.'
+    'description': 'Sendet <u>zusätzlich</u> zur Alternative PN Benachrichtigung eine Desktopbenachrichtigung.'
 });
 register({
     'key': 'option.common.extension.PMNotification.interval',
@@ -125,6 +133,12 @@ register({
 });
 
 if (storage.get('option.common.extension.PMNotification.enabled', false)) {
+    if (storage.get('option.common.extension.PMNotification.desktop', false)) {
+        if (desktopnotify.permissionLevel() === desktopnotify.PERMISSION_DEFAULT) {
+            desktopnotify.requestPermission();
+        }
+    }
+
     $(document).ready(function () {
         $('#pmOutstandingNotifications').hide();
     });
