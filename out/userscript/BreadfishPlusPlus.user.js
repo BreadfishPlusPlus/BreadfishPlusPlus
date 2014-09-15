@@ -2,7 +2,7 @@
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          Martin Rump
-// @version         3.0.0-DEV-5
+// @version         3.0.0-DEV-6
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
@@ -19,7 +19,7 @@
 // @require         http://cdn.breadfishplusplus.eu/js/tooltip.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/underscore.min.js
 // ==/UserScript==
-var VERSION = "3.0.0-DEV-5";
+var VERSION = "3.0.0-DEV-6";
 require = function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -325,11 +325,34 @@ require = function e(t, n, r) {
             with (obj || {}) {
                 __p += '<div class="container-2 infoBoxts3viewer">\r\n    <div class="containerIcon"> <img src="http://cdn.breadfishplusplus.eu/img/ts3/icon24.png" alt=""></div>\r\n    ';
                 if (ts3data.error) {
-                    __p += '\r\n    <div class="containerContent">\r\n        <div class="error" style="margin-bottom:0;">' + ((__t = ts3data.error) == null ? "" : __t) + "</div>\r\n    </div>\r\n    ";
+                    __p += '\r\n    <div class="containerContent">\r\n        <div class="error" style="margin-bottom:0;">' + ((__t = ts3data.error) == null ? "" : _.escape(__t)) + "</div>\r\n    </div>\r\n    ";
                 } else {
-                    __p += '\r\n    <div class="containerContent">\r\n        <h3><a href="ts3server://' + ((__t = ts3data.address) == null ? "" : __t) + "?port=" + ((__t = ts3data.port) == null ? "" : __t) + "&nickname=" + ((__t = nickname) == null ? "" : __t) + '">' + ((__t = ts3data.name) == null ? "" : __t) + " - " + ((__t = ts3data.welcomemessage) == null ? "" : __t) + '</a></h3>\r\n        <p class="smallFont">\r\n            ' + ((__t = ts3data.plattform) == null ? "" : __t) + " " + ((__t = ts3data.version) == null ? "" : __t) + "\r\n            - Clients: " + ((__t = ts3data.clients.length) == null ? "" : __t) + "/" + ((__t = ts3data.maxclients) == null ? "" : __t) + "\r\n            - Channels: " + ((__t = ts3data.channels) == null ? "" : __t) + "\r\n            - Letzte aktualisierung: " + ((__t = lastUpdateTime) == null ? "" : __t) + '\r\n        </p>\r\n        <p class="smallFont">\r\n        ' + ((__t = _.map(ts3data.clients, function(c) {
-                        return "<span><strong><u>" + c.name + "</u></strong> (" + c.channel + ")</span>";
-                    }).join(", ")) == null ? "" : __t) + "\r\n        </p>\r\n    </div>\r\n    ";
+                    __p += '\r\n    <div class="containerContent">\r\n        <h3><a href="ts3server://' + ((__t = ts3data.address) == null ? "" : _.escape(__t)) + "?port=" + ((__t = ts3data.port) == null ? "" : _.escape(__t)) + "&amp;nickname=" + ((__t = nickname) == null ? "" : _.escape(__t)) + '">' + ((__t = ts3data.name) == null ? "" : _.escape(__t)) + " - " + ((__t = ts3data.welcomemessage) == null ? "" : _.escape(__t)) + '</a> (<a href="http://sa-mp.de/B++/p1064020-/"><small>Teamspeak-Wächter</small></a>)</h3>\r\n        <p class="smallFont">\r\n            ' + ((__t = ts3data.plattform) == null ? "" : _.escape(__t)) + " " + ((__t = ts3data.version) == null ? "" : _.escape(__t)) + "\r\n            - Clients: " + ((__t = ts3data.clients.length) == null ? "" : _.escape(__t)) + "/" + ((__t = ts3data.maxclients) == null ? "" : _.escape(__t)) + "\r\n            - Channels: " + ((__t = ts3data.channels.length) == null ? "" : _.escape(__t)) + "\r\n            - Online seit: " + ((__t = uptime) == null ? "" : _.escape(__t)) + "\r\n            - Letzte aktualisierung: " + ((__t = lastUpdateTime) == null ? "" : _.escape(__t)) + '\r\n        </p>\r\n        <p class="smallFont">\r\n        ' + ((__t = _.map(ts3data.clients, function(cl) {
+                        var user = "", channel = _.find(ts3data.channels, function(ch) {
+                            return ch.id === cl.channel;
+                        });
+                        if (cl.breadfish) {
+                            user += '<a href="http://forum.sa-mp.de/index.php?page=User&amp;userID=' + cl.breadfish.id + '">';
+                            if (cl.breadfish.rank === "Administrator") {
+                                user += '<span style="font-weight:bold; color:#0000A0">' + cl.breadfish.name + "</span>";
+                            } else if (cl.breadfish.rank === "Kon-Administrator") {
+                                user += '<span style="font-weight:bold; color:#0E5C0B">' + cl.breadfish.name + "</span>";
+                            } else if (cl.breadfish.rank === "Super Moderator") {
+                                user += '<span style="font-weight:bold; color:#FF9900">' + cl.breadfish.name + "</span>";
+                            } else if (cl.breadfish.rank === "Moderator") {
+                                user += '<span style="font-weight:bold; color:#a52a2a">' + cl.breadfish.name + "</span>";
+                            } else if (cl.breadfish.rank === "Donator") {
+                                user += '<span style="font-weight:bold; color:#009BFF">' + cl.breadfish.name + "</span>";
+                            } else {
+                                user += '<span style="font-weight:bold;"">' + cl.breadfish.name + "</span>";
+                            }
+                            user += "</a>";
+                        } else {
+                            user += '<span style="font-weight:bold;text-decoration:underline;"">' + cl.name + "</span>";
+                        }
+                        user += " (" + channel.name + ")";
+                        return user;
+                    }).join(", ")) == null ? "" : __t) + '\r\n        </p>\r\n        <p class="smallFont">Legende:\r\n            <span style="font-weight:bold; color:#0000A0">Administratoren</span>, \r\n            <span style="font-weight:bold; color:#0E5C0B">Kon-Administratoren</b>,\r\n            <span style="font-weight:bold; color:#FF9900">Super Moderatoren</span>,\r\n            <span style="font-weight:bold; color:#a52a2a">Moderatoren</span>,\r\n            <span style="color:#009BFF"><b>Donator\'s Club</b></span>,\r\n            <span>Benutzer</span>\r\n        </p>\r\n    </div>\r\n    ';
                 }
                 __p += "\r\n</div>";
             }
@@ -358,7 +381,7 @@ require = function e(t, n, r) {
     3: [ function(require, module, exports) {
         (function(global) {
             console.log("%c B%creadfish%c++ %cv" + VERSION + " %c http://breadfishplusplus.eu ", "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-left:1px solid #343a45;border-bottom:1px solid #343a45", "background:#4d5460;color:#FFF;border-top:1px solid #343a45;border-bottom:1px solid #343a45", "background:#4d5460;color:#ff4136;border-top:1px solid #343a45;border-bottom:1px solid #343a45", "background:#4d5460;color:#FFF;border-top:1px solid #343a45;border-bottom:1px solid #343a45", "border-top:1px solid #343a45;border-bottom:1px solid #343a45;border-right:1px solid #343a45");
-            (typeof window !== "undefined" ? window.moment : typeof global !== "undefined" ? global.moment : null).lang("de");
+            (typeof window !== "undefined" ? window.moment : typeof global !== "undefined" ? global.moment : null).locale("de");
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {} ],
     4: [ function(require, module, exports) {
@@ -449,6 +472,7 @@ require = function e(t, n, r) {
                             var $ts3viewer = $(require("templates").ts3Viewer({
                                 ts3data: data,
                                 nickname: $("#userNote a").text(),
+                                uptime: utils.humanReadableTimespan(data.uptime * 1e3),
                                 lastUpdateTime: utils.formatWBBTimeFormat(moment(data.lastUpdate))
                             }));
                             $ts3viewer.prependTo(".border.infoBox");
@@ -4060,6 +4084,29 @@ require = function e(t, n, r) {
                 return _m.format("DD.MM.YYYY[, ]HH:mm");
             };
             exports.formatWBBTimeFormat = formatWBBTimeFormat;
+            var humanReadableTimespan = function(ms) {
+                var str = "";
+                if (moment.duration(ms).years() > 0) {
+                    str += moment.duration(ms).years() + " Jahr" + (moment.duration(ms).years() === 1 ? "" : "en") + ", ";
+                }
+                if (moment.duration(ms).months() > 0) {
+                    str += moment.duration(ms).months() + " Monat" + (moment.duration(ms).months() === 1 ? "" : "en") + ", ";
+                }
+                if (moment.duration(ms).days() > 0 || str.length > 0) {
+                    str += moment.duration(ms).days() + " Tag" + (moment.duration(ms).days() === 1 ? "" : "en") + ", ";
+                }
+                if (moment.duration(ms).hours() > 0 || str.length > 0) {
+                    str += moment.duration(ms).hours() + " Stunde" + (moment.duration(ms).hours() === 1 ? "" : "n") + ", ";
+                }
+                if (moment.duration(ms).minutes() > 0 || str.length > 0) {
+                    str += moment.duration(ms).minutes() + " Minute" + (moment.duration(ms).minutes() === 1 ? "" : "n") + ", ";
+                }
+                if (moment.duration(ms).seconds() > 0 || str.length > 0) {
+                    str += moment.duration(ms).seconds() + " Sekunde" + (moment.duration(ms).seconds() === 1 ? "" : "n") + ", ";
+                }
+                return str.slice(0, -2);
+            };
+            exports.humanReadableTimespan = humanReadableTimespan;
             var templateName = null;
             var getTemplateName = function() {
                 if (!templateName) {

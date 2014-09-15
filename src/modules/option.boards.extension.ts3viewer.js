@@ -28,6 +28,7 @@ if (storage.get('option.boards.extension.ts3viewer.enabled', false)) {
                 var $ts3viewer = $(require('templates').ts3Viewer({
                     ts3data: data,
                     nickname: $('#userNote a').text(),
+                    uptime: utils.humanReadableTimespan(data.uptime * 1000),
                     lastUpdateTime: utils.formatWBBTimeFormat(moment(data.lastUpdate))
                 }));
                 $ts3viewer.prependTo('.border.infoBox');

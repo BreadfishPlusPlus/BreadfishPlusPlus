@@ -2,7 +2,7 @@
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          Martin Rump
-// @version         3.0.0-DEV-5
+// @version         3.0.0-DEV-6
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*

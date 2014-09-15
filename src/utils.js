@@ -70,6 +70,30 @@ var formatWBBTimeFormat = function (_m) {
 };
 exports.formatWBBTimeFormat = formatWBBTimeFormat;
 
+var humanReadableTimespan = function (ms) {
+    var str = '';
+    if (moment.duration(ms).years() > 0) {
+        str += (moment.duration(ms).years() + ' Jahr' + (moment.duration(ms).years() === 1 ? '' : 'en') + ', ');
+    }
+    if (moment.duration(ms).months() > 0) {
+        str += (moment.duration(ms).months() + ' Monat' + (moment.duration(ms).months() === 1 ? '' : 'en') + ', ');
+    }
+    if (moment.duration(ms).days() > 0 || str.length > 0) {
+        str += (moment.duration(ms).days() + ' Tag' + (moment.duration(ms).days() === 1 ? '' : 'en') + ', ');
+    }
+    if (moment.duration(ms).hours() > 0 || str.length > 0) {
+        str += (moment.duration(ms).hours() + ' Stunde' + (moment.duration(ms).hours() === 1 ? '' : 'n') + ', ');
+    }
+    if (moment.duration(ms).minutes() > 0 || str.length > 0) {
+        str += (moment.duration(ms).minutes() + ' Minute' + (moment.duration(ms).minutes() === 1 ? '' : 'n') + ', ');
+    }
+    if (moment.duration(ms).seconds() > 0 || str.length > 0) {
+        str += (moment.duration(ms).seconds() + ' Sekunde' + (moment.duration(ms).seconds() === 1 ? '' : 'n') + ', ');
+    }
+    return str.slice(0, -2);
+};
+exports.humanReadableTimespan = humanReadableTimespan;
+
 var templateName = null;
 var getTemplateName = function () {
     if (!templateName) {
