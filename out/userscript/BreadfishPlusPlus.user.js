@@ -2,7 +2,7 @@
 // @name            Breadfish++
 // @description     Eine Zusammenfassung von erweiterungen für breadfish.de
 // @author          Martin Rump
-// @version         3.0.0-DEV-6
+// @version         3.0.0-DEV-7
 // @namespace       http://maddin.cc
 // @match           *://forum.sa-mp.de/*
 // @exclude         *://forum.sa-mp.de/acp/*
@@ -14,12 +14,13 @@
 // @require         http://cdn.breadfishplusplus.eu/js/jquery-ui.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.lazyload.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.mousewheel.min.js
+// @require         http://cdn.breadfishplusplus.eu/js/jquery.withinViewport.js
 // @require         http://cdn.breadfishplusplus.eu/js/keyboard.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/moment-with-locales.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/tooltip.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/underscore.min.js
 // ==/UserScript==
-var VERSION = "3.0.0-DEV-6";
+var VERSION = "3.0.0-DEV-7";
 require = function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -414,9 +415,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     5: [ function(require, module, exports) {
         (function(global) {
@@ -440,9 +441,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     6: [ function(require, module, exports) {
         (function(global) {
@@ -485,9 +486,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
     7: [ function(require, module, exports) {
@@ -512,9 +513,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     8: [ function(require, module, exports) {
         (function(global) {
@@ -538,9 +539,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     9: [ function(require, module, exports) {
         (function(global) {
@@ -564,9 +565,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     10: [ function(require, module, exports) {
         (function(global) {
@@ -596,9 +597,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     11: [ function(require, module, exports) {
         (function(global) {
@@ -623,9 +624,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "./../styles/headerfixBugfix.less": 41
+        "../settings": 38,
+        "../storage": 39,
+        "./../styles/headerfixBugfix.less": 42
     } ],
     12: [ function(require, module, exports) {
         (function(global) {
@@ -660,9 +661,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     13: [ function(require, module, exports) {
         (function(global) {
@@ -688,10 +689,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
-        "./../styles/tabmenuBugfix.less": 48
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
+        "./../styles/tabmenuBugfix.less": 49
     } ],
     14: [ function(require, module, exports) {
         (function(global) {
@@ -823,10 +824,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../ui/notification": 51,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../ui/notification": 52,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
     15: [ function(require, module, exports) {
@@ -1036,10 +1037,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../ui/notification": 51,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../ui/notification": 52,
+        "../utils": 54
     } ],
     16: [ function(require, module, exports) {
         (function(global) {
@@ -1238,10 +1239,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
-        "./../styles/chat.less": 39,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
+        "./../styles/chat.less": 40,
         templates: "94v5J1"
     } ],
     17: [ function(require, module, exports) {
@@ -1475,11 +1476,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../ui/notification": 51,
-        "../ui/popup": 52,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../ui/notification": 52,
+        "../ui/popup": 53,
+        "../utils": 54
     } ],
     18: [ function(require, module, exports) {
         (function(global) {
@@ -1528,10 +1529,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
-        "./../styles/reportReasons.less": 46,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
+        "./../styles/reportReasons.less": 47,
         templates: "94v5J1"
     } ],
     19: [ function(require, module, exports) {
@@ -1584,9 +1585,9 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     20: [ function(require, module, exports) {
         (function(global) {
@@ -1633,10 +1634,10 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
-        "./../styles/tooltip.less": 49
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
+        "./../styles/tooltip.less": 50
     } ],
     21: [ function(require, module, exports) {
         (function(global) {
@@ -1677,11 +1678,115 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
     22: [ function(require, module, exports) {
+        (function(global) {
+            "use strict";
+            var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
+            var KeyboardJS = typeof window !== "undefined" ? window.KeyboardJS : typeof global !== "undefined" ? global.KeyboardJS : null;
+            var storage = require("../storage");
+            var utils = require("../utils");
+            var register = require("../settings").register;
+            register({
+                key: "option.keyboard.post.previous",
+                name: "Vorheriger Beitrag",
+                tab: "Tastaturnavigation",
+                subtab: "Themen",
+                category: "Beiträge",
+                type: "keyboard",
+                "default": -1,
+                description: "Zum vorherigen Beitrag scrollen"
+            });
+            register({
+                key: "option.keyboard.post.next",
+                name: "Nächster Beitrag",
+                tab: "Tastaturnavigation",
+                subtab: "Themen",
+                category: "Beiträge",
+                type: "keyboard",
+                "default": -1,
+                description: "Zum nächsten Beitrag scrollen"
+            });
+            var getPostInViewport = function() {
+                var $messages = $(".message:not(.quickReply):not(.deleted):not(.messageMinimized)"), winScroll = $(document).scrollTop(), $elements;
+                $elements = $.grep($messages, function(item) {
+                    return $(item).position().top <= winScroll;
+                });
+                if ($elements.length === 0) {
+                    return $messages.first();
+                }
+                return $($elements).last();
+            };
+            var getPrevPost = function($element) {
+                var $list = $(".message:not(.quickReply):not(.deleted):not(.messageMinimized)"), index = $list.index($element);
+                if (index === 0) {
+                    return $element;
+                }
+                return $list.eq(index - 1);
+            };
+            var getNextPost = function($element) {
+                var $list = $(".message:not(.quickReply):not(.deleted):not(.messageMinimized)"), index = $list.index($element);
+                if (index === $list.length - 1) {
+                    return $element;
+                }
+                return $list.eq(index + 1);
+            };
+            if (utils.isTemplate("tplThread")) {
+                var keyPrevPost = storage.get("option.keyboard.post.previous", -1), keyNextPost = storage.get("option.keyboard.post.next", -1), keyName;
+                $(window).bind("resize scroll", function() {
+                    $(".message:not(.quickReply):not(.deleted):not(.messageMinimized)").removeClass("marked");
+                    var $element = getPostInViewport();
+                    $element.addClass("marked");
+                });
+                if (keyPrevPost !== -1) {
+                    keyName = KeyboardJS.key.name(keyPrevPost)[0];
+                    utils.log.debug("KeyboardNav", "option_keyboard_prev_post: " + keyName + " (" + keyPrevPost + ")");
+                    KeyboardJS.on(keyName, function(event) {
+                        if (event.target.tagName.toUpperCase() !== "TEXTAREA" && event.target.tagName.toUpperCase() !== "INPUT") {
+                            event.preventDefault();
+                            utils.log.debug("KeyboardNav", "^ KeyPressed: " + event.keyIdentifier + " (" + event.keyCode + ")");
+                            var $element = getPostInViewport();
+                            if ($element.length === 0) {
+                                return;
+                            }
+                            if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
+                                $element = getPrevPost($element);
+                                utils.log.debug("prevElement", $element[0]);
+                            }
+                            $("html, body").stop(true, true).animate({
+                                scrollTop: $element.offset().top
+                            }, 500);
+                        }
+                    });
+                }
+                if (keyNextPost !== -1) {
+                    keyName = KeyboardJS.key.name(keyNextPost)[0];
+                    utils.log.debug("KeyboardNav", "option_keyboard_next_post: " + keyName + " (" + keyNextPost + ")");
+                    KeyboardJS.on(keyName, function(event) {
+                        if (event.target.tagName.toUpperCase() !== "TEXTAREA" && event.target.tagName.toUpperCase() !== "INPUT") {
+                            event.preventDefault();
+                            utils.log.debug("KeyboardNav", "v KeyPressed: " + event.keyIdentifier + " (" + event.keyCode + ")");
+                            var $element = getPostInViewport();
+                            if (Math.round($element.offset().top) > Math.round($(document).scrollTop()) - 5 && Math.round($element.offset().top) < Math.round($(document).scrollTop()) + 5) {
+                                $element = getNextPost($element);
+                            }
+                            $("html, body").stop().animate({
+                                scrollTop: $element.offset().top + 5
+                            }, 500);
+                        }
+                    });
+                }
+            }
+        }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
+    }, {
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
+    } ],
+    23: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -1949,12 +2054,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    23: [ function(require, module, exports) {
+    24: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2098,12 +2203,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    24: [ function(require, module, exports) {
+    25: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2189,12 +2294,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    25: [ function(require, module, exports) {
+    26: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2228,12 +2333,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    26: [ function(require, module, exports) {}, {} ],
-    27: [ function(require, module, exports) {
+    27: [ function(require, module, exports) {}, {} ],
+    28: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2262,11 +2367,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    28: [ function(require, module, exports) {
+    29: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2303,13 +2408,13 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../styles/shortUrl.less": 47,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../styles/shortUrl.less": 48,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    29: [ function(require, module, exports) {
+    30: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2331,11 +2436,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    30: [ function(require, module, exports) {
+    31: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2377,12 +2482,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../styles/highlightjs.less": 42,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../styles/highlightjs.less": 43,
+        "../utils": 54
     } ],
-    31: [ function(require, module, exports) {
+    32: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2471,11 +2576,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    32: [ function(require, module, exports) {
+    33: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2544,13 +2649,13 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../styles/youtubePreview.less": 50,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../styles/youtubePreview.less": 51,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    33: [ function(require, module, exports) {
+    34: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -2870,12 +2975,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
-        "./../styles/filterBestans.less": 40
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
+        "./../styles/filterBestans.less": 41
     } ],
-    34: [ function(require, module, exports) {
+    35: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3163,11 +3268,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    35: [ function(require, module, exports) {
+    36: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3193,12 +3298,12 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53,
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54,
         templates: "94v5J1"
     } ],
-    36: [ function(require, module, exports) {
+    37: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3225,11 +3330,11 @@ require = function e(t, n, r) {
             }
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "../settings": 37,
-        "../storage": 38,
-        "../utils": 53
+        "../settings": 38,
+        "../storage": 39,
+        "../utils": 54
     } ],
-    37: [ function(require, module, exports) {
+    38: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -3493,13 +3598,13 @@ require = function e(t, n, r) {
             });
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 38,
-        "./styles/options.less": 44,
-        "./ui/notification": 51,
-        "./utils": 53,
+        "./storage": 39,
+        "./styles/options.less": 45,
+        "./ui/notification": 52,
+        "./utils": 54,
         templates: "94v5J1"
     } ],
-    38: [ function(require, module, exports) {
+    39: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3527,7 +3632,7 @@ require = function e(t, n, r) {
             exports.get = get;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {} ],
-    39: [ function(require, module, exports) {
+    40: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3541,7 +3646,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    40: [ function(require, module, exports) {
+    41: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3555,7 +3660,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    41: [ function(require, module, exports) {
+    42: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3569,7 +3674,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    42: [ function(require, module, exports) {
+    43: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3583,7 +3688,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    43: [ function(require, module, exports) {
+    44: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3597,7 +3702,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    44: [ function(require, module, exports) {
+    45: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3611,7 +3716,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    45: [ function(require, module, exports) {
+    46: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3625,7 +3730,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    46: [ function(require, module, exports) {
+    47: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3639,7 +3744,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    47: [ function(require, module, exports) {
+    48: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3653,7 +3758,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    48: [ function(require, module, exports) {
+    49: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3667,7 +3772,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    49: [ function(require, module, exports) {
+    50: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3681,7 +3786,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    50: [ function(require, module, exports) {
+    51: [ function(require, module, exports) {
         (function() {
             var head = document.getElementsByTagName("head")[0];
             style = document.createElement("style");
@@ -3695,7 +3800,7 @@ require = function e(t, n, r) {
             head.appendChild(style);
         })();
     }, {} ],
-    51: [ function(require, module, exports) {
+    52: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -3810,11 +3915,11 @@ require = function e(t, n, r) {
             exports.create = create;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/notification.less": 43,
-        "./../utils": 53,
+        "./../styles/notification.less": 44,
+        "./../utils": 54,
         templates: "94v5J1"
     } ],
-    52: [ function(require, module, exports) {
+    53: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var $ = typeof window !== "undefined" ? window.jQuery : typeof global !== "undefined" ? global.jQuery : null;
@@ -4015,11 +4120,11 @@ require = function e(t, n, r) {
             exports.prompt = prompt;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./../styles/popup.less": 45,
-        "./../utils": 53,
+        "./../styles/popup.less": 46,
+        "./../utils": 54,
         templates: "94v5J1"
     } ],
-    53: [ function(require, module, exports) {
+    54: [ function(require, module, exports) {
         (function(global) {
             "use strict";
             var _ = typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null;
@@ -4130,6 +4235,6 @@ require = function e(t, n, r) {
             exports.getWindow = getWindow;
         }).call(this, typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {
-        "./storage": 38
+        "./storage": 39
     } ]
-}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]);
+}, {}, [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ]);

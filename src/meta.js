@@ -14,6 +14,7 @@
 // @require         http://cdn.breadfishplusplus.eu/js/jquery-ui.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.lazyload.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.mousewheel.min.js
+// @require         http://cdn.breadfishplusplus.eu/js/jquery.withinViewport.js
 // @require         http://cdn.breadfishplusplus.eu/js/keyboard.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/moment-with-locales.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/tooltip.min.js
