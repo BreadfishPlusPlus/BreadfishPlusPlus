@@ -1,10 +1,5 @@
-/*jslint nomen: true*/
-"use strict";
-
-var _ = require('lib/underscore');
-
 if (!window.localStorage) {
-    throw new Error("Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage");
+    throw new Error('Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage');
 }
 
 var get, set, setDefault;

@@ -1,8 +1,7 @@
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.imageResize.enabled',
@@ -31,6 +30,6 @@ if (storage.get('option.posts.extension.imageResize.enabled', false) && utils.is
             $elem.removeAttr('width');
         }
 
-        $elem.css('height', Math.max(STEPS, $elem.height() + zoom) + "px");
+        $elem.css('height', Math.max(STEPS, $elem.height() + zoom) + 'px');
     });
 }

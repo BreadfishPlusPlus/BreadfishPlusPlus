@@ -1,8 +1,5 @@
-/*jslint nomen: true*/
-"use strict";
 var $           = require('lib/jquery');
 var _           = require('lib/underscore');
-var utils       = require('./../utils');
 
 require('./../styles/popup.less');
 
@@ -43,7 +40,7 @@ var message = function (msg, type) {
 
     $modal.fadeIn(150, function () {
         $modal.find('.bpp-popup-message').animate({
-            top: "+=40px",
+            top: '+=40px',
             opacity: 1
         }, 150, function () {
             $modal.trigger('focus');
@@ -54,7 +51,7 @@ var message = function (msg, type) {
         $modal.off('keyup', modalEscapePressed);
         $modal.off('click', 'button', modalCloseButtonClick);
         $modal.find('.bpp-popup-message').animate({
-            top: "-=40px",
+            top: '-=40px',
             opacity: 0
         }, 150, function () {
             $modal.fadeOut(150, function () {
@@ -90,7 +87,7 @@ var confirm = function (question, leftLabel, rightLabel, fn) {
 
     $modal.fadeIn(150, function () {
         $modal.find('.bpp-popup-confirm').animate({
-            top: "+=40px",
+            top: '+=40px',
             opacity: 1
         }, 150, function () {
             $modal.trigger('focus');
@@ -103,7 +100,7 @@ var confirm = function (question, leftLabel, rightLabel, fn) {
         $modal.off('click', '.confirm-button-first', clickLeftButton);
         $modal.off('click', '.confirm-button-last', clickRightButton);
         $modal.find('.bpp-popup-confirm').animate({
-            top: "-=40px",
+            top: '-=40px',
             opacity: 0
         }, 150, function () {
             $modal.fadeOut(150, function () {
@@ -171,7 +168,7 @@ var prompt = function (options, fn) {
 
     $modal.fadeIn(150, function () {
         $modal.find('.bpp-popup-prompt').animate({
-            top: "+=40px",
+            top: '+=40px',
             opacity: 1
         }, 150, function () {
             $modal.trigger('focus');
@@ -185,7 +182,7 @@ var prompt = function (options, fn) {
         $modal.off('click', '.prompt-button-last', clickRightButton);
         $modal.off('keypress', '.prompt-input', submitInput);
         $modal.find('.bpp-popup-prompt').animate({
-            top: "-=40px",
+            top: '-=40px',
             opacity: 0
         }, 150, function () {
             $modal.fadeOut(150, function () {

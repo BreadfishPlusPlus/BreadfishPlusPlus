@@ -1,6 +1,3 @@
-/*jslint nomen: true*/
-/*globals Blob, FileReader, VERSION*/
-"use strict";
 var $               = require('lib/jquery');
 var _               = require('lib/underscore');
 var KeyboardJS      = require('lib/keyboard');
@@ -56,7 +53,7 @@ showOptions = function () {
         optionsObject: optionsObject
     }));
 
-    $optionsFrame.insertAfter("#headerContainer");
+    $optionsFrame.insertAfter('#headerContainer');
     $optionsFrame.find('li[data-tab="' + parsedHash.tab + '"]').addClass('activeTabMenu');
     $optionsFrame.find('ul[data-tab="' + parsedHash.tab + '"]').show();
     $optionsFrame.find('li[data-subtab="' + parsedHash.subtab + '"]').addClass('activeSubTabMenu');
@@ -76,7 +73,7 @@ parseHash = function (optionsObject) {
     }, s;
 
     if (location.hash.length > 2) {
-        s = location.hash.substr(2).split("/");
+        s = location.hash.substr(2).split('/');
         if (s.length > 1 && s[0] === 'breadfishplusplus' && s[1] === '!') {
             if (s.length > 2 && s[2].length > 0) {
                 ret.tab = s[2];
@@ -184,6 +181,8 @@ var showSaveBadge = function (elem) {
 $(document).ready(function () {
     require('./styles/options.less');
 
+    console.log('pew');
+
     var $userMenuItem;
 
     $userMenuItem = $(require('templates').userMenuItem());
@@ -249,7 +248,7 @@ $(document).ready(function () {
         _.each(optionsArray, function (opt) {
             obj[opt.key] = storage.get(opt.key, opt.default);
         });
-        $(this).attr('href', url.createObjectURL(new Blob([Object.toJSON(obj, null, 4)], {type: "application/json"})));
+        $(this).attr('href', url.createObjectURL(new Blob([Object.toJSON(obj, null, 4)], {type: 'application/json'})));
     });
     $(document).on('change', '.bpp-importOptions', function (event) {
         if (event.target.files.length > 0) {
@@ -280,7 +279,7 @@ $(document).ready(function () {
 });
 
 var register = function (block) {
-    utils.log.debug('settings.register', block);
+    //utils.log.debug('settings.register', block);
     storage.setDefault(block.key, block.default);
     optionsArray.push(block);
     if (isOptionsFrameOpen) {

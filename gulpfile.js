@@ -1,19 +1,16 @@
-/*jslint node: true, stupid: true */
-"use strict";
-
 var gulp        = require('gulp');
 var browserify  = require('browserify');
 var source      = require('vinyl-source-stream');
 var uglify      = require('gulp-uglify');
 var fs          = require('fs');
 var header      = require('gulp-header');
-var rename      = require("gulp-rename");
-var ejs         = require("gulp-ejs");
+var rename      = require('gulp-rename');
+var ejs         = require('gulp-ejs');
 var insert      = require('gulp-insert');
+var concat      = require('gulp-concat');
 var pkg         = require('./package.json');
 var html2tpl    = require('gulp-html2tpl');
-var concat      = require('gulp-concat');
-var notify      = require("gulp-notify");
+var notify      = require('gulp-notify');
 
 
 gulp.task('templates', function () {
@@ -94,7 +91,7 @@ gulp.task('userscript-dev', ['beautify'], function () {
         }))
         .pipe(rename('BreadfishPlusPlus.user.js'))
         .pipe(gulp.dest('./out/userscript/'))
-        .pipe(notify("BreadfishPlusPlus.user.js generated"));
+        .pipe(notify('BreadfishPlusPlus.user.js generated'));
 });
 
 gulp.task('userscript', ['uglify'], function () {
@@ -116,7 +113,7 @@ gulp.task('userscript', ['uglify'], function () {
         }))
         .pipe(rename('BreadfishPlusPlus.user.js'))
         .pipe(gulp.dest('./out/userscript/'))
-        .pipe(notify("BreadfishPlusPlus.user.js generated"));
+        .pipe(notify('BreadfishPlusPlus.user.js generated'));
 });
 
 gulp.task('default', ['watch']);

@@ -1,8 +1,7 @@
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.boards.extension.lastPosts.count',
@@ -21,7 +20,7 @@ if (utils.isTemplate('tplIndex')) {
     var lastPostsCount = storage.get('option.boards.extension.lastPosts.count', 10);
     if (lastPostsCount > 0) {
         $('.top5box .tableList tr').slice(lastPostsCount, 10).remove();
-        $('.top5box .containerContent').html('<img src="icon/postS.png" alt=""> Die letzten ' + lastPostsCount + ' Beiträge');
+        $('.top5box .containerContent').html('<img src="icon/postS.png"> Die letzten ' + lastPostsCount + ' Beiträge');
     } else {
         $('.top5box').remove();
     }

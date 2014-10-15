@@ -1,9 +1,7 @@
-/*jslint nomen: true*/
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.signatureHeight.enabled',

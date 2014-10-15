@@ -1,9 +1,7 @@
-/*global io */
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.common.extension.chat.enabled',
@@ -32,9 +30,9 @@ var getuserInfo = function (callback) {
     var userinfo = {
         name: null,
         avatar: null,
-        userId: utils.getParameterByName('userID', $("#userNote > a").attr('href'))
+        userId: utils.getParameterByName('userID', $('#userNote > a').attr('href'))
     };
-    $.get($("#userNote > a").attr('href')).done(function (data) {
+    $.get($('#userNote > a').attr('href')).done(function (data) {
         var $profile = $(data);
         userinfo.name = $profile.find('.userName span').text();
         userinfo.avatar = 'http://forum.sa-mp.de/' + $profile.find('.userAvatar a img').attr('src');
@@ -110,9 +108,11 @@ var connectToSocket = function (userinfo) {
             } else {
                 addMessage({type: 'system', message: 'Du wurdest im Chat gebannt. Du kannst keine Nachrichten verfassen.'});
             }
+            $('#bpp-chat').addClass('banned');
         });
         socket.on('unbanned', function (name) {
             addMessage({type: 'system', message: 'Du wurdest von <b>' + name + '</b> entbannt. Du kannst nun wieder Nachrichten im Chat verfassen.'});
+            $('#bpp-chat').removeClass('banned');
         });
     }).fail(function (jqXHR) {
         utils.log.error('Konnte socket.io Bilbiothek nicht laden.', jqXHR.status, jqXHR.statusText);
@@ -125,7 +125,7 @@ var createChat = function () {
         small: storage.get('option.common.extension.chat.small', false)
     }));
 
-    $chat.insertAfter(".mainHeadline");
+    $chat.insertAfter('.mainHeadline');
 
     $messages = $chat.find('.bpp-chat-messages');
 

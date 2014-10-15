@@ -1,13 +1,10 @@
-/*jslint nomen: true, unparam: true*/
-/*global async*/
-"use strict";
 var $               = require('lib/jquery');
 var _               = require('lib/underscore');
 var utils           = require('../utils');
 var storage         = require('../storage');
 var popup           = require('../ui/popup');
 var notification    = require('../ui/notification');
-var register        = require("../settings").register;
+var register    = require('../settings').register;
 
 var Nick = {
     get: {
@@ -222,9 +219,9 @@ var setupNickEdit = function () {
                 if (input.length > 0) {
                     if (input !== name) {
                         nickO = {
-                            "name": name,
-                            "nick": input,
-                            "userId": userId
+                            'name': name,
+                            'nick': input,
+                            'userId': userId
                         };
                         Nick.set(nickO);
                         updateProfileNickname(name, input);
@@ -274,10 +271,10 @@ register({
 if (storage.get('option.common.extension.nicknames.enabled', false)) {
     if (utils.isTemplate('tplUserProfile')) {
         setupNickEdit();
-        var name = $('.userName > span').text();
-        var nickO = Nick.get.name(name);
+        var n = $('.userName > span').text();
+        var nickO = Nick.get.name(n);
         if (nickO) {
-            updateProfileNickname(name, nickO.nick);
+            updateProfileNickname(n, nickO.nick);
         }
     } else if (utils.isTemplate('tplThread')) {
         updateThreadNicknames();

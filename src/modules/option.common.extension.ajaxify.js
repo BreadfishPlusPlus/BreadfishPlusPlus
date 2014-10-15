@@ -1,10 +1,8 @@
-"use strict";
-
 var $               = require('lib/jquery');
 var storage         = require('../storage');
 var utils           = require('../utils');
 var notification    = require('../ui/notification');
-var register        = require("../settings").register;
+var register    = require('../settings').register;
 
 var subscribeThread = function () {
     console.log('subscribeThread', $('.pageOptions > a:first-child'));

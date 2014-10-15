@@ -1,8 +1,7 @@
-"use strict";
 var $           = require('lib/jquery');
 var utils       = require('../utils');
 var storage     = require('../storage');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.common.extension.reportReasons.enabled',

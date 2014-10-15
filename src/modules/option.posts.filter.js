@@ -1,8 +1,7 @@
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 //Da die Filter fast ausnahmslos einzeiler sind, ist es einfacher diese in eine Datei zusammen zu fassen.
 

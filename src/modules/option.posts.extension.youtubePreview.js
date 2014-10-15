@@ -1,9 +1,8 @@
-"use strict";
 var $           = require('lib/jquery');
 var moment      = require('lib/moment');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.youtubePreview.enabled',
@@ -22,18 +21,17 @@ register({
 });
 if (storage.get('option.posts.extension.youtubePreview.enabled', false) && utils.isTemplate('tplThread') && !storage.get('option.posts.filter.youtube.enabled', false)) {
     require('../styles/youtubePreview.less');
-    var mNames = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-        width = $('.message:not(.quickReply):not(.deleted) .messageBody > div').first().width(),
+    var width = $('.message:not(.quickReply):not(.deleted) .messageBody > div').first().width(),
         formatTime,
         pad;
     pad = function (num) {
-        var s = "0" + num;
+        var s = '0' + num;
         return s.substr(s.length - 2);
     };
-    formatTime = function (sec_num) {
-        var hours = Math.floor(sec_num / 3600),
-            minutes = Math.floor((sec_num - (hours * 3600)) / 60),
-            seconds = sec_num - (hours * 3600) - (minutes * 60),
+    formatTime = function (secNum) {
+        var hours = Math.floor(secNum / 3600),
+            minutes = Math.floor((secNum - (hours * 3600)) / 60),
+            seconds = secNum - (hours * 3600) - (minutes * 60),
             time = '';
 
         if (hours > 0) {
@@ -57,9 +55,9 @@ if (storage.get('option.posts.extension.youtubePreview.enabled', false) && utils
                 'thumbnail': data.entry.media$group.media$thumbnail[0].url,
                 'title': data.entry.title.$t,
                 'author': data.entry.author[0].name.$t,
-                "uploadTime": moment(data.entry.media$group.yt$uploaded.$t).format("dddd, Do MMM YYYY, HH:mm [Uhr]"),
+                'uploadTime': moment(data.entry.media$group.yt$uploaded.$t).format('dddd, Do MMM YYYY, HH:mm [Uhr]'),
                 'length': formatTime(data.entry.media$group.yt$duration.seconds),
-                'clicks': data.entry.yt$statistics.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
+                'clicks': data.entry.yt$statistics.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
                 'videoId': videoId
             }));
             $object.replaceWith($preview);

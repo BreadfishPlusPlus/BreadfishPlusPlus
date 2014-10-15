@@ -1,7 +1,3 @@
-/*jslint nomen: true, unparam: true*/
-/*global async, unsafeWindow*/
-"use strict";
-
 var $                   = require('lib/jquery');
 var _                   = require('lib/underscore');
 var moment              = require('lib/moment');
@@ -9,7 +5,7 @@ var desktopnotify       = require('lib/desktopnotify');
 var utils               = require('../utils');
 var notification        = require('../ui/notification');
 var storage             = require('../storage');
-var register            = require("../settings").register;
+var register            = require('../settings').register;
 var messageCache        = [];
 var forbiddenFolders    = [
     'http://forum.sa-mp.de/index.php?page=PMList&folderID=0', //Posteingang
@@ -43,7 +39,7 @@ getMessagesFromDoc = function (doc, fn) {
                 'title': $element.find('a').text(),
                 'text': $element.attr('title'),
                 'author': $tr.find('.columnAuthor p').text().trim(),
-                'authorID': parseInt(utils.getParameterByName('userID', $tr.find('.columnAuthor a').attr('href')) || "-1", 10),
+                'authorID': parseInt(utils.getParameterByName('userID', $tr.find('.columnAuthor a').attr('href')) || '-1', 10),
                 'moment': utils.parseWBBTimeFormat($tr.find('.columnDate > p').text().split('\n')[0].trim()),
                 'id': pmId
             });
@@ -76,16 +72,19 @@ generateNotification = function (messages) {
 
     //Desktop
     if (!utils.getWindow().document.hasFocus()) {
-        desktopnotify.createNotification('Neue nachricht' + (messages.length !== 1 ? 'en!' : '!'), {
+        var n = desktopnotify.createNotification('Neue nachricht' + (messages.length !== 1 ? 'en!' : '!'), {
             body: title.slice(0, -1) + ' auf SA-MP.de!',
             icon: 'http://cdn.breadfishplusplus.eu/img/breadfish48.png',
             tag: 'b++' + Date.now()
+        });
+        $(window).focus(function() {
+            n.close();
         });
     }
 };
 
 checkForNewMessage = function (folderId) {
-    $.get("http://forum.sa-mp.de/index.php?page=PMList&folderID=" + folderId, function (data) {
+    $.get('http://forum.sa-mp.de/index.php?page=PMList&folderID=' + folderId, function (data) {
         var folders = [];
         $(data).find('.pmFolders .pageMenu ul li a').each(function () {
             if (forbiddenFolders.indexOf($(this).attr('href')) === -1) {

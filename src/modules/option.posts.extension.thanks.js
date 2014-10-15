@@ -1,10 +1,8 @@
-/*jslint nomen: true*/
-"use strict";
 var $           = require('lib/jquery');
 var _           = require('lib/underscore');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.thanks.enabled',
@@ -27,13 +25,13 @@ if (storage.get('option.posts.extension.thanks.enabled', false) && utils.isTempl
     var users = [], setSidebarThanks, getThanks;
 
     setSidebarThanks = function (userID, thanks) {
-        var $bpp_thanks = $('.bpp_thanks[data-userID="' + userID + '"]');
+        var $bppThanks = $('.bpp_thanks[data-userID="' + userID + '"]');
         if (thanks === -2) {
-            $bpp_thanks.parent('p').hide();
+            $bppThanks.parent('p').hide();
         } else if (thanks === -1) {
-            $bpp_thanks.html('<img src="icon/thankS.png" alt="" /> <img src="icon/thankLoadS.gif" alt="" />');
+            $bppThanks.html('<img src="icon/thankS.png" alt="" /> <img src="icon/thankLoadS.gif" alt="" />');
         } else {
-            $bpp_thanks.html('<img src="icon/thankS.png" alt="" /> ' + thanks);
+            $bppThanks.html('<img src="icon/thankS.png" alt="" /> ' + thanks);
         }
     };
     getThanks = function (userID, callback) {

@@ -12,7 +12,6 @@
 // @require         http://cdn.breadfishplusplus.eu/js/highlight.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery-ui.min.js
-// @require         http://cdn.breadfishplusplus.eu/js/jquery.lazyload.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.mousewheel.min.js
 // @require         http://cdn.breadfishplusplus.eu/js/jquery.withinViewport.js
 // @require         http://cdn.breadfishplusplus.eu/js/keyboard.min.js

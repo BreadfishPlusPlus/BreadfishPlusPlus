@@ -1,0 +1,5 @@
+<% _.each(quotes, function (q) { %>
+    <p>
+        <a href="index.php?page=User&amp;userID=<%= q.authorId %>"><%= q.author %></a> hat dich im Thema <a href="<%= q.url %>"><%= q.thread %></a> zitiert (<%= q.dateStr %>)
+    </p>
+<% }); %>

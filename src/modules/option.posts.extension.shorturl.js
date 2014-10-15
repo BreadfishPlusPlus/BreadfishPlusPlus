@@ -1,8 +1,7 @@
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.shorturl.enabled',
@@ -20,7 +19,7 @@ if (storage.get('option.posts.extension.shorturl.enabled', false) && utils.isTem
         var $elem = $(this),
             id = $elem.attr('id').substr(7);
         $elem.find('.messageFooterRight .smallButtons > ul').append(require('templates').shortUrlButton({
-            "url": 'http://sa-mp.de/B++/p' + id + '-/'
+            'url': 'http://sa-mp.de/B++/p' + id + '-/'
         }));
     });
     $('.bpp-shorturl').click(function (e) {

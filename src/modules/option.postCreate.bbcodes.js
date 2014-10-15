@@ -1,11 +1,7 @@
-/*jslint nomen:true */
-"use strict";
-
 var $           = require('lib/jquery');
-var _           = require('lib/underscore');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 var CDN_PATH = 'http://cdn.breadfishplusplus.eu/';
 
@@ -164,21 +160,21 @@ if (utils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit', '
     if (storage.get('option.postCreate.bbcode.email', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'email',
-            img: 'http://cdn.breadfishplusplus.eu/img/bbcodes/email.png',
+            img: CDN_PATH + 'img/bbcodes/email.png',
             title: 'Email einfügen'
         }));
     }
     if (storage.get('option.postCreate.bbcode.sub', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'sub',
-            img: 'http://cdn.breadfishplusplus.eu/img/bbcodes/sub.png',
+            img: CDN_PATH + 'img/bbcodes/sub.png',
             title: 'Text tiefstellen'
         }));
     }
     if (storage.get('option.postCreate.bbcode.sup', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'sup',
-            img: 'http://cdn.breadfishplusplus.eu/img/bbcodes/sup.png',
+            img: CDN_PATH + 'img/bbcodes/sup.png',
             title: 'Text tiefstellen'
         }));
     }

@@ -1,7 +1,6 @@
-"use strict";
 var $           = require('lib/jquery');
 var storage     = require('../storage');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.common.bugfix.headerFix.enabled',

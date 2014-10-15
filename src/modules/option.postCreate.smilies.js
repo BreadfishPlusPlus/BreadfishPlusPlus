@@ -1,10 +1,8 @@
-/*jslint nomen:true */
-"use strict";
 var $           = require('lib/jquery');
 var _           = require('lib/underscore');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 var CDN_PATH = 'http://cdn.breadfishplusplus.eu/';
 
@@ -60,7 +58,7 @@ var loadSmilies = function (smilieData) {
 
     _.each(smilieData, function (category, index) {
         win.smileyCategories.set(index + 2, category.name + ' (' + category.smilies.length + ')');
-        category.fullPath = CDN_PATH + "img/smilies" + category.path;
+        category.fullPath = CDN_PATH + 'img/smilies' + category.path;
         $smileyContainer.append(require('templates').smileyContainer({
             index: index + 2,
             category: category
@@ -83,8 +81,8 @@ var loadSmilies = function (smilieData) {
 };
 
 if (utils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit'])) {
-    if (storage.get('option.postCreate.smilies.rage', false) || storage.get('option.postCreate.smilies.skype', false)
-            || storage.get('option.postCreate.smilies.yolks', false) || storage.get('option.postCreate.smilies.emoji', false)) {
+    if (storage.get('option.postCreate.smilies.rage', false) || storage.get('option.postCreate.smilies.skype', false) ||
+        storage.get('option.postCreate.smilies.yolks', false) || storage.get('option.postCreate.smilies.emoji', false)) {
         $.getJSON('https://api.github.com/repos/BreadfishPlusPlus/cdn.breadfishplusplus.eu/contents/img/smilies/smilies.json').done(function (data) {
             loadSmilies(JSON.parse(window.atob(data.content)));
         }).fail(function (jqXHR) {

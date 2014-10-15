@@ -1,10 +1,7 @@
-/*jslint nomen:true*/
-"use strict";
 var $           = require('lib/jquery');
-var _           = require('lib/underscore');
 var storage     = require('../storage');
 var utils       = require('../utils');
-var register    = require("../settings").register;
+var register    = require('../settings').register;
 
 register({
     'key': 'option.postCreate.extension.nickautocomplete',
@@ -149,9 +146,9 @@ if (storage.get('option.postCreate.extension.nickautocomplete', false) && utils.
             }, 'xml').done(function (xmlDoc) {
                 nickCompletionlist = $.map($(xmlDoc).find('user').toArray(), function (val, i) {
                     return {
-                        "index": i,
-                        "active": i === 0,
-                        "nick": val.textContent
+                        'index': i,
+                        'active': i === 0,
+                        'nick': val.textContent
                     };
                 });
                 renderNickCompletionList();

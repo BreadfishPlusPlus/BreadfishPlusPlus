@@ -1,8 +1,5 @@
-/*jslint nomen: true*/
-"use strict";
 var _           = require('lib/underscore');
 var $           = require('lib/jquery');
-var utils       = require('./../utils');
 
 require('./../styles/notification.less');
 
