@@ -55,12 +55,13 @@ var parseWBBTimeFormat = function (str) {
 };
 exports.parseWBBTimeFormat = parseWBBTimeFormat;
 
-var formatWBBTimeFormat = function (_m) {
+var formatWBBTimeFormat = function (_m, html) {
+    html = html || false;
     if (_m.isSame(moment(), 'day')) {
-        return _m.format('[Heute, ]HH:mm');
+        return _m.format(html ? '[<b>Heute</b>, ]HH:mm' : '[Heute, ]HH:mm');
     }
     if (_m.isSame(moment().subtract('days', 1), 'day')) {
-        return _m.format('[Gestern, ]HH:mm');
+        return _m.format(html ? '[<b>Gestern</b>, ]HH:mm' : '[Gestern, ]HH:mm');
     }
     return _m.format('DD.MM.YYYY[, ]HH:mm');
 };

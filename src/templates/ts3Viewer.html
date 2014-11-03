@@ -1,5 +1,5 @@
 <div class="container-2 infoBoxts3viewer">
-    <div class="containerIcon"> <img src="http://cdn.breadfishplusplus.eu/img/ts3/icon24.png" alt=""></div>
+    <div class="containerIcon"> <img src="<%- CDNDOMAIN %>img/ts3/icon24.png" alt=""></div>
     <% if (ts3data.error) { %>
     <div class="containerContent">
         <div class="error" style="margin-bottom:0;"><%- ts3data.error %></div>
@@ -12,7 +12,7 @@
             - Clients: <%- ts3data.clients.length %>/<%- ts3data.maxclients %>
             - Channels: <%- ts3data.channels.length %>
             - Online seit: <%- uptime %>
-            - Letzte aktualisierung: <%- lastUpdateTime %>
+            - Letzte aktualisierung: <%= lastUpdateTime %>
         </p>
         <p class="smallFont">
         <%= _.map(ts3data.clients, function (cl) {

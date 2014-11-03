@@ -1,8 +1,10 @@
 {
   "name": "BreadfishPlusPlus",
-  "description": "Eine Zusammenfassung von erweiterungen für breadfish.de",
+  "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.0-DEV-7",
+  "version": "3.0.0-DEV-8",
+  "domain": "http://brpp.ga/",
+  "cdndomain": "http://cdn.brpp.ga/",
   "repository": {
     "type": "git",
     "url": "https://github.com/maddin77/BreadfishPlusPlus.git"
@@ -11,8 +13,11 @@
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
-  "main": "./src/BreadfishPlusPlus.js",
   "license": "GPL v3",
+  "scripts": {
+    "build": "bin/build.js",
+    "server": "static ./out/ -H '{\"Content-Type\": \"application/javascript\"}'"
+  },
   "browserify-shim": {
     "lib/async": "global:async",
     "lib/jquery": "global:jQuery",
@@ -27,21 +32,9 @@
     "async": "^0.9.0",
     "browserify": "^4.1.11",
     "browserify-shim": "^3.5.0",
-    "gulp": "^3.8.7",
-    "gulp-concat": "^2.4.1",
-    "gulp-ejs": "^0.3.0",
-    "gulp-header": "^1.0.5",
-    "gulp-html2tpl": "^0.5.0",
-    "gulp-insert": "^0.4.0",
-    "gulp-notify": "^1.5.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1",
-    "gulp-util": "^2.2.19",
-    "jstify": "^0.2.0",
-    "node-lessify": "0.0.4",
-    "vinyl-source-stream": "^0.1.1"
-  },
-  "dependencies": {
-    "gulp": "^3.8.8"
+    "ejs": "^1.0.0",
+    "node-lessify": "0.0.4-a",
+    "uglify-js": "^2.4.15",
+    "underscore": "^1.7.0"
   }
 }

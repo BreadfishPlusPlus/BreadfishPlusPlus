@@ -3,7 +3,7 @@
     <div class="bpp-chat-system">
         <div class="bpp-chat-message-point"></div>
         <div class="bpp-chat-message-body">
-            <div class="bpp-chat-body-message"><p><%= message %></p></div>
+            <div class="bpp-chat-body-message"><p><%- message %></p></div>
         </div>
     </div>
     <% } else if (type === 'message') {%>
@@ -60,13 +60,13 @@
     %>
     <div class="bpp-chat-message">
         <div class="bpp-chat-message-avatar">
-            <a href="index.php?page=User&amp;userID=<%= user.userId %>" title="<%= user.name %>">
-                <img src="<%= user.avatar %>" alt="<%= user.name %>">
+            <a href="index.php?page=User&amp;userID=<%- user.userId %>" title="<%- user.name %>">
+                <img src="<%- user.avatar %>" alt="<%- user.name %>">
             </a>
         </div>
         <div class="bpp-chat-message-body">
-            <div class="bpp-chat-body-username"><a href="index.php?page=User&amp;userID=<%= user.userId %>"><%= user.name %></a> <small title="<%= dateTime %>"><%= displayTime %></small></div>
-            <div class="bpp-chat-body-message"><p><%= fMessage %></p></div>
+            <div class="bpp-chat-body-username"><a href="index.php?page=User&amp;userID=<%- user.userId %>"><%- user.name %></a> <small title="<%- dateTime %>"><%- displayTime %></small></div>
+            <div class="bpp-chat-body-message"><p><%- fMessage %></p></div>
         </div>
     </div>
     <% } %>

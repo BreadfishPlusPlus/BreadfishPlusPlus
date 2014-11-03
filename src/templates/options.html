@@ -1,27 +1,27 @@
 <div id="main" class="bpp_options">
     <div class="mainHeadline">
-        <img src="http://cdn.breadfishplusplus.eu/img/breadfish48.png">
+        <img src="<%- CDNDOMAIN %>img/breadfish48.png">
         <div class="headlineContainer">
             <h2>Breadfish++</h2>
-            <p>Version <%= version %></p>
+            <p>Version <%- version %></p>
         </div>
     </div>
     <div id="profileEditContent" class="tabMenu">
         <ul>
             <li data-tab="about">
-                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/about">
+                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/about">
                     <img src="wcf/icon/infoM.png"> <span>Info</span>
                 </a>
             </li>
             <% _.each(optionsObject, function (tab) { %>
-            <li data-tab="<%= tab.href %>">
-                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/<%= tab.href %>">
-                    <img src="wcf/icon/settingsM.png"> <span><%= tab.name %></span>
+            <li data-tab="<%- tab.href %>">
+                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/<%- tab.href %>">
+                    <img src="wcf/icon/settingsM.png"> <span><%- tab.name %></span>
                 </a>
             </li>
             <% }); %>
             <li data-tab="importexport">
-                <a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/importexport">
+                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/importexport">
                     <img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span>
                 </a>
             </li>
@@ -30,9 +30,9 @@
     <div class="subTabMenu">
         <div class="containerHead">
             <% _.each(optionsObject, function (tab) { %>
-            <ul data-tab="<%= tab.href %>">
+            <ul data-tab="<%- tab.href %>">
                 <% _.each(tab.subtabs, function (subtab) { %>
-                    <li data-subtab="<%= subtab.href %>"><a href="<%= location.pathname + location.search %>#/breadfishplusplus/!/<%= tab.href %>/<%= subtab.href %>"><span><%= subtab.name %></span></a></li>
+                    <li data-subtab="<%- subtab.href %>"><a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/<%- tab.href %>/<%- subtab.href %>"><span><%- subtab.name %></span></a></li>
                 <% }); %>
             </ul>
             <% }); %>
@@ -42,15 +42,15 @@
         <div class="container-2" data-tab="about" data-subtab="null">
             <div class="columnInner">
                 <div class="bpp-about-header">
-                    <img src="http://cdn.breadfishplusplus.eu/img/breadfish128.png">
+                    <img src="<%- CDNDOMAIN %>img/breadfish128.png">
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Version</label></div>
-                    <div class="formField"><%= version %> (<a href="https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v<%= version %>">Release notes</a>)</div>
+                    <div class="formField"><%- version %> (<a href="https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v<%- version %>">Release notes</a>)</div>
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Offizille Wobsite</label></div>
-                    <div class="formField"><a href="http://breadfishplusplus.eu/">breadfishplusplus.eu</a></div>
+                    <div class="formField"><a href="<%- DOMAIN %>"><%- DOMAIN %></a></div>
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Brauchst du hilfe?</label></div>
@@ -79,45 +79,45 @@
         </div>
         <% _.each(optionsObject, function (tab) { %>
             <% _.each(tab.subtabs, function (subtab) { %>
-                <div class="container-1" data-tab="<%= tab.href %>" data-subtab="<%= subtab.href %>">
+                <div class="container-1" data-tab="<%- tab.href %>" data-subtab="<%- subtab.href %>">
                 <% _.each(subtab.categories, function (category) { %>
                     <fieldset>
-                        <legend><%= category.name %></legend>
+                        <legend><%- category.name %></legend>
                         <% _.each(category.options, function (option) { %>
                             <% if (option.type === 'toggle') { %>
                                 <div class="formCheckBox formElement">
                                     <div class="formField">
-                                        <label for="<%= option.key %>">
-                                            <input type="checkbox" class="bpp-option" id="<%= option.key %>" name="<%= option.key %>" <%= option.default ? 'checked' : '' %>> <%= option.name %>
+                                        <label for="<%- option.key %>">
+                                            <input type="checkbox" class="bpp-option" id="<%- option.key %>" name="<%- option.key %>" <%- option.default ? 'checked' : '' %>> <%- option.name %>
                                         </label>
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } else if (option.type === 'range') { %>
                                 <div class="formElement">
                                     <div class="formFieldLabel">
-                                        <label for="<%= option.key %>"><%= option.name %></label>
+                                        <label for="<%- option.key %>"><%- option.name %></label>
                                     </div>
                                     <div class="formField">
-                                        <input type="range" id="<%= option.key %>" name="<%= option.key %>" class="bpp-option" min="<%= option.min %>" max="<%= option.max %>" value="<%= option.default %>">
-                                        <span class="indicator"><%= option.default %></span>
+                                        <input type="range" id="<%- option.key %>" name="<%- option.key %>" class="bpp-option" min="<%- option.min %>" max="<%- option.max %>" value="<%- option.default %>">
+                                        <span class="indicator"><%- option.default %></span>
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } else if (option.type === 'keyboard') { %>
                                 <div class="formElement">
                                     <div class="formFieldLabel">
-                                        <label for="<%= option.key %>"><%= option.name %></label>
+                                        <label for="<%- option.key %>"><%- option.name %></label>
                                     </div>
                                     <div class="formField">
-                                        <input type="button" class="bpp-option" id="<%= option.key %>" name="<%= option.key %>" value="<%= option.default %>">
+                                        <input type="button" class="bpp-option" id="<%- option.key %>" name="<%- option.key %>" value="<%- option.default %>">
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } %>

@@ -17,7 +17,7 @@ var showNotification = function (quotes) {
 
         _.map(quotes, function (q) {
             return _.extend(q, {
-                dateStr: storage.get('option.common.extension.timeago.enabled', false) ? q.moment.from(moment()) : utils.formatWBBTimeFormat(q.moment)
+                dateStr: storage.get('option.common.extension.timeago.enabled', false) ? q.moment.from(moment()) : utils.formatWBBTimeFormat(q.moment, true)
             });
         });
 

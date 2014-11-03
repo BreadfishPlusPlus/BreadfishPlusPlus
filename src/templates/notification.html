@@ -1,11 +1,11 @@
 <div class="bpp-notification-queue">
     <% _.each(notifications, function (notification, index) { %>
-        <div data-index="<%= index %>" class="bpp-notification <%= (notification.onClick ? 'bpp-notification-clickable ' : '') %>bpp-notification-<%= notification.type %>"<%= (notification.icon ? ' style="background-image: url(' + notification.icon + ')"' : '') %>>
+        <div data-index="<%- index %>" class="bpp-notification <%- (notification.onClick ? 'bpp-notification-clickable ' : '') %>bpp-notification-<%- notification.type %>"<%- (notification.icon ? ' style="background-image: url(' + notification.icon + ')"' : '') %>>
             <button class="bpp-notification-close" role="button">×</button>
             <% if (notification.title) { %>
-                <div class="bpp-notification-title"><%= notification.title %></div>
+                <div class="bpp-notification-title"><%- notification.title %></div>
             <% } %>
-            <div class="bpp-notification-message"><%= notification.message %></div>
+            <div class="bpp-notification-message"><%- notification.message %></div>
         </div>
     <% }); %>
 </div>

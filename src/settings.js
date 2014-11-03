@@ -50,6 +50,7 @@ showOptions = function () {
 
     $optionsFrame = $(require('templates').options({
         version: VERSION,
+        CDNDOMAIN: CDNDOMAIN,
         optionsObject: optionsObject
     }));
 
@@ -180,8 +181,6 @@ var showSaveBadge = function (elem) {
 
 $(document).ready(function () {
     require('./styles/options.less');
-
-    console.log('pew');
 
     var $userMenuItem;
 

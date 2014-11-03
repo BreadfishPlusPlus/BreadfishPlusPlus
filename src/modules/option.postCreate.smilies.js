@@ -4,8 +4,6 @@ var storage     = require('../storage');
 var utils       = require('../utils');
 var register    = require('../settings').register;
 
-var CDN_PATH = 'http://cdn.breadfishplusplus.eu/';
-
 register({
     'key': 'option.postCreate.smilies.rage',
     'name': 'Rageicons',
@@ -58,7 +56,7 @@ var loadSmilies = function (smilieData) {
 
     _.each(smilieData, function (category, index) {
         win.smileyCategories.set(index + 2, category.name + ' (' + category.smilies.length + ')');
-        category.fullPath = CDN_PATH + 'img/smilies' + category.path;
+        category.fullPath = CDNDOMAIN + 'img/smilies' + category.path;
         $smileyContainer.append(require('templates').smileyContainer({
             index: index + 2,
             category: category

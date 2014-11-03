@@ -1,11 +1,11 @@
 <div class="bpp-popup-backdrop" tabindex="-1">
     <div class="bpp-popup-prompt">
-        <p><%= question %></p>
-        <input type="text" class="prompt-input" placeholder="<%= placeholder %>" value="<%= value %>">
+        <p><%- question %></p>
+        <input type="text" class="prompt-input" placeholder="<%- placeholder %>" value="<%- value %>">
         <button type="button" role="button">&times;</button>
         <ul class="prompt-buttons">
-            <li><a href="#" class="prompt-button-first"><%= leftLabel %></a></li>
-            <li><a href="#" class="prompt-button-last"><%= rightLabel %></a></li>
+            <li><a href="#" class="prompt-button-first"><%- leftLabel %></a></li>
+            <li><a href="#" class="prompt-button-last"><%- rightLabel %></a></li>
         </ul>
     </div>
 </div>

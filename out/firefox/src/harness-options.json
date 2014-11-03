@@ -1,0 +1,54 @@
+{
+ "check_memory": false, 
+ "enable_e10s": false, 
+ "is-sdk-bundled": false, 
+ "jetpackID": "jid0-OeCFXKAPh2tC0bN3Li9ajRAZx6c@jetpack", 
+ "loader": "addon-sdk/lib/sdk/loader/cuddlefish.js", 
+ "main": "main", 
+ "mainPath": "breadfishplusplus/main", 
+ "manifest": {
+  "breadfishplusplus/main": {
+   "docsSHA256": "3d7410bfe2e8a94cc9a7f54ae3c162d3bb93335f890eb40212f028678e3313dc", 
+   "jsSHA256": "31d96a72be15c5f3b5b671ed873d3f81ea9d7c0dedcc48dbc6fa112882d62108", 
+   "moduleName": "main", 
+   "packageName": "breadfishplusplus", 
+   "requirements": {
+    "sdk/page-mod": "sdk/page-mod"
+   }, 
+   "sectionName": "lib"
+  }
+ }, 
+ "metadata": {
+  "addon-sdk": {
+   "description": "Add-on development made easy.", 
+   "keywords": [
+    "javascript", 
+    "engine", 
+    "addon", 
+    "extension", 
+    "xulrunner", 
+    "firefox", 
+    "browser"
+   ], 
+   "license": "MPL 2.0", 
+   "name": "addon-sdk"
+  }, 
+  "breadfishplusplus": {
+   "author": "Martin Rump", 
+   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de", 
+   "homepage": "http://brpp.ga", 
+   "main": "main", 
+   "name": "breadfishplusplus", 
+   "permissions": {
+    "private-browsing": true
+   }, 
+   "version": "6.8.2"
+  }
+ }, 
+ "name": "breadfishplusplus", 
+ "parseable": false, 
+ "preferencesBranch": "jid0-OeCFXKAPh2tC0bN3Li9ajRAZx6c@jetpack", 
+ "sdkVersion": "1.16", 
+ "staticArgs": {}, 
+ "verbose": false
+}

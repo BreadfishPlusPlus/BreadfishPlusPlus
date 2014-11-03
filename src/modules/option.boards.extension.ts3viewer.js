@@ -19,14 +19,14 @@ if (storage.get('option.boards.extension.ts3viewer.enabled', false)) {
     if (utils.isTemplate('tplIndex')) {
         $.ajax({
             type: 'GET',
-            url: 'http://breadfishts.wheatley.maddin.cc/',
+            url: 'https://breadfishts.maddin.ga/',
             dataType: 'JSON',
             success: function (data) {
                 var $ts3viewer = $(require('templates').ts3Viewer({
                     ts3data: data,
                     nickname: $('#userNote a').text(),
                     uptime: utils.humanReadableTimespan(data.uptime * 1000),
-                    lastUpdateTime: utils.formatWBBTimeFormat(moment(data.lastUpdate))
+                    lastUpdateTime: utils.formatWBBTimeFormat(moment(data.lastUpdate), true)
                 }));
                 $ts3viewer.prependTo('.border.infoBox');
 

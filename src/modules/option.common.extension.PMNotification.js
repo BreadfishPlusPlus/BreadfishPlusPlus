@@ -58,7 +58,7 @@ generateNotification = function (messages) {
 
     _.map(messages, function (msg) {
         return _.extend(msg, {
-            dateStr: storage.get('option.common.extension.timeago.enabled', false) ? msg.moment.from(moment()) : utils.formatWBBTimeFormat(msg.moment)
+            dateStr: storage.get('option.common.extension.timeago.enabled', false) ? msg.moment.from(moment()) : utils.formatWBBTimeFormat(msg.moment, true)
         });
     });
     notification.create({
@@ -74,7 +74,7 @@ generateNotification = function (messages) {
     if (!utils.getWindow().document.hasFocus()) {
         var n = desktopnotify.createNotification('Neue nachricht' + (messages.length !== 1 ? 'en!' : '!'), {
             body: title.slice(0, -1) + ' auf SA-MP.de!',
-            icon: 'http://cdn.breadfishplusplus.eu/img/breadfish48.png',
+            icon: CDNDOMAIN + 'img/breadfish48.png',
             tag: 'b++' + Date.now()
         });
         $(window).focus(function() {
