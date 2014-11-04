@@ -92,7 +92,7 @@
                                         </label>
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } else if (option.type === 'range') { %>
@@ -105,7 +105,7 @@
                                         <span class="indicator"><%- option.default %></span>
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } else if (option.type === 'keyboard') { %>
@@ -117,7 +117,7 @@
                                         <input type="button" class="bpp-option" id="<%- option.key %>" name="<%- option.key %>" value="<%- option.default %>">
                                     </div>
                                     <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%- option.description %></p></div>
+                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
                                     <% } %>
                                 </div>
                             <% } %>

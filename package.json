@@ -15,8 +15,7 @@
   },
   "license": "GPL v3",
   "scripts": {
-    "build": "bin/build.js",
-    "server": "static ./out/ -H '{\"Content-Type\": \"application/javascript\"}'"
+    "build": "bin/build.js"
   },
   "browserify-shim": {
     "lib/async": "global:async",

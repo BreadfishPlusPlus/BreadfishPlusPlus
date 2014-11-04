@@ -3,11 +3,10 @@
     <div class="bpp-chat-system">
         <div class="bpp-chat-message-point"></div>
         <div class="bpp-chat-message-body">
-            <div class="bpp-chat-body-message"><p><%- message %></p></div>
+            <div class="bpp-chat-body-message"><p><%= message %></p></div>
         </div>
     </div>
-    <% } else if (type === 'message') {%>
-    <% 
+    <% } else if (type === 'message') {
         var fMessage = _.escape(message);
 
         /* urls */
