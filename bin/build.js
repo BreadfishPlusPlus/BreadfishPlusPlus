@@ -10,20 +10,20 @@ var pkg         = require(__dirname + '/../package.json');
 var staticPath = __dirname + '/../../static';
 
 var libraries = [
-    'underscore.min.js',
-    'jquery.min.js',
-    'jquery-ui.min.js',
+    'underscore.js',
+    'jquery.js',
+    'jquery-ui.js',
 
     'Autolinker.js',
     'async.js',
     'desktop-notify.js',
     'highlight.js',
     'jquery.mousewheel.js',
-    'jquery.withinViewport.min.js',
+    'jquery.withinViewport.js',
     'keyboard.js',
-    'moment-with-locales.min.js',
-    'socket-io.min.js',
-    'tooltip.min.js'
+    'moment-with-locales.js',
+    'socket-io.js',
+    'tooltip.js'
 ];
 
 async.series([
