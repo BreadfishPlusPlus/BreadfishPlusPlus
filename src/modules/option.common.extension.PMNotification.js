@@ -2,6 +2,7 @@ var $                   = require('lib/jquery');
 var _                   = require('lib/underscore');
 var moment              = require('lib/moment');
 var desktopnotify       = require('lib/desktopnotify');
+var async               = require('lib/async');
 var utils               = require('../utils');
 var notification        = require('../ui/notification');
 var storage             = require('../storage');

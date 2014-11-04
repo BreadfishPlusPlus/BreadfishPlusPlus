@@ -1,4 +1,5 @@
 var $           = require('lib/jquery');
+var hljs        = require('lib/highlight');
 var storage     = require('../storage');
 var utils       = require('../utils');
 var register    = require('../settings').register;

@@ -1,4 +1,14 @@
 {
-    "node": true,
-    "predef": []
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "indent": 4,
+    "latedef": true,
+    "noempty": true,
+    "quotmark": true,
+    "undef": true,
+    "unused": true,
+    "browser": true,
+    "predef": [ "require", "VERSION", "DOMAIN", "CDNDOMAIN" ]
 }

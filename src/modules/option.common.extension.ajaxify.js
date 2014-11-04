@@ -5,10 +5,10 @@ var notification    = require('../ui/notification');
 var register    = require('../settings').register;
 
 var subscribeThread = function () {
-    console.log('subscribeThread', $('.pageOptions > a:first-child'));
+    utils.log.debug('subscribeThread', $('.pageOptions > a:first-child'));
     $(document).on('click', '.pageOptions > a:first-child', function (event) {
         event.preventDefault();
-        console.log('subscribeThread.click');
+        utils.log.debug('subscribeThread.click');
         var SECURITY_TOKEN = utils.getSecurityToken(),
             threadID = $('input[name="threadID"]').val(),
             $element = $(this),
@@ -22,7 +22,7 @@ var subscribeThread = function () {
                 $element.attr('href', 'http://forum.sa-mp.de/index.php?action=ThreadUnsubscribe&threadID=' + threadID + '&t=' + SECURITY_TOKEN);
                 $element.find('img').attr('src', 'icon/unsubscribeS.png');
                 $element.find('span').text('Thema abbestellen');
-                console.log(threadName);
+                utils.log.debug(threadName);
                 notification.create('Das Thema »' + threadName + '« wurde abboniert!');
             }).fail(function (jqXHR) {
                 notification.create({

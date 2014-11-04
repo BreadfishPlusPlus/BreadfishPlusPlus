@@ -1,4 +1,5 @@
 var $           = require('lib/jquery');
+var io          = require('lib/socket');
 var storage     = require('../storage');
 var utils       = require('../utils');
 var register    = require('../settings').register;

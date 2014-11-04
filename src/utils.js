@@ -112,6 +112,6 @@ var getSecurityToken = function () {
 exports.getSecurityToken = getSecurityToken;
 
 var getWindow = function () {
-    return unsafeWindow || window;
+    return typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
 };
 exports.getWindow = getWindow;

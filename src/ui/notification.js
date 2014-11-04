@@ -94,9 +94,14 @@ var Queue = function () {
         });
         $queueElem.find('.bpp-notification-clickable').click(function (event) {
             event.preventDefault();
-            var index = parseInt($(this).attr('data-index'), 10);
+            var $notification = $(this);
+            var index = parseInt($notification.attr('data-index'), 10);
             if (_queue[index].onClick) {
-                _queue[index].onClick(_queue[index]);
+                _queue[index].onClick(_queue[index], function () {
+                    $notification.fadeOut(150, function () {
+                        _remove(index);
+                    });
+                });
             }
         });
     };

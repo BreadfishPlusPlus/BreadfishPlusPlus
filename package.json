@@ -2,7 +2,7 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.0-DEV-8",
+  "version": "3.0.0a",
   "domain": "http://brpp.ga/",
   "cdndomain": "http://cdn.brpp.ga/",
   "repository": {
@@ -25,6 +25,9 @@
     "lib/tooltip": "global:tooltip",
     "lib/underscore": "global:_",
     "lib/desktopnotify": "global:notify",
+    "lib/socket": "global:io",
+    "lib/async": "global:async",
+    "lib/highlight": "global:hljs",
     "underscore": "global:_"
   },
   "devDependencies": {

@@ -14,14 +14,15 @@ var libraries = [
     'jquery.min.js',
     'jquery-ui.min.js',
 
-    'Autolinker.min.js',
-    'async.min.js',
-    'desktop-notify-min.js',
-    'highlight.min.js',
-    'jquery.mousewheel.min.js',
+    'Autolinker.js',
+    'async.js',
+    'desktop-notify.js',
+    'highlight.js',
+    'jquery.mousewheel.js',
     'jquery.withinViewport.min.js',
-    'keyboard.min.js',
+    'keyboard.js',
     'moment-with-locales.min.js',
+    'socket-io.min.js',
     'tooltip.min.js'
 ];
 
@@ -88,6 +89,7 @@ async.series([
     **/
     function (callback) {
         console.log('erstelle browserify bundle');
+        console.log('    lese verzeichniss ' + __dirname + '/../src/modules/');
         fs.readdir(__dirname + '/../src/modules/', function (err, files) {
             var b = browserify({
                 entries: ['./BreadfishPlusPlus.js'],
@@ -100,6 +102,7 @@ async.series([
             b.transform('browserify-shim');
             b.transform('node-lessify');
             files.forEach(function (fileName) {
+                console.log('        füge modul hinzu: ' + fileName);
                 b.add('./../src/modules/' + fileName);
             });
             b.require('./../.tmp/templates.js', {expose: 'templates'});
@@ -124,7 +127,7 @@ async.series([
                 var userscript = '/**\n* DEPENDENCIES\n**/\n\n';
               
                 async.map(libraries, function (fileName, __callback) {
-                    console.log('        lese ' + __dirname + '/../libraries/' + fileName);
+                    console.log('        füge bibliothek hinzu: ' + fileName);
                     fs.readFile(__dirname + '/../libraries/' + fileName, {encoding: 'utf8'}, __callback);
                 }, function (err, libraries) {
                     if (err) {
@@ -147,6 +150,11 @@ async.series([
                     },
                     mangle: true,
                     compress: true
+                    /*output: {
+                        beautify: true
+                    },
+                    mangle: false,
+                    compress: false*/
                 }).code;
 
                 _callback(null, userscript);
