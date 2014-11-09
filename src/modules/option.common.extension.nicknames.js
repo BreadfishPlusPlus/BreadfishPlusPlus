@@ -203,7 +203,7 @@ var setupNickEdit = function () {
     var userId = parseInt($('input[name="userID"]').val(), 10),
         name = $('.userName > span').text(),
         nickO = Nick.get.id(userId),
-        $editNickname = $('<li><a href="#" title="Spitzname ändern"><img src="wcf/icon/userEditL.png" style="width:24px;"><span>Spitzname ändern</span></a></li>');
+        $editNickname = $('<li><a href="#" title="Spitzname ändern"><img src="wcf/icon/avatarEditM.png" style="width:24px;"><span>Spitzname ändern</span></a></li>');
     $('.userCardOptions ul').append($editNickname);
 
     $editNickname.find('a').click(function (event) {

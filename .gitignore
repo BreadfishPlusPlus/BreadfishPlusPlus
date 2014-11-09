@@ -6,4 +6,3 @@ userscript
 *.sublime-project
 *.sublime-workspace
 *.txt
-package.json.old
