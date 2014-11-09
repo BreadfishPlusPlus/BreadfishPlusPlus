@@ -19,7 +19,7 @@ if (storage.get('option.boards.extension.ts3viewer.enabled', false)) {
     if (utils.isTemplate('tplIndex')) {
         $.ajax({
             type: 'GET',
-            url: 'https://breadfishts.maddin.ga/',
+            url: DOMAIN.teamspeak,
             dataType: 'JSON',
             success: function (data) {
                 var $ts3viewer = $(require('templates').ts3Viewer({

@@ -158,21 +158,21 @@ if (utils.isTemplate(['tplPostAdd', 'tplThreadAdd', 'tplPmNew', 'tplPostEdit', '
     if (storage.get('option.postCreate.bbcode.email', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'email',
-            img: CDNDOMAIN + 'img/bbcodes/email.png',
+            img: DOMAIN.cdn + 'img/bbcodes/email.png',
             title: 'Email einfügen'
         }));
     }
     if (storage.get('option.postCreate.bbcode.sub', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'sub',
-            img: CDNDOMAIN + 'img/bbcodes/sub.png',
+            img: DOMAIN.cdn + 'img/bbcodes/sub.png',
             title: 'Text tiefstellen'
         }));
     }
     if (storage.get('option.postCreate.bbcode.sup', false)) {
         $('#mce_editor_0_toolBar ul').last().append(require('templates').bbcode({
             name: 'sup',
-            img: CDNDOMAIN + 'img/bbcodes/sup.png',
+            img: DOMAIN.cdn + 'img/bbcodes/sup.png',
             title: 'Text tiefstellen'
         }));
     }

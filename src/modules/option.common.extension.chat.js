@@ -64,7 +64,7 @@ var addMessage = function (data) {
 
 var connectToSocket = function (userinfo) {
     $.getScript('https://cdn.socket.io/socket.io-1.0.6.js').done(function () {
-        socket = io('https://chat.brpp.ga', {
+        socket = io(DOMAIN.chat, {
             reconnection: true
         });
         socket.on('connect', function () {

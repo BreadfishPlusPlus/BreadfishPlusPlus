@@ -141,8 +141,7 @@ async.series([
                 console.log('    lese ' + __dirname + '/../.tmp/BreadfishPlusPlus.js');
                 userscript += '\n\n/**\n* USERSCRIPT\n**/\n';
                 userscript += '\nvar VERSION = "' + pkg.version + '";';
-                userscript += '\nvar DOMAIN = "' + pkg.domain + '";';
-                userscript += '\nvar CDNDOMAIN = "' + pkg.cdndomain + '";\n';
+                userscript += '\nvar DOMAIN = ' + JSON.stringify(pkg.domain, null, 4) + ';\n';
 
                 userscript += uglify.minify(__dirname + '/../.tmp/BreadfishPlusPlus.js', {
                     output: {

@@ -56,7 +56,7 @@ var loadSmilies = function (smilieData) {
 
     _.each(smilieData, function (category, index) {
         win.smileyCategories.set(index + 2, category.name + ' (' + category.smilies.length + ')');
-        category.fullPath = CDNDOMAIN + 'img/smilies' + category.path;
+        category.fullPath = DOMAIN.cdn + 'img/smilies' + category.path;
         $smileyContainer.append(require('templates').smileyContainer({
             index: index + 2,
             category: category

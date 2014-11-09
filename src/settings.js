@@ -49,8 +49,6 @@ showOptions = function () {
     }
 
     $optionsFrame = $(require('templates').options({
-        version: VERSION,
-        CDNDOMAIN: CDNDOMAIN,
         optionsObject: optionsObject
     }));
 
