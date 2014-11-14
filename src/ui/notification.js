@@ -23,7 +23,6 @@ var Queue = function () {
     _queue = [];
 
     _checkHide = function () {
-        console.log('_checkHide');
         var count = 0;
         _.each(_queue, function (m, index) {
             if (m.hidedelay) {
