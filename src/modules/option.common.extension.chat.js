@@ -1,5 +1,6 @@
 var $           = require('lib/jquery');
 var io          = require('lib/socket');
+var autolinker  = require('lib/autolinker');
 var storage     = require('../storage');
 var utils       = require('../utils');
 var register    = require('../settings').register;
@@ -113,6 +114,12 @@ var connectToSocket = function (userinfo) {
         socket.on('unbanned', function (name) {
             addMessage({type: 'system', message: 'Du wurdest von <b>' + name + '</b> entbannt. Du kannst nun wieder Nachrichten im Chat verfassen.'});
             $('#bpp-chat').removeClass('banned');
+        });
+        socket.on('topic', function (topic) {
+            addMessage({type: 'system', message: '<b>Topic:</b> ' + autolinker.link(topic, {
+                newWindow: true,
+                twitter: false
+            })});
         });
     }).fail(function (jqXHR) {
         utils.log.error('Konnte socket.io Bilbiothek nicht laden.', jqXHR.status, jqXHR.statusText);

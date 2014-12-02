@@ -2,7 +2,7 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.0b",
+  "version": "3.0.0c",
   "domain": {
     "main": "https://brpp.ga/",
     "cdn": "https://cdn.brpp.ga/",
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/maddin77/BreadfishPlusPlus/issues"
   },
-  "license": "GPL v3",
+  "license": "MIT",
   "scripts": {
     "watch": "grunt",
     "build": "grunt build",
@@ -33,6 +33,7 @@
     "lib/desktopnotify": "global:notify",
     "lib/socket": "global:io",
     "lib/highlight": "global:hljs",
+    "lib/autolinker": "global:Autolinker",
     "underscore": "global:_"
   },
   "devDependencies": {
