@@ -409,3 +409,12 @@ register({
 if (storage.get('option.profile.filter.skype.enabled', false) && utils.isTemplate('tplUserProfile')) {
     $('ul.twoRows > li > a > .smallFont:contains(Skype)').closest('li').remove();
 }
+
+/*
+"Über Mich" - Überreste entfernen wenn nichts mehr darin angezeigt wird.
+*/
+
+var $pInfoCOntainer = $('.subHeadline:contains(Persönliche Informationen)').parent('.contentBox');
+if ($pInfoCOntainer.find('.dataList').html().trim().length === 0) {
+    $pInfoCOntainer.remove();
+}
