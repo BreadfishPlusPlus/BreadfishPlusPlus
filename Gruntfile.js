@@ -9,6 +9,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.initConfig({
@@ -115,6 +116,12 @@ module.exports = function (grunt) {
         clean: {
             build: ['.tmp/**/*.*'],
         },
+        copy: {
+            final: {
+                src: 'out/static/breadfishplusplus.js',
+                dest: '../static/breadfishplusplus.js'
+            },
+        },
         connect: {
             watch: {
                 options: {
@@ -144,6 +151,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['connect:watch', 'watch']);
     grunt.registerTask('serve', ['connect:serve']);
-    grunt.registerTask('build', ['template-module', 'browserify', 'uglify:build', 'concat', 'clean']);
+    grunt.registerTask('build', ['template-module', 'browserify', 'uglify:build', 'concat', 'clean', 'copy:final']);
     grunt.registerTask('build-dev', ['template-module', 'browserify', 'uglify:dev', 'concat']);
 };
