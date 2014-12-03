@@ -3,4 +3,3 @@ console.log('%c B%creadfish%c++ %cv' + VERSION + ' %c ' + DOMAIN.main + ' ', 'ba
 
 //Globale einstellungen
 require('lib/moment').locale('de');
-jQuery.noConflict();
