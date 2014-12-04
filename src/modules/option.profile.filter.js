@@ -414,7 +414,9 @@ if (storage.get('option.profile.filter.skype.enabled', false) && utils.isTemplat
 "Über Mich" - Überreste entfernen wenn nichts mehr darin angezeigt wird.
 */
 
-var $pInfoCOntainer = $('.subHeadline:contains(Persönliche Informationen)').parent('.contentBox');
-if ($pInfoCOntainer.find('.dataList').html().trim().length === 0) {
-    $pInfoCOntainer.remove();
+if (utils.isTemplate('tplUserProfile')) {
+    var $pInfoCOntainer = $('.subHeadline:contains(Persönliche Informationen)').parent('.contentBox');
+    if ($pInfoCOntainer.find('.dataList').html().trim().length === 0) {
+        $pInfoCOntainer.remove();
+    }
 }
