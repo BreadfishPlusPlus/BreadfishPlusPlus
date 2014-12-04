@@ -11,6 +11,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-notify');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -105,6 +106,7 @@ module.exports = function (grunt) {
                 options: {
                     banner: '/**\n* DEPENDENCIES\n**/\n\n',
                     separator: '\n\n/**\n* USERSCRIPT\n**/\n\n',
+                    message: 'Server is ready!'
                 },
                 src: [
                     '.tmp/libraries.js',
@@ -144,13 +146,21 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['src/**/*'],
-                tasks: ['build']
+                tasks: ['build-dev']
+            }
+        },
+        notify: {
+            defualt: {
+                options: {
+                    title: 'Breadfish++',  // optional
+                    message: 'Script wurde erstellt!', //required
+                }
             }
         }
     });
 
     grunt.registerTask('default', ['connect:watch', 'watch']);
     grunt.registerTask('serve', ['connect:serve']);
-    grunt.registerTask('build', ['template-module', 'browserify', 'uglify:build', 'concat', 'clean', 'copy:final']);
-    grunt.registerTask('build-dev', ['template-module', 'browserify', 'uglify:dev', 'concat']);
+    grunt.registerTask('build', ['template-module', 'browserify', 'uglify:build', 'concat', 'clean', 'copy:final', 'notify']);
+    grunt.registerTask('build-dev', ['template-module', 'browserify', 'uglify:dev', 'concat', 'notify']);
 };
