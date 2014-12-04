@@ -10,5 +10,5 @@
     "undef": true,
     "unused": true,
     "browser": true,
-    "predef": [ "require", "VERSION", "DOMAIN", "CDNDOMAIN" ]
+    "predef": [ "require", "VERSION", "DOMAIN", "CDNDOMAIN", "exports" ]
 }
