@@ -196,6 +196,31 @@ var updateIndexNicknames = function () {
         $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + NickO.name + ')').filter(function () {
             return $(this).text() === NickO.name;
         }).replaceHtml(NickO.name, NickO.nick);
+
+        //Foren Moderatoren
+        $('.moderators a').filter(function () {
+            return $(this).text() === NickO.name;
+        }).text(NickO.nick);
+    });
+};
+
+var updateBoardNicknames = function () {
+    var nicks = Nick.get.all();
+    _.each(nicks, function (NickO) {
+        //Foren Moderatoren
+        $('.infoBoxModerators .containerContent a').filter(function () {
+            return $(this).text() === NickO.name;
+        }).text(NickO.nick);
+
+        //Letzte Antwort
+        $('.columnLastPost .containerContentSmall a').filter(function () {
+            return $(this).text() === NickO.name;
+        }).text(NickO.nick);
+
+        //Ersteller des Themas
+        $('.columnTopic .firstPost a').filter(function () {
+            return $(this).text() === NickO.name;
+        }).text(NickO.nick);
     });
 };
 
@@ -280,5 +305,7 @@ if (storage.get('option.common.extension.nicknames.enabled', false)) {
         updateThreadNicknames();
     } else if (utils.isTemplate('tplIndex')) {
         updateIndexNicknames();
+    } else if (utils.isTemplate('tplBoard')) {
+        updateBoardNicknames();
     }
 }
