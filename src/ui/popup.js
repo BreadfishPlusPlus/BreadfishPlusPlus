@@ -3,10 +3,12 @@ var _           = require('lib/underscore');
 
 require('./../styles/popup.less');
 
-var message = function (msg, type) {
+var message = function (msg, type, html) {
     var $modal, closeModal, modalCloseButtonClick, modalEscapePressed;
+    html = html || false;
 
     $modal = $(require('templates').popupmessage({
+        html: html,
         message: msg,
         status: _.map([type], function (_type) {
             if (_type === 'info') {
