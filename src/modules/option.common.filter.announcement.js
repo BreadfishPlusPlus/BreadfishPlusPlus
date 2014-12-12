@@ -10,7 +10,7 @@ register({
     'category': 'Filter',
     'type': 'toggle',
     'default': false,
-    'description': 'Aktiviert die Option, Permanente Anküdigungen individuell auszublenden.'
+    'description': 'Aktiviert die Option, permanente Anküdigungen individuell auszublenden.'
 });
 register({
     'key': 'option.common.filter.announcement.suppressed',
