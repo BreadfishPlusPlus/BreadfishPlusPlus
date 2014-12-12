@@ -57,7 +57,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'Versteckt den Hinweis für neue Zitate, und zeigt diese stattdessen am unteren rechten Bildschirmrand an.<br>Es wird in regelmäßigen Abständen überprüft, ob du eine neues Zitat hast und die Benachrichtigung wird autmatisch aktualisiert.'
+    'description': 'Versteckt den Hinweis für neue Zitate, und zeigt diese stattdessen am unteren rechten Bildschirmrand an.<br>Es wird in regelmäßigen Abständen überprüft, ob du ein neues Zitat hast und die Benachrichtigung wird automatisch aktualisiert.'
 });
 register({
     'key': 'option.common.extension.WQMNotification.interval',
