@@ -12,7 +12,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'Ersetzt die Zeitangaben im Forum. Aus "Heute, 12:34" wird dann z.b "vor 12 Minuten".'
+    'description': 'Ersetzt die Zeitangaben im Forum. Aus "Heute, 12:34" wird dann z.B. "vor 12 Minuten".'
 });
 if (storage.get('option.common.extension.timeago.enabled', false)) {
     if (utils.isTemplate('tplIndex')) {
