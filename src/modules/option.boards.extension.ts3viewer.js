@@ -12,7 +12,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'Fügt auf der Startseite eine Infobox hinzu, welche anzeigt wer gerade auf dem Teamspeak server ist.'
+    'description': 'Fügt auf der Startseite eine Infobox hinzu, welche anzeigt wer gerade auf dem Teamspeak Server ist.'
 });
 
 if (storage.get('option.boards.extension.ts3viewer.enabled', false)) {
