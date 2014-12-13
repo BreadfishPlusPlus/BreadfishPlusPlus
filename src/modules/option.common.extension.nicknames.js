@@ -194,7 +194,7 @@ var updateIndexNicknames = function () {
 
         //Zurzeit sind X Benutzer online
         $('.infoBoxUsersOnline .containerContent .smallFont a:contains(' + NickO.name + ')').filter(function () {
-            return $(this).text() === NickO.name;
+            return $(this).text() === NickO.name || $(this).find('span').text() === NickO.name;
         }).replaceHtml(NickO.name, NickO.nick);
 
         //Foren Moderatoren
