@@ -12,7 +12,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'TODO'
+    'description': 'Siehe <a href="http://git.io/LK5njg" target="_blank">Wiki Eintrag zum Screenshot-Modul</a>.'
 });
 
 if (storage.get('option.posts.extension.screenshot.enabled', false) && utils.isTemplate('tplThread')) {
