@@ -13,7 +13,7 @@ register({
     'category': 'Chat',
     'type': 'toggle',
     'default': false,
-    'description': 'Zeigt eine Chatbox auf der Startseite an. Optional kann diese auch an den Unterren Bildschirmrand gesetzt werden, wo sie auf jeder Seite zu finden ist.'
+    'description': 'Zeigt eine Chatbox auf der Startseite an. Optional kann diese auch an den unteren Bildschirmrand gesetzt werden, wo sie auf jeder Seite zu finden ist.'
 });
 register({
     'key': 'option.boards.extension.ircChat.open',

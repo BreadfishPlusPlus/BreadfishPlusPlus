@@ -114,7 +114,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'toggle',
     'default': false,
-    'description': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an.<br>Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird autmatisch aktualisiert.'
+    'description': 'Versteckt den Hinweis auf neue Private Nachrichten, und zeigt ihn stattdessen am unteren rechten Bildschirmrand an.<br>Es wird in regelmäßigen Abständen überprüft, ob du eine neue PN hast und die Benachrichtigung wird automatisch aktualisiert.'
 });
 register({
     'key': 'option.common.extension.PMNotification.desktop',
