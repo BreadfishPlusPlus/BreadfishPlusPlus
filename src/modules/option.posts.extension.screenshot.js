@@ -48,11 +48,11 @@ if (storage.get('option.posts.extension.screenshot.enabled', false) && utils.isT
     $('.bpp-screenshot-post').click(function (e) {
         e.preventDefault();
         var postId = $(this).attr('href').substr(1);
-        showInfoPopup('https://screenshot.brpp.ga/post/' + postId + '.png');
+        showInfoPopup(DOMAIN.screenshot + 'post/' + postId + '.png');
     });
     $('.bpp-screenshot-thread').click(function (e) {
         e.preventDefault();
         var id = $(this).attr('href').substr(1).split('-');
-        showInfoPopup('https://screenshot.brpp.ga/thread/' + id[0] + '/' + id[1] + '.png');
+        showInfoPopup(DOMAIN.screenshot + 'thread/' + id[0] + '/' + id[1] + '.png');
     });
 }

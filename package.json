@@ -2,12 +2,13 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.3",
+  "version": "3.0.4",
   "domain": {
     "main": "https://brpp.ga/",
     "cdn": "https://cdn.brpp.ga/",
     "teamspeak": "https://teamspeak.brpp.ga/",
-    "chat": "https://chat.brpp.ga/"
+    "chat": "https://chat.brpp.ga/",
+    "screenshot": "https://screenshot.brpp.ga/"
   },
   "repository": {
     "type": "git",
