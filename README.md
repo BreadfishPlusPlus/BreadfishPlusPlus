@@ -1,5 +1,5 @@
 ## Breadfish++
-Weitere Infos stehen im [wiki](/wiki).
+Weitere Infos stehen im [wiki](https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/wiki).
 
 ## License
 The MIT License (MIT)
