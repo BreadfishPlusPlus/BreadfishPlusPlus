@@ -160,7 +160,12 @@ if (storage.get('option.profile.filter.aboutMe.enabled', false) && utils.isTempl
     var $subH = $('h3.subHeadline:contains(Über mich)');
     $subH.parent('.contentBox').find('> .dataList').remove();
     $subH.parent('.contentBox').find('.signature').css('border-top', 'none');
-    $subH.remove();
+    $subH.css({
+        'font-size': '0',
+        'margin': '0 !important',
+        'padding': '0',
+        'border': 'none'
+    });
 }
 
 /*
@@ -420,3 +425,13 @@ if (utils.isTemplate('tplUserProfile')) {
         $pInfoCOntainer.remove();
     }
 }
+
+
+/*
+ * Leere boxen in profileSidebar entfernen
+ */
+$('.profileSidebar .contentBox').each(function () {
+    if ($(this).find('.border').children().not('.containerHead').text().trim().length === 0) {
+        $(this).hide();
+    }
+});
