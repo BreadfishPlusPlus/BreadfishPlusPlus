@@ -19,8 +19,13 @@ if (storage.get('option.posts.extension.syntaxhighlightning.enabled', false) && 
     require('../styles/highlightjs.less');
     $('.codeBox').each(function () {
         var $elem = $(this),
-            code = $elem.find('.codeLines pre').text(),
+            code = $elem.find('.codeLines pre').clone(),
             title = $elem.find('.codeLines h3').text();
+
+        //fk u cloudflare
+        code.find('script').remove();
+        code = code.text();
+
         if (title === 'C/C++-Quelltext' || title === 'PAWN Quelltext') {
             $elem.find('.codeLines pre').html(hljs.highlight('cpp', code).value);
         } else if (title === 'Cascading Style Sheet') {
