@@ -17,7 +17,7 @@ register({
 if (storage.get('option.common.bugfix.imageResize.enabled', false) && utils.isTemplate(['tplPostAdd', 'tplPmNew', 'tplPostEdit', 'tplThread'])) {
     $('.resizeImage').each(function () {
         var $img = $(this),
-            parentWidth = $(this).first().closest('div').width();
+            parentWidth = $(this).first().closest('div:visible').width();
         $img.removeAttr('width').removeAttr('height');
         $img.css({
             maxWidth: parentWidth,
