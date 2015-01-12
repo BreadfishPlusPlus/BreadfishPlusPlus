@@ -32,11 +32,11 @@
                 } else if (cl.breadfish.rank === 'Donator') {
                     user += '<span style="font-weight:bold; color:#009BFF">' + cl.breadfish.name + '</span>';
                 } else {
-                    user += '<span style="font-weight:bold;"">' + cl.breadfish.name + '</span>';
+                    user += '<span>' + cl.breadfish.name + '</span>';
                 }
                 user += '</a>';
             } else {
-                user += '<span style="font-weight:bold;text-decoration:underline;"">' + cl.name + '</span>';
+                user += '<span style="font-weight:bold;text-decoration:underline;">' + cl.name + '</span>';
             }
             user += ' (' + channel.name + ')';
             return user;
@@ -47,7 +47,7 @@
             <span style="font-weight:bold; color:#0E5C0B">Kon-Administratoren</span>,
             <span style="font-weight:bold; color:#FF9900">Super Moderatoren</span>,
             <span style="font-weight:bold; color:#a52a2a">Moderatoren</span>,
-            <span style="color:#009BFF"><b>Donator's Club</b></span>,
+            <span style="font-weight:bold; color:#009BFF">Donator's Club</span>,
             <span>Benutzer</span>
         </p>
     </div>
