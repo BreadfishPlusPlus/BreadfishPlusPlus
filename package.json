@@ -2,7 +2,7 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.4",
+  "version": "3.0.6",
   "domain": {
     "main": "https://brpp.ga/",
     "cdn": "https://cdn.brpp.ga/",
