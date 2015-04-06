@@ -70,7 +70,7 @@ module.exports = function (grunt) {
             build: {
                 options: {
                     mangle: true,
-                    compress: true,
+                    compress: {},
                     report: 'min',
                     preserveComments: false
                 },
