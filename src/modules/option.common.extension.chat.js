@@ -11,10 +11,12 @@ register({
     'tab': 'Einstellungen',
     'subtab': 'Allgemeine Einstellungen',
     'category': 'Chat',
-    'type': 'toggle',
+    //'type': 'toggle',
+    'type': 'invis',
     'default': false,
     'description': 'Zeigt eine Chatbox auf der Startseite an. Optional kann diese auch an den unteren Bildschirmrand gesetzt werden, wo sie auf jeder Seite zu finden ist.'
 });
+storage.set('option.common.extension.chat.enabled', false);
 register({
     'key': 'option.boards.extension.ircChat.open',
     'type': 'invis',
