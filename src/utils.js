@@ -48,7 +48,7 @@ var parseWBBTimeFormat = function (str) {
     }
     if (str.indexOf('Gestern') > -1) {
         var _m = moment(str, '[Gestern, ]HH:mm');
-        _m.subtract('days', 1);
+        _m.subtract(1, 'days');
         return _m;
     }
     return moment(str, 'DD. MMMM YYYY[,] HH:mm');
