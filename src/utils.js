@@ -51,7 +51,7 @@ var parseWBBTimeFormat = function (str) {
         _m.subtract('days', 1);
         return _m;
     }
-    return moment(str, 'DD.MM.YYYY[, ]HH:mm');
+    return moment(str, 'DD. MMMM YYYY[,] HH:mm');
 };
 exports.parseWBBTimeFormat = parseWBBTimeFormat;
 
