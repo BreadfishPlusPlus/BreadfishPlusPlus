@@ -30,6 +30,7 @@ register({
 var STEPS = 30; //TODO: versteckte option
 
 var isModifierActive = function (modifierKey, keyNames) {
+    utils.log.debug('isModifierActive', modifierKey, keyNames);
     if (modifierKey === -1) {
         return true;
     }
@@ -43,10 +44,11 @@ var isModifierActive = function (modifierKey, keyNames) {
 };
 
 if (storage.get('option.posts.extension.imageResize.enabled', false) && utils.isTemplate('tplThread')) {
-    var modifierKey = storage.get('option.keyboard.imageResize.modifier', -1);
+    var modifierKey = storage.get('option.posts.extension.imageResize.modifier', -1);
     var keyNames = KeyboardJS.key.name(modifierKey);
 
     $(document).on('mousewheel', '.resizeImage,.bpp_resizeImage', function (event) {
+        utils.log.debug('isModifierActive', isModifierActive(modifierKey, keyNames));
         if (!isModifierActive(modifierKey, keyNames)) {
             return;
         }
