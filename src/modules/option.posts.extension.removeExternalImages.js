@@ -5,7 +5,7 @@ var register    = require('../settings').register;
 
 register({
     'key': 'option.posts.extension.removeExternalImages.enabled',
-    'name': 'Externen Bildern',
+    'name': 'Externe Bilder',
     'tab': 'Einstellungen',
     'subtab': 'Beiträge & Nachrichten',
     'category': 'Filter',
