@@ -8,7 +8,7 @@ register({
     'key': 'option.keyboard.thread.postPrevious',
     'name': 'Vorheriger Beitrag',
     'tab': 'Tastaturnavigation',
-    'subtab': 'Themen',
+    'subtab': 'Beiträge & Nachrichten',
     'category': 'Beiträge',
     'type': 'keyboard',
     'default': -1,
@@ -18,7 +18,7 @@ register({
     'key': 'option.keyboard.thread.postNext',
     'name': 'Nächster Beitrag',
     'tab': 'Tastaturnavigation',
-    'subtab': 'Themen',
+    'subtab': 'Beiträge & Nachrichten',
     'category': 'Beiträge',
     'type': 'keyboard',
     'default': -1,
@@ -28,7 +28,7 @@ register({
     'key': 'option.keyboard.thread.pagePrevious',
     'name': 'Vorherige Seite',
     'tab': 'Tastaturnavigation',
-    'subtab': 'Themen',
+    'subtab': 'Beiträge & Nachrichten',
     'category': 'Seiten',
     'type': 'keyboard',
     'default': -1,
@@ -38,7 +38,7 @@ register({
     'key': 'option.keyboard.thread.pageNext',
     'name': 'Nächste Seite',
     'tab': 'Tastaturnavigation',
-    'subtab': 'Themen',
+    'subtab': 'Beiträge & Nachrichten',
     'category': 'Seiten',
     'type': 'keyboard',
     'default': -1,
@@ -181,5 +181,5 @@ if (utils.isTemplate('tplThread')) {
                 }
             }
         });
-    } 
+    }
 }

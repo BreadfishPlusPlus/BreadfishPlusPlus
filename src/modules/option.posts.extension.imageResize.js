@@ -18,10 +18,10 @@ register({
 
 register({
     'key': 'option.keyboard.imageResize.modifier',
-    'name': 'Nächste Seite',
+    'name': 'Bilderzoom Tastenkombination',
     'tab': 'Tastaturnavigation',
-    'subtab': 'Erweiterungen',
-    'category': 'Bilderzoom Tastenkombination',
+    'subtab': 'Beiträge & Nachrichten',
+    'category': 'Erweiterungen',
     'type': 'keyboard',
     'default': -1,
     'description': 'Wird diese option gesetzt, funktioniert der Bilderzoom (siehe Einstellungen -> Beiträge & Nachrichten -> Erweiterungen) nur noch in verbindung mit dieser Taste + Mausrad.'
