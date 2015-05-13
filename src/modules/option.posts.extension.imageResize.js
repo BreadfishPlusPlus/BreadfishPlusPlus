@@ -24,7 +24,7 @@ register({
     'category': 'Erweiterungen',
     'type': 'keyboard',
     'default': -1,
-    'description': 'Wird diese option gesetzt, funktioniert der Bilderzoom (siehe Einstellungen -> Beiträge & Nachrichten -> Erweiterungen) nur noch in verbindung mit dieser Taste + Mausrad.'
+    'description': 'Wird diese Option gesetzt, funktioniert der Bilderzoom (siehe Einstellungen -> Beiträge & Nachrichten -> Erweiterungen) nur noch in Verbindung mit dieser Taste + Mausrad.'
 });
 
 var STEPS = 30; //TODO: versteckte option
