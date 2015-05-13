@@ -50,14 +50,15 @@ if (storage.get('option.posts.extension.youtubePreview.enabled', false) && utils
         $object.attr('id', 'object-' + videoId);
         $object.hide();
 
-        $.getJSON('https://gdata.youtube.com/feeds/api/videos/' + videoId + '?v=2&alt=json', function (data) {
+        $.getJSON('https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet,statistics&id=' + videoId + window.atob('JmtleT1BSXphU3lCN25lRTE5YzY5MGtFWktETUNrUG40QXNURUVJMkJmbGM='), function (data) {
+
             var $preview = $(require('templates').youtubePreview({
-                'thumbnail': data.entry.media$group.media$thumbnail[0].url,
-                'title': data.entry.title.$t,
-                'author': data.entry.author[0].name.$t,
-                'uploadTime': moment(data.entry.media$group.yt$uploaded.$t).format('dddd, Do MMM YYYY, HH:mm [Uhr]'),
-                'length': formatTime(data.entry.media$group.yt$duration.seconds),
-                'clicks': data.entry.yt$statistics.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
+                'thumbnail': data.items[0].snippet.thumbnails.default.url,
+                'title': data.items[0].snippet.title,
+                'author': data.items[0].snippet.channelTitle,
+                'uploadTime': moment(data.items[0].snippet.publishedAt).format('dddd, Do MMM YYYY, HH:mm [Uhr]'),
+                'length': formatTime(moment.duration(data.items[0].contentDetails.duration).asSeconds()),
+                'clicks': data.items[0].statistics.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
                 'videoId': videoId
             }));
             $object.replaceWith($preview);
