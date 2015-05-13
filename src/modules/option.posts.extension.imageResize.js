@@ -17,9 +17,9 @@ register({
 
 
 register({
-    'key': 'option.keyboard.imageResize.modifier',
+    'key': 'option.posts.extension.imageResize.modifier',
     'name': 'Bilderzoom Tastenkombination',
-    'tab': 'Tastaturnavigation',
+    'tab': 'Einstellungen',
     'subtab': 'Beiträge & Nachrichten',
     'category': 'Erweiterungen',
     'type': 'keyboard',
