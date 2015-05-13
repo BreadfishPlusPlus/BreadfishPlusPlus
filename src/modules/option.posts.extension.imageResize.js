@@ -30,15 +30,11 @@ register({
 var STEPS = 30; //TODO: versteckte option
 
 var isModifierActive = function (modifierKey, keyNames) {
-    utils.log.debug('modifierKey', modifierKey);
     if (modifierKey === -1) {
         return true;
     }
-    utils.log.debug('keyNames', keyNames);
     var activeKeys = KeyboardJS.activeKeys();
-    utils.log.debug('activeKeys', activeKeys);
     for(var i=0; i<keyNames.length; i++) {
-        utils.log.debug('indexOf', activeKeys.indexOf(keyNames[i]));
         if (activeKeys.indexOf(keyNames[i]) === -1) {
             return false;
         }
