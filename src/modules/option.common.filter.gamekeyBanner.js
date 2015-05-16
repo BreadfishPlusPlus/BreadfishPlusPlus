@@ -14,5 +14,5 @@ register({
 });
 
 if (storage.get('option.common.filter.gamekeyBanner.enabled', false)) {
-    $('#footer > div[style="text-align: center"]').hide();
+    $('#footer a[href*="breadfish-gamekeys.de"]').parent('div').hide();
 }
