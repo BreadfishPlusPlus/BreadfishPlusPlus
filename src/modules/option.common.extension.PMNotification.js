@@ -72,7 +72,7 @@ generateNotification = function (messages) {
     });
 
     //Desktop
-    if (!utils.getWindow().document.hasFocus()) {
+    if (!utils.getWindow().document.hasFocus() && storage.get('option.common.extension.PMNotification.desktop', false)) {
         var n = desktopnotify.createNotification('Neue nachricht' + (messages.length !== 1 ? 'en!' : '!'), {
             body: title.slice(0, -1) + ' auf SA-MP.de!',
             icon: DOMAIN.cdn + 'img/breadfish48.png',
