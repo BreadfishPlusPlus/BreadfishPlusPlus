@@ -2,12 +2,12 @@
   "name": "BreadfishPlusPlus",
   "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
   "private": true,
-  "version": "3.0.10",
+  "version": "4.0.0",
+  "main": "src/index.js",
   "domain": {
     "main": "https://brpp.ga/",
     "cdn": "https://cdn.brpp.ga/",
     "teamspeak": "https://teamspeak.brpp.ga/",
-    "chat": "https://chat.brpp.ga/",
     "screenshot": "https://screenshot.brpp.ga/"
   },
   "repository": {
@@ -20,35 +20,29 @@
   },
   "license": "MIT",
   "scripts": {
-    "watch": "grunt",
-    "build": "grunt build",
-    "build-dev": "grunt build"
+    "dev-server": "webpack-dev-server --content-base .public/ --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
+    "watch": "webpack --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
   },
-  "browserify-shim": {
-    "lib/async": "global:async",
-    "lib/jquery": "global:jQuery",
-    "lib/keyboard": "global:KeyboardJS",
-    "lib/moment": "global:moment",
-    "lib/tooltip": "global:tooltip",
-    "lib/underscore": "global:_",
-    "lib/desktopnotify": "global:notify",
-    "lib/socket": "global:io",
-    "lib/highlight": "global:hljs",
-    "lib/autolinker": "global:Autolinker",
-    "underscore": "global:_"
-  },
+  "browserify-shim": {},
   "devDependencies": {
-    "browserify-shim": "^3.5.0",
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.2.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-notify": "^0.4.1",
-    "grunt-template-module": "^0.5.0",
-    "node-lessify": "0.0.5"
+    "babel-core": "^5.5.6",
+    "babel-loader": "^5.1.4",
+    "css-loader": "^0.14.5",
+    "gulp": "^3.9.0",
+    "handlebars": "^3.0.3",
+    "handlebars-loader": "^1.0.2",
+    "jquery": "^2.1.4",
+    "json-loader": "^0.5.2",
+    "keyboardjs": "^0.4.2",
+    "less": "^2.5.1",
+    "less-loader": "^2.2.0",
+    "lodash": "^3.9.3",
+    "node-libs-browser": "^0.5.2",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "dependencies": {
+    "debug": "^2.2.0"
   }
 }

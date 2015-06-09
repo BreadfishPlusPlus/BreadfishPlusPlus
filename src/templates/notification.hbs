@@ -1,0 +1,11 @@
+<div class="bpp-notification-queue">
+    {{#each notifications}}
+        <div data-index="{{@index}}" class="bpp-notification {{#if onClick}}bpp-notification-clickable {{/if}}bpp-notification-{{type}}"{{#if icon}} style="background-image: url(' + notification.icon + ')"{{/if}}>
+            <button class="bpp-notification-close" role="button">×</button>
+            {{#if title}}
+                <div class="bpp-notification-title">{{title}}</div>
+            {{/if}}
+            <div class="bpp-notification-message">{{message}}</div>
+        </div>
+    {{/each}}
+</div>

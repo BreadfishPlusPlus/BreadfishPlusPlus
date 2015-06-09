@@ -1,27 +1,27 @@
 <div id="main" class="bpp_options">
     <div class="mainHeadline">
-        <img src="<%- DOMAIN.cdn %>img/breadfish48.png">
+        <img src="{{DOMAIN.cdn}}img/breadfish48.png">
         <div class="headlineContainer">
             <h2>Breadfish++</h2>
-            <p>Version <%- VERSION %></p>
+            <p>Version {{VERSION}}</p>
         </div>
     </div>
     <div id="profileEditContent" class="tabMenu">
         <ul>
             <li data-tab="about">
-                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/about">
+                <a href="{{location.pathname}}{{location.search}}#/breadfishplusplus/!/about">
                     <img src="wcf/icon/infoM.png"> <span>Info</span>
                 </a>
             </li>
-            <% _.each(optionsObject, function (tab) { %>
-            <li data-tab="<%- tab.href %>">
-                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/<%- tab.href %>">
-                    <img src="wcf/icon/settingsM.png"> <span><%- tab.name %></span>
+            {{#each optionsObject}}
+            <li data-tab="{{href}}">
+                <a href="{{../location.pathname}}{{../location.search}}#/breadfishplusplus/!/{{href}}">
+                    <img src="wcf/icon/settingsM.png"> <span>{{name}}</span>
                 </a>
             </li>
-            <% }); %>
+            {{/each}}
             <li data-tab="importexport">
-                <a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/importexport">
+                <a href="{{location.pathname}}{{location.search}}#/breadfishplusplus/!/importexport">
                     <img src="wcf/icon/dbExportM.png"> <span>Einstellungen Importieren/Exportieren</span>
                 </a>
             </li>
@@ -29,28 +29,28 @@
     </div>
     <div class="subTabMenu">
         <div class="containerHead">
-            <% _.each(optionsObject, function (tab) { %>
-            <ul data-tab="<%- tab.href %>">
-                <% _.each(tab.subtabs, function (subtab) { %>
-                    <li data-subtab="<%- subtab.href %>"><a href="<%- location.pathname + location.search %>#/breadfishplusplus/!/<%- tab.href %>/<%- subtab.href %>"><span><%- subtab.name %></span></a></li>
-                <% }); %>
+            {{#each optionsObject}}
+            <ul data-tab="{{href}}">
+            {{#each subtabs}}
+                <li data-subtab="{{href}}"><a href="{{../../location.pathname}}{{../../location.search}}#/breadfishplusplus/!/{{../href}}/{{href}}"><span>{{name}}</span></a></li>
+            {{/each}}
             </ul>
-            <% }); %>
+            {{/each}}
         </div>
     </div>
     <div class="border tabMenuContent">
         <div class="container-2" data-tab="about" data-subtab="null">
             <div class="columnInner">
                 <div class="bpp-about-header">
-                    <img src="<%- DOMAIN.cdn %>img/breadfish128.png">
+                    <img src="{{DOMAIN.cdn}}img/breadfish128.png">
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Version</label></div>
-                    <div class="formField"><%- VERSION %> (<a href="https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v<%- VERSION %>">Release notes</a>)</div>
+                    <div class="formField">{{VERSION}} (<a href="https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v{{VERSION}}">Release notes</a>)</div>
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Offizille Wobsite</label></div>
-                    <div class="formField"><a href="<%- DOMAIN.main %>"><%- DOMAIN.main %></a></div>
+                    <div class="formField"><a target="_blank" href="{{DOMAIN.main}}">{{DOMAIN.main}}</a></div>
                 </div>
                 <div class="formElement">
                     <div class="formFieldLabel"><label>Brauchst du Hilfe?</label></div>
@@ -77,56 +77,58 @@
                 <p>Den Quellcode der dafür verantwortlich ist findest du hier: <a target="_blank" href="http://git.io/bmtS9w">Teamspeak-Info</a>.</p>
             </div>
         </div>
-        <% _.each(optionsObject, function (tab) { %>
-            <% _.each(tab.subtabs, function (subtab) { %>
-                <div class="container-1" data-tab="<%- tab.href %>" data-subtab="<%- subtab.href %>">
-                <% _.each(subtab.categories, function (category) { %>
+        {{#each optionsObject}} {{!-- tab --}}
+            {{#each subtabs}} {{!-- subtab --}}
+                <div class="container-1" data-tab="{{../href}}" data-subtab="{{href}}">
+                {{#each categories}} {{!-- category --}}
                     <fieldset>
-                        <legend><%- category.name %></legend>
-                        <% _.each(category.options, function (option) { %>
-                            <% if (option.type === 'toggle') { %>
+                        <legend>{{name}}</legend>
+                        {{#each options}} {{!-- option --}}
+                            {{#if type_toggle}}
                                 <div class="formCheckBox formElement">
                                     <div class="formField">
-                                        <label for="<%- option.key %>">
-                                            <input type="checkbox" class="bpp-option" id="<%- option.key %>" name="<%- option.key %>" <%- option.default ? 'checked' : '' %>> <%- option.name %>
+                                        <label for="{{key}}">
+                                            <input type="checkbox" class="bpp-option" id="{{key}}" name="{{key}}" {{#if default}}checked{{/if}}> {{name}}
                                         </label>
                                     </div>
-                                    <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
-                                    <% } %>
+                                    {{#if description}}
+                                    <div class="formFieldDesc"><p>{{description}}</p></div>
+                                    {{/if}}
                                 </div>
-                            <% } else if (option.type === 'range') { %>
+                            {{/if}}
+                            {{#if type_range}}
                                 <div class="formElement">
                                     <div class="formFieldLabel">
-                                        <label for="<%- option.key %>"><%- option.name %></label>
+                                        <label for="{{key}}">{{name}}</label>
                                     </div>
                                     <div class="formField">
-                                        <input type="range" id="<%- option.key %>" name="<%- option.key %>" class="bpp-option" min="<%- option.min %>" max="<%- option.max %>" value="<%- option.default %>">
-                                        <span class="indicator"><%- option.default %></span>
+                                        <input type="range" id="{{key}}" name="{{key}}" class="bpp-option" min="{{min}}" max="{{max}}" value="{{default}}">
+                                        <span class="indicator">{{default}}</span>
                                     </div>
-                                    <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
-                                    <% } %>
+                                    {{#if description}}
+                                    <div class="formFieldDesc"><p>{{description}}</p></div>
+                                    {{/if}}
                                 </div>
-                            <% } else if (option.type === 'keyboard') { %>
+                            {{/if}}
+                            {{#if type_keyboard}}
                                 <div class="formElement">
                                     <div class="formFieldLabel">
-                                        <label for="<%- option.key %>"><%- option.name %></label>
+                                        <label for="{{key}}">{{name}}</label>
                                     </div>
                                     <div class="formField">
-                                        <input type="button" class="bpp-option" id="<%- option.key %>" name="<%- option.key %>" value="<%- option.default %>">
+                                        <input type="button" class="bpp-option" id="{{key}}" name="{{key}}" value="{{default}}">
                                     </div>
-                                    <% if (option.description) { %>
-                                    <div class="formFieldDesc"><p><%= option.description %></p></div>
-                                    <% } %>
+                                    {{#if description}}
+                                    <div class="formFieldDesc"><p>{{description}}</p></div>
+                                    {{/if}}
                                 </div>
-                            <% } %>
-                        <% }); %>
+                            {{/if}}
+                        {{/each}}
                     </fieldset>
-                <% }); %>
+                {{/each}}
                 </div>
-            <% }); %>
-        <% }); %>
+            {{/each}}
+        {{/each}}
         <div class="container-1" data-tab="importexport" data-subtab="null">
             <h3 class="subHeadline">Einstellungen importieren</h3>
             <fieldset>

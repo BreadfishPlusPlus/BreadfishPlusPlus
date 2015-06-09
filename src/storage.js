@@ -1,26 +1,27 @@
 if (!window.localStorage) {
-    throw new Error('Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage');
+    throw new Error("Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage");
 }
+const debug = require("debug")("storage");
 
-var get, set, setDefault;
-
-set = function (key, value) {
-    localStorage.setItem('bpp_' + key, Object.toJSON(value));
+const set = function (key, value) {
+    debug("set %j=%j", key, value);
+    localStorage.setItem("bpp_" + key, Object.toJSON(value));
 };
-exports.set = set;
 
-setDefault = function (key, defaultValue) {
-    if (!localStorage.getItem('bpp_' + key)) {
-        localStorage.setItem('bpp_' + key, Object.toJSON(defaultValue));
+const setDefault = function (key, defaultValue) {
+    if (!localStorage.getItem("bpp_" + key)) {
+        debug("setDefault %j=%j", key, defaultValue);
+        localStorage.setItem("bpp_" + key, Object.toJSON(defaultValue));
     }
 };
-exports.setDefault = setDefault;
 
-get = function (key, defaultValue) {
-    var item = localStorage.getItem('bpp_' + key);
+const get = function (key, defaultValue) {
+    var item = localStorage.getItem("bpp_" + key);
     if (item) {
+        debug("get %j(%j)=%j", key, defaultValue, item.evalJSON());
         return item.evalJSON();
     }
+    debug("get %j(%j)=%j", key, defaultValue, defaultValue || null);
     return defaultValue || null;
 };
-exports.get = get;
+export default {set, setDefault, get};

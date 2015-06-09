@@ -1,7 +1,2 @@
-.tmp
-certificates
+.public
 node_modules
-out
-*.sublime-project
-*.sublime-workspace
-*.txt
