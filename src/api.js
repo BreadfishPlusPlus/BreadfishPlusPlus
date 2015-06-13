@@ -2,6 +2,9 @@ const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
 import _ from "lodash";
+import Moment from "moment";
+import "moment/locale/de";
+Moment.locale("de");
 import Package from "../package.json";
 import KeyboardJS from "keyboardjs";
 import Notification from "./notification";
@@ -280,9 +283,32 @@ $(document).ready(function () {
     });
 });
 
+let MODULE_LIST = {};
+export const ReferenceModule = function (name, module) {
+    debug("ReferenceModule", name, module);
+    MODULE_LIST[name] = module;
+};
+
 export class DefaultModule {
     constructor() {
         this.storage = Storage;
+    }
+    getDomains() {
+        debug("getDomains", Package.domain);
+        return Package.domain;
+    }
+    getTemplateName() {
+        if (!this.templateName) {
+            this.templateName = $("body").attr("id");
+        }
+        return this.templateName;
+    }
+    isTemplate(...templates) {
+        return templates.indexOf(this.getTemplateName()) > -1;
+    }
+    getModule(name) {
+        debug("getModule", name, MODULE_LIST[name]);
+        return MODULE_LIST[name];
     }
     register(options) {
         debug("register", options);

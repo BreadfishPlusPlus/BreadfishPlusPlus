@@ -37,6 +37,7 @@
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "lodash": "^3.9.3",
+    "moment": "^2.10.3",
     "node-libs-browser": "^0.5.2",
     "style-loader": "^0.12.3",
     "webpack": "^1.9.10",

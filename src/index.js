@@ -1,13 +1,22 @@
 localStorage.setItem("debug", "*");
+import {ReferenceModule} from "./api";
 const debug = require("debug")("index");
 debug("hi");
 
 
 const mod = require.context("./modules", false, /\.js$/);
-mod.keys().map(moduleName => {
-    debug("loading", moduleName);
-    let Module = mod(moduleName);
-    new Module();
+mod.keys().map(fileName => {
+    let moduleName = fileName.slice(2, -3);
+    debug("Lade Modul  \"" + moduleName + "\" ...");
+    try {
+        let Module = mod(fileName);
+        let inst = new Module();
+        ReferenceModule(moduleName, inst);
+    }
+    catch (e) {
+        debug("Fehler beim laden des Moduls \"" + moduleName + "\":");
+        console.error(e);
+    }
 });
 
 
