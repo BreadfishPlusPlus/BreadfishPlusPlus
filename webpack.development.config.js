@@ -1,6 +1,7 @@
-var Path = require("path");
-var Webpack = require("webpack");
-console.log(Path.join(__dirname, "src", "index.js"));
+"use strict";
+
+const Path = require("path");
+const Webpack = require("webpack");
 module.exports = {
     entry: "./src/index.js",
     output: {
@@ -12,16 +13,20 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.js$/,
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
             loader: "babel"
         },{
             test: /\.less$/,
+            exclude: /node_modules/,
             loader: "style!css!less"
         },{
             test: /\.hbs$/,
+            exclude: /node_modules/,
             loader: "handlebars-loader"
         },{
             test: /\.json$/,
+            exclude: /node_modules/,
             loader: "json-loader"
         }]
     },
@@ -31,7 +36,7 @@ module.exports = {
             _: "lodash"
         })
     ],
-    devtool: "cheap-eval-source-map",
+    devtool: "eval",
     watch: true,
     debug: true,
     resolve: {

@@ -1,10 +1,12 @@
+"use strict";
+
 import _ from "lodash";
 import $ from "jquery";
 import NotificationTemplate from "templates/notification.hbs";
 
 require("./styles/notification.less");
 
-var Notification = function (options) {
+const Notification = function (options) {
     this.timestamp = Date.now();
     this.type = options.type || "info";
     this.title = options.title || null;
@@ -18,13 +20,13 @@ var Notification = function (options) {
     this.element = null;
 };
 
-var Queue = function () {
-    var $queueElem, _queue, _remove, _redraw, _add, _checkHide;
+const Queue = function () {
+    let $queueElem, _queue, _remove, _redraw, _add, _checkHide;
 
     _queue = [];
 
     _checkHide = function () {
-        var count = 0;
+        let count = 0;
         _.each(_queue, function (m, index) {
             if (m.hidedelay) {
                 if (Date.now() > (m.timestamp + m.hidedelay)) {
@@ -83,7 +85,7 @@ var Queue = function () {
         });
         $queueElem.find(".bpp-notification-close").click(function (event) {
             event.preventDefault();
-            var $notification = $(this).parent(".bpp-notification"),
+            let $notification = $(this).parent(".bpp-notification"),
                 index = parseInt($notification.attr("data-index"), 10);
             if (_queue[index].onClose) {
                 _queue[index].onClose(_queue[index]);
@@ -94,8 +96,8 @@ var Queue = function () {
         });
         $queueElem.find(".bpp-notification-clickable").click(function (event) {
             event.preventDefault();
-            var $notification = $(this);
-            var index = parseInt($notification.attr("data-index"), 10);
+            let $notification = $(this);
+            let index = parseInt($notification.attr("data-index"), 10);
             if (_queue[index].onClick) {
                 _queue[index].onClick(_queue[index], function () {
                     $notification.fadeOut(150, function () {
@@ -112,15 +114,15 @@ var Queue = function () {
         redraw: _redraw
     };
 };
-var notificationQueue = new Queue();
+const notificationQueue = new Queue();
 
-let create = function (options) {
+const create = function (options) {
     if (!_.isObject(options)) {
         options = {
             message: options
         };
     }
-    var _n = new Notification(options);
+    const _n = new Notification(options);
     notificationQueue.add(_n);
     return _n;
 };

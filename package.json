@@ -20,14 +20,17 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev-server": "webpack-dev-server --content-base .public/ --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
-    "watch": "webpack --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
+    "dev-server": "$(npm bin)/webpack-dev-server --content-base .public/ --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
+    "watch": "$(npm bin)/webpack --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
   },
   "browserify-shim": {},
   "devDependencies": {
     "babel-core": "^5.5.6",
+    "babel-eslint": "^4.0.5",
     "babel-loader": "^5.1.4",
-    "css-loader": "^0.14.5",
+    "css-loader": "^0.15.6",
+    "eslint": "^1.1.0",
+    "eslint-plugin-react": "^3.2.1",
     "gulp": "^3.9.0",
     "handlebars": "^3.0.3",
     "handlebars-loader": "^1.0.2",
@@ -44,6 +47,41 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
-    "debug": "^2.2.0"
+    "debug": "^2.2.0",
+    "react": "^0.13.3"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "strict": [
+        2,
+        "global"
+      ],
+      "indent": [
+        2,
+        4
+      ],
+      "quotes": [
+        2,
+        "double"
+      ],
+      "linebreak-style": [
+        2,
+        "unix"
+      ],
+      "semi": [
+        2,
+        "always"
+      ]
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "extends": "eslint:recommended"
   }
 }

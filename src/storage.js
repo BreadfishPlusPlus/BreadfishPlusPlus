@@ -1,6 +1,9 @@
+"use strict";
+
 if (!window.localStorage) {
     throw new Error("Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage");
 }
+
 const debug = require("debug")("storage");
 
 const set = function (key, value) {
@@ -16,7 +19,7 @@ const setDefault = function (key, defaultValue) {
 };
 
 const get = function (key, defaultValue) {
-    var item = localStorage.getItem("bpp_" + key);
+    let item = localStorage.getItem("bpp_" + key);
     if (item) {
         debug("get %j(%j)=%j", key, defaultValue, item.evalJSON());
         return item.evalJSON();

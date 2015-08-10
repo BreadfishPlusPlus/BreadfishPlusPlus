@@ -1,3 +1,5 @@
+"use strict";
+
 const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
@@ -16,7 +18,7 @@ let optionsArray    = [];
 let $optionsFrame, isOptionsFrameOpen = false, setOptionsToValues, getKeyName, showOptions, generateHref, parseHash, generateOptionsObject;
 
 getKeyName = function (key) {
-    var names = KeyboardJS.key.name(key);
+    const names = KeyboardJS.key.name(key);
     if (names.length === 0) {
         return "Keine Taste zugewiesen";
     }
@@ -30,7 +32,7 @@ getKeyName = function (key) {
 
 setOptionsToValues = function () {
     $(".bpp-option").each(function () {
-        var name = $(this).attr("name"),
+        let name = $(this).attr("name"),
             type = $(this).attr("type"),
             value;
         if (type === "checkbox") {
@@ -47,7 +49,7 @@ setOptionsToValues = function () {
 showOptions = function () {
     $("#main").hide();
 
-    var optionsObject = generateOptionsObject(),
+    let optionsObject = generateOptionsObject(),
         parsedHash = parseHash(optionsObject);
 
     if ($optionsFrame) {
@@ -75,11 +77,12 @@ showOptions = function () {
 };
 
 parseHash = function (optionsObject) {
-    var ret = {
+    let ret = {
         tab: null,
         subtab: null,
         highligh: null
-    }, s;
+    };
+    let s;
 
     if (location.hash.length > 2) {
         s = location.hash.substr(2).split("/");
@@ -116,10 +119,10 @@ generateHref = function (name) {
 };
 
 generateOptionsObject = function () {
-    var tmp = [];
+    let tmp = [];
     _.each(optionsArray, function (opt) {
         if (opt.type !== "invis") {
-            var tab, subtab, category;
+            let tab, subtab, category;
 
             tab = _.find(tmp, function (_tab) {
                 return _tab.name === opt.tab;
@@ -177,8 +180,8 @@ generateOptionsObject = function () {
     return tmp;
 };
 
-var showSaveBadge = function (elem) {
-    var $label = $(elem).parent("label");
+const showSaveBadge = function (elem) {
+    let $label = $(elem).parent("label");
     if ($label.find(".bpp-saved-badge").length > 0) {
         $label.find(".bpp-saved-badge").remove();
     }
@@ -190,7 +193,7 @@ var showSaveBadge = function (elem) {
 $(document).ready(function () {
     require("styles/options.less");
 
-    var $userMenuItem;
+    let $userMenuItem;
 
     $userMenuItem = $(UserMenuItemTemplate());
 
@@ -223,18 +226,18 @@ $(document).ready(function () {
         showSaveBadge(this);
     });
     $(document).on("change", "input[type=\"range\"].bpp-option", function () {
-        var val = parseInt($(this).val(), 10);
+        let val = parseInt($(this).val(), 10);
         Storage.set($(this).attr("name"), val);
         $(this).parent(".formField").find(".indicator").text(val);
         showSaveBadge(this);
     });
     $(document).on("click", "input[type=\"button\"].bpp-option", function (e) {
         e.preventDefault();
-        var $btn = $(this),
+        let $btn = $(this),
             name = $btn.attr("name");
         $btn.focus().val("Zuzuweisende Taste drücken...").addClass("disabled").on("keydown", function (event) {
             event.preventDefault();
-            var charCode = event.which || event.keyCode;
+            let charCode = event.which || event.keyCode;
             if (charCode === 27) {
                 Storage.set(name, -1);
                 $btn.blur().val("Keine Taste zugewiesen").removeClass("disabled").off(event).unbind("blur");
@@ -249,7 +252,7 @@ $(document).ready(function () {
         showSaveBadge(this);
     });
     $(document).on("click", ".bpp-exportOptions", function () {
-        var url = window.webkitURL || window.URL, obj = {};
+        let url = window.webkitURL || window.URL, obj = {};
         _.each(optionsArray, function (opt) {
             obj[opt.key] = Storage.get(opt.key, opt.default);
         });
@@ -257,11 +260,11 @@ $(document).ready(function () {
     });
     $(document).on("change", ".bpp-importOptions", function (event) {
         if (event.target.files.length > 0) {
-            var file = event.target.files[0],
+            let file = event.target.files[0],
                 reader = new FileReader();
             reader.onloadend = function (evt) {
                 try {
-                    var importedOptions = evt.target.result.evalJSON();
+                    let importedOptions = evt.target.result.evalJSON();
                     debug("Einstellungen werden importiert:", importedOptions);
                     _.each(importedOptions, function (value, key) {
                         Storage.set(key, value);
