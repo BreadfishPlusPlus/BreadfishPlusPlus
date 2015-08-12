@@ -4,18 +4,17 @@ const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
 import _ from "lodash";
-import Moment from "moment";
-import "moment/locale/de";
-Moment.locale("de");
-import Package from "../package.json";
+import React from "react";
+import Package from "../../package.json";
 import KeyboardJS from "keyboardjs";
 import Notification from "./notification";
-import OptionsTemplate from "templates/options.hbs";
-import UserMenuItemTemplate from "templates/userMenuItem.hbs";
+//import OptionsTemplate from "../templates/options.hbs";
+import UserMenuItemTemplate from "../templates/userMenuItem.hbs";
+import OptionsTemplate from "./options/Options.jsx";
 
 let optionsArray    = [];
 
-let $optionsFrame, isOptionsFrameOpen = false, setOptionsToValues, getKeyName, showOptions, generateHref, parseHash, generateOptionsObject;
+let $optionsFrame, isOptionsFrameOpen = false, getKeyName, showOptions, generateHref, parseHash, generateOptionsObject;
 
 getKeyName = function (key) {
     const names = KeyboardJS.key.name(key);
@@ -30,24 +29,8 @@ getKeyName = function (key) {
     }
 };
 
-setOptionsToValues = function () {
-    $(".bpp-option").each(function () {
-        let name = $(this).attr("name"),
-            type = $(this).attr("type"),
-            value;
-        if (type === "checkbox") {
-            $(this).prop("checked", Storage.get(name, false));
-        } else if (type === "range") {
-            value = Storage.get(name, $(this).attr("value"));
-            $(this).val(value).parent(".formField").find(".indicator").text(value);
-        } else if (type === "button") {
-            $(this).val(getKeyName(Storage.get(name, -1)));
-        }
-    });
-};
-
 showOptions = function () {
-    $("#main").hide();
+    //$("#main").hide();
 
     let optionsObject = generateOptionsObject(),
         parsedHash = parseHash(optionsObject);
@@ -57,7 +40,7 @@ showOptions = function () {
         $optionsFrame = null;
     }
 
-    $optionsFrame = $(OptionsTemplate({
+    /*$optionsFrame = $(OptionsTemplate({
         location: location,
         VERSION: Package.version,
         DOMAIN: Package.domain,
@@ -65,15 +48,21 @@ showOptions = function () {
     }));
 
     $optionsFrame.insertAfter("#headerContainer");
-    $optionsFrame.find("li[data-tab=\"" + parsedHash.tab + "\"]").addClass("activeTabMenu");
-    $optionsFrame.find("ul[data-tab=\"" + parsedHash.tab + "\"]").show();
-    $optionsFrame.find("li[data-subtab=\"" + parsedHash.subtab + "\"]").addClass("activeSubTabMenu");
+    xxxx$optionsFrame.find("li[data-tab=\"" + parsedHash.tab + "\"]").addClass("activeTabMenu");
+    xxxx$optionsFrame.find("ul[data-tab=\"" + parsedHash.tab + "\"]").show();
+    xxxx$optionsFrame.find("li[data-subtab=\"" + parsedHash.subtab + "\"]").addClass("activeSubTabMenu");
     $optionsFrame.find("div[data-tab=\"" + parsedHash.tab + "\"][data-subtab=\"" + parsedHash.subtab + "\"]").show();
 
     $optionsFrame.show();
-    isOptionsFrameOpen = true;
+    isOptionsFrameOpen = true;*/
 
-    setOptionsToValues();
+    React.render(<OptionsTemplate
+        location={location}
+        parsedHash={parsedHash}
+        version={Package.version}
+        domains={Package.domain}
+        optionsObject={optionsObject}
+    />, document.querySelector("#main"));
 };
 
 parseHash = function (optionsObject) {
@@ -191,7 +180,7 @@ const showSaveBadge = function (elem) {
 };
 
 $(document).ready(function () {
-    require("styles/options.less");
+    require("./options/style.less");
 
     let $userMenuItem;
 
@@ -221,7 +210,7 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("change", "input[type=\"checkbox\"].bpp-option", function () {
+    /*$(document).on("change", "input[type=\"checkbox\"].bpp-option", function () {
         Storage.set($(this).attr("name"), $(this).is(":checked"));
         showSaveBadge(this);
     });
@@ -269,7 +258,9 @@ $(document).ready(function () {
                     _.each(importedOptions, function (value, key) {
                         Storage.set(key, value);
                     });
-                    setOptionsToValues();
+
+                    //TODO: neue optionen setzen
+
                     Notification({
                         type: "success",
                         message: "Es wurden " + Object.keys(importedOptions).length + " Einstellungen importiert!"
@@ -283,7 +274,7 @@ $(document).ready(function () {
             };
             reader.readAsBinaryString(file);
         }
-    });
+    });*/
 });
 
 let MODULE_LIST = {};
@@ -308,6 +299,9 @@ export class DefaultModule {
     }
     isTemplate(...templates) {
         return templates.indexOf(this.getTemplateName()) > -1;
+    }
+    getUsername() {
+        return document.querySelector("#userNote a").innerText.trim();
     }
     getModule(name) {
         debug("getModule", name, MODULE_LIST[name]);

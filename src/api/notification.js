@@ -4,7 +4,7 @@ import _ from "lodash";
 import $ from "jquery";
 import NotificationTemplate from "templates/notification.hbs";
 
-require("./styles/notification.less");
+require("./../styles/notification.less");
 
 const Notification = function (options) {
     this.timestamp = Date.now();

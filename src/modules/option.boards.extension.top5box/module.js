@@ -1,7 +1,11 @@
-import {DefaultModule} from "../api.js";
+"use strict";
+
+import {DefaultModule} from "../../api";
+import React from "react";
+import Superagent from "superagent";
 import $ from "jquery";
-import Top5boxTemplate from "templates/top5box.hbs";
 const debug = require("debug")("option.boards.extension.top5box");
+import Top5BoxTemplate from "./Template.jsx";
 
 export default class Top5Box extends DefaultModule {
     constructor() {
@@ -31,48 +35,37 @@ export default class Top5Box extends DefaultModule {
 
         this.refreshInterval = this.storage.get("option.boards.extension.top5box.refreshInterval", 60000);
         this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
-        this.refreshTitlebarInterval = setInterval(this.refreshTitlebar.bind(this), 1000);
-        this.lastRefresh = Date.now();
-        this.isRefreshing = false;
 
-        this.$top5boxrefresh = $(document.createElement("div")).attr("id", "top5boxrefresh").css({
-            position: "absolute",
-            top: "6px",
-            right: "5px"
-        });
-        $(".top5box").find(".containerHead").css({position: "relative"}).append(this.$top5boxrefresh);
-        this.refreshTitlebar();
-
-        $(document).on("click", "#top5boxrefresh a", function (event) {
-            event.preventDefault();
-            this.refreshPosts();
-        }.bind(this));
+        const containerHead = document.querySelector(".top5box .containerHead");
+        containerHead.style.position = "relative";
+        const container = document.createElement("div");
+        containerHead.appendChild(container);
+        this.template = React.render(<Top5BoxTemplate
+            refreshInterval={this.refreshInterval}
+            refreshPosts={this.refreshPosts.bind(this)}
+        />, container);
+        this.template.setState({isRefreshing: false});
     }
     refreshPosts() {
         debug("Die letzten 10 Beiträge werden aktualisiert...");
-        this.isRefreshing = true;
-        this.refreshTitlebar();
         clearInterval(this.refreshPostsInterval);
+        this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        $.get("http://forum.sa-mp.de/breadfish-de-die-deutschsprachige-gta-community").done(function (response) {
-            var $data = $(response);
+        Superagent.get("http://forum.sa-mp.de/breadfish-de-die-deutschsprachige-gta-community").end(function (err, res) {
+            if (err) {
+                return this.props.debug("Fehler beim abfragen der Top5 Posts: ", err);
+            }
+
+            var $data = $(res.text);
             $("#top5").html($data.find("#top5").html());
+
             this.getModule("option.boards.extension.lastPosts").trimPosts();
 
             this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
-            this.lastRefresh = Date.now();
+
+            this.template.setState({isRefreshing: false, lastRefresh: Date.now()});
 
             debug("Die letzten 10 Beiträge wurden aktualisiert!");
-            this.isRefreshing = false;
-
-
         }.bind(this));
-    }
-    refreshTitlebar() {
-        var remain = Math.round((this.lastRefresh + this.refreshInterval - Date.now()) / 1000);
-        this.$top5boxrefresh.html(Top5boxTemplate({
-            remain,
-            isRefreshing: this.isRefreshing
-        }));
     }
 }

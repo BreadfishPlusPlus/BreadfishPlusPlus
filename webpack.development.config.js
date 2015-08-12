@@ -41,6 +41,6 @@ module.exports = {
     debug: true,
     resolve: {
         root: Path.join(__dirname, "src"),
-        extensions: ["", ".js", ".less", ".hbs", ".json"]
+        extensions: ["", ".js", ".jsx", ".less", ".hbs", ".json"]
     }
 };

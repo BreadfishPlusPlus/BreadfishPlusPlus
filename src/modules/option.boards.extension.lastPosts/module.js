@@ -1,4 +1,6 @@
-import {DefaultModule} from "../api.js";
+"use strict";
+
+import {DefaultModule} from "../../api";
 import $ from "jquery";
 const debug = require("debug")("option.boards.extension.lastPosts");
 
@@ -30,7 +32,10 @@ export default class LastPosts extends DefaultModule {
     }
     trimPosts() {
         const lastPostsCount = this.storage.get("option.boards.extension.lastPosts.count", 10);
-        debug("trimPosts", lastPostsCount);
+        if (lastPostsCount === 10) {
+            return;
+        }
+        debug("Kürze die letzten 10 Beiträge auf %s", lastPostsCount);
         if (lastPostsCount > 0) {
             $(".top5box .tableList tr").slice(lastPostsCount, 10).remove();
             $(".top5box .containerContent").html("<img src=\"icon/postS.png\"> Die letzten " + lastPostsCount + " Beiträge");
