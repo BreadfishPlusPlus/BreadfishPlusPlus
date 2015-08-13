@@ -1,8 +1,19 @@
 "use strict";
 
 import React from "react";
+import Storage from "./../storage";
 
 class ToggleOption extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            checked: Storage.get(this.props.optionKey, this.props.default)
+        };
+    }
+    handleChange() {
+        this.setState({checked: !this.state.checked});
+        Storage.set(this.props.optionKey, !this.state.checked);
+    }
     render() {
         let description = false;
         if (this.props.description) {
@@ -11,14 +22,15 @@ class ToggleOption extends React.Component {
         return (
             <div className="formCheckBox formElement">
                 <div className="formField">
-                    <label htmlFor={this.props.key}>
+                    <label htmlFor={this.props.optionKey}>
                         <input
                             type="checkbox"
                             className="bpp-option"
-                        style={{verticalAlign: "middle"}}
-                            id={this.props.key}
-                            name={this.props.key}
-                            checked={this.props.default}
+                            style={{verticalAlign: "middle"}}
+                            id={this.props.optionKey}
+                            name={this.props.optionKey}
+                            checked={this.state.checked}
+                            onChange={this.handleChange.bind(this)}
                         /> {this.props.name}
                     </label>
                 </div>
@@ -28,6 +40,16 @@ class ToggleOption extends React.Component {
     }
 }
 class RangeOption extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: Storage.get(this.props.optionKey, this.props.default)
+        };
+    }
+    handleChange(event) {
+        this.setState({value: ~~event.target.value});
+        Storage.set(this.props.optionKey, ~~event.target.value);
+    }
     render() {
         let description = false;
         if (this.props.description) {
@@ -36,25 +58,26 @@ class RangeOption extends React.Component {
         return (
             <div className="formElement">
                 <div className="formFieldLabel">
-                    <label htmlFor={this.props.key}>{this.props.name}</label>
+                    <label htmlFor={this.props.optionKey}>{this.props.name}</label>
                 </div>
                 <div className="formField">
                     <input
                         type="range"
-                        id={this.props.key}
-                        name={this.props.key}
+                        id={this.props.optionKey}
+                        name={this.props.optionKey}
                         className="bpp-option"
                         style={{verticalAlign: "middle"}}
                         min={this.props.min}
                         max={this.props.max}
-                        value={this.props.default}
+                        value={this.state.value}
+                        onChange={this.handleChange.bind(this)}
                     />
                     <span className="indicator" style={{
                         verticalAlign: "middle",
                         border: "1px solid #000",
                         padding: "1px 7px",
                         background: "#FFF"
-                    }}>{this.props.default}</span>
+                    }}>{this.state.value}</span>
                 </div>
                 {description}
             </div>
@@ -70,15 +93,15 @@ class KeyboardOption extends React.Component {
         return (
             <div className="formElement">
                 <div className="formFieldLabel">
-                    <label htmlFor={this.props.key}>{this.props.name}</label>
+                    <label htmlFor={this.props.optionKey}>{this.props.name}</label>
                 </div>
                 <div className="formField">
                     <input
                         type="button"
                         className="bpp-option"
                         style={{verticalAlign: "middle"}}
-                        id={this.props.key}
-                        name={this.props.key}
+                        id={this.props.optionKey}
+                        name={this.props.optionKey}
                         value={this.props.default}
                     />
                 </div>

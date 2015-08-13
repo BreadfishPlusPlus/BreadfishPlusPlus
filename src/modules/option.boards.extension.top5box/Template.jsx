@@ -18,7 +18,7 @@ export default class Top5Box extends React.Component {
     showDots() {
         if (this.state.isRefreshing) {
             this.setState({dots: this.state.dots > 2 ? 1 : this.state.dots + 1});
-            setTimeout(this.showDots.bind(this), 500);
+            setTimeout(this.showDots.bind(this), 300);
         }
     }
     render() {

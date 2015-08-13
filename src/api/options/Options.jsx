@@ -31,7 +31,7 @@ export default class Options extends React.Component {
                                 {subtab.categories.map(category => {
                                     return (<fieldset key={category.name}>
                                         <legend>{category.name}</legend>
-                                        {category.options.map(option => <Option {...option} />)}
+                                        {category.options.map(option => <Option optionKey={option.key} {...option}  />)}
                                     </fieldset>);
                                 })}
                             </div>);
