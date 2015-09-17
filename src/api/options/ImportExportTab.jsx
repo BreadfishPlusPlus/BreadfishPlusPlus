@@ -3,30 +3,45 @@
 import React from "react";
 
 export default class ImportExportTab extends React.Component {
+    static propTypes = {
+        parsedHash: React.PropTypes.object.isRequired
+    };
     render() {
         const {parsedHash} = this.props;
-        return (<div className="container-1" style={{display: parsedHash.tab === "importexport" ? "block": "none"}}>
-            <h3 className="subHeadline">Einstellungen importieren</h3>
-            <fieldset>
-                <div className="formElement">
-                    <div className="formField">
-                        <label htmlFor="importOptions">
-                            <input type="file" name="importOptions" className="bpp-importOptions" />
-                        </label>
-                    </div>
-                    <div className="formFieldDesc"><p>Wähle eine Sicherungsdatei von deinem Computer aus, um deine Einstellungen zu importieren.</p></div>
-                </div>
-            </fieldset>
-            <h3 className="subHeadline">Einstellungen exportieren</h3>
-            <fieldset>
-                <div className="formElement">
-                    <div className="formField">
-                        <label htmlFor="exportOptions">
-                            <a href="#" className="bpp-exportOptions" download="breadfishplusplus_options.json">Klicke hier, um deine aktuellen Einstellungen als Sicherungsdatei auf deinem Computer zu speichern.</a>
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
+
+        if (parsedHash.tab !== "importexport") {
+            return false;
+        }
+
+        return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom">
+            <div className="containerPadding">
+                <fieldset>
+                    <legend>Einstellungen importieren</legend>
+                    <dl>
+                        <dt>
+                            <p className="button uploadButton">
+                                <input className="bpp-importOptions" name="importOptions" type="file" /><span>Hochladen</span>
+                            </p>
+                        </dt>
+                        <dd>
+                            <small>Wähle eine Sicherungsdatei von deinem Computer aus, um deine Einstellungen zu importieren.</small>
+                        </dd>
+                    </dl>
+                </fieldset>
+                <fieldset>
+                    <legend>Einstellungen exportieren</legend>
+                    <dl>
+                        <dt>
+                            <a className="button bpp-exportOptions" download="breadfishplusplus_options.json">
+                                <span>Herunterladen</span>
+                            </a>
+                        </dt>
+                        <dd>
+                            <small>Speichere deine Einstellungen in einer Sicherungsdatei auf deinem Coputer.</small>
+                        </dd>
+                    </dl>
+                </fieldset>
+            </div>
         </div>);
     }
 }

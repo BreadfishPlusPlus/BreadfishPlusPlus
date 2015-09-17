@@ -15,16 +15,12 @@ module.exports = {
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: "babel"
-        },{
-            test: /\.less$/,
-            exclude: /node_modules/,
-            loader: "style!css!less"
-        },{
-            test: /\.hbs$/,
-            exclude: /node_modules/,
-            loader: "handlebars-loader"
-        },{
+            loader: "babel",
+            query: {
+                stage: 0,
+                comments: false
+            }
+        }, {
             test: /\.json$/,
             exclude: /node_modules/,
             loader: "json-loader"
@@ -41,6 +37,6 @@ module.exports = {
     debug: true,
     resolve: {
         root: Path.join(__dirname, "src"),
-        extensions: ["", ".js", ".jsx", ".less", ".hbs", ".json"]
+        extensions: ["", ".js", ".jsx", ".json"]
     }
 };

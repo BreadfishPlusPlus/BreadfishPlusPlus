@@ -8,21 +8,22 @@ const debug = require("debug")("storage");
 
 const set = function (key, value) {
     debug("set %j=%j", key, value);
-    localStorage.setItem("bpp_" + key, Object.toJSON(value));
+    localStorage.setItem("bpp_" + key, JSON.stringify(value));
 };
 
 const setDefault = function (key, defaultValue) {
     if (!localStorage.getItem("bpp_" + key)) {
         debug("setDefault %j=%j", key, defaultValue);
-        localStorage.setItem("bpp_" + key, Object.toJSON(defaultValue));
+        localStorage.setItem("bpp_" + key, JSON.stringify(defaultValue));
     }
 };
 
 const get = function (key, defaultValue) {
     let item = localStorage.getItem("bpp_" + key);
     if (item) {
-        debug("get %j(%j)=%j", key, defaultValue, item.evalJSON());
-        return item.evalJSON();
+        item = JSON.parse(item);
+        debug("get %j(%j)=%j", key, defaultValue, item);
+        return item;
     }
     debug("get %j(%j)=%j", key, defaultValue, defaultValue || null);
     return defaultValue || null;

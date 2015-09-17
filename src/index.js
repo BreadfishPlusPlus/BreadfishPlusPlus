@@ -8,6 +8,9 @@ import Moment from "moment";
 import "moment/locale/de";
 Moment.locale("de");
 
+// NotificationLayer laden
+import "api/Notification";
+
 import {ReferenceModule} from "./api/index";
 const debug = require("debug")("index");
 debug("hi");

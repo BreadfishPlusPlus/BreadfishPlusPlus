@@ -2,6 +2,7 @@
 
 import React from "react";
 import Storage from "./../storage";
+import Notification from "../Notification";
 
 class ToggleOption extends React.Component {
     constructor(props) {
@@ -11,8 +12,14 @@ class ToggleOption extends React.Component {
         };
     }
     handleChange() {
-        this.setState({checked: !this.state.checked});
         Storage.set(this.props.optionKey, !this.state.checked);
+        this.setState({checked: !this.state.checked});
+        Notification.addNotification({
+            title: "Optionen gespeichert!",
+            level: "info",
+            position: "br",
+            autoDismiss: 1
+        });
     }
     render() {
         let description = false;
@@ -49,6 +56,12 @@ class RangeOption extends React.Component {
     handleChange(event) {
         this.setState({value: ~~event.target.value});
         Storage.set(this.props.optionKey, ~~event.target.value);
+        Notification.addNotification({
+            title: "Optionen gespeichert!",
+            level: "info",
+            position: "br",
+            autoDismiss: 1
+        });
     }
     render() {
         let description = false;

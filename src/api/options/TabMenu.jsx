@@ -3,31 +3,37 @@
 import React from "react";
 
 export default class TabMenu extends React.Component {
+    static propTypes = {
+        location: React.PropTypes.object.isRequired,
+        optionsObject: React.PropTypes.array.isRequired,
+        parsedHash: React.PropTypes.object.isRequired
+    };
     render() {
         const {parsedHash, optionsObject, location} = this.props;
-        const aboutHref = location.pathname + location.search + "#/breadfishplusplus/!/about";
-        const ieHref = location.pathname + location.search + "#/breadfishplusplus/!/importexport";
-        return (<div id="profileEditContent" className="tabMenu">
-            <ul>
-                <li className={parsedHash.tab === "about" ? "activeTabMenu": ""}>
+        const aboutHref = location.pathname + location.search + "#about";
+        const ieHref = location.pathname + location.search + "#importexport";
+
+        return (<nav className="tabMenu">
+            <ul className="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <li className={parsedHash.tab === "about" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
                     <a href={aboutHref}>
-                        <img src="wcf/icon/infoM.png" /> <span>Info</span>
+                        <span>Info</span>
                     </a>
                 </li>
                 {optionsObject.map(o => {
-                    const href = location.pathname + location.search + "#/breadfishplusplus/!/" + o.href;
-                    return (<li className={parsedHash.tab === o.href ? "activeTabMenu": ""} key={o.href}>
+                    const href = location.pathname + location.search + "#" + o.href;
+                    return (<li className={parsedHash.tab === o.href ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"} key={o.href}>
                         <a href={href}>
-                            <img src="wcf/icon/settingsM.png" /> <span>{o.name}</span>
+                            <span>{o.name}</span>
                         </a>
                     </li>);
                 })}
-                <li className={parsedHash.tab === "importexport" ? "activeTabMenu": ""}>
+                <li className={parsedHash.tab === "importexport" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
                     <a href={ieHref}>
-                        <img src="wcf/icon/dbExportM.png" /> <span>Einstellungen Importieren/Exportieren</span>
+                        <span>Einstellungen Importieren/Exportieren</span>
                     </a>
                 </li>
             </ul>
-        </div>);
+        </nav>);
     }
 }

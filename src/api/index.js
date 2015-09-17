@@ -6,7 +6,6 @@ import $ from "jquery";
 import _ from "lodash";
 import React from "react";
 import Package from "../../package.json";
-import UserMenuItemTemplate from "../templates/userMenuItem.hbs";
 import OptionsTemplate from "./options/Options.jsx";
 
 let optionsArray    = [];
@@ -19,12 +18,12 @@ const showOptions = function () {
     isOptionsFrameOpen = true;
 
     React.render(<OptionsTemplate
+        domains={Package.domain}
         location={location}
+        optionsObject={optionsObject}
         parsedHash={parsedHash}
         version={Package.version}
-        domains={Package.domain}
-        optionsObject={optionsObject}
-    />, document.querySelector("#main"));
+    />, document.querySelector("#content"));
 };
 
 const parseHash = function (optionsObject) {
@@ -33,20 +32,18 @@ const parseHash = function (optionsObject) {
         subtab: null,
         highligh: null
     };
-    let s;
 
     if (location.hash.length > 2) {
-        s = location.hash.substr(2).split("/");
-        if (s.length > 1 && s[0] === "breadfishplusplus" && s[1] === "!") {
-            if (s.length > 2 && s[2].length > 0) {
-                ret.tab = s[2];
-            }
-            if (s.length > 3 && s[3].length > 0) {
-                ret.subtab = s[3];
-            }
-            if (s.length > 4 && s[4].length > 0) {
-                ret.highligh = s[4];
-            }
+        let s = location.hash.substr(1).split("/");
+
+        if (s.length > 0) {
+            ret.tab = s[0];
+        }
+        if (s.length > 1) {
+            ret.subtab = s[1];
+        }
+        if (s.length > 2) {
+            ret.highligh = s[2];
         }
     }
 
@@ -61,6 +58,8 @@ const parseHash = function (optionsObject) {
             }))].subtabs[0].href;
         }
     }
+
+    debug("parseHash", ret);
 
     return ret;
 };
@@ -131,36 +130,46 @@ const generateOptionsObject = function () {
     return tmp;
 };
 
+const addPopupMenuEntry = function () {
+    $(".interactiveDropdownUserMenu > .interactiveDropdownItemsContainer > .interactiveDropdownItemsUserMenu .containerHeadline h3:contains(Einstellungen)")
+        .parent(".containerHeadline")
+        .find(".interactiveDropdownUserMenuLinkList")
+        .append("<li><a href=\"/index.php?settings/Breadfish++\">Breadfish++</a></li>");
+};
+
+const addSettingsMenuEntry = function (active) {
+    const className = active ? "active" : "";
+    debug("addSettingsMenuEntry(%s)", className);
+
+    if (active) {
+        $(".sidebar fieldset:nth-child(2) nav ul li.active").removeClass("active");
+    }
+
+    $(".sidebar fieldset:nth-child(2) nav ul")
+        .append("<li class=\"" + className + "\"><a href=\"/index.php?settings/Breadfish++\">Breadfish++</a></li>");
+};
+
 $(document).ready(function () {
-    require("./options/style.less");
+    addPopupMenuEntry();
 
-    let $userMenuItem;
-
-    $userMenuItem = $(UserMenuItemTemplate());
-
-    //Append Menu Item
-    $("#userMenu ul").append($userMenuItem);
-
-    $userMenuItem.find("a").click(function (event) {
-        event.preventDefault();
-
-        if (!isOptionsFrameOpen) {
-            location.hash = "#/breadfishplusplus/!/about/";
-        } else {
-            location.href = location.origin + location.pathname + location.search;
-        }
-    });
-
-    $(window).on("hashchange", function () {
-        if (location.hash.indexOf("#/breadfishplusplus/!/") === 0) {
-            showOptions();
-        }
-    });
-    $(document).ready(function () {
-        if (location.hash.indexOf("#/breadfishplusplus/!/") === 0) {
-            showOptions();
-        }
-    });
+    debug("window.location.search", window.location.search);
+    if (/^\?settings\/Breadfish\+\+\/?/i.test(window.location.search)) {
+        addSettingsMenuEntry(true);
+        showOptions();
+        $(window).on("hashchange", showOptions);
+    } else if (
+        /^\?account-management\/?/i.test(window.location.search) ||
+        /^\?avatar-edit\/?/i.test(window.location.search) ||
+        /^\?signature-edit\/?/i.test(window.location.search) ||
+        /^\?settings\/?/i.test(window.location.search) ||
+        /^\?notification-settings\/?/i.test(window.location.search) ||
+        /^\?paid-subscription-list\/?/i.test(window.location.search) ||
+        /^\?notification-list\/?/i.test(window.location.search) ||
+        /^\?following\/?/i.test(window.location.search) ||
+        /^\?ignored-users\/?/i.test(window.location.search)
+    ) {
+        addSettingsMenuEntry();
+    }
 });
 
 let MODULE_LIST = {};

@@ -14,7 +14,7 @@ export default class TS3Viewer extends DefaultModule {
             "key": "option.boards.extension.ts3viewer.enabled",
             "name": "Teamspeak 3 Anzeige",
             "tab": "Einstellungen",
-            "subtab": "Forenübersicht",
+            "subtab": "Forenübersicht2",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,

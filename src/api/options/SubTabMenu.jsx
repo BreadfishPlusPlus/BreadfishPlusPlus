@@ -1,31 +1,39 @@
 "use strict";
 
 import React from "react";
+const debug = require("debug")("SubTabMenu");
 
 export default class SubTabMenu extends React.Component {
+    static propTypes = {
+        location: React.PropTypes.object.isRequired,
+        option: React.PropTypes.object.isRequired,
+        parsedHash: React.PropTypes.object.isRequired
+    };
     render() {
-        const {parsedHash, optionsObject, location} = this.props;
-        return (<div className="subTabMenu">
-            <div className="containerHead">
-                {optionsObject.map(o => {
-                    const style = {display: parsedHash.tab === o.href ? "block": "none"};
-                    return (<ul style={style} key={o.href}>
-                        {o.subtabs.map(s => {
-                            const href = location.pathname +
-                                        location.search +
-                                        "#/breadfishplusplus/!/" +
-                                        o.href +
-                                        "/" +
-                                        s.href;
-                            return (<li className={parsedHash.subtab === s.href ? "activeSubTabMenu": ""}  key={s.href}>
-                                <a href={href}>
-                                    <span>{s.name}</span>
-                                </a>
-                            </li>);
-                        })}
-                    </ul>);
-                })}
+        const {parsedHash, option, location} = this.props;
+        //.messageTabMenu > div > nav
+        return (
+            <div className="messageTabMenu" style={{borderWidth: 0}}>
+                <div style={{display: "block", borderWidth: 0, borderRadius: "6px 6px 0 0"}}>
+                    <nav style={{margin: 0, borderRadius: "6px 6px 0 0"}}>
+                        <ul key={option.href} style={{display: parsedHash.tab === option.href ? "block": "none"}}>
+                            {option.subtabs.map(s => {
+                                const href = location.pathname +
+                                            location.search +
+                                            "#" +
+                                            option.href +
+                                            "/" +
+                                            s.href;
+                                return (<li className={parsedHash.subtab === s.href ? "active": ""} key={s.href}>
+                                    <a href={href}>
+                                        <span>{s.name}</span>
+                                    </a>
+                                </li>);
+                            })}
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>);
+        );
     }
 }
