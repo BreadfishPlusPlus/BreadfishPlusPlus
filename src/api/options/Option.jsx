@@ -5,15 +5,31 @@ import Storage from "./../storage";
 import Notification from "../Notification";
 
 class ToggleOption extends React.Component {
+    static propTypes = {
+        default: React.PropTypes.any.isRequired,
+        description: React.PropTypes.string,
+        name: React.PropTypes.string.isRequired,
+        optionKey: React.PropTypes.string.isRequired
+    };
     constructor(props) {
         super(props);
         this.state = {
-            checked: Storage.get(this.props.optionKey, this.props.default)
+            value: Storage.get(this.props.optionKey, this.props.default) ? 1 : 0
         };
     }
-    handleChange() {
+    shandleChange() {
         Storage.set(this.props.optionKey, !this.state.checked);
         this.setState({checked: !this.state.checked});
+        Notification.addNotification({
+            title: "Optionen gespeichert!",
+            level: "info",
+            position: "br",
+            autoDismiss: 1
+        });
+    }
+    handleChange(event) {
+        this.setState({value: ~~event.target.value});
+        Storage.set(this.props.optionKey, (~~event.target.value) === 1);
         Notification.addNotification({
             title: "Optionen gespeichert!",
             level: "info",
@@ -24,29 +40,38 @@ class ToggleOption extends React.Component {
     render() {
         let description = false;
         if (this.props.description) {
-            description = <div className="formFieldDesc"><p>{this.props.description}</p></div>;
+            description = <small>{this.props.description}</small>;
         }
         return (
-            <div className="formCheckBox formElement">
-                <div className="formField">
-                    <label htmlFor={this.props.optionKey}>
-                        <input
-                            type="checkbox"
-                            className="bpp-option"
-                            style={{verticalAlign: "middle"}}
-                            id={this.props.optionKey}
-                            name={this.props.optionKey}
-                            checked={this.state.checked}
-                            onChange={this.handleChange.bind(this)}
-                        /> {this.props.name}
-                    </label>
-                </div>
-                {description}
-            </div>
+            <dl>
+                <dt>
+                    <label htmlFor={this.props.optionKey}>{this.props.name}</label>
+                </dt>
+                <dd>
+                    <select
+                        id={this.props.optionKey}
+                        name={this.props.optionKey}
+                        onChange={event => this.handleChange(event)}
+                        value={this.state.value}
+                    >
+                        <option value={1}>Aktiviert</option>
+                        <option value={0}>Deaktiviert</option>
+                    </select>
+                    {description}
+                </dd>
+            </dl>
         );
     }
 }
-class RangeOption extends React.Component {
+
+class SelectOption extends React.Component {
+    static propTypes = {
+        default: React.PropTypes.any.isRequired,
+        description: React.PropTypes.string,
+        name: React.PropTypes.string.isRequired,
+        optionKey: React.PropTypes.string.isRequired,
+        options: React.PropTypes.array.isRequired
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -66,34 +91,27 @@ class RangeOption extends React.Component {
     render() {
         let description = false;
         if (this.props.description) {
-            description = <div className="formFieldDesc"><p>{this.props.description}</p></div>;
+            description = <small>{this.props.description}</small>;
         }
         return (
-            <div className="formElement">
-                <div className="formFieldLabel">
+            <dl>
+                <dt>
                     <label htmlFor={this.props.optionKey}>{this.props.name}</label>
-                </div>
-                <div className="formField">
-                    <input
-                        type="range"
+                </dt>
+                <dd>
+                    <select
                         id={this.props.optionKey}
                         name={this.props.optionKey}
-                        className="bpp-option"
-                        style={{verticalAlign: "middle"}}
-                        min={this.props.min}
-                        max={this.props.max}
+                        onChange={event => this.handleChange(event)}
                         value={this.state.value}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <span className="indicator" style={{
-                        verticalAlign: "middle",
-                        border: "1px solid #000",
-                        padding: "1px 7px",
-                        background: "#FFF"
-                    }}>{this.state.value}</span>
-                </div>
-                {description}
-            </div>
+                    >
+                        {this.props.options.map(o => {
+                            return <option key={o.value} value={o.value}>{o.name}</option>;
+                        })}
+                    </select>
+                    {description}
+                </dd>
+            </dl>
         );
     }
 }
@@ -124,13 +142,24 @@ class KeyboardOption extends React.Component {
     }
 }
 
-export default class Options extends React.Component {
+export default class Option extends React.Component {
+    static propTypes = {
+        category: React.PropTypes.string,
+        default: React.PropTypes.any.isRequired,
+        description: React.PropTypes.string,
+        name: React.PropTypes.string,
+        optionKey: React.PropTypes.string.isRequired,
+        options: React.PropTypes.array,
+        subtab: React.PropTypes.string,
+        tab: React.PropTypes.string,
+        type: React.PropTypes.string.isRequired
+    };
     render() {
-        if (this.props.type_toggle) {
+        if (this.props.type === "toggle") {
             return <ToggleOption {...this.props} />;
-        } else if (this.props.type_range) {
-            return <RangeOption {...this.props} />;
-        } else if (this.props.type_keyboard) {
+        } else if (this.props.type === "select") {
+            return <SelectOption {...this.props} />;
+        } else if (this.props.type === "keyboard") {
             return <KeyboardOption {...this.props} />;
         } else {
             return false;

@@ -14,7 +14,7 @@ export default class TS3Viewer extends DefaultModule {
             "key": "option.boards.extension.ts3viewer.enabled",
             "name": "Teamspeak 3 Anzeige",
             "tab": "Einstellungen",
-            "subtab": "Forenübersicht2",
+            "subtab": "Forenübersicht",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
@@ -26,20 +26,21 @@ export default class TS3Viewer extends DefaultModule {
             "default": 60000
         });
 
-        if (!this.isTemplate("tplIndex")) {
+        if (!this.isTemplate("tplBoardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
 
-        const infobox = document.querySelector(".border.infoBox");
-        const container = document.createElement("div");
-        infobox.insertBefore(container, infobox.firstChild);
+        //const infobox = document.querySelector(".infoBoxList");
+        const container = document.createElement("li");
+        //container.className = "box32";
+        document.querySelector(".infoBoxList").insertBefore(container, document.querySelector(".box32.statsInfoBox"));
         React.render(<TS3ViewerTemplate
+            cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
+            debug={debug}
             domains={this.getDomains()}
             nickname={this.getUsername()}
-            cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
             refreshInterval={this.storage.get("option.boards.extension.top5box.refreshInterval", 60000)}
-            debug={debug}
         />, container);
     }
 }

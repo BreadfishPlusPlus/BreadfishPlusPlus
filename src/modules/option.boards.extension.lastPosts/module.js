@@ -15,14 +15,25 @@ export default class LastPosts extends DefaultModule {
             "tab": "Einstellungen",
             "subtab": "Forenübersicht",
             "category": "Erweiterungen",
-            "type": "range",
+            "type": "select",
+            "options": [
+                {name: "Ausblenden", value: 0},
+                {name: "1 Beitrag", value: 1},
+                {name: "2 Beiträge", value: 2},
+                {name: "3 Beiträge", value: 3},
+                {name: "4 Beiträge", value: 4},
+                {name: "5 Beiträge", value: 5},
+                {name: "6 Beiträge", value: 6},
+                {name: "7 Beiträge", value: 7},
+                {name: "8 Beiträge", value: 8},
+                {name: "9 Beiträge", value: 9},
+                {name: "10 Beiträge", value: 10}
+            ],
             "default": 10,
-            "min": 0,
-            "max": 10,
-            "description": "Passt die Anzahl der \"Letzte X Beiträge\"-Box auf der Startseite an. \"0\" Entfernt die Box komplett."
+            "description": "Passt die Anzahl der \"Letzte X Beiträge\"-Box auf der Startseite an."
         });
 
-        if (!this.isTemplate("tplIndex")) {
+        if (!this.isTemplate("tplBoardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -37,10 +48,10 @@ export default class LastPosts extends DefaultModule {
         }
         debug("Kürze die letzten 10 Beiträge auf %s", lastPostsCount);
         if (lastPostsCount > 0) {
-            $(".top5box .tableList tr").slice(lastPostsCount, 10).remove();
-            $(".top5box .containerContent").html("<img src=\"icon/postS.png\"> Die letzten " + lastPostsCount + " Beiträge");
+            $(".lastXPosts .table tr").slice(lastPostsCount, 10).remove();
+            $(".lastXPosts header h2").html("Die letzten " + lastPostsCount + " Beiträge");
         } else {
-            $(".top5box").remove();
+            $(".lastXPosts").remove();
         }
     }
 }

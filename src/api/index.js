@@ -119,7 +119,8 @@ const generateOptionsObject = function () {
                 max: opt.max,
                 default: opt.default,
                 description: opt.description,
-                ["type_" + opt.type]: true
+                type: opt.type,
+                options: opt.options
             });
 
             subtab.options = _.sortBy(subtab.options, function (c) {
@@ -193,10 +194,14 @@ export class DefaultModule {
         return this.templateName;
     }
     isTemplate(...templates) {
+        debug("isTemplate", templates, this.getTemplateName());
         return templates.indexOf(this.getTemplateName()) > -1;
     }
     getUsername() {
-        return document.querySelector("#userNote a").innerText.trim();
+        return window.WCF.User.username;
+    }
+    getUserId() {
+        return window.WCF.User.userID;
     }
     getModule(name) {
         debug("getModule", name, MODULE_LIST[name]);
