@@ -1,9 +1,10 @@
+/*eslint-env node*/
 "use strict";
 
 const Path = require("path");
 const Webpack = require("webpack");
 module.exports = {
-    entry: "./src/index.js",
+    entry: Path.join(__dirname, "src", "index.js"),
     output: {
         path: Path.join(__dirname, ".public"),
         filename: "breadfishplusplus.js",
@@ -14,7 +15,9 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
+            include: [
+                Path.join(__dirname, "src")
+            ],
             loader: "babel",
             query: {
                 stage: 0,

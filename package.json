@@ -20,8 +20,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev-server": "$(npm bin)/webpack-dev-server --content-base .public/ --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
-    "watch": "$(npm bin)/webpack --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
+    "dev": "$(npm bin)/webpack-dev-server --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
   },
   "dependencies": {
     "debug": "^2.2.0",
@@ -40,7 +39,6 @@
     "babel-loader": "^5.1.4",
     "eslint": "^1.4.3",
     "eslint-plugin-react": "^3.4.0",
-    "gulp": "^3.9.0",
     "json-loader": "^0.5.3",
     "node-libs-browser": "^0.5.3",
     "webpack": "^1.12.1",

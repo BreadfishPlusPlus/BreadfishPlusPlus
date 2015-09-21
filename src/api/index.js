@@ -215,4 +215,12 @@ export class DefaultModule {
             showOptions();
         }
     }
+    triggerRelativeTime() {
+        debug("triggerRelativeTime");
+        new window.WCF.Date.Time();
+    }
+    triggerUserPreview() {
+        debug("triggerUserPreview");
+        new window.WCF.User.ProfilePreview();
+    }
 }

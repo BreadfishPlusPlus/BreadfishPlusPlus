@@ -31,6 +31,11 @@ export default class TS3Viewer extends DefaultModule {
             return;
         }
 
+        if (!this.storage.get("option.boards.extension.ts3viewer.enabled", false)) {
+            debug("Deaktiviert -> SKIP");
+            return;
+        }
+
         //const infobox = document.querySelector(".infoBoxList");
         const container = document.createElement("li");
         //container.className = "box32";
