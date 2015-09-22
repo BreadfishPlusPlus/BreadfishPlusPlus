@@ -1,35 +1,33 @@
 "use strict";
 
 import React from "react";
+import Tabmanager from "../Tabmanager.js";
 
 export default class TabMenu extends React.Component {
     static propTypes = {
-        location: React.PropTypes.object.isRequired,
-        optionsObject: React.PropTypes.array.isRequired,
-        parsedHash: React.PropTypes.object.isRequired
+        TabMngr: React.PropTypes.instanceOf(Tabmanager),
+        optionsObject: React.PropTypes.array.isRequired
     };
     render() {
-        const {parsedHash, optionsObject, location} = this.props;
-        const aboutHref = location.pathname + location.search + "#about";
-        const ieHref = location.pathname + location.search + "#importexport";
+        const {TabMngr, optionsObject} = this.props;
 
         return (<nav className="tabMenu">
             <ul className="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-                <li className={parsedHash.tab === "about" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
-                    <a href={aboutHref}>
+                <li className={TabMngr.tab === "about" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
+                    <a href={"index.php?settings/Breadfish++/about"} onClick={(event) => TabMngr.changeTab("about", event)}>
                         <span>Info</span>
                     </a>
                 </li>
                 {optionsObject.map(o => {
-                    const href = location.pathname + location.search + "#" + o.href;
-                    return (<li className={parsedHash.tab === o.href ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"} key={o.href}>
-                        <a href={href}>
+                    const href = TabMngr.getBaseUrl() + "/" + o.href;
+                    return (<li className={TabMngr.tab === o.href ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"} key={o.href}>
+                        <a href={href} onClick={(event) => TabMngr.changeTab(o.href, event)}>
                             <span>{o.name}</span>
                         </a>
                     </li>);
                 })}
-                <li className={parsedHash.tab === "importexport" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
-                    <a href={ieHref}>
+                <li className={TabMngr.tab === "importexport" ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"}>
+                    <a href={"index.php?settings/Breadfish++/importexport"} onClick={(event) => TabMngr.changeTab("importexport", event)}>
                         <span>Einstellungen Importieren/Exportieren</span>
                     </a>
                 </li>

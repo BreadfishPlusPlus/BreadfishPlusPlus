@@ -4,12 +4,12 @@ import React from "react";
 
 export default class ImportExportTab extends React.Component {
     static propTypes = {
-        parsedHash: React.PropTypes.object.isRequired
+        currentTab: React.PropTypes.string.isRequired
     };
     render() {
-        const {parsedHash} = this.props;
+        const {currentTab} = this.props;
 
-        if (parsedHash.tab !== "importexport") {
+        if (currentTab !== "importexport") {
             return false;
         }
 

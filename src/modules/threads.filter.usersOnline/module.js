@@ -17,6 +17,7 @@ export default class Statistics extends DefaultModule {
             "category": "Filter",
             "type": "toggle",
             "default": false,
+            "options": ["Anzeigen", "Entfernen"],
             "description": "Entfernt die Infobox aus Themen, die anzeigt, wer gerade online ist."
         });
 

@@ -16,6 +16,7 @@ export default class Statistics extends DefaultModule {
             "subtab": "Forenübersicht",
             "category": "Filter",
             "type": "toggle",
+            "options": ["Anzeigen", "Entfernen"],
             "default": false,
             "description": "Entfernt die Infobox auf der Startseite und in Foren, die die Forenstatistik anzeigt."
         });

@@ -16,6 +16,7 @@ export default class Statistics extends DefaultModule {
             "subtab": "Themenübersicht",
             "category": "Filter",
             "type": "toggle",
+            "options": ["Anzeigen", "Entfernen"],
             "default": false,
             "description": "Entfernt die Teilen-Optionen aus den Themen."
         });

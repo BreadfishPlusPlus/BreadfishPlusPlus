@@ -9,7 +9,8 @@ class ToggleOption extends React.Component {
         default: React.PropTypes.any.isRequired,
         description: React.PropTypes.string,
         name: React.PropTypes.string.isRequired,
-        optionKey: React.PropTypes.string.isRequired
+        optionKey: React.PropTypes.string.isRequired,
+        options: React.PropTypes.array
     };
     constructor(props) {
         super(props);
@@ -54,8 +55,8 @@ class ToggleOption extends React.Component {
                         onChange={event => this.handleChange(event)}
                         value={this.state.value}
                     >
-                        <option value={1}>Aktiviert</option>
-                        <option value={0}>Deaktiviert</option>
+                        <option value={1}>{this.props.options ? this.props.options[0] : "Aktiviert"}</option>
+                        <option value={0}>{this.props.options ? this.props.options[1] : "Deaktiviert"}</option>
                     </select>
                     {description}
                 </dd>

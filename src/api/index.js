@@ -8,60 +8,26 @@ import React from "react";
 import Package from "../../package.json";
 import OptionsTemplate from "./options/Options.jsx";
 
+import Tabmanager from "./Tabmanager.js";
+const TabMngr = new Tabmanager();
+
 let optionsArray    = [];
 let isOptionsFrameOpen = false;
 
 const showOptions = function () {
-    let optionsObject = generateOptionsObject(),
-        parsedHash = parseHash(optionsObject);
+    debug("showOptions");
+    let optionsObject = generateOptionsObject();
+
+    TabMngr.parse();
 
     isOptionsFrameOpen = true;
 
     React.render(<OptionsTemplate
         domains={Package.domain}
-        location={location}
         optionsObject={optionsObject}
-        parsedHash={parsedHash}
+        TabMngr={TabMngr}
         version={Package.version}
     />, document.querySelector("#content"));
-};
-
-const parseHash = function (optionsObject) {
-    let ret = {
-        tab: null,
-        subtab: null,
-        highligh: null
-    };
-
-    if (location.hash.length > 2) {
-        let s = location.hash.substr(1).split("/");
-
-        if (s.length > 0) {
-            ret.tab = s[0];
-        }
-        if (s.length > 1) {
-            ret.subtab = s[1];
-        }
-        if (s.length > 2) {
-            ret.highligh = s[2];
-        }
-    }
-
-    if (!ret.tab) {
-        ret.tab = "about";
-    }
-
-    if (!ret.subtab) {
-        if (ret.tab !== "importexport" && ret.tab !== "about") {
-            ret.subtab = optionsObject[optionsObject.indexOf(_.find(optionsObject, function (opt) {
-                return opt.href === ret.tab;
-            }))].subtabs[0].href;
-        }
-    }
-
-    debug("parseHash", ret);
-
-    return ret;
 };
 
 const generateHref = function (name) {
@@ -156,8 +122,17 @@ $(document).ready(function () {
     debug("window.location.search", window.location.search);
     if (/^\?settings\/Breadfish\+\+\/?/i.test(window.location.search)) {
         addSettingsMenuEntry(true);
+
+        window.onpopstate = () => showOptions();
+
+        TabMngr.parse();
+
+        if (TabMngr.tab === null) {
+            TabMngr.changeTab("about");
+        }
+
         showOptions();
-        $(window).on("hashchange", showOptions);
+
     } else if (
         /^\?account-management\/?/i.test(window.location.search) ||
         /^\?avatar-edit\/?/i.test(window.location.search) ||
@@ -222,5 +197,9 @@ export class DefaultModule {
     triggerUserPreview() {
         debug("triggerUserPreview");
         new window.WCF.User.ProfilePreview();
+    }
+    triggerTooltips() {
+        debug("triggerTooltips");
+        new window.WCF.Effect.BalloonTooltip();
     }
 }

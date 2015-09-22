@@ -3,23 +3,25 @@
 import React from "react";
 import Option from "./Option";
 import SubTabMenu from "./SubTabMenu";
+import Tabmanager from "../Tabmanager.js";
 
 export default class OptionsTab extends React.Component {
     static propTypes = {
-        location: React.PropTypes.object.isRequired,
         option: React.PropTypes.object.isRequired,
-        parsedHash: React.PropTypes.object.isRequired,
+        TabMngr: React.PropTypes.instanceOf(Tabmanager),
         subtab: React.PropTypes.object.isRequired
     };
     render() {
-        const {option, parsedHash, subtab, location} = this.props;
+        const {option, TabMngr, subtab, location} = this.props;
 
-        if (parsedHash.tab !== option.href || parsedHash.subtab !== subtab.href) {
+        console.log("OptionsTab", TabMngr.tab, option.href, TabMngr.subtab, subtab.href);
+
+        if (TabMngr.tab !== option.href || TabMngr.subtab !== subtab.href) {
             return false;
         }
 
-        return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom" style={{display: parsedHash.tab === option.href && parsedHash.subtab === subtab.href ? "block": "none"}}>
-            <SubTabMenu location={location} option={option} parsedHash={parsedHash} />
+        return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom">
+            <SubTabMenu option={option} TabMngr={TabMngr} />
             <div className="containerPadding">
                 <div className="containerPadding">
                     {subtab.categories.map(category => {

@@ -5,13 +5,13 @@ import React from "react";
 export default class AboutTab extends React.Component {
     static propTypes = {
         domains: React.PropTypes.object.isRequired,
-        parsedHash: React.PropTypes.object.isRequired,
+        currentTab: React.PropTypes.string.isRequired,
         version: React.PropTypes.string.isRequired
     };
     render() {
-        const {parsedHash, version, domains} = this.props;
+        const {currentTab, version, domains} = this.props;
 
-        if (parsedHash.tab !== "about") {
+        if (currentTab !== "about") {
             return false;
         }
 
