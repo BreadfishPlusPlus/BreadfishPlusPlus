@@ -12,6 +12,9 @@ module.exports = {
         pathinfo: true,
         publicPath: "/"
     },
+    externals: {
+        "jquery": "jQuery"
+    },
     module: {
         loaders: [{
             test: /\.jsx?$/,

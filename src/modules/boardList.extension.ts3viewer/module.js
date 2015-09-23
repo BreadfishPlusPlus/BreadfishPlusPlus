@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import React from "react";
-const debug = require("debug")("option.boards.extension.ts3viewer");
+const debug = require("debug")("option.boardList.extension.ts3viewer");
 import TS3ViewerTemplate from "./Template.jsx";
 
 export default class TS3Viewer extends DefaultModule {
@@ -11,17 +11,17 @@ export default class TS3Viewer extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.boards.extension.ts3viewer.enabled",
+            "key": "option.boardList.extension.ts3viewer.enabled",
             "name": "Teamspeak 3 Anzeige",
             "tab": "Einstellungen",
-            "subtab": "Forenübersicht",
+            "subtab": "Startseite",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
             "description": "Fügt auf der Startseite eine Infobox hinzu, welche anzeigt wer gerade auf dem Teamspeak Server ist."
         });
         this.register({
-            "key": "option.boards.extension.ts3viewer.refreshInterval",
+            "key": "option.boardList.extension.ts3viewer.refreshInterval",
             "type": "invis",
             "default": 60000
         });
@@ -31,7 +31,7 @@ export default class TS3Viewer extends DefaultModule {
             return;
         }
 
-        if (!this.storage.get("option.boards.extension.ts3viewer.enabled", false)) {
+        if (!this.storage.get("option.boardList.extension.ts3viewer.enabled", false)) {
             debug("Deaktiviert -> SKIP");
             return;
         }
@@ -45,7 +45,7 @@ export default class TS3Viewer extends DefaultModule {
             debug={debug}
             domains={this.getDomains()}
             nickname={this.getUsername()}
-            refreshInterval={this.storage.get("option.boards.extension.top5box.refreshInterval", 60000)}
+            refreshInterval={this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000)}
         />, container);
     }
 }

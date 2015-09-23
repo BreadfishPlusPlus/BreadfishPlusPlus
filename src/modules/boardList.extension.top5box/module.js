@@ -4,7 +4,7 @@ import {DefaultModule} from "../../api";
 import React from "react";
 import Superagent from "superagent";
 import $ from "jquery";
-const debug = require("debug")("option.boards.extension.top5box");
+const debug = require("debug")("option.boardList.extension.top5box");
 import Top5BoxTemplate from "./Template.jsx";
 
 export default class Top5Box extends DefaultModule {
@@ -13,17 +13,17 @@ export default class Top5Box extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.boards.extension.top5box.enabled",
+            "key": "option.boardList.extension.top5box.enabled",
             "name": "\"Die letzten 10 Beiträge\"-Aktualisierung",
             "tab": "Einstellungen",
-            "subtab": "Forenübersicht",
+            "subtab": "Startseite",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
             "description": "Aktualisiert die \"Die letzten 10 Beiträge\"-Box auf der Startseite automatisch in regelmäßigen abständen."
         });
         this.register({
-            "key": "option.boards.extension.top5box.refreshInterval",
+            "key": "option.boardList.extension.top5box.refreshInterval",
             "type": "invis",
             "default": 60000
         });
@@ -33,12 +33,12 @@ export default class Top5Box extends DefaultModule {
             return;
         }
 
-        if (!this.storage.get("option.boards.extension.top5box.enabled", false)) {
+        if (!this.storage.get("option.boardList.extension.top5box.enabled", false)) {
             debug("Deaktiviert -> SKIP");
             return;
         }
 
-        this.refreshInterval = this.storage.get("option.boards.extension.top5box.refreshInterval", 60000);
+        this.refreshInterval = this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000);
         this.refreshPostsInterval = setInterval(() => this.refreshPosts(), this.refreshInterval);
 
         const containerHead = document.querySelector(".lastXPosts header");
@@ -68,7 +68,7 @@ export default class Top5Box extends DefaultModule {
             var $data = $(res.text);
             $("#lastXBoardPosts").html($data.find("#lastXBoardPosts").html());
 
-            this.getModule("option.boards.extension.lastPosts").trimPosts();
+            this.getModule("boardList.extension.lastPosts").trimPosts();
 
             this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
 

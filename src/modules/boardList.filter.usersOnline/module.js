@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.threads.filter.usersOnline");
+const debug = require("debug")("option.boardList.filter.usersOnline");
 
 export default class Statistics extends DefaultModule {
     constructor() {
@@ -10,23 +10,23 @@ export default class Statistics extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.threads.filter.usersOnline.enabled",
+            "key": "option.boardList.filter.usersOnline.enabled",
             "name": "Benutzer Online",
             "tab": "Einstellungen",
-            "subtab": "Themenübersicht",
+            "subtab": "Startseite",
             "category": "Filter",
             "type": "toggle",
-            "default": false,
             "options": ["Anzeigen", "Entfernen"],
-            "description": "Entfernt die Infobox aus Themen, die anzeigt, wer gerade online ist."
+            "default": false,
+            "description": "Entfernt die Infobox auf der Startseite, die anzeigt, wer gerade online ist."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("tplBoardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
 
-        if (!this.storage.get("option.threads.filter.usersOnline.enabled", false)) {
+        if (!this.storage.get("option.boardList.filter.usersOnline.enabled", false)) {
             debug("Deaktiviert -> SKIP");
             return;
         }

@@ -65,7 +65,7 @@ export default class Tabmanager {
         this.tab = newTab;
 
         if (newTab === "einstellungen") {
-            this.subtab = "forenbersicht";
+            this.subtab = "forenansicht";
         } else {
             this.subtab = null;
         }

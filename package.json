@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "jquery": "^2.1.4",
     "keyboardjs": "^0.4.2",
     "lodash": "^3.9.3",
     "moment": "^2.10.3",

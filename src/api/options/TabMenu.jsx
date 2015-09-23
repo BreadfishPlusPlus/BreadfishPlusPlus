@@ -6,10 +6,10 @@ import Tabmanager from "../Tabmanager.js";
 export default class TabMenu extends React.Component {
     static propTypes = {
         TabMngr: React.PropTypes.instanceOf(Tabmanager),
-        optionsObject: React.PropTypes.array.isRequired
+        tabList: React.PropTypes.array.isRequired
     };
     render() {
-        const {TabMngr, optionsObject} = this.props;
+        const {TabMngr, tabList} = this.props;
 
         return (<nav className="tabMenu">
             <ul className="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
@@ -18,11 +18,11 @@ export default class TabMenu extends React.Component {
                         <span>Info</span>
                     </a>
                 </li>
-                {optionsObject.map(o => {
-                    const href = TabMngr.getBaseUrl() + "/" + o.href;
-                    return (<li className={TabMngr.tab === o.href ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"} key={o.href}>
-                        <a href={href} onClick={(event) => TabMngr.changeTab(o.href, event)}>
-                            <span>{o.name}</span>
+                {tabList.map(tab => {
+                    const href = TabMngr.getBaseUrl() + "/" + tab.href;
+                    return (<li className={TabMngr.tab === tab.href ? "ui-state-default ui-corner-top ui-tabs-active ui-state-active": "ui-state-default ui-corner-top"} key={tab.href}>
+                        <a href={href} onClick={(event) => TabMngr.changeTab(tab.href, event)}>
+                            <span>{tab.name}</span>
                         </a>
                     </li>);
                 })}

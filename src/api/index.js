@@ -3,10 +3,9 @@
 const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
-import _ from "lodash";
 import React from "react";
 import Package from "../../package.json";
-import OptionsTemplate from "./options/Options.jsx";
+import OptionsWrapper from "./options/OptionsWrapper.jsx";
 
 import Tabmanager from "./Tabmanager.js";
 const TabMngr = new Tabmanager();
@@ -16,85 +15,19 @@ let isOptionsFrameOpen = false;
 
 const showOptions = function () {
     debug("showOptions");
-    let optionsObject = generateOptionsObject();
 
     TabMngr.parse();
 
+    console.dir(optionsArray);
+
     isOptionsFrameOpen = true;
 
-    React.render(<OptionsTemplate
-        domains={Package.domain}
-        optionsObject={optionsObject}
+    React.render(<OptionsWrapper
         TabMngr={TabMngr}
+        domains={Package.domain}
+        optionsArray={optionsArray}
         version={Package.version}
     />, document.querySelector("#content"));
-};
-
-const generateHref = function (name) {
-    return name.replace(/[\W]/gi, "").toLowerCase();
-};
-
-const generateOptionsObject = function () {
-    let tmp = [];
-    _.each(optionsArray, function (opt) {
-        if (opt.type !== "invis") {
-            let tab, subtab, category;
-
-            tab = _.find(tmp, function (_tab) {
-                return _tab.name === opt.tab;
-            });
-            if (tab === undefined) {
-                tab = {
-                    name: opt.tab,
-                    href: generateHref(opt.tab),
-                    subtabs: []
-                };
-                tmp.push(tab);
-            }
-
-            subtab = _.find(tab.subtabs, function (_subtab) {
-                return _subtab.name === opt.subtab;
-            });
-            if (subtab === undefined) {
-                subtab = {
-                    name: opt.subtab,
-                    href: generateHref(opt.subtab),
-                    categories: []
-                };
-                tab.subtabs.push(subtab);
-            }
-
-            category = _.find(subtab.categories, function (_category) {
-                return _category.name === opt.category;
-            });
-            if (category === undefined) {
-                category = {
-                    name: opt.category,
-                    options: []
-                };
-                subtab.categories.push(category);
-            }
-            subtab.categories = _.sortBy(subtab.categories, function (c) {
-                return c.name;
-            });
-
-            category.options.push({
-                key: opt.key,
-                name: opt.name,
-                min: opt.min,
-                max: opt.max,
-                default: opt.default,
-                description: opt.description,
-                type: opt.type,
-                options: opt.options
-            });
-
-            subtab.options = _.sortBy(subtab.options, function (c) {
-                return c.name;
-            });
-        }
-    });
-    return tmp;
 };
 
 const addPopupMenuEntry = function () {

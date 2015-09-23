@@ -33,10 +33,19 @@ class ToggleOption extends React.Component {
         Storage.set(this.props.optionKey, (~~event.target.value) === 1);
         Notification.addNotification({
             title: "Optionen gespeichert!",
+            message: `Option „${this.props.name}“ wurde gespeichert`,
             level: "info",
             position: "br",
-            autoDismiss: 1
+            autoDismiss: 2
         });
+    }
+    getOption(value) {
+        const defaultLabel = value === 0 ? "Deaktiviert" : "Aktiviert";
+        let label = this.props.options ? this.props.options[value] : defaultLabel;
+        if (value === ~~this.props.default) {
+            label += " (Standard)";
+        }
+        return <option value={value}>{label}</option>;
     }
     render() {
         let description = false;
@@ -55,8 +64,8 @@ class ToggleOption extends React.Component {
                         onChange={event => this.handleChange(event)}
                         value={this.state.value}
                     >
-                        <option value={1}>{this.props.options ? this.props.options[0] : "Aktiviert"}</option>
-                        <option value={0}>{this.props.options ? this.props.options[1] : "Deaktiviert"}</option>
+                        {this.getOption(0)}
+                        {this.getOption(1)}
                     </select>
                     {description}
                 </dd>
@@ -84,9 +93,10 @@ class SelectOption extends React.Component {
         Storage.set(this.props.optionKey, ~~event.target.value);
         Notification.addNotification({
             title: "Optionen gespeichert!",
+            message: `Option „${this.props.name}“ wurde gespeichert`,
             level: "info",
             position: "br",
-            autoDismiss: 1
+            autoDismiss: 2
         });
     }
     render() {
@@ -107,7 +117,11 @@ class SelectOption extends React.Component {
                         value={this.state.value}
                     >
                         {this.props.options.map(o => {
-                            return <option key={o.value} value={o.value}>{o.name}</option>;
+                            let name = o.name;
+                            if (o.value === ~~this.props.default) {
+                                name += " (Standard)";
+                            }
+                            return <option key={o.value} value={o.value}>{name}</option>;
                         })}
                     </select>
                     {description}

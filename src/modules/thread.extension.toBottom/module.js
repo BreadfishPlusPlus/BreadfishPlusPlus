@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.threads.extension.toBottom");
+const debug = require("debug")("option.thread.extension.toBottom");
 
 export default class Statistics extends DefaultModule {
     constructor() {
@@ -10,10 +10,10 @@ export default class Statistics extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.threads.extension.toBottom.enabled",
+            "key": "option.thread.extension.toBottom.enabled",
             "name": "Zum Seitenende",
             "tab": "Einstellungen",
-            "subtab": "Themenübersicht",
+            "subtab": "Themenansicht",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
@@ -25,7 +25,7 @@ export default class Statistics extends DefaultModule {
             return;
         }
 
-        if (!this.storage.get("option.threads.extension.toBottom.enabled", false)) {
+        if (!this.storage.get("option.thread.extension.toBottom.enabled", false)) {
             debug("Deaktiviert -> SKIP");
             return;
         }

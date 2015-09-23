@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.threads.filter.statistics");
+const debug = require("debug")("option.boardList.filter.statistics");
 
 export default class Statistics extends DefaultModule {
     constructor() {
@@ -10,23 +10,23 @@ export default class Statistics extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.threads.filter.statistics.enabled",
-            "name": "Teilen-Box",
+            "key": "option.boardList.filter.statistics.enabled",
+            "name": "Statistik",
             "tab": "Einstellungen",
-            "subtab": "Themenübersicht",
+            "subtab": "Startseite",
             "category": "Filter",
             "type": "toggle",
             "options": ["Anzeigen", "Entfernen"],
             "default": false,
-            "description": "Entfernt die Teilen-Optionen aus den Themen."
+            "description": "Entfernt die Infobox auf der Startseite, die die Forenstatistik anzeigt."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("tplBoardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
 
-        if (!this.storage.get("option.threads.filter.statistics.enabled", false)) {
+        if (!this.storage.get("option.boardList.filter.statistics.enabled", false)) {
             debug("Deaktiviert -> SKIP");
             return;
         }
@@ -34,8 +34,8 @@ export default class Statistics extends DefaultModule {
         this.removeStatisticBox();
     }
     removeStatisticBox() {
-        debug("Teilen-Box wird etnfernt...");
-        $(".box32.shareInfoBox").remove();
+        debug("Forenstatistik wird etnfernt...");
+        $(".box32.statsInfoBox").remove();
 
         if ($(".containerList.infoBoxList").is(":empty")) {
             $(".containerList.infoBoxList").parent(".container.marginTop").remove();

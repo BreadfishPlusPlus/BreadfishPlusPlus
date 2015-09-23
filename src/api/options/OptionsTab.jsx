@@ -1,35 +1,36 @@
 "use strict";
 
 import React from "react";
-import Option from "./Option";
 import SubTabMenu from "./SubTabMenu";
+import OptionCategory from "./OptionCategory";
 import Tabmanager from "../Tabmanager.js";
+import {groupBy, mapValues, values} from "lodash";
 
 export default class OptionsTab extends React.Component {
     static propTypes = {
-        option: React.PropTypes.object.isRequired,
         TabMngr: React.PropTypes.instanceOf(Tabmanager),
-        subtab: React.PropTypes.object.isRequired
+        options: React.PropTypes.array.isRequired,
+        subtabs: React.PropTypes.array.isRequired
     };
+    getCategories() {
+        const categories = groupBy(this.props.options, o => o.category);
+
+        return values(mapValues(categories, (options, categoryName) => {
+            return <OptionCategory key={categoryName} name={categoryName} options={options} />;
+        }));
+    }
     render() {
-        const {option, TabMngr, subtab, location} = this.props;
+        const {TabMngr, options, subtabs} = this.props;
 
-        console.log("OptionsTab", TabMngr.tab, option.href, TabMngr.subtab, subtab.href);
-
-        if (TabMngr.tab !== option.href || TabMngr.subtab !== subtab.href) {
+        if (options.length === 0) {
             return false;
         }
 
         return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom">
-            <SubTabMenu option={option} TabMngr={TabMngr} />
+            <SubTabMenu TabMngr={TabMngr} subtabs={subtabs}  />
             <div className="containerPadding">
                 <div className="containerPadding">
-                    {subtab.categories.map(category => {
-                        return (<fieldset key={category.name}>
-                            <legend>{category.name}</legend>
-                            {category.options.map(o => <Option optionKey={o.key} {...o} notificationSystem={this.refs.notificationSystem} />)}
-                        </fieldset>);
-                    })}
+                    {this.getCategories()}
                 </div>
             </div>
         </div>);

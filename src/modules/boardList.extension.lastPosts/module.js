@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.boards.extension.lastPosts");
+const debug = require("debug")("option.boardList.extension.lastPosts");
 
 export default class LastPosts extends DefaultModule {
     constructor() {
@@ -10,10 +10,10 @@ export default class LastPosts extends DefaultModule {
         debug("Wird geladen...");
 
         this.register({
-            "key": "option.boards.extension.lastPosts.count",
+            "key": "option.boardList.extension.lastPosts.count",
             "name": "Die letzten X Beiträge",
             "tab": "Einstellungen",
-            "subtab": "Forenübersicht",
+            "subtab": "Startseite",
             "category": "Erweiterungen",
             "type": "select",
             "options": [
@@ -42,7 +42,7 @@ export default class LastPosts extends DefaultModule {
         this.trimPosts();
     }
     trimPosts() {
-        const lastPostsCount = this.storage.get("option.boards.extension.lastPosts.count", 10);
+        const lastPostsCount = this.storage.get("option.boardList.extension.lastPosts.count", 10);
         if (lastPostsCount === 10) {
             return;
         }

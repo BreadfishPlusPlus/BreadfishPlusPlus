@@ -69,10 +69,12 @@ export default class AboutTab extends React.Component {
                 </fieldset>
                 <fieldset>
                     <legend>Hinweis</legend>
-                    <p>Durch das Benutzen der <strong>Teamspeak 3 Anzeige</strong> wird deine IP-Adresse automatisch an dritte (mich) übermittelt. Dies dient dazu, einzelne Anfragen voneinander zu unterscheiden, und abzuschätzen, wie viele Anfragen verursacht werden.</p>
-                    <p><strong>Deine IP-Adresse wird dadurch nicht gespeichert.</strong></p>
-                    <p>Solltest du das nicht wollen, reicht es einfach aus diese Option zu deaktivieren (Standard).</p>
-                    <p>Den Quellcode der dafür verantwortlich ist findest du hier: <a href="http://git.io/bmtS9w" target="_blank">Teamspeak-Info</a>.</p>
+                    <div className="info">
+                        <p>Durch das Benutzen der <strong>Teamspeak 3 Anzeige</strong> wird deine IP-Adresse automatisch an dritte (mich) übermittelt. Dies dient dazu, einzelne Anfragen voneinander zu unterscheiden, und abzuschätzen, wie viele Anfragen verursacht werden.</p>
+                        <p style={{fontWeight: "bold", textDecoration: "underline"}}>Deine IP-Adresse wird dadurch nicht gespeichert.</p>
+                        <p>Solltest du das nicht wollen, reicht es einfach aus diese Option zu deaktivieren (Standard).</p>
+                        <p>Den Quellcode der dafür verantwortlich ist findest du hier: <a href="http://git.io/bmtS9w" target="_blank">Teamspeak-Info</a>.</p>
+                    </div>
                 </fieldset>
             </div>
         </div>);
