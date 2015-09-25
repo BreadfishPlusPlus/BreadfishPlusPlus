@@ -4,7 +4,6 @@ const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
 import React from "react";
-import Package from "../../package.json";
 import OptionsWrapper from "./options/OptionsWrapper.jsx";
 
 import Tabmanager from "./Tabmanager.js";
@@ -18,15 +17,11 @@ const showOptions = function () {
 
     TabMngr.parse();
 
-    console.dir(optionsArray);
-
     isOptionsFrameOpen = true;
 
     React.render(<OptionsWrapper
         TabMngr={TabMngr}
-        domains={Package.domain}
         optionsArray={optionsArray}
-        version={Package.version}
     />, document.querySelector("#content"));
 };
 
@@ -90,10 +85,6 @@ export const ReferenceModule = function (name, module) {
 export class DefaultModule {
     constructor() {
         this.storage = Storage;
-    }
-    getDomains() {
-        debug("getDomains", Package.domain);
-        return Package.domain;
     }
     getTemplateName() {
         if (!this.templateName) {

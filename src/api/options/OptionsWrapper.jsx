@@ -11,9 +11,7 @@ import {uniq, compact, filter, isUndefined} from "lodash";
 export default class Options extends React.Component {
     static propTypes = {
         TabMngr: React.PropTypes.instanceOf(Tabmanager),
-        domains: React.PropTypes.object.isRequired,
-        optionsArray: React.PropTypes.array.isRequired,
-        version: React.PropTypes.string.isRequired
+        optionsArray: React.PropTypes.array.isRequired
     };
     sanitizeHref(href) {
         return href.replace(/[^a-z0-9]/gi, "").toLowerCase();
@@ -58,7 +56,7 @@ export default class Options extends React.Component {
         return options;
     }
     render() {
-        const {version, domains, TabMngr} = this.props;
+        const {TabMngr} = this.props;
         return (
             <div className="bpp_options">
                 <nav className="breadcrumbs marginTop">
@@ -72,14 +70,14 @@ export default class Options extends React.Component {
                     </ul>
                 </nav>
                 <header className="boxHeadline">
-                    <h1>Breadfish++ <small>v{version}</small></h1>
+                    <h1>Breadfish++ <small>v{BPP_VERSION}</small></h1>
                 </header>
                 <section className="marginTop tabMenuContainer ui-tabs ui-widget ui-widget-content ui-corner-all jsFlexibleMenuEnabled">
                     <TabMenu
                         TabMngr={TabMngr}
                         tabList={this.getTabs()}
                     />
-                    <AboutTab currentTab={TabMngr.tab} domains={domains} version={version} />
+                    <AboutTab currentTab={TabMngr.tab} />
                     <OptionsTab
                         TabMngr={this.props.TabMngr}
                         options={this.getVisibleOptions()}

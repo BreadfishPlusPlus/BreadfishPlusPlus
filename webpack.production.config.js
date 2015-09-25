@@ -4,13 +4,19 @@
 const Path = require("path");
 const Webpack = require("webpack");
 const Package = require("./package.json");
+const Fs = require("fs");
+
+const BANNER = Fs.readFileSync(Path.join(__dirname, "src", "meta.txt"), {
+    encoding: "utf8"
+});
+
 module.exports = {
     entry: Path.join(__dirname, "src", "index.js"),
     output: {
         path: Path.join(__dirname, ".public"),
-        filename: "breadfishplusplus.js",
+        filename: "BreadfishPlusPlus.user.js",
         chunkFilename: "[id].js",
-        pathinfo: true,
+        pathinfo: false,
         publicPath: "/"
     },
     externals: {
@@ -35,16 +41,29 @@ module.exports = {
             _: "lodash"
         }),
         new Webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify("")
+            }
+        }),
+        new Webpack.optimize.DedupePlugin(),
+        new Webpack.optimize.UglifyJsPlugin({
+            output: {comments: false},
+            compress: {
+                warnings: true
+            }
+        }),
+        new Webpack.DefinePlugin({
             BPP_VERSION: JSON.stringify(Package.version),
             BPP_DOMAIN: JSON.stringify(Package.domain.main),
             BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
             BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
-            DEBUG_MOE: true
+            DEBUG_MOE: false
+        }),
+        new Webpack.BannerPlugin(BANNER, {
+            raw: true,
+            entryOnly: true
         })
     ],
-    devtool: "eval",
-    watch: true,
-    debug: true,
     resolve: {
         root: Path.join(__dirname, "src"),
         extensions: ["", ".js", ".jsx", ".json"]

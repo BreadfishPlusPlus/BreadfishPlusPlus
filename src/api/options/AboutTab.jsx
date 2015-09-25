@@ -4,19 +4,17 @@ import React from "react";
 
 export default class AboutTab extends React.Component {
     static propTypes = {
-        domains: React.PropTypes.object.isRequired,
-        currentTab: React.PropTypes.string.isRequired,
-        version: React.PropTypes.string.isRequired
+        currentTab: React.PropTypes.string.isRequired
     };
     render() {
-        const {currentTab, version, domains} = this.props;
+        const {currentTab} = this.props;
 
         if (currentTab !== "about") {
             return false;
         }
 
-        const releaseHref = "https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v" + version;
-        const iconSrc = domains.cdn + "img/breadfish128.png";
+        const releaseHref = "https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v" + BPP_VERSION;
+        const iconSrc = BPP_CDN_DOMAIN + "img/breadfish128.png";
         return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom">
             <div className="containerPadding">
                 <div className="bpp-about-header" style={{textAlign: "center",borderBottom: "1px solid #ccc", marginBottom: 15}}>
@@ -25,11 +23,11 @@ export default class AboutTab extends React.Component {
                 <fieldset>
                     <dl>
                         <dt>Version</dt>
-                        <dd>{version} (<a href={releaseHref} target="_blank">Release notes</a>)</dd>
+                        <dd>{BPP_VERSION} (<a href={releaseHref} target="_blank">Release notes</a>)</dd>
                     </dl>
                     <dl>
                         <dt>Offizille Wobsite</dt>
-                        <dd><a href={domains.main} target="_blank">{domains.main}</a></dd>
+                        <dd><a href={BPP_DOMAIN} target="_blank">{BPP_DOMAIN}</a></dd>
                     </dl>
                     <dl>
                         <dt>Brauchst du Hilfe?</dt>

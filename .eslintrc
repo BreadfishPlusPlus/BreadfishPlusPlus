@@ -1,8 +1,24 @@
 {
+    "extends": "eslint:recommended",
     "parser": "babel-eslint",
     "plugins": [
       "react"
     ],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "amd": true
+    },
+    "globals": {
+        "BPP_VERSION": false,
+        "BPP_DOMAIN": false,
+        "BPP_CDN_DOMAIN": false,
+        "BPP_TS_DOMAIN": false,
+        "DEBUG_MOE": false
+    },
+    "ecmaFeatures": {
+        "jsx": true
+    },
     "rules": {
         "react/display-name": 0,
         "react/jsx-boolean-value": [1, "never"],
@@ -38,14 +54,5 @@
             2,
             "always"
         ]
-    },
-    "ecmaFeatures": {
-        "jsx": true
-    },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "amd": true
-    },
-    "extends": "eslint:recommended"
+    }
 }

@@ -10,7 +10,6 @@ export default class TS3Viewer extends React.Component {
     static propTypes = {
         cacheLifetime: React.PropTypes.number.isRequired,
         debug: React.PropTypes.func.isRequired,
-        domains: React.PropTypes.object.isRequired,
         nickname: React.PropTypes.string.isRequired,
         refreshInterval: React.PropTypes.number.isRequired
     };
@@ -24,13 +23,12 @@ export default class TS3Viewer extends React.Component {
     }
     getJson() {
         this.props.debug("Frage Teamspeak Daten ab...");
-        Superagent.get(this.props.domains.teamspeak).end(function (err, res) {
-            if (err) {
-                return this.props.debug("Fehler beim abfragen der Teamspeak Daten: ", err);
-            }
-            if (res.body.error) {
+        Superagent.get(BPP_TS_DOMAIN).end(function (err, res) {
+            if (res.body && res.body.error) {
+                this.setState({error: res.body.error});
                 return this.props.debug("Teamspeak API meldet einen Fehler: ", res.body.error);
             }
+
             this.setState(res.body);
 
             const updateIn = (res.body.lastUpdate + this.props.cacheLifetime) - Date.now();
@@ -45,7 +43,12 @@ export default class TS3Viewer extends React.Component {
         }
 
         if (this.state.error) {
-            return <div className="error">{this.state.error}</div>;
+            return (
+                <div className="box32">
+                    <span className="icon icon32 icon-headphones"></span>
+                    <div className="error" style={{marginTop: 0}}>{this.state.error}</div>
+                </div>
+            );
         }
 
         const connectHref = "ts3server://" + this.state.address + "?port=" + this.state.port + "&amp;nickname=" + this.props.nickname;

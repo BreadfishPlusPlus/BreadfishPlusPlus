@@ -43,7 +43,6 @@ export default class TS3Viewer extends DefaultModule {
         React.render(<TS3ViewerTemplate
             cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
             debug={debug}
-            domains={this.getDomains()}
             nickname={this.getUsername()}
             refreshInterval={this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000)}
         />, container);

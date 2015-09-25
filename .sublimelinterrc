@@ -1,14 +1,11 @@
 {
     "linters": {
         "jshint": {
-            "@disable": true,
-            "args": [],
-            "excludes": []
+            "@disable": true
         },
         "eslint": {
             "@disable": false,
-            "args": [],
-            "excludes": []
+            "chdir": "${project}"
         }
     }
 }

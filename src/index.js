@@ -1,7 +1,10 @@
+/*eslint no-console: 0*/
 "use strict";
 
 // Debugging aktivieren
-localStorage.setItem("debug", "*");
+if(DEBUG_MOE) {
+    localStorage.setItem("debug", "*");
+}
 
 // Moment locale auf Detusch stellen
 import Moment from "moment";
