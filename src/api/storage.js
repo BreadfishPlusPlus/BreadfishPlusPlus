@@ -6,6 +6,7 @@ if (!window.localStorage) {
 }
 const namespace = "bpp_";
 const debug = require("debug")("storage");
+import {isUndefined} from "lodash";
 
 const set = function (key, value) {
     debug("set %j=%j", key, value);
@@ -29,6 +30,22 @@ const get = function (key, defaultValue) {
             console.error(e);
         }
     }
-    return value || defaultValue;
+    return isUndefined(value) ? defaultValue : value;
 };
-export default {set, setDefault, get};
+
+const getAll = function () {
+    let options = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (!key.startsWith(namespace)) {
+            continue;
+        }
+        key = key.substr(namespace.length);
+        options.push({
+            key,
+            value: get(key)
+        });
+    }
+    return options;
+};
+export default {set, setDefault, get, getAll};

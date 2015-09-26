@@ -4,7 +4,7 @@ import {DefaultModule} from "../../api";
 import $ from "jquery";
 const debug = require("debug")("option.thread.filter.statistics");
 
-export default class Statistics extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");

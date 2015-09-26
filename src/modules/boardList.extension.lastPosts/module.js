@@ -4,7 +4,7 @@ import {DefaultModule} from "../../api";
 import $ from "jquery";
 const debug = require("debug")("option.boardList.extension.lastPosts");
 
-export default class LastPosts extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");

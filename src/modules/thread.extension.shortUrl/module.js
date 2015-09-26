@@ -7,7 +7,7 @@ const debug = require("debug")("option.thread.extension.shortUrl");
 import Dialog from "./Dialog.jsx";
 import Button from "./Button.jsx";
 
-export default class ShortUrl extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");

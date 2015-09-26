@@ -4,6 +4,7 @@ const debug = require("debug")("api");
 import Storage from "./storage";
 import $ from "jquery";
 import React from "react";
+import CSSPropertyOperations from "react/lib/CSSPropertyOperations";
 import OptionsWrapper from "./options/OptionsWrapper.jsx";
 
 import Tabmanager from "./Tabmanager.js";
@@ -114,6 +115,10 @@ export class DefaultModule {
             showOptions();
         }
     }
+    addStyle(selector, styles={}) {
+        document.styleSheets[0].addRule(selector, CSSPropertyOperations.createMarkupForStyles(styles));
+    }
+    /* WCF Methoden */
     triggerRelativeTime() {
         debug("triggerRelativeTime");
         new window.WCF.Date.Time();

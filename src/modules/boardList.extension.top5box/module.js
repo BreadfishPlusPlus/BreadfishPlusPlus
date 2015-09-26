@@ -7,7 +7,7 @@ import $ from "jquery";
 const debug = require("debug")("option.boardList.extension.top5box");
 import Top5BoxTemplate from "./Template.jsx";
 
-export default class Top5Box extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");

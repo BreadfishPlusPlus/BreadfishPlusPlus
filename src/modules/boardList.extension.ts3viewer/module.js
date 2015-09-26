@@ -5,7 +5,7 @@ import React from "react";
 const debug = require("debug")("option.boardList.extension.ts3viewer");
 import TS3ViewerTemplate from "./Template.jsx";
 
-export default class TS3Viewer extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");

@@ -5,7 +5,7 @@ import $ from "jquery";
 import Moment from "moment";
 const debug = require("debug")("option.global.extension.timeFormat");
 
-export default class Timeformat extends DefaultModule {
+export default class Module extends DefaultModule {
     constructor() {
         super();
         debug("Wird geladen...");
@@ -59,11 +59,6 @@ export default class Timeformat extends DefaultModule {
         } else if (this.storage.get("option.global.extension.timeFormat", 0) === 2) {
             $element.text(this.formatAbsolute(mom));
         }
-
-        //if (mom.isSame(Moment(), "day")) {
-
-        //}
-
     }
     formatTime() {
         $("time.datetime").each(this.formatTimeForElement.bind(this));
