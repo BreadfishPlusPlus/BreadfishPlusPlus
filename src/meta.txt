@@ -4,8 +4,8 @@
 // @author          <%= pkg.author %>
 // @version         <%= pkg.version %>
 // @namespace       http://brpp.ga
-// @match           *://forum.sa-mp.de/*
-// @exclude         *://forum.sa-mp.de/acp/*
+// @match           *://breadfish.de/*
+// @exclude         *://breadfish.de/acp/*
 // @grant           unsafeWindow
 // @grant           GM_getValue
 // @grant           GM_setValue

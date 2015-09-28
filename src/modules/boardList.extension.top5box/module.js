@@ -60,7 +60,7 @@ export default class Module extends DefaultModule {
         clearInterval(this.refreshPostsInterval);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        Superagent.get("http://forum.sa-mp.de/").end((err, res) => {
+        Superagent.get("http://breadfish.de/").end((err, res) => {
             if (err) {
                 return this.props.debug("Fehler beim abfragen der Top5 Posts: ", err);
             }

@@ -41,27 +41,27 @@ export default class AboutTab extends React.Component {
                 <fieldset>
                     <legend>Danke an</legend>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/25433-ditti/">Ditti</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/25433/">Ditti</a></dt>
                         <dd>Vorabversionen testen, meine Rechtschreibfehler ausbessern</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/26698-jan/">Jan</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/26698/">Jan</a></dt>
                         <dd>Vorabversionen testen, hosten des Chatservers</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/17121-joshua/">Joshua</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/17121/">Joshua</a></dt>
                         <dd>Vorabversionen testen, sinnloses Zeug vorschlagen</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/13423-seegras/">seegras</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/13423/">seegras</a></dt>
                         <dd>Hilfe mit der TS-Query-API</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/5871-ssl/">SSL</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/5871/">SSL</a></dt>
                         <dd>Vorabversionen testen</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://forum.sa-mp.de/index.php?user/10755-the_cop/">The_Cop</a></dt>
+                        <dt><a href="http://breadfish.de/index.php?user/10755/">The_Cop</a></dt>
                         <dd>Vorabversionen testen, meine Rechtschreibfehler ausbessern, neue Funktionen vorschlagen</dd>
                     </dl>
                 </fieldset>

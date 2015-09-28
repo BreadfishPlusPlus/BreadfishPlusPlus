@@ -20,7 +20,7 @@ export default class Module extends DefaultModule {
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
-            "description": "Fügt in jedem Beitrag zusätzlich noch blabla."
+            "description": "Fügt in jedem Beitrag zusätzlich noch einen Button hinzu, mit dem man eine kurze URL zum Beitrag erhält."
         });
 
         if (!this.isTemplate("tplThread")) {

@@ -8,7 +8,7 @@ import OptionsTab from "./OptionsTab";
 import Tabmanager from "../Tabmanager.js";
 import {uniq, compact, filter, isUndefined} from "lodash";
 
-export default class Options extends React.Component {
+export default class OptionsWrapper extends React.Component {
     static propTypes = {
         TabMngr: React.PropTypes.instanceOf(Tabmanager),
         optionsArray: React.PropTypes.array.isRequired
@@ -62,7 +62,7 @@ export default class Options extends React.Component {
                 <nav className="breadcrumbs marginTop">
                     <ul>
                         <li title="breadfish.de - DIE deutschsprachige GTA-Community">
-                            <a href="http://forum.sa-mp.de/">
+                            <a href="http://breadfish.de/">
                                 <span>breadfish.de - DIE deutschsprachige GTA-Community</span>
                             </a>
                             <span className="pointer"><span>»</span></span>

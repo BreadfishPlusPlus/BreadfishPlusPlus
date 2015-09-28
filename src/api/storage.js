@@ -6,7 +6,7 @@ if (!window.localStorage) {
 }
 const namespace = "bpp_";
 const debug = require("debug")("storage");
-import {isUndefined} from "lodash";
+import {isUndefined, isNull} from "lodash";
 
 const set = function (key, value) {
     debug("set %j=%j", key, value);
@@ -30,7 +30,8 @@ const get = function (key, defaultValue) {
             console.error(e);
         }
     }
-    return isUndefined(value) ? defaultValue : value;
+    debug("get", key, value, defaultValue);
+    return !isUndefined(value) && !isNull(value) ? value : defaultValue;
 };
 
 const getAll = function () {
