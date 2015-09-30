@@ -20,7 +20,7 @@ export default class Module extends DefaultModule {
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
-            "description": "Bietet die möglichkeit, jedem Benutzer blabla"
+            "description": "Bietet die möglichkeit, Benutzer mit einem Tag zu versehen."
         });
         this.register({
             "key": "option.global.extension.userTag.db",
@@ -44,19 +44,12 @@ export default class Module extends DefaultModule {
         debug("this.tagDb", this.tagDb);
 
         if (this.isTemplate("tplThread")) {
-            this.setupPopupListener();
             this.setupThread();
-            //this.setupProfile();
-            return;
+        } else if (this.isTemplate("tplConversation")) {
+            this.setupConversation();
         }
+        this.setupPopupListener();
     }
-    /*
-    // force rebuilding of popover cache
-        var self = this;
-        WCF.System.ObjectStore.invoke('WCF.User.ProfilePreview', function(profilePreview) {
-            profilePreview.purge(self._userID);
-        });
-    */
     getUserTagData(userId) {
         return this.tagDb[userId];
     }
@@ -72,7 +65,12 @@ export default class Module extends DefaultModule {
         debug("module.onClose", arguments);
         this.setUserTag(userId, tag, link, background, foreground);
         this.$dialog.wcfDialog("close");
-        this.setupThread();
+
+        if (this.isTemplate("tplThread")) {
+            this.setupThread();
+        } else if (this.isTemplate("tplConversation")) {
+            this.setupConversation();
+        }
     }
     showDialog(event, userId, userName) {
         event.preventDefault();
@@ -122,65 +120,15 @@ export default class Module extends DefaultModule {
                 .append(React.renderToStaticMarkup(<UserTagBadge {...tagData} />));
         });
     }
-    /*getProfileUserId() {
-        const userId = ~~$("link[rel=\"canonical\"]").attr("href").slice(0, -1).split("/").pop().split("-")[0];
-        debug("userId", userId);
-        return userId;
-    }
-    getUserNotes(userId) {
-        return this.storage.get("option.global.extension.userNote.db", {})[userId];
-    }
-    addUserNote(userId, note) {
-
-    }
-    setupProfile() {
-        const link = $(".toTopLink a").attr("href").replace("#top", "#notes");
-        debug("user", link);
-
-        const $btn = $(`<li class="ui-state-default ui-corner-top" aria-controls="notes"><a href="${link}">Notizen</a></li>`);
-        $("#profileContent .tabMenu#wcf4 ul").append($btn);
-
-        const $tabMenuContent = $(React.renderToStaticMarkup(<TabmenuContent notes={this.getUserNotes(this.getProfileUserId())} />));
-        $("#profileContent").append($tabMenuContent);
-
-        let lastActive = null;
-        $("#profileContent .tabMenu#wcf4 ul li a").click(event => {
-            const $tab = $(event.target);
-            const $activeTab = $("#profileContent .tabMenu#wcf4 ul li[tabindex=\"0\"]");
-            const controls = $tab.parent("li").attr("aria-controls");
-            if (controls === "notes") {
-                event.preventDefault();
-
-                lastActive = $activeTab.attr("aria-controls");
-
-                $activeTab.removeClass("ui-tabs-active ui-state-active");
-                $("#profileContent > .tabMenuContent:visible").hide();
-
-                $btn.addClass("ui-tabs-active ui-state-active");
-                $tabMenuContent.show();
-            } else {
-                if (!lastActive) {
-                    return;
-                }
-                const _lastActive = lastActive;
-                lastActive = null;
-
-                $btn.removeClass("ui-tabs-active ui-state-active");
-                $tabMenuContent.hide();
-
-                if (_lastActive === controls) {
-                    if (_lastActive !== "wall") {
-                        $(`#profileContent .tabMenu#wcf4 ul li[aria-controls="wall"] a`).click();
-                    } else {
-                        $(`#profileContent .tabMenu#wcf4 ul li[aria-controls="recentActivity"] a`).click();
-                    }
-                    $(`#profileContent .tabMenu#wcf4 ul li[aria-controls="${controls}"] a`).click();
-                }
-
-            }
+    setupConversation() {
+        $(".userTagBadge").remove();
+        $("article.message").each((index, element) => {
+            const userId = ~~$(element).find(".messageSidebar.member header .userLink").data("user-id");
+            const tagData = this.getUserTagData(userId);
+            debug("setupConversation", userId, tagData);
+            $(element)
+                .find(".messageSidebar.member header")
+                .append(React.renderToStaticMarkup(<UserTagBadge {...tagData} />));
         });
-
-
-
-    }*/
+    }
 }

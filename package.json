@@ -1,10 +1,11 @@
 {
   "name": "BreadfishPlusPlus",
-  "description": "Eine Zusammenfassung von Erweiterungen für breadfish.de",
+  "description": "Erweiterte Einstellungen und Zusatzfunktionen für breadfish.de.",
   "private": true,
   "version": "4.0.0",
   "main": "src/index.js",
   "domain": {
+    "update": "https://brpp.ga/",
     "main": "https://brpp.ga/",
     "cdn": "https://cdn.brpp.ga/",
     "teamspeak": "https://teamspeak.brpp.ga/",
@@ -20,7 +21,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "$(npm bin)/webpack-dev-server --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
+    "dev": "$(npm bin)/webpack-dev-server --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons --https",
     "build": "$(npm bin)/webpack --config webpack.production.config.js --display-error-details --progress --colors --display-chunks --display-reasons"
   },
   "dependencies": {

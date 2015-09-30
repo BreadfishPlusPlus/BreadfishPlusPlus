@@ -1,22 +1,15 @@
 // ==UserScript==
 // @name            Breadfish++
-// @description     Eine Zusammenfassung von erweiterungen für breadfish.de
-// @author          <%= pkg.author %>
-// @version         <%= pkg.version %>
-// @namespace       http://brpp.ga
+// @description     ${ package.description }
+// @author          ${ package.author }
+// @version         ${ package.version }
+// @namespace       breadfish.de
+// @homepage        https://breadfish.de/index.php?thread/202640-breadfish-die-inoffizielle-erweiterung-für-sa-mp-de/
+// @supportURL      https://breadfish.de/index.php?thread/202640-breadfish-die-inoffizielle-erweiterung-für-sa-mp-de/
+// @icon            https://breadfish.de/wcf/images/apple-touch-icon.png
 // @match           *://breadfish.de/*
 // @exclude         *://breadfish.de/acp/*
-// @grant           unsafeWindow
-// @grant           GM_getValue
-// @grant           GM_setValue
-// @grant           GM_addStyle
-// @grant           GM_xmlhttpRequest
-// @grant           GM_listValues
-// @grant           GM_log
-// @grant           GM_notification
-// @grant           GM_openInTab
-// @grant           GM_info
 // @noframes        true
-// @downloadURL     https://raw.github.com/maddin77/BreadfishPlusPlus/master/dist/BreadfishPlusPlus.user.js
-// @updateURL       https://raw.github.com/maddin77/BreadfishPlusPlus/master/dist/BreadfishPlusPlus.meta.js
+// @downloadURL     ${ package.domain.update }BreadfishPlusPlus.user.js
+// @updateURL       ${ package.domain.update }BreadfishPlusPlus.meta.js
 // ==/UserScript==
