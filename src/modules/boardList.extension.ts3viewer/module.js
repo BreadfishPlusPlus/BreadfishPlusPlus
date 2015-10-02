@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import React from "react";
-const debug = require("debug")("option.boardList.extension.ts3viewer");
+const debug = require("debug")("B++:module:boardList.extension.ts3viewer");
 import TS3ViewerTemplate from "./Template.jsx";
 
 export default class Module extends DefaultModule {

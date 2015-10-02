@@ -2,30 +2,40 @@
 
 import React from "react";
 import NotificationSystem from "react-notification-system";
-const debug = require("debug")("Notification");
+const debug = require("debug")("B++:Notification");
 
 class NotificationLayer extends React.Component {
     componentDidMount() {
         debug("componentDidMount");
     }
-    addNotification() {
-        this.refs.notificationSystem.addNotification.apply(null, arguments);
-    }
-    error(title, position="br") {
-        return this.addNotification({
-            title,
-            level: "error",
-            position
-        });
-    }
-    success(title, message=null) {
-        return this.addNotification({
+
+    create({
+        title=null,
+        message=null,
+        level="info",
+        position="br",
+        autoDismiss=0,
+        dismissible=true,
+        action=null,
+        onRemove=null,
+        uid=null
+    } = {}) {
+        return this.refs.notificationSystem.addNotification({
             title,
             message,
-            level: "success",
-            position: "br"
+            level,
+            position,
+            autoDismiss,
+            dismissible,
+            action,
+            onRemove,
+            uid
         });
     }
+    remove(notification) {
+        this.refs.notificationSystem.removeNotification(notification);
+    }
+
     render() {
         return <div><NotificationSystem ref="notificationSystem" /></div>;
     }

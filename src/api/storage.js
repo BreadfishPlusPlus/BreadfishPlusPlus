@@ -1,11 +1,12 @@
 /*eslint no-console: 0*/
+/*global unsafeWindow:2*/
 "use strict";
 
-if (!window.localStorage) {
+if (!(typeof unsafeWindow === "undefined" ? window : unsafeWindow).localStorage) {
     throw new Error("Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage");
 }
 const namespace = "bpp_";
-const debug = require("debug")("storage");
+const debug = require("debug")("B++:Storage");
 import {isUndefined, isNull} from "lodash";
 
 const set = function (key, value) {

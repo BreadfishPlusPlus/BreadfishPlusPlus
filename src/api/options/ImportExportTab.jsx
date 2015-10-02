@@ -4,7 +4,7 @@ import React from "react";
 import Storage from "../storage";
 import Notification from "../Notification";
 import {isArray} from "lodash";
-const debug = require("debug")("ImportExportTab");
+const debug = require("debug")("B++:ImportExportTab");
 
 export default class ImportExportTab extends React.Component {
     static propTypes = {
@@ -20,7 +20,11 @@ export default class ImportExportTab extends React.Component {
     }
     onUpload(event) {
         if (event.target.files.length === 0) {
-            Notification.error("Du hast keine Datei angegeben! :(");
+            Notification.create({
+                level: "error",
+                title: "Fehler beim importieren der Einstellungen!",
+                message: "Du hast keine Datei angegeben! :("
+            });
             return;
         }
         const reader = new FileReader();
@@ -32,15 +36,22 @@ export default class ImportExportTab extends React.Component {
                 debug(e);
             }
             if (!options || !isArray(options)) {
-                Notification.error("Die Datei ist ungültig! :(");
+                Notification.create({
+                    level: "error",
+                    title: "Fehler beim importieren der Einstellungen!",
+                    message: "Die Datei ist ungültig! :("
+                });
                 return;
             }
 
             options.forEach(o => {
                 Storage.set(o.key, o.value);
             });
-
-            Notification.success("Einstellungen wurde importiert!", `Es wurden ${options.length} Einstellungen importiert.`,);
+            Notification.create({
+                level: "success",
+                title: "Einstellungen wurde importiert!",
+                message: `Es wurden ${options.length} Einstellungen importiert.`
+            });
         };
         reader.readAsBinaryString(event.target.files[0]);
     }

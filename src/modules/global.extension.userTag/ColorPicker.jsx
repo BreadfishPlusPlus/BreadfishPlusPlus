@@ -3,8 +3,7 @@
 import React from "react";
 import $ from "jquery";
 import {uniqueId} from "lodash";
-const debug = require("debug")("ColorPicker");
-//import Storage from "../storage";
+const debug = require("debug")("B++:ColorPicker");
 
 export default class ColorPicker extends React.Component {
     static propTypes = {
@@ -41,7 +40,7 @@ export default class ColorPicker extends React.Component {
         debug(this.state.id, "showColorpicker");
         if (!this.state.pickerActivated) {
             debug(this.state.id, "!pickerActivated");
-            new window.WCF.ColorPicker(`#colorpicker_${this.state.id}`);
+            new this.getWindow().WCF.ColorPicker(`#colorpicker_${this.state.id}`);
             this.setState({
                 pickerActivated: true
             }, () => {

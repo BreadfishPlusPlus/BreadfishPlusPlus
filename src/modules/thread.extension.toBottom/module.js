@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.thread.extension.toBottom");
+const debug = require("debug")("B++:module:thread.extension.toBottom");
 
 export default class Module extends DefaultModule {
     constructor() {

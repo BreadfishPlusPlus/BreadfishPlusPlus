@@ -1,7 +1,6 @@
 "use strict";
 
 import React from "react";
-//import Storage from "../storage";
 import ColorPicker from "./ColorPicker.jsx";
 
 export default class Dialog extends React.Component {
@@ -12,13 +11,14 @@ export default class Dialog extends React.Component {
         link: React.PropTypes.string,
         onClose: React.PropTypes.func.isRequired,
         tag: React.PropTypes.string,
-        userName: React.PropTypes.string.isRequired
+        userName: React.PropTypes.string.isRequired,
+        window: React.PropTypes.object.isRequired
     };
     constructor(props) {
         super(props);
 
         this.state = {
-            link: this.props.link || window.location.href,
+            link: this.props.link || this.props.window.location.href,
             tag: this.props.tag || "",
             backgroundColor: this.props.background || "rgba(255,0,0,1)",
             foregroundColor: this.props.foreground || "rgba(255,255,255,1)",
@@ -104,7 +104,7 @@ export default class Dialog extends React.Component {
                 </fieldset>
                 <div className="formSubmit">
                     <button className="buttonPrimary" onClick={e => this.onClose(e)}>
-                        {window.WCF.Language.get("wcf.global.button.save")}
+                        {this.props.window.WCF.Language.get("wcf.global.button.save")}
                     </button>
                 </div>
             </div>

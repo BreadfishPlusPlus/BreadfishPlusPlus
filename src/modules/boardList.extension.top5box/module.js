@@ -4,7 +4,7 @@ import {DefaultModule} from "../../api";
 import React from "react";
 import Superagent from "superagent";
 import $ from "jquery";
-const debug = require("debug")("option.boardList.extension.top5box");
+const debug = require("debug")("B++:module:boardList.extension.top5box");
 import Top5BoxTemplate from "./Template.jsx";
 
 export default class Module extends DefaultModule {

@@ -3,7 +3,7 @@
 import {DefaultModule} from "../../api";
 import $ from "jquery";
 import React from "react";
-const debug = require("debug")("option.global.extension.userTag");
+const debug = require("debug")("B++:module:global.extension.userTag");
 import Dialog from "./Dialog.jsx";
 import UserTagBadge from "./UserTagBadge.jsx";
 
@@ -33,7 +33,7 @@ export default class Module extends DefaultModule {
             return;
         }
 
-        window.WCF.Language.addObject({
+        this.getWindow().WCF.Language.addObject({
             "wcf.style.colorPicker": "Farbwähler",
             "wcf.style.colorPicker.new": "neu",
             "wcf.style.colorPicker.current": "aktuell",
@@ -89,13 +89,14 @@ export default class Module extends DefaultModule {
             debug={debug}
             onClose={this.onClose.bind(this, userId, userName)}
             userName={userName}
+            window={this.getWindow()}
             {...this.getUserTagData(userId)}
         />, this.$dialog[0]);
 
         this.$dialog.wcfDialog("render");
     }
     setupPopupListener() {
-        window.WCF.DOMNodeInsertedHandler.addCallback("WCF.Popover..userLink", () => {
+        this.getWindow().WCF.DOMNodeInsertedHandler.addCallback("WCF.Popover..userLink", () => {
             const $iconList = $(".popover .userProfilePreview .userInformation .buttonGroupNavigation .iconList");
             if ($iconList.length > 0) {
                 //http://breadfish.de/index.php?user/36685-instagram/

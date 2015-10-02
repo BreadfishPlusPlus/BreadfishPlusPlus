@@ -5,14 +5,16 @@ const Path = require("path");
 const Webpack = require("webpack");
 const Package = require("./package.json");
 const Fs = require("fs");
-const Template = require("lodash").template;
+const _ = require("lodash");
 
-const BANNER =  Template(Fs.readFileSync(Path.join(__dirname, "src", "meta.txt"), {
+
+const BANNER =  _.template(Fs.readFileSync(Path.join(__dirname, "src", "meta.txt"), {
     encoding: "utf8"
 }));
 
-module.exports = {
-    entry: Path.join(__dirname, "src", "index.js"),
+const devConfig = require(Path.join(__dirname, "webpack.development.config.js"));
+
+module.exports = _.assign(devConfig, {
     output: {
         path: Path.join(__dirname, "release"),
         filename: "BreadfishPlusPlus.user.js",
@@ -20,30 +22,16 @@ module.exports = {
         pathinfo: false,
         publicPath: "/"
     },
-    externals: {
-        "jquery": "jQuery"
-    },
-    module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            include: [
-                Path.join(__dirname, "src")
-            ],
-            loader: "babel",
-            query: {
-                stage: 0,
-                comments: false
-            }
-        }]
-    },
     plugins: [
+        new Webpack.PrefetchPlugin("react"),
+        new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
         new Webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Don't load all moment locales
         new Webpack.ProvidePlugin({
             _: "lodash"
         }),
         new Webpack.DefinePlugin({
             "process.env": {
-                "NODE_ENV": JSON.stringify("")
+                NODE_ENV: JSON.stringify("production")
             }
         }),
         new Webpack.optimize.DedupePlugin(),
@@ -68,8 +56,7 @@ module.exports = {
             entryOnly: true
         })
     ],
-    resolve: {
-        root: Path.join(__dirname, "src"),
-        extensions: ["", ".js", ".jsx", ".json"]
-    }
-};
+    devtool: "source-map",
+    watch: false,
+    debug: false
+});

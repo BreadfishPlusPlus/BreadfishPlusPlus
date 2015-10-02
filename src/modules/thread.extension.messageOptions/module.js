@@ -1,7 +1,7 @@
 "use strict";
 
 import {DefaultModule} from "../../api";
-const debug = require("debug")("option.thread.extension.messageOptions");
+const debug = require("debug")("B++:module:thread.extension.messageOptions");
 
 export default class Module extends DefaultModule {
     constructor() {

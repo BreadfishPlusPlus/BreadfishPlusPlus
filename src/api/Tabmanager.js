@@ -1,19 +1,21 @@
 "use strict";
 
-const debug = require("debug")("Tabmanager");
+const debug = require("debug")("B++:Tabmanager");
 
 export default class Tabmanager {
-    constructor() {
+    constructor(WINDOW) {
         this.tab = null;
         this.subtab = null;
         this.additional = [];
         this.highligh = null;
 
+        this.window = WINDOW;
+
         this.parse();
     }
     parse() {
         debug("parse");
-        const urlParts = window.location.search.substr(22).split(/\//);
+        const urlParts = this.window.location.search.substr(22).split(/\//);
 
         if (urlParts.length > 0 && urlParts[0].length > 0) {
             this.tab = urlParts[0];
@@ -28,8 +30,8 @@ export default class Tabmanager {
             debug("parse.additional", this.additional);
         }
 
-        if (window.location.hash) {
-            this.highligh = window.location.hash.substr(1);
+        if (this.window.location.hash) {
+            this.highligh = this.window.location.hash.substr(1);
             debug("parse.highligh", this.highligh);
         }
     }
@@ -55,8 +57,8 @@ export default class Tabmanager {
     }
     pushState() {
         debug("pushState", this.generateUrl());
-        window.history.pushState(null, null, this.generateUrl());
-        window.onpopstate();
+        this.window.history.pushState(null, null, this.generateUrl());
+        this.window.onpopstate();
     }
     changeTab(newTab, event=null) {
         if (event) {

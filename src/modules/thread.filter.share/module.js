@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.thread.filter.statistics");
+const debug = require("debug")("B++:module:thread.filter.statistics");
 
 export default class Module extends DefaultModule {
     constructor() {

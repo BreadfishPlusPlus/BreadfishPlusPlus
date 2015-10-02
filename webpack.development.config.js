@@ -17,6 +17,13 @@ module.exports = {
         "jquery": "jQuery"
     },
     module: {
+        preLoaders: [{
+            test: /\.jsx?$/,
+            loader: "eslint-loader",
+            include: [
+                Path.join(__dirname, "src")
+            ]
+        }],
         loaders: [{
             test: /\.jsx?$/,
             include: [

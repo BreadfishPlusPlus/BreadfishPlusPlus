@@ -2,7 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import $ from "jquery";
-const debug = require("debug")("option.boardList.extension.lastPosts");
+const debug = require("debug")("B++:module:boardList.extension.lastPosts");
 
 export default class Module extends DefaultModule {
     constructor() {

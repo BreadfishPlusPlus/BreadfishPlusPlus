@@ -3,7 +3,7 @@
 import {DefaultModule} from "../../api";
 import React from "react";
 import $ from "jquery";
-const debug = require("debug")("option.thread.extension.shortUrl");
+const debug = require("debug")("B++:module:thread.extension.shortUrl");
 import Dialog from "./Dialog.jsx";
 import Button from "./Button.jsx";
 
@@ -39,7 +39,7 @@ export default class Module extends DefaultModule {
         event.preventDefault();
 
         $(React.renderToStaticMarkup(<Dialog postId={postId} />)).wcfDialog({
-            title: window.WCF.Language.get("wcf.message.share")
+            title: this.getWindow().WCF.Language.get("wcf.message.share")
         });
         this.bindSelect();
     }

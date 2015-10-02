@@ -1,3 +1,4 @@
+/*eslint react/no-multi-comp: 0*/
 "use strict";
 
 import React from "react";
@@ -10,7 +11,8 @@ class ToggleOption extends React.Component {
         description: React.PropTypes.string,
         name: React.PropTypes.string.isRequired,
         optionKey: React.PropTypes.string.isRequired,
-        options: React.PropTypes.array
+        options: React.PropTypes.array,
+        validate: React.PropTypes.func
     };
     constructor(props) {
         super(props);
@@ -18,24 +20,16 @@ class ToggleOption extends React.Component {
             value: Storage.get(this.props.optionKey, this.props.default) ? 1 : 0
         };
     }
-    shandleChange() {
-        Storage.set(this.props.optionKey, !this.state.checked);
-        this.setState({checked: !this.state.checked});
-        Notification.addNotification({
-            title: "Optionen gespeichert!",
-            level: "info",
-            position: "br",
-            autoDismiss: 1
-        });
-    }
     handleChange(event) {
-        this.setState({value: ~~event.target.value});
-        Storage.set(this.props.optionKey, (~~event.target.value) === 1);
-        Notification.addNotification({
+        const value = ~~event.target.value;
+        if (this.props.validate && !this.props.validate(value)) {
+            return;
+        }
+        this.setState({value});
+        Storage.set(this.props.optionKey, value === 1);
+        Notification.create({
             title: "Optionen gespeichert!",
             message: `Option „${this.props.name}“ wurde gespeichert`,
-            level: "info",
-            position: "br",
             autoDismiss: 2
         });
     }
@@ -91,11 +85,9 @@ class SelectOption extends React.Component {
     handleChange(event) {
         this.setState({value: ~~event.target.value});
         Storage.set(this.props.optionKey, ~~event.target.value);
-        Notification.addNotification({
+        Notification.create({
             title: "Optionen gespeichert!",
             message: `Option „${this.props.name}“ wurde gespeichert`,
-            level: "info",
-            position: "br",
             autoDismiss: 2
         });
     }
@@ -130,7 +122,7 @@ class SelectOption extends React.Component {
         );
     }
 }
-class KeyboardOption extends React.Component {
+/*class KeyboardOption extends React.Component {
     render() {
         let description = false;
         if (this.props.description) {
@@ -155,7 +147,7 @@ class KeyboardOption extends React.Component {
             </div>
         );
     }
-}
+}*/
 
 export default class Option extends React.Component {
     static propTypes = {
@@ -167,7 +159,8 @@ export default class Option extends React.Component {
         options: React.PropTypes.array,
         subtab: React.PropTypes.string,
         tab: React.PropTypes.string,
-        type: React.PropTypes.string.isRequired
+        type: React.PropTypes.string.isRequired,
+        validate: React.PropTypes.func
     };
     render() {
         if (this.props.type === "toggle") {
@@ -175,7 +168,8 @@ export default class Option extends React.Component {
         } else if (this.props.type === "select") {
             return <SelectOption {...this.props} />;
         } else if (this.props.type === "keyboard") {
-            return <KeyboardOption {...this.props} />;
+            throw new Error("KeyboardOption is not defined");
+            //return <KeyboardOption {...this.props} />;
         } else {
             return false;
         }

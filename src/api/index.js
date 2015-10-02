@@ -1,14 +1,20 @@
+/*global unsafeWindow:2*/
 "use strict";
 
-const debug = require("debug")("api");
+const WINDOW = typeof unsafeWindow === "undefined" ? window : unsafeWindow;
+
+const debug = require("debug")("B++:API");
 import Storage from "./storage";
 import $ from "jquery";
 import React from "react";
 import CSSPropertyOperations from "react/lib/CSSPropertyOperations";
 import OptionsWrapper from "./options/OptionsWrapper.jsx";
+import Notification from "./Notification";
 
 import Tabmanager from "./Tabmanager.js";
-const TabMngr = new Tabmanager();
+const TabMngr = new Tabmanager(WINDOW);
+
+
 
 let optionsArray    = [];
 let isOptionsFrameOpen = false;
@@ -48,11 +54,11 @@ const addSettingsMenuEntry = function (active) {
 $(document).ready(function () {
     addPopupMenuEntry();
 
-    debug("window.location.search", window.location.search);
-    if (/^\?settings\/Breadfish\+\+\/?/i.test(window.location.search)) {
+    debug("window.location.search", WINDOW.location.search);
+    if (/^\?settings\/Breadfish\+\+\/?/i.test(WINDOW.location.search)) {
         addSettingsMenuEntry(true);
 
-        window.onpopstate = () => showOptions();
+        WINDOW.onpopstate = () => showOptions();
 
         TabMngr.parse();
 
@@ -63,15 +69,15 @@ $(document).ready(function () {
         showOptions();
 
     } else if (
-        /^\?account-management\/?/i.test(window.location.search) ||
-        /^\?avatar-edit\/?/i.test(window.location.search) ||
-        /^\?signature-edit\/?/i.test(window.location.search) ||
-        /^\?settings\/?/i.test(window.location.search) ||
-        /^\?notification-settings\/?/i.test(window.location.search) ||
-        /^\?paid-subscription-list\/?/i.test(window.location.search) ||
-        /^\?notification-list\/?/i.test(window.location.search) ||
-        /^\?following\/?/i.test(window.location.search) ||
-        /^\?ignored-users\/?/i.test(window.location.search)
+        /^\?account-management\/?/i.test(WINDOW.location.search) ||
+        /^\?avatar-edit\/?/i.test(WINDOW.location.search) ||
+        /^\?signature-edit\/?/i.test(WINDOW.location.search) ||
+        /^\?settings\/?/i.test(WINDOW.location.search) ||
+        /^\?notification-settings\/?/i.test(WINDOW.location.search) ||
+        /^\?paid-subscription-list\/?/i.test(WINDOW.location.search) ||
+        /^\?notification-list\/?/i.test(WINDOW.location.search) ||
+        /^\?following\/?/i.test(WINDOW.location.search) ||
+        /^\?ignored-users\/?/i.test(WINDOW.location.search)
     ) {
         addSettingsMenuEntry();
     }
@@ -86,6 +92,9 @@ export const ReferenceModule = function (name, module) {
 export class DefaultModule {
     constructor() {
         this.storage = Storage;
+        this.notification = Notification;
+        this.window = WINDOW;
+        this.wcf = this.window.WCF;
     }
     getTemplateName() {
         if (!this.templateName) {
@@ -98,10 +107,10 @@ export class DefaultModule {
         return templates.indexOf(this.getTemplateName()) > -1;
     }
     getUsername() {
-        return window.WCF.User.username;
+        return this.getWindow().WCF.User.username;
     }
     getUserId() {
-        return window.WCF.User.userID;
+        return this.getWindow().WCF.User.userID;
     }
     getModule(name) {
         debug("getModule", name, MODULE_LIST[name]);
@@ -118,17 +127,26 @@ export class DefaultModule {
     addStyle(selector, styles={}) {
         document.styleSheets[0].addRule(selector, CSSPropertyOperations.createMarkupForStyles(styles));
     }
+    getWindow() {
+        return this.window;
+    }
     /* WCF Methoden */
+    getWCF() {
+        return this.wcf;
+    }
     triggerRelativeTime() {
         debug("triggerRelativeTime");
-        new window.WCF.Date.Time();
+        return new this.wcf.Date.Time();
     }
     triggerUserPreview() {
         debug("triggerUserPreview");
-        new window.WCF.User.ProfilePreview();
+        return new this.wcf.User.ProfilePreview();
     }
     triggerTooltips() {
         debug("triggerTooltips");
-        new window.WCF.Effect.BalloonTooltip();
+        return new this.wcf.Effect.BalloonTooltip();
+    }
+    wcfProxy(options) {
+        return new this.wcf.Action.Proxy(options);
     }
 }

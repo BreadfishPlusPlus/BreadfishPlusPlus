@@ -15,7 +15,7 @@ Moment.locale("de");
 import "api/Notification";
 
 import {ReferenceModule} from "./api/index";
-const debug = require("debug")("index");
+const debug = require("debug")("B++:Index");
 debug("hi");
 
 

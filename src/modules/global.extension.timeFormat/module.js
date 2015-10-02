@@ -3,7 +3,7 @@
 import {DefaultModule} from "../../api";
 import $ from "jquery";
 import Moment from "moment";
-const debug = require("debug")("option.global.extension.timeFormat");
+const debug = require("debug")("B++:module:global.extension.timeFormat");
 
 export default class Module extends DefaultModule {
     constructor() {
@@ -31,7 +31,7 @@ export default class Module extends DefaultModule {
             return;
         }
 
-        window.WCF.Date.Time = () => {
+        this.getWindow().WCF.Date.Time = () => {
             this.formatTime();
         };
 
