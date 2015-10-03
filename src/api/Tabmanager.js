@@ -68,6 +68,8 @@ export default class Tabmanager {
 
         if (newTab === "einstellungen") {
             this.subtab = "forenansicht";
+        } else if (newTab === "tastaturnavigation") {
+            this.subtab = "themenansicht";
         } else {
             this.subtab = null;
         }

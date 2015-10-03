@@ -25,6 +25,10 @@
 ##### `Forenübersicht` → `Filter` → `Statistik`
 * Entfernt nun auch die Statistik in Unterforen.
 
+##### `Global` → `Einstellungen` → `Konversationsbenachrichtigung`
+* Ehemals `Desktopbenachrichtigung bei neuer PN`
+*
+
 ### Entfernte Module
 ##### `Allgemeine Einstellungen` → `Filter` → `Geburtstage`
 * Existiert nicht mehr im Forum.

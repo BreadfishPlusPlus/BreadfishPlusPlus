@@ -4,6 +4,8 @@
 import React from "react";
 import Storage from "./../storage";
 import Notification from "../Notification";
+import KeyboardJS from "keyboardjs";
+import $ from "jquery";
 
 class ToggleOption extends React.Component {
     static propTypes = {
@@ -122,32 +124,101 @@ class SelectOption extends React.Component {
         );
     }
 }
-/*class KeyboardOption extends React.Component {
+
+class KeyboardOption extends React.Component {
+    static propTypes = {
+        default: React.PropTypes.any.isRequired,
+        description: React.PropTypes.string,
+        name: React.PropTypes.string.isRequired,
+        optionKey: React.PropTypes.string.isRequired
+    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            key: Storage.get(this.props.optionKey, this.props.default)
+        };
+        this._wcfDialog = null;
+        this.onKeyDown = this.onKeyDown.bind(this);
+    }
+    getKeyName(key) {
+        return KeyboardJS.getLocale("de")._keyMap[key][0];
+    }
+    onKeyDown(event) {
+        console.log(event);
+        event.preventDefault();
+
+        if (!(event instanceof KeyboardEvent)) {
+            return;
+        }
+
+        if (event.preventRepeat) {
+            event.preventRepeat();
+        }
+
+        let keyCombo = this.getKeyName(event.which || event.keyCode);
+        if (event.pressedKeys) {
+            keyCombo = event.pressedKeys.join(" + ");
+        }
+
+        this.setState({ key: keyCombo });
+        Storage.set(this.props.optionKey, keyCombo);
+
+        this._wcfDialog.wcfDialog("close");
+        KeyboardJS.unbind(null, this.onKeyDown);
+    }
+    showDialog() {
+        const $dialog = $("<h1>Zuzuweisende Taste drücken...</h1>");
+
+        $dialog.css({
+            fontSize: "1.7rem",
+            textAlign: "center",
+            marginTop: "10px"
+        });
+
+        $dialog.find("input").css({
+            opacity: 0,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            pointerEvents: "none"
+        }).on("keydown", this.onKeyDown);
+
+        this._wcfDialog = $dialog.wcfDialog({
+            closable: false,
+            hideTitle: true
+        });
+
+        KeyboardJS.bind(null, this.onKeyDown);
+    }
+    onClick(event) {
+        event.preventDefault();
+        this.showDialog();
+
+    }
     render() {
         let description = false;
         if (this.props.description) {
-            description = <div className="formFieldDesc"><p>{this.props.description}</p></div>;
+            description = <small>{this.props.description}</small>;
+        }
+        let btnClass = "btn";
+        if (this.state.key !== null) {
+            btnClass += " buttonPrimary";
         }
         return (
-            <div className="formElement">
-                <div className="formFieldLabel">
+            <dl>
+                <dt>
                     <label htmlFor={this.props.optionKey}>{this.props.name}</label>
-                </div>
-                <div className="formField">
-                    <input
-                        type="button"
-                        className="bpp-option"
-                        style={{verticalAlign: "middle"}}
-                        id={this.props.optionKey}
-                        name={this.props.optionKey}
-                        value={this.props.default}
-                    />
-                </div>
-                {description}
-            </div>
+                </dt>
+                <dd>
+                    <button className={btnClass} onClick={event => this.onClick(event)}>
+                        <span className="icon icon16 icon-keyboard" /> {this.state.key || "Keine Taste zugewiesen"}
+                    </button>
+                    {description}
+                </dd>
+            </dl>
         );
     }
-}*/
+}
 
 export default class Option extends React.Component {
     static propTypes = {
@@ -168,8 +239,7 @@ export default class Option extends React.Component {
         } else if (this.props.type === "select") {
             return <SelectOption {...this.props} />;
         } else if (this.props.type === "keyboard") {
-            throw new Error("KeyboardOption is not defined");
-            //return <KeyboardOption {...this.props} />;
+            return <KeyboardOption {...this.props} />;
         } else {
             return false;
         }

@@ -3,7 +3,7 @@
 import React from "react";
 import TabMenu from "./TabMenu";
 import AboutTab from "./AboutTab";
-import ImportExportTab from "./ImportExportTab";
+//import ImportExportTab from "./ImportExportTab";
 import OptionsTab from "./OptionsTab";
 import Tabmanager from "../Tabmanager.js";
 import {uniq, compact, filter, isUndefined} from "lodash";
@@ -83,7 +83,7 @@ export default class OptionsWrapper extends React.Component {
                         options={this.getVisibleOptions()}
                         subtabs={this.getSubtabs()}
                     />
-                    <ImportExportTab currentTab={TabMngr.tab} />
+                    {/*<ImportExportTab currentTab={TabMngr.tab} />*/}
                 </section>
             </div>
         );
