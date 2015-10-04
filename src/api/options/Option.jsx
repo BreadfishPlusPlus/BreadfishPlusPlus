@@ -141,10 +141,9 @@ class KeyboardOption extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
     }
     getKeyName(key) {
-        return KeyboardJS.getLocale("de")._keyMap[key][0];
+        return KeyboardJS.getLocale("us")._keyMap[key][0];
     }
     onKeyDown(event) {
-        console.log(event);
         event.preventDefault();
 
         if (!(event instanceof KeyboardEvent)) {
@@ -193,7 +192,9 @@ class KeyboardOption extends React.Component {
     onClick(event) {
         event.preventDefault();
         this.showDialog();
-
+    }
+    getVisibleKeyName() {
+        return this.state.key.length > 0 ? this.state.key.toUpperCase() : "Keine Taste zugewiesen";
     }
     render() {
         let description = false;
@@ -201,7 +202,7 @@ class KeyboardOption extends React.Component {
             description = <small>{this.props.description}</small>;
         }
         let btnClass = "btn";
-        if (this.state.key !== null) {
+        if (this.state.key.length > 0) {
             btnClass += " buttonPrimary";
         }
         return (
@@ -211,7 +212,7 @@ class KeyboardOption extends React.Component {
                 </dt>
                 <dd>
                     <button className={btnClass} onClick={event => this.onClick(event)}>
-                        <span className="icon icon16 icon-keyboard" /> {this.state.key || "Keine Taste zugewiesen"}
+                        <span className="icon icon16 icon-keyboard" /> {this.getVisibleKeyName()}
                     </button>
                     {description}
                 </dd>

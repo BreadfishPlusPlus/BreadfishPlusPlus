@@ -36,6 +36,16 @@ export default class TS3Viewer extends React.Component {
             setTimeout(this.getJson.bind(this), updateIn);
         }.bind(this));
     }
+    getTimeElement(moment) {
+        return (<time
+            className="datetime"
+            data-date={moment.format("D. MMMM YYYY")}
+            data-offset="7200"
+            data-time={moment.format("HH:mm")}
+            data-timestamp={moment.unix()}
+            dateTime={moment.toISOString()}
+        >{moment.format("D. MMMM YYYY, HH:mm")}</time>);
+    }
     render() {
         this.props.debug("Render template...", this.state);
         if (_.isEmpty(this.state)) {
@@ -54,9 +64,6 @@ export default class TS3Viewer extends React.Component {
         const connectHref = "ts3server://" + this.state.address + "?port=" + this.state.port + "&amp;nickname=" + this.props.nickname;
         const uptime = Moment.duration(this.state.uptime, "s").humanize();
 
-        const lastUpdate = Moment.utc(new Date(this.state.lastUpdate));
-        const lastUpdateFormatted = lastUpdate.format("LLLL");
-        const lastUpdateRelative = lastUpdate.fromNow();
         return (
             <div className="box32">
                 <span className="icon icon32 icon-headphones"></span>
@@ -70,7 +77,7 @@ export default class TS3Viewer extends React.Component {
                             &nbsp;- Clients: {this.state.clients.length}/{this.state.maxclients}
                             &nbsp;- Channels: {this.state.channels.length}
                             &nbsp;- Online seit: {uptime}
-                            &nbsp;- Letzte aktualisierung: <abbr title={lastUpdateFormatted}>{lastUpdateRelative}</abbr>
+                            &nbsp;- Letzte aktualisierung: {this.getTimeElement(Moment.utc(new Date(this.state.lastUpdate)))}
                         </p>
                     </div>
                     <ul className="dataList">

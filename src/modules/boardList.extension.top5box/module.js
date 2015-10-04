@@ -60,9 +60,14 @@ export default class Module extends DefaultModule {
         clearInterval(this.refreshPostsInterval);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        Superagent.get("http://breadfish.de/").end((err, res) => {
-            if (err) {
-                return this.props.debug("Fehler beim abfragen der Top5 Posts: ", err);
+        Superagent.get(this.getWindow().location.protocol + "//breadfish.de/").end((error, res) => {
+            if (error) {
+                this.notification.create({
+                    level: "error",
+                    title: "Fehler beim abfragen der Top5 Post",
+                    message: error.toString()
+                });
+                return this.props.debug("Fehler beim abfragen der Top5 Posts: ", error);
             }
 
             var $data = $(res.text);
