@@ -13,8 +13,7 @@ export default class AboutTab extends React.Component {
             return false;
         }
 
-        const releaseHref = "https://github.com/BreadfishPlusPlus/BreadfishPlusPlus/releases/tag/v" + BPP_VERSION;
-        const iconSrc = BPP_CDN_DOMAIN + "img/breadfish128.png";
+        const iconSrc = BPP_CDN_DOMAIN + "icons/breadfish128.png";
         return (<div className="container tabMenuContent ui-tabs-panel ui-widget-content ui-corner-bottom">
             <div className="containerPadding">
                 <div className="bpp-about-header" style={{textAlign: "center",borderBottom: "1px solid #ccc", marginBottom: 15}}>
@@ -23,46 +22,50 @@ export default class AboutTab extends React.Component {
                 <fieldset>
                     <dl>
                         <dt>Version</dt>
-                        <dd>{BPP_VERSION} (<a href={releaseHref} target="_blank">Release notes</a>)</dd>
+                        <dd>{BPP_VERSION} (Changelog gibts im <a href="/thread/202640" target="_blank">Thema</a>)</dd>
                     </dl>
                     <dl>
-                        <dt>Offizille Wobsite</dt>
-                        <dd><a href={BPP_DOMAIN} target="_blank">{BPP_DOMAIN}</a></dd>
+                        <dt>Thema im Forum</dt>
+                        <dd><a href="/thread/202640" target="_blank">Breadfish++ - Die inoffizielle Erweiterung für breadfish.de</a></dd>
                     </dl>
                     <dl>
                         <dt>Brauchst du Hilfe?</dt>
-                        <dd><a href="http://sa-mp.de/thread/202640/">Dann stell deine Frage im Offiziellen Thema</a>  oder <a href="/index.php?conversation-add/&userID=3066">per privater Nachricht an mich</a></dd>
+                        <dd><a href="/thread/202640/">Dann stell deine Frage im Offiziellen Thema</a>  oder <a href="/conversation-add/?userID=3066">per privater Nachricht an mich</a></dd>
                     </dl>
                     <dl>
                         <dt>Hast du einen Fehler gefunden?</dt>
-                        <dd><a href="http://sa-mp.de/thread/202640/">Dann poste ihn im offiziellen Thema</a>, <a href="http://git.io/hZumZQ">im Breadfish++ issue tracker</a> oder <a href="/index.php?conversation-add/&userID=3066">per privater Nachricht an mich</a></dd>
+                        <dd><a href="/thread/202640/">Dann poste ihn im offiziellen Thema</a>, <a href="http://git.io/hZumZQ">im Breadfish++ issue tracker</a> oder <a href="/conversation-add/?userID=3066">per privater Nachricht an mich</a></dd>
                     </dl>
                 </fieldset>
                 <fieldset>
                     <legend>Danke an</legend>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/25433/">Ditti</a></dt>
+                        <dt><a href="/user/25433/">Ditti</a></dt>
                         <dd>Vorabversionen testen, meine Rechtschreibfehler ausbessern</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/26698/">Jan</a></dt>
+                        <dt><a href="/user/26698/">Jan</a></dt>
                         <dd>Vorabversionen testen, hosten des Chatservers</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/17121/">Joshua</a></dt>
+                        <dt><a href="/user/17121/">Joshua</a></dt>
                         <dd>Vorabversionen testen, sinnloses Zeug vorschlagen</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/13423/">seegras</a></dt>
+                        <dt><a href="/user/13423/">seegras</a></dt>
                         <dd>Hilfe mit der TS-Query-API</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/5871/">SSL</a></dt>
+                        <dt><a href="/user/5871/">SSL</a></dt>
                         <dd>Vorabversionen testen</dd>
                     </dl>
                     <dl>
-                        <dt><a href="http://breadfish.de/index.php?user/10755/">The_Cop</a></dt>
+                        <dt><a href="/user/10755/">The_Cop</a></dt>
                         <dd>Vorabversionen testen, meine Rechtschreibfehler ausbessern, neue Funktionen vorschlagen</dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="/user/2520/">Trooper[Y]</a></dt>
+                        <dd>Für die original-Idee und die Integration ins Forum.</dd>
                     </dl>
                 </fieldset>
                 <fieldset>

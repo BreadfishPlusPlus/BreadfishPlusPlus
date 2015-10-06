@@ -54,6 +54,9 @@ module.exports = {
     debug: true,
     resolve: {
         root: Path.join(__dirname, "src"),
-        extensions: ["", ".js", ".jsx", ".json"]
+        extensions: ["", ".js", ".jsx", ".json"],
+        alias: {
+            "eventEmitter/EventEmitter": "wolfy87-eventemitter"
+        }
     }
 };

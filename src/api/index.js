@@ -134,6 +134,14 @@ export class DefaultModule {
     getWCF() {
         return this.wcf;
     }
+    showWcfLoading() {
+        debug("showWcfLoading");
+        return this.wcf.LoadingOverlayHandler.show();
+    }
+    hideWcfLoading() {
+        debug("hideWcfLoading");
+        return this.wcf.LoadingOverlayHandler.hide();
+    }
     triggerRelativeTime() {
         debug("triggerRelativeTime");
         return new this.wcf.Date.Time();
