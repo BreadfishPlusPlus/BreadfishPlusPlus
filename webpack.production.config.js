@@ -4,20 +4,15 @@
 const Path = require("path");
 const Webpack = require("webpack");
 const Package = require("./package.json");
-const Fs = require("fs");
 const _ = require("lodash");
 
-
-const BANNER =  _.template(Fs.readFileSync(Path.join(__dirname, "src", "meta.txt"), {
-    encoding: "utf8"
-}));
 
 const devConfig = require(Path.join(__dirname, "webpack.development.config.js"));
 
 module.exports = _.assign(devConfig, {
     output: {
         path: Path.join(__dirname, "release"),
-        filename: "BreadfishPlusPlus.user.js",
+        filename: "BreadfishPlusPlus.js",
         chunkFilename: "[id].js",
         pathinfo: false,
         publicPath: "/"
@@ -42,7 +37,7 @@ module.exports = _.assign(devConfig, {
             compress: {
                 warnings: true
             },
-            sourceMap: false
+            sourceMap: true
         }),
         new Webpack.DefinePlugin({
             BPP_VERSION: JSON.stringify(Package.version),
@@ -51,10 +46,6 @@ module.exports = _.assign(devConfig, {
             BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
             BPP_SCREENSHOT_DOMAIN: JSON.stringify(Package.domain.screenshot),
             DEBUG_MOE: false
-        }),
-        new Webpack.BannerPlugin(BANNER({package: Package}), {
-            raw: true,
-            entryOnly: true
         })
     ],
     devtool: "source-map",
