@@ -3,7 +3,7 @@
 
 // Debugging aktivieren
 if(DEBUG_MOE) {
-    //localStorage.setItem("debug", "*");
+    localStorage.setItem("debug", "*");
 }
 
 // Moment locale auf Detusch stellen

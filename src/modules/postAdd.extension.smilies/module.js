@@ -1,3 +1,4 @@
+/*eslint no-console: 0*/
 "use strict";
 
 import {DefaultModule} from "../../api";
@@ -44,7 +45,7 @@ export default class Module extends DefaultModule {
             "description": "Fügt dem Text-Editor eine neue Smiley-Kategorie mit Twemoji (Emoji) hinzu."
         });
 
-        if (!this.isTemplate("tplPostAdd")) {
+        if (!this.isTemplate("postAdd")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -63,8 +64,14 @@ export default class Module extends DefaultModule {
     loadSmilies() {
         $.getJSON("https://api.github.com/repos/BreadfishPlusPlus/static/contents/smileys/smileys.json").done((data) => {
             this.setUpSmilies(JSON.parse(window.atob(data.content)));
-        }).fail((jqXHR) => {
-            //TODO: handle error
+        }).fail((jqXHR, textStatus, errorThrown) => {
+            this.notification.create({
+                level: "error",
+                title: "Fehler beim laden der Smileys!",
+                message: "Beim laden der Smileys ist ein Fehler aufgetreten! Mehr Infos gibts in der Konsole."
+            });
+            console.error(textStatus);
+            console.error(errorThrown);
         });
     }
     setUpSmilies(smilies) {

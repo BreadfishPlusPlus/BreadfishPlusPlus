@@ -62,7 +62,7 @@ export default class OptionsWrapper extends React.Component {
                 <nav className="breadcrumbs marginTop">
                     <ul>
                         <li title="breadfish.de - DIE deutschsprachige GTA-Community">
-                            <a href="http://breadfish.de/">
+                            <a href="//breadfish.de/">
                                 <span>breadfish.de - DIE deutschsprachige GTA-Community</span>
                             </a>
                             <span className="pointer"><span>»</span></span>

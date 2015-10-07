@@ -1,3 +1,0 @@
-<% _.each(messages, function (msg) { %>
-<p><a href="index.php?page=PMView&amp;pmID=<%- msg.id %>#pm<%- msg.id %>" title="<%- msg.text %>"><%- msg.title %></a> von <a href="index.php?page=User&amp;userID=<%- msg.authorID %>"><%- msg.author %></a> (<%= msg.dateStr %>)</p>
-<% }); %>

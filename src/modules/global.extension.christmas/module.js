@@ -73,8 +73,8 @@ export default class Module extends DefaultModule {
     ILOVECOCAINE() {
         debug("ILOVECOCAINE");
         $.getScript("https://cdnjs.cloudflare.com/ajax/libs/Snowstorm/20131208/snowstorm-min.js").done(() => {
-            this.getWindow().snowStorm.className = "bpp_snowFlake";
-            this.getWindow().snowStorm.excludeMobile = false;
+            window.snowStorm.className = "bpp_snowFlake";
+            window.snowStorm.excludeMobile = false;
             this.addStyle(".bpp_snowFlake", {
                 textShadow: "rgb(0, 0, 0) 0px 1px 3px",
                 pointerEvents: "none"

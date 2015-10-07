@@ -1,8 +1,7 @@
 /*eslint no-console: 0*/
-/*global unsafeWindow:2*/
 "use strict";
 
-if (!(typeof unsafeWindow === "undefined" ? window : unsafeWindow).localStorage) {
+if (!window.localStorage) {
     throw new Error("Dein Browser unterstüzt kein LocalStorage. http://caniuse.com/#feat=namevalue-storage");
 }
 const namespace = "bpp_";

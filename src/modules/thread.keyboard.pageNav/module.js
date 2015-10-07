@@ -32,7 +32,7 @@ export default class Module extends DefaultModule {
             "description": "Zur nächsten Seite navigieren."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("thread")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -65,7 +65,7 @@ export default class Module extends DefaultModule {
             });
         }
 
-        this.getWindow().location.href = prevUrl;
+        window.location.href = prevUrl;
     }
     onNextKey(event) {
         debug("onNextKey", event);
@@ -85,6 +85,6 @@ export default class Module extends DefaultModule {
             });
         }
 
-        this.getWindow().location.href = nextUrl;
+        window.location.href = nextUrl;
     }
 }

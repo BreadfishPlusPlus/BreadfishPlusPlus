@@ -111,12 +111,12 @@ export default class Module extends DefaultModule {
         }
         debug(`${conversations.length} ungelesene Konversation${en}!`);
         this._notification = new Notification(`Neue Konversation${en}!`, {
-            icon: "https://breadfish.de/wcf/images/apple-touch-icon.png",
+            icon: "//breadfish.de/wcf/images/apple-touch-icon.png",
             body: body,
             tag: this._tag
         });
         this._notification.onClick = () => {
-            this.getWindow().open("https://breadfish.de/index.php?conversation-list/", "_blank");
+            window.open("//breadfish.de/index.php?conversation-list/", "_blank");
         };
 
         conversations.forEach(c => {
@@ -130,7 +130,7 @@ export default class Module extends DefaultModule {
             return true;
         }
 
-        if (!("Notification" in this.getWindow())) {
+        if (!("Notification" in window)) {
             debug("Browser ist ein Toaster und kann keine Desktop Benachrichtigungen");
             this.notification.create({
                 level: "error",
@@ -139,20 +139,20 @@ export default class Module extends DefaultModule {
                 action: {
                     label: "Mehr Infos",
                     callback: () => {
-                        this.getWindow().open("http://caniuse.com/#feat=notifications", "_blank");
+                        window.open("http://caniuse.com/#feat=notifications", "_blank");
                     }
                 }
             });
             return false;
         }
 
-        if (this.window.Notification.permission === "granted") {
+        if (window.Notification.permission === "granted") {
             debug("Browser hat erlaubniss bereits erteilt.");
             return true;
         }
 
         debug("Erfrage erlaubniss...");
-        this.window.Notification.requestPermission(permission => {
+        window.Notification.requestPermission(permission => {
             debug(`permission=${permission}`);
             if (permission === "granted") {
                 this.notification.create({

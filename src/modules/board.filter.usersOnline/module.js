@@ -21,7 +21,7 @@ export default class Module extends DefaultModule {
             "description": "Entfernt die Infobox aus Foren, die anzeigt, wer gerade online ist."
         });
 
-        if (!this.isTemplate("tplBoard")) {
+        if (!this.isTemplate("board")) {
             debug("Falsches template -> SKIP");
             return;
         }

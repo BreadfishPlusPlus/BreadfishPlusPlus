@@ -33,7 +33,7 @@ export default class Module extends DefaultModule {
             "description": "Zum nächsten Beitrag scrollen."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("thread")) {
             debug("Falsches template -> SKIP");
             return;
         }

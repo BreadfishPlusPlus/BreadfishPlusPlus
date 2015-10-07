@@ -19,7 +19,7 @@ export default class Module extends DefaultModule {
             "description": "Aktiviert die Signatur (für Mobile geräte)."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("thread")) {
             debug("Falsches template -> SKIP");
             return;
         }

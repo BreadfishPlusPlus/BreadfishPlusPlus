@@ -33,7 +33,7 @@ export default class Module extends DefaultModule {
             "description": "Passt die Anzahl der \"Letzte X Beiträge\"-Box auf der Startseite an."
         });
 
-        if (!this.isTemplate("tplBoardList")) {
+        if (!this.isTemplate("boardList")) {
             debug("Falsches template -> SKIP");
             return;
         }

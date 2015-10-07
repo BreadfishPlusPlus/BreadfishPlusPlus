@@ -33,7 +33,7 @@ export default class Module extends DefaultModule {
             return;
         }
 
-        this.getWindow().WCF.Language.addObject({
+        this.wcf.Language.addObject({
             "wcf.style.colorPicker": "Farbwähler",
             "wcf.style.colorPicker.new": "neu",
             "wcf.style.colorPicker.current": "aktuell",
@@ -43,9 +43,9 @@ export default class Module extends DefaultModule {
         this.tagDb = this.storage.get("option.global.extension.userNote.db", {});
         debug("this.tagDb", this.tagDb);
 
-        if (this.isTemplate("tplThread")) {
+        if (this.isTemplate("thread")) {
             this.setupThread();
-        } else if (this.isTemplate("tplConversation")) {
+        } else if (this.isTemplate("conversation")) {
             this.setupConversation();
         }
         this.setupPopupListener();
@@ -66,9 +66,9 @@ export default class Module extends DefaultModule {
         this.setUserTag(userId, tag, link, background, foreground);
         this.$dialog.wcfDialog("close");
 
-        if (this.isTemplate("tplThread")) {
+        if (this.isTemplate("thread")) {
             this.setupThread();
-        } else if (this.isTemplate("tplConversation")) {
+        } else if (this.isTemplate("conversation")) {
             this.setupConversation();
         }
     }
@@ -89,17 +89,16 @@ export default class Module extends DefaultModule {
             debug={debug}
             onClose={this.onClose.bind(this, userId, userName)}
             userName={userName}
-            window={this.getWindow()}
+            wcf={this.wcf}
             {...this.getUserTagData(userId)}
         />, this.$dialog[0]);
 
         this.$dialog.wcfDialog("render");
     }
     setupPopupListener() {
-        this.getWindow().WCF.DOMNodeInsertedHandler.addCallback("WCF.Popover..userLink", () => {
+        this.wcf.DOMNodeInsertedHandler.addCallback("WCF.Popover..userLink", () => {
             const $iconList = $(".popover .userProfilePreview .userInformation .buttonGroupNavigation .iconList");
             if ($iconList.length > 0) {
-                //http://breadfish.de/index.php?user/36685-instagram/
                 const $user = $(".popover .userProfilePreview > a");
                 const userid = ~~$user.attr("href").slice(0, -1).split("/").pop().split("-")[0];
                 let $btn = $(`<li><a href="#" class="jsTooltip" title="Benutzer-Tag"><span class="icon icon16 fa-sticky-note-o"></span></a></li>`);

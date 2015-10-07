@@ -20,7 +20,7 @@ export default class Module extends DefaultModule {
             "description": "Fügt in jedem Beitrag einen Button hinzu mit dem man zum Seitenende springen kann."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("thread")) {
             debug("Falsches template -> SKIP");
             return;
         }

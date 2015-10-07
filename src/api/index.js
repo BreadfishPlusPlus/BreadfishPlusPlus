@@ -1,7 +1,4 @@
-/*global unsafeWindow:2*/
 "use strict";
-
-const WINDOW = typeof unsafeWindow === "undefined" ? window : unsafeWindow;
 
 const debug = require("debug")("B++:API");
 import Storage from "./storage";
@@ -12,7 +9,7 @@ import OptionsWrapper from "./options/OptionsWrapper.jsx";
 import Notification from "./Notification";
 
 import Tabmanager from "./Tabmanager.js";
-const TabMngr = new Tabmanager(WINDOW);
+const TabMngr = new Tabmanager();
 
 
 
@@ -30,6 +27,7 @@ const showOptions = function () {
         TabMngr={TabMngr}
         optionsArray={optionsArray}
     />, document.querySelector("#content"));
+    //TODO: .mobileSidebarToggleButton
 };
 
 const addPopupMenuEntry = function () {
@@ -54,11 +52,11 @@ const addSettingsMenuEntry = function (active) {
 $(document).ready(function () {
     addPopupMenuEntry();
 
-    debug("window.location.search", WINDOW.location.search);
-    if (/^\?settings\/Breadfish\+\+\/?/i.test(WINDOW.location.search)) {
+    debug("window.location.search", window.location.search);
+    if (/^\?settings\/Breadfish\+\+\/?/i.test(window.location.search)) {
         addSettingsMenuEntry(true);
 
-        WINDOW.onpopstate = () => showOptions();
+        window.onpopstate = () => showOptions();
 
         TabMngr.parse();
 
@@ -69,15 +67,15 @@ $(document).ready(function () {
         showOptions();
 
     } else if (
-        /^\?account-management\/?/i.test(WINDOW.location.search) ||
-        /^\?avatar-edit\/?/i.test(WINDOW.location.search) ||
-        /^\?signature-edit\/?/i.test(WINDOW.location.search) ||
-        /^\?settings\/?/i.test(WINDOW.location.search) ||
-        /^\?notification-settings\/?/i.test(WINDOW.location.search) ||
-        /^\?paid-subscription-list\/?/i.test(WINDOW.location.search) ||
-        /^\?notification-list\/?/i.test(WINDOW.location.search) ||
-        /^\?following\/?/i.test(WINDOW.location.search) ||
-        /^\?ignored-users\/?/i.test(WINDOW.location.search)
+        /^\?account-management\/?/i.test(window.location.search) ||
+        /^\?avatar-edit\/?/i.test(window.location.search) ||
+        /^\?signature-edit\/?/i.test(window.location.search) ||
+        /^\?settings\/?/i.test(window.location.search) ||
+        /^\?notification-settings\/?/i.test(window.location.search) ||
+        /^\?paid-subscription-list\/?/i.test(window.location.search) ||
+        /^\?notification-list\/?/i.test(window.location.search) ||
+        /^\?following\/?/i.test(window.location.search) ||
+        /^\?ignored-users\/?/i.test(window.location.search)
     ) {
         addSettingsMenuEntry();
     }
@@ -91,26 +89,33 @@ export const ReferenceModule = function (name, module) {
 
 export class DefaultModule {
     constructor() {
-        this.storage = Storage;
-        this.notification = Notification;
-        this.window = WINDOW;
-        this.wcf = this.window.WCF;
+        this._templateName = null;
     }
-    getTemplateName() {
-        if (!this.templateName) {
-            this.templateName = $("body").attr("id");
+    /* properties */
+    get wcf() {
+        return window.WCF;
+    }
+    get notification() {
+        return Notification;
+    }
+    get storage() {
+        return Storage;
+    }
+    get templateName() {
+        if (!this._templateName) {
+            this._templateName = $("body").data("template");
         }
-        return this.templateName;
+        return this._templateName;
     }
     isTemplate(...templates) {
-        debug("isTemplate", templates, this.getTemplateName());
-        return templates.indexOf(this.getTemplateName()) > -1;
+        debug("isTemplate", templates, this.templateName);
+        return templates.indexOf(this.templateName) > -1;
     }
-    getUsername() {
-        return this.getWindow().WCF.User.username;
+    get userName() {
+        return window.WCF.User.username;
     }
-    getUserId() {
-        return this.getWindow().WCF.User.userID;
+    get userId() {
+        return window.WCF.User.userID;
     }
     getModule(name) {
         debug("getModule", name, MODULE_LIST[name]);
@@ -124,16 +129,32 @@ export class DefaultModule {
             showOptions();
         }
     }
-    addStyle(selector, styles={}) {
-        document.styleSheets[0].addRule(selector, CSSPropertyOperations.createMarkupForStyles(styles));
+    addRawStyle(cssString, index=null) {
+        const styleSheet = document.styleSheets[0];
+        if (index === null) {
+            index = styleSheet.cssRules.length;
+        }
+
+        debug("addRawStyle", {cssString, index});
+
+        styleSheet.insertRule(cssString, index);
     }
-    getWindow() {
-        return this.window;
+    addStyle(selector, styles={}, index=null) {
+        const styleSheet = document.styleSheets[0];
+        const rules = CSSPropertyOperations.createMarkupForStyles(styles);
+        if (index === null) {
+            index = styleSheet.cssRules.length;
+        }
+
+        debug("addStyle", {selector, styles, index});
+
+        if("insertRule" in styleSheet) {
+            styleSheet.insertRule(selector + "{" + rules + "}", index);
+        } else if("addRule" in styleSheet) {
+            styleSheet.addRule(selector, rules, index);
+        }
     }
     /* WCF Methoden */
-    getWCF() {
-        return this.wcf;
-    }
     showWcfLoading() {
         debug("showWcfLoading");
         return this.wcf.LoadingOverlayHandler.show();

@@ -23,7 +23,7 @@ export default class Module extends DefaultModule {
             "description": "Fügt in jedem Beitrag zusätzlich noch einen Button hinzu, mit dem man eine kurze URL zum Beitrag erhält."
         });
 
-        if (!this.isTemplate("tplThread")) {
+        if (!this.isTemplate("thread")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -39,7 +39,7 @@ export default class Module extends DefaultModule {
         event.preventDefault();
 
         $(React.renderToStaticMarkup(<Dialog postId={postId} />)).wcfDialog({
-            title: this.getWindow().WCF.Language.get("wcf.message.share")
+            title: this.wcf.Language.get("wcf.message.share")
         });
         this.bindSelect();
     }

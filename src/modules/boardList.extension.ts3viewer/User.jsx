@@ -16,7 +16,7 @@ export default class User extends React.Component {
         if (client.id === -1) {
             userHref = "#";
         } else {
-            userHref = "http://breadfish.de/index.php?user/" + client.id + "-" + client.name.toLowerCase() + "/";
+            userHref = "//breadfish.de/index.php?user/" + client.id + "-" + client.name.toLowerCase() + "/";
         }
 
         return (

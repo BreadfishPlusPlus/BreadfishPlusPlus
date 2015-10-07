@@ -46,6 +46,7 @@ module.exports = {
             BPP_DOMAIN: JSON.stringify(Package.domain.main),
             BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
             BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
+            BPP_SCREENSHOT_DOMAIN: JSON.stringify(Package.domain.screenshot),
             DEBUG_MOE: true
         })
     ],

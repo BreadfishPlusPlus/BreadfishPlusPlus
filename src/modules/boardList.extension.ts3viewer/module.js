@@ -26,7 +26,7 @@ export default class Module extends DefaultModule {
             "default": 60000
         });
 
-        if (!this.isTemplate("tplBoardList")) {
+        if (!this.isTemplate("boardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -43,7 +43,7 @@ export default class Module extends DefaultModule {
         React.render(<TS3ViewerTemplate
             cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
             debug={debug}
-            nickname={this.getUsername()}
+            nickname={this.userName}
             refreshInterval={this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000)}
         />, container);
     }

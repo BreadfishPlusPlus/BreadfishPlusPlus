@@ -1,9 +1,0 @@
-<div class="popupMenu pageMenu" id="nickCompletionList">
-    <% if (nickList) {%>
-    <ul>
-        <% _.each(nickList, function (usr) { %>
-        <li <%- usr.active ? 'class="active"' : '' %>><a href="#" data-index="<%- usr.index %>"><%- usr.nick %></a></li>
-        <% }); %>
-    </ul>
-    <% } %>
-</div>

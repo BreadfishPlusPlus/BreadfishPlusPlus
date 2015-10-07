@@ -40,7 +40,7 @@ export default class ColorPicker extends React.Component {
         debug(this.state.id, "showColorpicker");
         if (!this.state.pickerActivated) {
             debug(this.state.id, "!pickerActivated");
-            new this.getWindow().WCF.ColorPicker(`#colorpicker_${this.state.id}`);
+            new this.wcf.ColorPicker(`#colorpicker_${this.state.id}`);
             this.setState({
                 pickerActivated: true
             }, () => {

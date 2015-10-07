@@ -28,7 +28,7 @@ export default class Module extends DefaultModule {
             "default": 60000
         });
 
-        if (!this.isTemplate("tplBoardList")) {
+        if (!this.isTemplate("boardList")) {
             debug("Falsches template -> SKIP");
             return;
         }
@@ -60,7 +60,7 @@ export default class Module extends DefaultModule {
         clearInterval(this.refreshPostsInterval);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        Superagent.get(this.getWindow().location.protocol + "//breadfish.de/").end((error, res) => {
+        Superagent.get(window.location.protocol + "//breadfish.de/").end((error, res) => {
             if (error) {
                 this.notification.create({
                     level: "error",

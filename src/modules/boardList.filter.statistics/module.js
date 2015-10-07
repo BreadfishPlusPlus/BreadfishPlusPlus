@@ -21,7 +21,7 @@ export default class Module extends DefaultModule {
             "description": "Entfernt die Infobox auf der Startseite, die die Forenstatistik anzeigt."
         });
 
-        if (!this.isTemplate("tplBoardList")) {
+        if (!this.isTemplate("boardList")) {
             debug("Falsches template -> SKIP");
             return;
         }

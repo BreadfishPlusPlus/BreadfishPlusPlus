@@ -31,7 +31,7 @@ export default class Module extends DefaultModule {
             return;
         }
 
-        this.getWindow().WCF.Date.Time = () => {
+        this.wcf.Date.Time = () => {
             this.formatTime();
         };
 
