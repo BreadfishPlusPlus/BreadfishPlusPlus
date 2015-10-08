@@ -4,6 +4,7 @@ const debug = require("debug")("B++:API");
 import Storage from "./storage";
 import $ from "jquery";
 import React from "react";
+import ReactDOM from "react-dom";
 import CSSPropertyOperations from "react/lib/CSSPropertyOperations";
 import OptionsWrapper from "./options/OptionsWrapper.jsx";
 import Notification from "./Notification";
@@ -23,7 +24,7 @@ const showOptions = function () {
 
     isOptionsFrameOpen = true;
 
-    React.render(<OptionsWrapper
+    ReactDOM.render(<OptionsWrapper
         TabMngr={TabMngr}
         optionsArray={optionsArray}
     />, document.querySelector("#content"));

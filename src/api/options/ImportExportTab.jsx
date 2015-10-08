@@ -14,9 +14,8 @@ export default class ImportExportTab extends React.Component {
         const options = Storage.getAll();
         const optionsString = JSON.stringify(options, null, 4);
         const content = new Blob([optionsString], {type: "application/json"});
-        React.findDOMNode(this.refs.download).setAttribute("href", URL.createObjectURL(content));
-
-        React.findDOMNode(this.refs.download).setAttribute("download", `Breadfish++ v${BPP_VERSION}-${Date.now()}.json`);
+        this.refs.download.setAttribute("href", URL.createObjectURL(content));
+        this.refs.download.setAttribute("download", `Breadfish++ v${BPP_VERSION}-${Date.now()}.json`);
     }
     onUpload(event) {
         if (event.target.files.length === 0) {
@@ -69,7 +68,7 @@ export default class ImportExportTab extends React.Component {
                     <dl>
                         <dt>
                             <p className="button uploadButton">
-                                <input name="importOptions" onChange={e => this.onUpload(e)} ref="upload" type="file" /><span>Hochladen</span>
+                                <input name="importOptions" onChange={e => this.onUpload(e)} type="file" /><span>Hochladen</span>
                             </p>
                         </dt>
                         <dd>

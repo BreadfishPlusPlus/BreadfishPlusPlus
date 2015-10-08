@@ -64,6 +64,7 @@ export default class Dialog extends React.Component {
                             <ColorPicker
                                 color={this.state.backgroundColor}
                                 onChange={color => this.setState({backgroundColor: color})}
+                                wcf={this.props.wcf}
                             />
                         </dd>
                     </dl>
@@ -73,6 +74,7 @@ export default class Dialog extends React.Component {
                             <ColorPicker
                                 color={this.state.foregroundColor}
                                 onChange={color => this.setState({foregroundColor: color})}
+                                wcf={this.props.wcf}
                             />
                         </dd>
                     </dl>

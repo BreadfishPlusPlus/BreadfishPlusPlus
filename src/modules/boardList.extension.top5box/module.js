@@ -2,6 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import React from "react";
+import ReactDOM from "react-dom";
 import Superagent from "superagent";
 import $ from "jquery";
 const debug = require("debug")("B++:module:boardList.extension.top5box");
@@ -49,7 +50,7 @@ export default class Module extends DefaultModule {
         container.style.right = "10px";
         container.style.fontWeight = "bold";
         containerHead.appendChild(container);
-        this.template = React.render(<Top5BoxTemplate
+        this.template = ReactDOM.render(<Top5BoxTemplate
             refreshInterval={this.refreshInterval}
             refreshPosts={() => this.refreshPosts()}
         />, container);

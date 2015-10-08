@@ -4,6 +4,7 @@ import {DefaultModule} from "../../api";
 import $ from "jquery";
 import {debounce} from "lodash";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import ReportReasons from "./ReportReasons.jsx";
 const debug = require("debug")("B++:module:global.extension.reportReasons");
 
@@ -91,7 +92,7 @@ export default class Module extends DefaultModule {
 
         const $txtArea = $("#moderationReport textarea");
 
-        $txtArea.after(React.renderToStaticMarkup(<ReportReasons
+        $txtArea.after(ReactDOMServer.renderToStaticMarkup(<ReportReasons
             reasons={this.storage.get("option.global.extension.reportReasons.user", [])}
         />));
 
@@ -105,14 +106,15 @@ export default class Module extends DefaultModule {
         });
     }
     initThreadReportReasons() {
-        if ($("#moderationReport").legnth === 0) {
+
+        if (document.querySelectorAll("#moderationReport").legnth === 0) {
             return;
         }
         debug("initThreadReportReasons", $("#moderationReport").legnth !== 0);
 
         const $txtArea = $("#moderationReport textarea");
 
-        $txtArea.after(React.renderToStaticMarkup(<ReportReasons
+        $txtArea.after(ReactDOMServer.renderToStaticMarkup(<ReportReasons
             reasons={this.storage.get("option.global.extension.reportReasons.thread", [])}
         />));
 

@@ -3,6 +3,8 @@
 import {DefaultModule} from "../../api";
 import $ from "jquery";
 import React from "react";
+import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
 const debug = require("debug")("B++:module:global.extension.userTag");
 import Dialog from "./Dialog.jsx";
 import UserTagBadge from "./UserTagBadge.jsx";
@@ -85,7 +87,7 @@ export default class Module extends DefaultModule {
             title: "Benutzer-Tag"
         });
 
-        this.template = React.render(<Dialog
+        this.template = ReactDOM.render(<Dialog
             debug={debug}
             onClose={this.onClose.bind(this, userId, userName)}
             userName={userName}
@@ -117,7 +119,7 @@ export default class Module extends DefaultModule {
             debug("setupThread", userId, tagData);
             $(element)
                 .find(".messageSidebar.member header")
-                .append(React.renderToStaticMarkup(<UserTagBadge {...tagData} />));
+                .append(ReactDOMServer.renderToStaticMarkup(<UserTagBadge {...tagData} />));
         });
     }
     setupConversation() {
@@ -128,7 +130,7 @@ export default class Module extends DefaultModule {
             debug("setupConversation", userId, tagData);
             $(element)
                 .find(".messageSidebar.member header")
-                .append(React.renderToStaticMarkup(<UserTagBadge {...tagData} />));
+                .append(ReactDOMServer.renderToStaticMarkup(<UserTagBadge {...tagData} />));
         });
     }
 }

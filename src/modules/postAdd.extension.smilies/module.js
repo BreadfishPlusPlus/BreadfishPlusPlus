@@ -4,6 +4,7 @@
 import {DefaultModule} from "../../api";
 import $ from "jquery";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 const debug = require("debug")("B++:module:postAdd.extension.smilies");
 import CategoryLink from "./CategoryLink.jsx";
 import SmileyContainer from "./SmileyContainer.jsx";
@@ -82,7 +83,7 @@ export default class Module extends DefaultModule {
         });
 
         smilies.forEach((category, index) => {
-            $("#smilies-text nav ul").append(React.renderToStaticMarkup(<CategoryLink
+            $("#smilies-text nav ul").append(ReactDOMServer.renderToStaticMarkup(<CategoryLink
                 index={index + 2}
                 name={category.name}
             />));
@@ -107,7 +108,7 @@ export default class Module extends DefaultModule {
 
             debug("categoryId", categoryId);
 
-            $(`#smilies-text-${categoryId}`).html(React.renderToStaticMarkup(<SmileyContainer
+            $(`#smilies-text-${categoryId}`).html(ReactDOMServer.renderToStaticMarkup(<SmileyContainer
                 smileys={smilies[categoryId - 2].smileys}
             />));
 

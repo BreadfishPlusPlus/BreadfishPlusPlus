@@ -2,6 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import $ from "jquery";
 const debug = require("debug")("B++:module:thread.extension.shortUrl");
 import Dialog from "./Dialog.jsx";
@@ -38,7 +39,7 @@ export default class Module extends DefaultModule {
     handleClick(event, postId) {
         event.preventDefault();
 
-        $(React.renderToStaticMarkup(<Dialog postId={postId} />)).wcfDialog({
+        $(ReactDOMServer.renderToStaticMarkup(<Dialog postId={postId} />)).wcfDialog({
             title: this.wcf.Language.get("wcf.message.share")
         });
         this.bindSelect();
@@ -47,7 +48,7 @@ export default class Module extends DefaultModule {
         const $message = $(element);
         const postId = ~~$message.attr("data-post-id");
 
-        const $btn = $(React.renderToStaticMarkup(<Button />));
+        const $btn = $(ReactDOMServer.renderToStaticMarkup(<Button />));
 
         $btn.find("a").click(event => this.handleClick(event, postId));
         $btn.insertAfter($message.find("footer .buttonGroupNavigation .buttonGroup li.wcfLikeButton"));

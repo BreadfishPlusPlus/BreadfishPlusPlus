@@ -3,6 +3,8 @@
 import {DefaultModule} from "../../api";
 import $ from "jquery";
 import React from "react";
+import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
 import PostButton from "./PostButton.jsx";
 import ThreadButton from "./ThreadButton.jsx";
 import Dialog from "./Dialog.jsx";
@@ -46,7 +48,7 @@ export default class Module extends DefaultModule {
             title: "Screenshot"
         });
 
-        this.template = React.render(<Dialog
+        this.template = ReactDOM.render(<Dialog
             debug={debug}
             screenshotUrl={screenshotUrl}
         />, this.$dialog[0]);
@@ -58,7 +60,7 @@ export default class Module extends DefaultModule {
             const $message = $(element);
             const postId = ~~$message.attr("data-post-id");
 
-            const $btn = $(React.renderToStaticMarkup(<PostButton />));
+            const $btn = $(ReactDOMServer.renderToStaticMarkup(<PostButton />));
 
             $btn.find("a").click((event) => {
                 this.showScreenshotModal(event, `${BPP_SCREENSHOT_DOMAIN}post/${postId}.png`);
@@ -70,7 +72,7 @@ export default class Module extends DefaultModule {
         const threadId = ~~$("[data-is-subscribed]").data("object-id");
         const pageNo = ~~$("link[rel=\"canonical\"]").attr("href").split("/&pageNo=")[1];
 
-        const $btn = $(React.renderToStaticMarkup(<ThreadButton />));
+        const $btn = $(ReactDOMServer.renderToStaticMarkup(<ThreadButton />));
         $btn.find("a").click((event) => {
             this.showScreenshotModal(event, `${BPP_SCREENSHOT_DOMAIN}thread/${threadId}/${pageNo}.png`);
         });

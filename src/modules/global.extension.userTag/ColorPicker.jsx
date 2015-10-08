@@ -8,8 +8,8 @@ const debug = require("debug")("B++:ColorPicker");
 export default class ColorPicker extends React.Component {
     static propTypes = {
         color: React.PropTypes.string.isRequired,
-
-        onChange: React.PropTypes.func
+        onChange: React.PropTypes.func,
+        wcf: React.PropTypes.object.isRequired
     };
     constructor(props) {
         super(props);
@@ -24,8 +24,7 @@ export default class ColorPicker extends React.Component {
     componentDidMount() {
         debug(this.state.id, "componentDidMount");
         const element = `colorpicker_store_${this.state.id}`;
-        const ref = this.refs[element];
-        const node = React.findDOMNode(ref);
+        const node = this.refs[element];
         $(node).on("change", () => this.handleColorChange(node));
     }
     handleColorChange(node) {
@@ -40,11 +39,11 @@ export default class ColorPicker extends React.Component {
         debug(this.state.id, "showColorpicker");
         if (!this.state.pickerActivated) {
             debug(this.state.id, "!pickerActivated");
-            new this.wcf.ColorPicker(`#colorpicker_${this.state.id}`);
+            new this.props.wcf.ColorPicker(`#colorpicker_${this.state.id}`);
             this.setState({
                 pickerActivated: true
             }, () => {
-                $(React.findDOMNode(this.refs[`colorpicker_${this.state.id}`])).click();
+                $(this.refs[`colorpicker_${this.state.id}`]).click();
             });
         }
     }

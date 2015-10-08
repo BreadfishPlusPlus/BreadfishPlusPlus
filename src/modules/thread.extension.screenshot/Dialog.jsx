@@ -37,7 +37,7 @@ export default class Dialog extends React.Component {
         });
     }
     handleCkick() {
-        React.findDOMNode(this.refs.screenshotUrl).select();
+        this.refs.screenshotUrl.select();
     }
     render() {
         this.props.debug("render", this.state);

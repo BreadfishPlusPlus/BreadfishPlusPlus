@@ -2,6 +2,7 @@
 
 import {DefaultModule} from "../../api";
 import React from "react";
+import ReactDOM from "react-dom";
 const debug = require("debug")("B++:module:boardList.extension.ts3viewer");
 import TS3ViewerTemplate from "./Template.jsx";
 
@@ -40,7 +41,7 @@ export default class Module extends DefaultModule {
         const container = document.createElement("li");
         //container.className = "box32";
         document.querySelector(".infoBoxList").insertBefore(container, document.querySelector(".box32.statsInfoBox"));
-        React.render(<TS3ViewerTemplate
+        ReactDOM.render(<TS3ViewerTemplate
             cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
             debug={debug}
             nickname={this.userName}

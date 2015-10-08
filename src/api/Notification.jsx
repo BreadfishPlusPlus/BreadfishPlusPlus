@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import ReactDOM from "react-dom";
 import NotificationSystem from "react-notification-system";
 const debug = require("debug")("B++:Notification");
 
@@ -40,5 +41,5 @@ class NotificationLayer extends React.Component {
         return <div><NotificationSystem ref="notificationSystem" /></div>;
     }
 }
-const NotificationInstace = React.render(<NotificationLayer />, document.body.appendChild(document.createElement("div")));
+const NotificationInstace = ReactDOM.render(<NotificationLayer />, document.body.appendChild(document.createElement("div")));
 export default NotificationInstace;
