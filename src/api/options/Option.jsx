@@ -46,7 +46,7 @@ class ToggleOption extends React.Component {
     render() {
         let description = false;
         if (this.props.description) {
-            description = <small>{this.props.description}</small>;
+            description = <small dangerouslySetInnerHTML={{__html: this.props.description}} />;
         }
         return (
             <dl>
@@ -154,8 +154,12 @@ class KeyboardOption extends React.Component {
             event.preventRepeat();
         }
 
-        let keyCombo = this.getKeyName(event.which || event.keyCode);
-        if (event.pressedKeys) {
+        const keyCode = event.which || event.keyCode;
+        let keyCombo = this.getKeyName(keyCode);
+
+        if (keyCode === 27) { //ESC
+            keyCombo = "";
+        } else if (event.pressedKeys) {
             keyCombo = event.pressedKeys.join(" + ");
         }
 

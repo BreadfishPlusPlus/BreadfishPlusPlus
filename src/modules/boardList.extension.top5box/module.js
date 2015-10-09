@@ -15,13 +15,13 @@ export default class Module extends DefaultModule {
 
         this.register({
             "key": "option.boardList.extension.top5box.enabled",
-            "name": "\"Die letzten 10 Beiträge\"-Aktualisierung",
+            "name": "\"Die letzten X Beiträge\"-Aktualisierung",
             "tab": "Einstellungen",
             "subtab": "Startseite",
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
-            "description": "Aktualisiert die \"Die letzten 10 Beiträge\"-Box auf der Startseite automatisch in regelmäßigen abständen."
+            "description": "Aktualisiert die \"Die letzten X Beiträge\"-Box auf der Startseite automatisch in regelmäßigen abständen."
         });
         this.register({
             "key": "option.boardList.extension.top5box.refreshInterval",
