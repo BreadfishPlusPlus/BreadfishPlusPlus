@@ -23,7 +23,7 @@ export default class Module extends DefaultModule {
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
-            "description": `Siehe <a href="//breadfish.de/thread/202640" target="_blank">Erklärung zum Screenshot-Modul</a>.`
+            "description": `Siehe <a href="http://git.io/LK5njg" target="_blank">Wiki Eintrag zum Screenshot-Modul</a>.`
         });
 
         if (!this.storage.get("option.thread.extension.screenshot.enabled", false)) {

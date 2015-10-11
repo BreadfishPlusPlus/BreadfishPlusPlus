@@ -11,8 +11,8 @@ const devConfig = require(Path.join(__dirname, "webpack.development.config.js"))
 
 module.exports = _.assign(devConfig, {
     output: {
-        path: Path.join(__dirname, "..", "static"),
-        filename: "BreadfishPlusPlus.js",
+        path: Path.join(__dirname, ".public"),
+        filename: "breadfishplusplus.js",
         chunkFilename: "[id].js",
         pathinfo: false,
         publicPath: "/"
