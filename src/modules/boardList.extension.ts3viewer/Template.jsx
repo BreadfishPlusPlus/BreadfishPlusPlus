@@ -3,7 +3,7 @@
 import React from "react";
 import _ from "lodash";
 import Moment from "moment";
-import Superagent from "superagent";
+import $ from "jquery";
 import User from "./User.jsx";
 
 export default class TS3Viewer extends React.Component {
@@ -19,22 +19,33 @@ export default class TS3Viewer extends React.Component {
     }
     componentDidMount() {
         this.getJson();
-        setInterval(this.getJson.bind(this), this.props.refreshInterval);
+        setInterval(() => this.getJson(), this.props.refreshInterval);
+    }
+    ajaxSuccess(data) {
+        this.setState(data);
+
+        const updateIn = (data.lastUpdate + this.props.cacheLifetime) - Date.now();
+        this.props.debug("Neue Daten werden in %s Sekunden abgefragt", updateIn / 1000);
+        setTimeout(() => this.getJson(), updateIn);
+    }
+    ajaxError(error) {
+        this.setState({error});
+        return this.props.debug("Teamspeak API meldet einen Fehler: ", error);
     }
     getJson() {
         this.props.debug("Frage Teamspeak Daten ab...");
-        Superagent.get(BPP_TS_DOMAIN).end(function (err, res) {
-            if (res.body && res.body.error) {
-                this.setState({error: res.body.error});
-                return this.props.debug("Teamspeak API meldet einen Fehler: ", res.body.error);
-            }
 
-            this.setState(res.body);
-
-            const updateIn = (res.body.lastUpdate + this.props.cacheLifetime) - Date.now();
-            this.props.debug("Neue Daten werden in %s Sekunden abgefragt", updateIn / 1000);
-            setTimeout(this.getJson.bind(this), updateIn);
-        }.bind(this));
+        $.getJSON(BPP_TS_DOMAIN)
+            .done((data) => {
+                if (data.error) {
+                    return this.error(data.error);
+                }
+                this.ajaxSuccess(data);
+            })
+            .fail((jqXHR, textStatus, errorThrown) => {
+                this.props.debug("fail", {jqXHR, textStatus, errorThrown});
+                this.error(textStatus);
+            });
     }
     getTimeElement(moment) {
         return (<time

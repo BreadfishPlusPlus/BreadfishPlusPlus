@@ -11,7 +11,7 @@ const devConfig = require(Path.join(__dirname, "webpack.development.config.js"))
 
 module.exports = _.assign(devConfig, {
     output: {
-        path: Path.join(__dirname, "release"),
+        path: Path.join(__dirname, "..", "static"),
         filename: "BreadfishPlusPlus.js",
         chunkFilename: "[id].js",
         pathinfo: false,
@@ -41,14 +41,13 @@ module.exports = _.assign(devConfig, {
         }),
         new Webpack.DefinePlugin({
             BPP_VERSION: JSON.stringify(Package.version),
-            BPP_DOMAIN: JSON.stringify(Package.domain.main),
             BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
             BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
             BPP_SCREENSHOT_DOMAIN: JSON.stringify(Package.domain.screenshot),
             DEBUG_MOE: false
         })
     ],
-    devtool: "source-map",
+    devtool: null,
     watch: false,
     debug: false
 });

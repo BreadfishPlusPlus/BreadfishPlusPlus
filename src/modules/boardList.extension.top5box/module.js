@@ -3,7 +3,6 @@
 import {DefaultModule} from "../../api";
 import React from "react";
 import ReactDOM from "react-dom";
-import Superagent from "superagent";
 import $ from "jquery";
 const debug = require("debug")("B++:module:boardList.extension.top5box");
 import Top5BoxTemplate from "./Template.jsx";
@@ -61,29 +60,29 @@ export default class Module extends DefaultModule {
         clearInterval(this.refreshPostsInterval);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        Superagent.get(window.location.protocol + "//breadfish.de/").end((error, res) => {
-            if (error) {
+        $.get(`${window.location.protocol}//breadfish.des/`)
+            .done((data) => {
+                var $data = $(data);
+                $("#lastXBoardPosts").html($data.find("#lastXBoardPosts").html());
+
+                this.getModule("boardList.extension.lastPosts").trimPosts();
+
+                this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
+
+                this.template.setState({isRefreshing: false, lastRefresh: Date.now()});
+
+                this.triggerRelativeTime();
+                this.triggerUserPreview();
+
+                debug("Die letzten 10 Beiträge wurden aktualisiert!");
+            })
+            .fail((jqXHR, textStatus, errorThrown) => {
+                debug("fail", {jqXHR, textStatus, errorThrown});
                 this.notification.create({
                     level: "error",
                     title: "Fehler beim abfragen der Top5 Post",
-                    message: error.toString()
+                    message: textStatus
                 });
-                return this.props.debug("Fehler beim abfragen der Top5 Posts: ", error);
-            }
-
-            var $data = $(res.text);
-            $("#lastXBoardPosts").html($data.find("#lastXBoardPosts").html());
-
-            this.getModule("boardList.extension.lastPosts").trimPosts();
-
-            this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
-
-            this.template.setState({isRefreshing: false, lastRefresh: Date.now()});
-
-            this.triggerRelativeTime();
-            this.triggerUserPreview();
-
-            debug("Die letzten 10 Beiträge wurden aktualisiert!");
-        });
+            });
     }
 }

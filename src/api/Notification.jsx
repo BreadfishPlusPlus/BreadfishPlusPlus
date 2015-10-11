@@ -18,6 +18,7 @@ class NotificationLayer extends React.Component {
         autoDismiss=0,
         dismissible=true,
         action=null,
+        onAdd=null,
         onRemove=null,
         uid=null
     } = {}) {
@@ -29,6 +30,7 @@ class NotificationLayer extends React.Component {
             autoDismiss,
             dismissible,
             action,
+            onAdd,
             onRemove,
             uid
         });
