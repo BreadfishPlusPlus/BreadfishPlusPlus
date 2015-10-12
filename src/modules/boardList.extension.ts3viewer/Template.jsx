@@ -48,6 +48,7 @@ export default class TS3Viewer extends React.Component {
             });
     }
     getTimeElement(moment) {
+        moment.local();
         return (<time
             className="datetime"
             data-date={moment.format("D. MMMM YYYY")}
