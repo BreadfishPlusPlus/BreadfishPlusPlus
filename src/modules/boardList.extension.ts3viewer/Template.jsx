@@ -88,7 +88,7 @@ export default class TS3Viewer extends React.Component {
                             &nbsp;- Clients: {this.state.clients.length}/{this.state.maxclients}
                             &nbsp;- Channels: {this.state.channels.length}
                             &nbsp;- Online seit: {uptime}
-                            &nbsp;- Letzte aktualisierung: {this.getTimeElement(Moment.utc(new Date(this.state.lastUpdate)))}
+                            &nbsp;- Letzte Aktualisierung: {this.getTimeElement(Moment.utc(new Date(this.state.lastUpdate)))}
                         </p>
                     </div>
                     <ul className="dataList">
