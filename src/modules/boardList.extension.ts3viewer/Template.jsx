@@ -38,13 +38,13 @@ export default class TS3Viewer extends React.Component {
         $.getJSON(BPP_TS_DOMAIN)
             .done((data) => {
                 if (data.error) {
-                    return this.error(data.error);
+                    return this.ajaxError(data.error);
                 }
                 this.ajaxSuccess(data);
             })
             .fail((jqXHR, textStatus, errorThrown) => {
                 this.props.debug("fail", {jqXHR, textStatus, errorThrown});
-                this.error(textStatus);
+                this.ajaxError(textStatus);
             });
     }
     getTimeElement(moment) {
