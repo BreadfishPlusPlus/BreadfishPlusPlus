@@ -60,7 +60,7 @@ export default class Module extends DefaultModule {
         clearInterval(this.refreshPostsInterval);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
-        $.get(`${window.location.protocol}//breadfish.des/`)
+        $.get(`${window.location.protocol}//breadfish.de/`)
             .done((data) => {
                 var $data = $(data);
                 $("#lastXBoardPosts").html($data.find("#lastXBoardPosts").html());
@@ -80,8 +80,8 @@ export default class Module extends DefaultModule {
                 debug("fail", {jqXHR, textStatus, errorThrown});
                 this.notification.create({
                     level: "error",
-                    title: "Fehler beim abfragen der Top5 Post",
-                    message: textStatus
+                    title: "Fehler beim Abfragen der Top5 Post",
+                    message: "Mehr Informationen gibt es in der Konsole."
                 });
             });
     }
