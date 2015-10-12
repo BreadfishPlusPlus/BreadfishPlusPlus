@@ -18,7 +18,7 @@ export default class Module extends DefaultModule {
             "type": "toggle",
             "options": ["Anzeigen", "Entfernen"],
             "default": false,
-            "description": "Entfernt die Anzeige der erhaltenen Likes eines jeden Posts aus der Themenansicht."
+            "description": "Entfernt die Anzeige der Benutzer, die einen Beitrag geliked haben."
         });
 
         if (!this.storage.get("option.thread.filter.likedUsers.enabled", false)) {
