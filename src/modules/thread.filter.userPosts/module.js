@@ -18,7 +18,7 @@ export default class Module extends DefaultModule {
             "type": "toggle",
             "options": ["Anzeigen", "Entfernen"],
             "default": false,
-            "description": "Entfernt die anzeige der der Anzahl der Beiträge eines jeden Benutzers aus der Themenansicht."
+            "description": "Entfernt die Anzeige der der Anzahl der Beiträge eines jeden Benutzers aus der Themenansicht."
         });
 
         if (!this.storage.get("option.thread.filter.userPosts.enabled", false)) {
