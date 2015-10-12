@@ -18,7 +18,7 @@ export default class Module extends DefaultModule {
             "type": "toggle",
             "options": ["Anzeigen", "Entfernen"],
             "default": false,
-            "description": "Entfernt den Likebutton bei Posts."
+            "description": "Entfernt den Like-Button bei Beiträgen."
         });
 
         if (!this.storage.get("option.thread.filter.likeButton.enabled", false)) {
