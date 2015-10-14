@@ -50,7 +50,7 @@ export default class Module extends DefaultModule {
             action: {
                 label: "Weiterlesen",
                 callback: () => {
-                    window.location.pathname = "/thread&id=202640&action=firstNew";
+                    window.location.pathname = "/index.php?thread&id=202640&action=firstNew";
                 }
             }
         });
