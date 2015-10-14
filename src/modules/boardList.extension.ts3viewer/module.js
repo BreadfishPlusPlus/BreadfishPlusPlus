@@ -45,7 +45,7 @@ export default class Module extends DefaultModule {
             cacheLifetime={300000} // https://github.com/BreadfishPlusPlus/Teamspeak-Info#cache_lifetime
             debug={debug}
             nickname={this.userName}
-            refreshInterval={this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000)}
+            refreshInterval={this.storage.get("option.boardList.extension.ts3viewer.refreshInterval", 60000)}
         />, container);
     }
 }
