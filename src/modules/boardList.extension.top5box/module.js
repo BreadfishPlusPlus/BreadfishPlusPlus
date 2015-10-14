@@ -39,7 +39,7 @@ export default class Module extends DefaultModule {
         }
 
         this.refreshInterval = this.storage.get("option.boardList.extension.top5box.refreshInterval", 60000);
-        this.refreshPostsInterval = setInterval(() => this.refreshPosts(), this.refreshInterval);
+        this.refreshPostsTimeout = setTimeout(() => this.refreshPosts(), this.refreshInterval);
 
         const containerHead = document.querySelector(".lastXPosts header");
         containerHead.style.position = "relative";
@@ -57,22 +57,23 @@ export default class Module extends DefaultModule {
     }
     refreshPosts() {
         debug("Die letzten 10 Beiträge werden aktualisiert...");
-        clearInterval(this.refreshPostsInterval);
+        clearTimeout(this.refreshPostsTimeout);
         this.template.setState({isRefreshing: true}, () => this.template.showDots());
 
         $.get(`${window.location.protocol}//breadfish.de/`)
             .done((data) => {
-                var $data = $(data);
-                $("#lastXBoardPosts").html($data.find("#lastXBoardPosts").html());
+                const $data = $(data);
+                const $lastXBoardPosts = $data.find("#lastXBoardPosts");
+                debug("$lastXBoardPosts", $lastXBoardPosts[0]);
+                $("#lastXBoardPosts").html($lastXBoardPosts.html());
 
                 this.getModule("boardList.extension.lastPosts").trimPosts();
 
-                this.refreshPostsInterval = setInterval(this.refreshPosts.bind(this), this.refreshInterval);
+                this.refreshPostsTimeout = setTimeout(this.refreshPosts.bind(this), this.refreshInterval);
 
                 this.template.setState({isRefreshing: false, lastRefresh: Date.now()});
 
-                this.triggerRelativeTime();
-                this.triggerUserPreview();
+                this.domInserted();
 
                 debug("Die letzten 10 Beiträge wurden aktualisiert!");
             })

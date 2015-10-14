@@ -164,6 +164,10 @@ export class DefaultModule {
         debug("hideWcfLoading");
         return this.wcf.LoadingOverlayHandler.hide();
     }
+    domInserted() {
+        debug("domInserted");
+        this.wcf.DOMNodeInsertedHandler.execute();
+    }
     triggerRelativeTime() {
         debug("triggerRelativeTime");
         return new this.wcf.Date.Time();
