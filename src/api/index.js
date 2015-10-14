@@ -168,14 +168,6 @@ export class DefaultModule {
         debug("domInserted");
         this.wcf.DOMNodeInsertedHandler.execute();
     }
-    triggerRelativeTime() {
-        debug("triggerRelativeTime");
-        return new this.wcf.Date.Time();
-    }
-    triggerUserPreview() {
-        debug("triggerUserPreview");
-        return new this.wcf.User.ProfilePreview();
-    }
     triggerTooltips() {
         debug("triggerTooltips");
         return new this.wcf.Effect.BalloonTooltip();
