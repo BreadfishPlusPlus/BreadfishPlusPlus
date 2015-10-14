@@ -10,6 +10,7 @@ export default class TS3Viewer extends React.Component {
     static propTypes = {
         cacheLifetime: React.PropTypes.number.isRequired,
         debug: React.PropTypes.func.isRequired,
+        domInserted: React.PropTypes.func.isRequired,
         nickname: React.PropTypes.string.isRequired,
         refreshInterval: React.PropTypes.number.isRequired
     };
@@ -20,6 +21,10 @@ export default class TS3Viewer extends React.Component {
     componentDidMount() {
         this.getJson();
         setInterval(() => this.getJson(), this.props.refreshInterval);
+        this.props.domInserted();
+    }
+    componentDidUpdate() {
+        this.props.domInserted();
     }
     ajaxSuccess(data) {
         this.setState(data);
