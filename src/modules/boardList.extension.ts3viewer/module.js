@@ -47,6 +47,7 @@ export default class Module extends DefaultModule {
             domInserted={this.domInserted.bind(this)}
             nickname={this.userName}
             refreshInterval={this.storage.get("option.boardList.extension.ts3viewer.refreshInterval", 60000)}
+            wcfProxy={this.wcfProxy.bind(this)}
         />, container);
     }
 }

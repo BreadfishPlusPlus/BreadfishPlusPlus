@@ -12,7 +12,8 @@ export default class TS3Viewer extends React.Component {
         debug: React.PropTypes.func.isRequired,
         domInserted: React.PropTypes.func.isRequired,
         nickname: React.PropTypes.string.isRequired,
-        refreshInterval: React.PropTypes.number.isRequired
+        refreshInterval: React.PropTypes.number.isRequired,
+        wcfProxy: React.PropTypes.func.isRequired
     };
     constructor(props) {
         super(props);
@@ -104,6 +105,7 @@ export default class TS3Viewer extends React.Component {
                                 channel={channel}
                                 client={client}
                                 key={client.name}
+                                wcfProxy={this.props.wcfProxy}
                             />);
                         })}
                     </ul>
