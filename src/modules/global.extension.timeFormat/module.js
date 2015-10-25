@@ -36,6 +36,10 @@ export default class Module extends DefaultModule {
         };
 
         this.formatTime();
+
+        this.wcf.DOMNodeInsertedHandler.addCallback("WCF.Date.Time", () => {
+            this.formatTime();
+        });
     }
     formatAbsolute(mom) {
         return mom.format("DD. MMMM YYYY, HH:mm");
@@ -50,13 +54,14 @@ export default class Module extends DefaultModule {
         }
     }
     formatTimeForElement(index, element) {
+        const option = this.storage.get("option.global.extension.timeFormat", 0);
         const $element = $(element);
         const timestamp = ~~$element.attr("data-timestamp");
         const mom = Moment(timestamp * 1000);
 
-        if (this.storage.get("option.global.extension.timeFormat", 0) === 1) {
+        if (option === 1) {
             $element.text(this.formatHalfRelative(mom));
-        } else if (this.storage.get("option.global.extension.timeFormat", 0) === 2) {
+        } else if (option === 2) {
             $element.text(this.formatAbsolute(mom));
         }
     }
