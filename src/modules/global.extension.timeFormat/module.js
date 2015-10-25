@@ -46,9 +46,9 @@ export default class Module extends DefaultModule {
     }
     formatHalfRelative(mom) {
         if (mom.isSame(Moment(), "day")) {
-            return mom.format("[Heute,] HH:MM");
+            return mom.format("[Heute,] HH:mm");
         } else if (mom.isSame(Moment().subtract(1, "days"), "day")) {
-            return mom.format("[Gestern,] HH:MM");
+            return mom.format("[Gestern,] HH:mm");
         } else {
             return mom.format("DD. MMMM YYYY, HH:mm");
         }
