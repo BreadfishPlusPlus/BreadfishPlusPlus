@@ -34,7 +34,7 @@ export default class Module extends DefaultModule {
         this.removeLikeColumn();
     }
     removeLikeColumn() {
-        debug("Like-Counter werden etnfernt...");
+        debug("Like-Counter werden entfernt...");
 
         $(".wbbThreadList .table tr th.columnLikes, .wbbThreadList .table tr td.columnLikes").remove();
     }
