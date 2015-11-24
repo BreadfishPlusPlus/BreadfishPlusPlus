@@ -34,7 +34,7 @@ export default class Module extends DefaultModule {
         this.removeStatisticBox();
     }
     removeStatisticBox() {
-        debug("Forenstatistik wird etnfernt...");
+        debug("Forenstatistik wird entfernt...");
         $(".box32.statsInfoBox").remove();
 
         if ($(".containerList.infoBoxList").is(":empty")) {
