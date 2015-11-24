@@ -26,7 +26,7 @@ mod.keys().map(fileName => {
     debug("Lade Modul \"%s\" ...", moduleName);
     try {
         let Module = mod(fileName);
-        let inst = new Module();
+        let inst = new Module.default();
         ReferenceModule(moduleName, inst);
     }
     catch (e) {

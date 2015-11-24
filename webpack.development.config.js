@@ -29,11 +29,7 @@ module.exports = {
             include: [
                 Path.join(__dirname, "src")
             ],
-            loader: "babel",
-            query: {
-                stage: 0,
-                comments: false
-            }
+            loader: "babel-loader"
         }]
     },
     plugins: [
