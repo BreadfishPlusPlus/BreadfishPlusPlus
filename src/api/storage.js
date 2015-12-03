@@ -9,13 +9,13 @@ const debug = require("debug")("B++:Storage");
 import {isUndefined, isNull} from "lodash";
 
 const set = function (key, value) {
-    debug("set %j=%j", key, value);
+    debug("set", {key, value});
     localStorage.setItem(namespace + key, JSON.stringify(value));
 };
 
 const setDefault = function (key, defaultValue) {
     if (!localStorage.getItem(namespace + key)) {
-        debug("setDefault %j=%j", key, defaultValue);
+        debug("setDefault", {key, defaultValue});
         localStorage.setItem(namespace + key, JSON.stringify(defaultValue));
     }
 };
@@ -25,12 +25,12 @@ const get = function (key, defaultValue) {
     try {
         value = JSON.parse(value);
     } catch(e) {
-        debug(key, defaultValue, value);
+        debug("catch", {key, defaultValue, value});
         if (console && console.error) {
             console.error(e);
         }
     }
-    debug("get", key, value, defaultValue);
+    debug("get", {key, value, defaultValue});
     return !isUndefined(value) && !isNull(value) ? value : defaultValue;
 };
 
