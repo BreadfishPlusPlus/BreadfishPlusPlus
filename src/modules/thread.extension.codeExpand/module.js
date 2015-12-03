@@ -17,7 +17,7 @@ export default class Module extends DefaultModule {
             "category": "Erweiterungen",
             "type": "toggle",
             "default": false,
-            "description": "Zeigt Quollcode-Boxen automatisch im ausgeklappten Zustand an."
+            "description": "Zeigt Quellcode-Boxen automatisch im ausgeklappten Zustand an."
         });
 
         if (!this.storage.get("option.thread.extension.codeExpand.enabled", false)) {
