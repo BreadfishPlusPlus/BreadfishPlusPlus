@@ -19,7 +19,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "$(npm bin)/webpack-dev-server --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons --https",
+    "start": "$(npm bin)/webpack-dev-server --config webpack.development.config.js --display-error-details --progress --colors --display-chunks --display-reasons --https",
     "build": "$(npm bin)/webpack --config webpack.production.config.js --display-error-details --progress --colors --display-chunks --display-reasons",
     "move": "mv ./.public/breadfishplusplus.js ./../static/breadfishplusplus.js"
   },
