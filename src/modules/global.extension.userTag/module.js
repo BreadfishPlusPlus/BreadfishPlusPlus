@@ -99,6 +99,7 @@ export default class Module extends DefaultModule {
     }
     setupPopupListener() {
         this.wcf.DOMNodeInsertedHandler.addCallback("WCF.Popover..userLink", () => {
+            debug("insert icon");
             const $iconList = $(".popover .userProfilePreview .userInformation .buttonGroupNavigation .iconList");
             if ($iconList.length > 0) {
                 const $user = $(".popover .userProfilePreview > a");
