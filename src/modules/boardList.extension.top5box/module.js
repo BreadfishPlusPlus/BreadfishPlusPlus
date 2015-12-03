@@ -75,6 +75,10 @@ export default class Module extends DefaultModule {
 
                 this.domInserted();
 
+                if (this.storage.get("option.boardList.filter.likeCounter.enabled", false)) {
+                    this.getModule("boardList.filter.likeCounter").removeLikeColumn();
+                }
+
                 debug("Die letzten 10 Beiträge wurden aktualisiert!");
             })
             .fail((jqXHR, textStatus, errorThrown) => {
