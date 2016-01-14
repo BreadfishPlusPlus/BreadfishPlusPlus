@@ -30,8 +30,8 @@
     "keyboardjs": "^2.2.0",
     "lodash": "^4.0.0",
     "moment": "^2.11.1",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "react-notification-system": "^0.2.6",
     "semver": "^5.1.0",
     "url-parse": "^1.0.5"
