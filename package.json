@@ -29,7 +29,7 @@
     "jquery-near-viewport": "^1.2.2",
     "keyboardjs": "^2.2.0",
     "lodash": "^4.0.0",
-    "moment": "^2.10.3",
+    "moment": "^2.11.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-notification-system": "^0.2.6",
