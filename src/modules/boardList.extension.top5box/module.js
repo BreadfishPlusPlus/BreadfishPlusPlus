@@ -79,6 +79,10 @@ export default class Module extends DefaultModule {
                     this.getModule("boardList.filter.likeCounter").removeLikeColumn();
                 }
 
+                if (this.storage.get("option.boardList.extension.alignLabels.enabled", false)) {
+                    this.getModule("boardList.extension.alignLabels").alignLabels();
+                }
+
                 debug("Die letzten 10 Beiträge wurden aktualisiert!");
             })
             .fail((jqXHR, textStatus, errorThrown) => {
