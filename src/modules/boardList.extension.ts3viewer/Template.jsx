@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import _ from "lodash";
+import {isEmpty, find} from "lodash";
 import Moment from "moment";
 import $ from "jquery";
 import User from "./User.jsx";
@@ -66,7 +66,7 @@ export default class TS3Viewer extends React.Component {
     }
     render() {
         this.props.debug("Render template...", this.state);
-        if (_.isEmpty(this.state)) {
+        if (isEmpty(this.state)) {
             return false;
         }
 
@@ -100,7 +100,7 @@ export default class TS3Viewer extends React.Component {
                     </div>
                     <ul className="dataList">
                         {this.state.clients.map(client => {
-                            const channel = _.find(this.state.channels, ch => ch.id === client.channel);
+                            const channel = find(this.state.channels, ch => ch.id === client.channel);
                             return (<User
                                 channel={channel}
                                 client={client}

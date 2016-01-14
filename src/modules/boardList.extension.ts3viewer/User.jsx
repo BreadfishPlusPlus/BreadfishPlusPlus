@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import {findWhere} from "lodash";
+import {find} from "lodash";
 
 export default class User extends React.Component {
     static propTypes = {
@@ -37,7 +37,7 @@ export default class User extends React.Component {
         });
     }
     onProxyLoaded(returnValues) {
-        const user = findWhere(returnValues, {label: this.props.client.name});
+        const user = find(returnValues, {label: this.props.client.name});
         this.setState({
             userName: user.label,
             userId: user.objectID
