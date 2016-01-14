@@ -21,13 +21,16 @@ module.exports = _.assign(devConfig, {
         new Webpack.PrefetchPlugin("react"),
         new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
         new Webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Don't load all moment locales
-        new Webpack.ProvidePlugin({
-            _: "lodash"
-        }),
+        new Webpack.optimize.OccurrenceOrderPlugin(true),
         new Webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
-            }
+            },
+            BPP_VERSION: JSON.stringify(Package.version),
+            BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
+            BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
+            BPP_SCREENSHOT_DOMAIN: JSON.stringify(Package.domain.screenshot),
+            DEBUG_MOE: false
         }),
         new Webpack.optimize.DedupePlugin(),
         new Webpack.optimize.UglifyJsPlugin({
@@ -37,14 +40,7 @@ module.exports = _.assign(devConfig, {
             compress: {
                 warnings: true
             },
-            sourceMap: true
-        }),
-        new Webpack.DefinePlugin({
-            BPP_VERSION: JSON.stringify(Package.version),
-            BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
-            BPP_TS_DOMAIN: JSON.stringify(Package.domain.teamspeak),
-            BPP_SCREENSHOT_DOMAIN: JSON.stringify(Package.domain.screenshot),
-            DEBUG_MOE: false
+            sourceMap: false
         })
     ],
     devtool: null,

@@ -34,9 +34,6 @@ module.exports = {
     },
     plugins: [
         new Webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Don't load all moment locales
-        new Webpack.ProvidePlugin({
-            _: "lodash"
-        }),
         new Webpack.DefinePlugin({
             BPP_VERSION: JSON.stringify(Package.version),
             BPP_CDN_DOMAIN: JSON.stringify(Package.domain.cdn),
