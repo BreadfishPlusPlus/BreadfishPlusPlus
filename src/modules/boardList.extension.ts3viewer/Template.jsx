@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import {isEmpty, find} from "lodash";
+import {isEmpty, keys} from "lodash";
 import Moment from "moment";
 import $ from "jquery";
 import User from "./User.jsx";
@@ -88,23 +88,23 @@ export default class TS3Viewer extends React.Component {
                 <div>
                     <div className="containerHeadline">
                         <h3>
-                            <a href={connectHref}>{this.state.name} - {this.state.welcomemessage}</a> <span className="badge">{this.state.clients.length}</span>
+                            <a href={connectHref}>{this.state.name} - {this.state.welcomemessage}</a> <span className="badge">{keys(this.state.clientlist).length}</span>
                         </h3>
                         <p>
-                            {this.state.plattform} {this.state.version}
-                            &nbsp;- Clients: {this.state.clients.length}/{this.state.maxclients}
-                            &nbsp;- Channels: {this.state.channels.length}
+                            {this.state.platform} {this.state.version}
+                            &nbsp;- Clients: {keys(this.state.clientlist).length}/{this.state.maxclients}
+                            &nbsp;- Channels: {keys(this.state.channellist).length}
                             &nbsp;- Online seit: {uptime}
                             &nbsp;- Letzte Aktualisierung: {this.getTimeElement(Moment.utc(new Date(this.state.lastUpdate)))}
                         </p>
                     </div>
                     <ul className="dataList">
-                        {this.state.clients.map(client => {
-                            const channel = find(this.state.channels, ch => ch.id === client.channel);
+                        {keys(this.state.clientlist).map((name) => {
+                            const channelId = this.state.clientlist[name];
                             return (<User
-                                channel={channel}
-                                client={client}
-                                key={client.name}
+                                channel={this.state.channellist[channelId]}
+                                key={name}
+                                name={name}
                                 wcfProxy={this.props.wcfProxy}
                             />);
                         })}

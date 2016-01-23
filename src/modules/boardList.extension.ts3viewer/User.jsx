@@ -5,17 +5,17 @@ import {find} from "lodash";
 
 export default class User extends React.Component {
     static propTypes = {
-        channel: React.PropTypes.object.isRequired,
-        client: React.PropTypes.object.isRequired,
+        channel: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string.isRequired,
         wcfProxy: React.PropTypes.func.isRequired
     };
     constructor(props) {
         super(props);
         this.state = {
-            userName: props.client.name,
+            userName: props.name,
             userId: null,
 
-            channelName: props.channel.name
+            channelName: props.channel
         };
     }
     componentDidMount() {
@@ -30,14 +30,14 @@ export default class User extends React.Component {
                 parameters: {
                     data: {
                         includeUserGroups: false,
-                        searchString: this.props.client.name
+                        searchString: this.props.name
                     }
                 }
             }
         });
     }
     onProxyLoaded(returnValues) {
-        const user = find(returnValues, {label: this.props.client.name});
+        const user = find(returnValues, {label: this.props.name});
         this.setState({
             userName: user.label,
             userId: user.objectID
