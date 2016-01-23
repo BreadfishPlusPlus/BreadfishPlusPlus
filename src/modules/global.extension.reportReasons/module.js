@@ -34,7 +34,7 @@ export default class Module extends DefaultModule {
                 value: "Dieser Beitrag ist Beleidigend, weil "
             }, {
                 key: "Crossposting",
-                value: "Dieser Beitrag ist ein Doppelpost."
+                value: "Dieser Beitrag ist in mehreren Bereichen gepostet worden. Siehe:"
             }, {
                 key: "Doppelpost",
                 value: "Dieser Beitrag ist ein Doppelpost. "
