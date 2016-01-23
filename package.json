@@ -2,7 +2,7 @@
   "name": "BreadfishPlusPlus",
   "description": "Erweiterte Einstellungen und Zusatzfunktionen für breadfish.de.",
   "private": true,
-  "version": "4.5.0",
+  "version": "4.5.1",
   "main": "src/index.js",
   "domain": {
     "cdn": "https://cdn.brpp.ga/",
