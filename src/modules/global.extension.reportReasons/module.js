@@ -37,7 +37,7 @@ export default class Module extends DefaultModule {
                 value: "Dieser Beitrag ist ein Doppelpost."
             }, {
                 key: "Doppelpost",
-                value: "Dieser Beitrag erhebt folgende Anschuldigungen, ohne diese zu beweisen: "
+                value: "Dieser Beitrag ist ein Doppelpost. "
             }, {
                 key: "Falscher Bereich",
                 value: "Dieser Beitrag ist im Falschen Bereich, weil "
