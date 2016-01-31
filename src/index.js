@@ -35,4 +35,5 @@ mod.keys().map(fileName => {
     }
 });
 
+import "./api/analytics";
 

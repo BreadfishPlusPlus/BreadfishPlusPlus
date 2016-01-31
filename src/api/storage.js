@@ -7,10 +7,17 @@ if (!window.localStorage) {
 const namespace = "bpp_";
 const debug = require("debug")("B++:Storage");
 import {isUndefined, isNull} from "lodash";
+import Analytics from "./analytics";
 
 const set = function (key, value) {
     debug("set", {key, value});
     localStorage.setItem(namespace + key, JSON.stringify(value));
+    Analytics.sendEvent({
+        eventCategory: "option",
+        eventAction: "change",
+        eventLabel: key,
+        eventValue: value
+    });
 };
 
 const setDefault = function (key, defaultValue) {
