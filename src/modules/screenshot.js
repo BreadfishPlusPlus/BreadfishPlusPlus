@@ -114,7 +114,7 @@ toggle({init: true});
 registerOption({
     id: "screenshot",
     name: "Screenshot",
-    tab: "Thread",
+    tab: "Themen",
     type: "toggle",
     default: false,
     description: "Siehe <a href=\"http://git.io/LK5njg\" target=\"_blank\">Wiki Eintrag zum Screenshot-Modul</a>.",

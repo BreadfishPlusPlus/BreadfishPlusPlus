@@ -26,7 +26,7 @@ toggle({init: true});
 registerOption({
     id: "filterDeleted",
     name: "Gelöschte Themen & Beiträge ausblenden",
-    tab: ["Posts", "Thread"],
+    tab: ["Beiträge", "Themen"],
     type: "toggle",
     default: false,
     description: "Blendet gelöschte Themen & Beiträge endgülitg aus.",

@@ -55,7 +55,7 @@ toggle({init: true});
 registerOption({
     id: "shortUrl",
     name: "Kurz-URL",
-    tab: "Posts",
+    tab: "Beiträge",
     type: "toggle",
     default: false,
     description: "Fügt in jedem Beitrag zusätzlich einen Button hinzu, mit dem man eine kurze URL zum Beitrag erhält.",
