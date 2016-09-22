@@ -55,8 +55,6 @@ const refreshPosts = () => {
         // DOM node in aktuellen DOM einfügen
         $("#lastXBoardPosts").html($lastXBoardPosts.html());
 
-        //this.getModule("boardList.extension.lastPosts").trimPosts();
-
         // lastRefresh Zeitpunkt zurücksetzen, damit der Counter aktuell ist
         lastRefresh = Date.now();
 
