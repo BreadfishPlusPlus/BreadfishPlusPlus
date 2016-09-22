@@ -1,4 +1,4 @@
-import {isTemplate} from "../breadfish";
+import {isTemplate, addDOMinsertedListener} from "../breadfish";
 import $ from "jquery";
 import {get, set} from "../storage";
 import {registerOption} from "../config";
@@ -20,6 +20,7 @@ const change = ({value=get("lastXPostsCount", 10), init=false} = {}) => {
     }
 };
 change({init: true});
+addDOMinsertedListener(() => change());
 
 registerOption({
     id: "lastXPostsCount",
