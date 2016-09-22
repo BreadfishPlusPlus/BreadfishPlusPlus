@@ -38,6 +38,12 @@ export const triggerDOMInserted = () => window.WCF.DOMNodeInsertedHandler.execut
 
 
 /**
+ * TODO
+ */
+export const addDOMinsertedListener = (fn) => window.WCF.DOMNodeInsertedHandler.addCallback("*", fn);
+
+
+/**
  * Löst das WCF Tooltip Event aus.
  */
 export const triggerTooltips = () => window.WCF.Effect.BalloonTooltip();
